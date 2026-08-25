@@ -15,10 +15,6 @@ content="width=device-width, initial-scale=1.0"
 
 <style>
 
-/* =========================
-   GENERAL
-========================= */
-
 * {
     box-sizing: border-box;
 }
@@ -27,7 +23,7 @@ body {
 
     margin: 0;
 
-    padding: 15px;
+    padding: 12px;
 
     background: #0b0b0b;
 
@@ -39,7 +35,7 @@ body {
 
 .container {
 
-    max-width: 800px;
+    max-width: 850px;
 
     margin: auto;
 
@@ -133,8 +129,6 @@ input[type="color"] {
 
     font-size: 13px;
 
-    margin-top: 3px;
-
 }
 
 button {
@@ -171,36 +165,15 @@ button:active {
 
 }
 
-.danger {
-
-    background: #8b3030;
-
-}
-
-
-/* =========================
-   PREVIEW
-========================= */
-
-.preview-area {
-
-    width: 100%;
-
-    display: flex;
-
-    justify-content: center;
-
-}
-
 canvas {
 
     width: 100%;
 
     max-width: 600px;
 
-    height: auto;
-
     display: block;
+
+    margin: auto;
 
     border-radius: 10px;
 
@@ -210,10 +183,13 @@ canvas {
 
 }
 
+.preview-area {
 
-/* =========================
-   BORDER PRESETS
-========================= */
+    display: flex;
+
+    justify-content: center;
+
+}
 
 .border-grid {
 
@@ -254,7 +230,7 @@ canvas {
 
     width: 100%;
 
-    height: 55px;
+    height: 60px;
 
     margin-bottom: 7px;
 
@@ -262,30 +238,29 @@ canvas {
 
 }
 
+.section-note {
 
-/* =========================
-   MOBILE
-========================= */
+    color: #999;
 
-@media (max-width: 500px) {
+    font-size: 13px;
 
-    body {
+    line-height: 1.4;
 
-        padding: 10px;
+}
 
-    }
+.font-preview {
 
-    .panel {
+    margin-top: 10px;
 
-        padding: 15px;
+    padding: 12px;
 
-    }
+    border-radius: 8px;
 
-    h1 {
+    background: #222;
 
-        font-size: 26px;
+    text-align: center;
 
-    }
+    font-size: 24px;
 
 }
 
@@ -306,9 +281,9 @@ Tier Icon Maker
 
 
 
-<!-- =========================
-     IMAGE
-========================= -->
+<!-- ==================================================
+IMAGE
+================================================== -->
 
 <div class="panel">
 
@@ -349,7 +324,6 @@ id="zoomValue"
 </span>
 
 
-
 <label>
 Horizontal Position
 </label>
@@ -361,14 +335,6 @@ min="-400"
 max="400"
 value="0"
 >
-
-<span
-class="range-value"
-id="imageXValue"
->
-0
-</span>
-
 
 
 <label>
@@ -383,27 +349,18 @@ max="400"
 value="0"
 >
 
-<span
-class="range-value"
-id="imageYValue"
->
-0
-</span>
 
-
-<p
-style="color:#aaa;font-size:13px;"
->
-You can also drag the image directly on the preview.
+<p class="section-note">
+You can also drag the image directly with your finger.
 </p>
 
 </div>
 
 
 
-<!-- =========================
-     TEXT
-========================= -->
+<!-- ==================================================
+TEXT
+================================================== -->
 
 <div class="panel">
 
@@ -434,11 +391,14 @@ placeholder="Heian Era"
 >
 
 
+
+<!-- NAME FONT -->
+
 <label>
-Font
+Character Name Font
 </label>
 
-<select id="font">
+<select id="nameFont">
 
 <option value="Arial">
 Arial
@@ -464,12 +424,150 @@ Trebuchet MS
 Courier New
 </option>
 
+<option value="Times New Roman">
+Times New Roman
+</option>
+
+<option value="Comic Sans MS">
+Comic Sans MS
+</option>
+
+<option value="Lucida Console">
+Lucida Console
+</option>
+
+<option value="Tahoma">
+Tahoma
+</option>
+
+<option value="Garamond">
+Garamond
+</option>
+
+<option value="Palatino Linotype">
+Palatino
+</option>
+
+<option value="Arial Black">
+Arial Black
+</option>
+
+<option value="Franklin Gothic Medium">
+Franklin Gothic
+</option>
+
+<option value="Segoe UI">
+Segoe UI
+</option>
+
 </select>
 
 
 
+<!-- VERSION FONT -->
+
 <label>
-Character Name Size
+Version Font
+</label>
+
+<select id="versionFont">
+
+<option value="Arial">
+Arial
+</option>
+
+<option value="Impact">
+Impact
+</option>
+
+<option value="Georgia">
+Georgia
+</option>
+
+<option value="Verdana">
+Verdana
+</option>
+
+<option value="Trebuchet MS">
+Trebuchet MS
+</option>
+
+<option value="Courier New">
+Courier New
+</option>
+
+<option value="Times New Roman">
+Times New Roman
+</option>
+
+<option value="Comic Sans MS">
+Comic Sans MS
+</option>
+
+<option value="Lucida Console">
+Lucida Console
+</option>
+
+<option value="Tahoma">
+Tahoma
+</option>
+
+<option value="Garamond">
+Garamond
+</option>
+
+<option value="Palatino Linotype">
+Palatino
+</option>
+
+<option value="Arial Black">
+Arial Black
+</option>
+
+<option value="Franklin Gothic Medium">
+Franklin Gothic
+</option>
+
+<option value="Segoe UI">
+Segoe UI
+</option>
+
+</select>
+
+
+
+<!-- UPLOAD FONT -->
+
+<label>
+Upload Your Own Font
+</label>
+
+<input
+type="file"
+id="fontInput"
+accept=".ttf,.otf,.woff,.woff2"
+>
+
+
+<p class="section-note">
+
+Upload a TTF, OTF, WOFF, or WOFF2 font.
+The font stays in your browser and is used for the current icon.
+
+</p>
+
+
+<div
+class="font-preview"
+id="fontPreview"
+>
+Aa Bb Cc 123
+</div>
+
+
+
+<label>
+Name Size
 </label>
 
 <input
@@ -479,14 +577,6 @@ min="15"
 max="80"
 value="42"
 >
-
-<span
-class="range-value"
-id="nameSizeValue"
->
-42px
-</span>
-
 
 
 <label>
@@ -501,14 +591,6 @@ max="50"
 value="26"
 >
 
-<span
-class="range-value"
-id="versionSizeValue"
->
-26px
-</span>
-
-
 
 <label>
 Text Vertical Position
@@ -520,38 +602,6 @@ id="textY"
 min="300"
 max="590"
 value="525"
->
-
-<span
-class="range-value"
-id="textYValue"
->
-525
-</span>
-
-</div>
-
-
-
-<!-- =========================
-     APPEARANCE
-========================= -->
-
-<div class="panel">
-
-<h2>
-Appearance
-</h2>
-
-
-<label>
-Background Color
-</label>
-
-<input
-type="color"
-id="backgroundColor"
-value="#111111"
 >
 
 
@@ -590,20 +640,40 @@ White
 
 
 
-<!-- =========================
-     BORDERS
-========================= -->
+<!-- ==================================================
+BACKGROUND
+================================================== -->
 
 <div class="panel">
 
 <h2>
-Borders
+Background
 </h2>
 
 
 <label>
-Border Presets
+Background Color
 </label>
+
+<input
+type="color"
+id="backgroundColor"
+value="#111111"
+>
+
+</div>
+
+
+
+<!-- ==================================================
+BORDERS
+================================================== -->
+
+<div class="panel">
+
+<h2>
+Our Border Designs
+</h2>
 
 
 <div class="border-grid">
@@ -627,7 +697,6 @@ Classic
 </div>
 
 
-
 <div
 class="border-option"
 data-border="gold"
@@ -644,7 +713,6 @@ border:8px solid #d4af37;
 Gold
 
 </div>
-
 
 
 <div
@@ -665,7 +733,6 @@ Double
 </div>
 
 
-
 <div
 class="border-option"
 data-border="neon"
@@ -676,14 +743,13 @@ onclick="selectBorder('neon')"
 class="border-preview"
 style="
 border:6px solid #5865f2;
-box-shadow:0 0 10px #5865f2;
+box-shadow:0 0 12px #5865f2;
 "
 ></div>
 
 Neon
 
 </div>
-
 
 
 <div
@@ -704,7 +770,6 @@ Red
 </div>
 
 
-
 <div
 class="border-option"
 data-border="none"
@@ -715,7 +780,6 @@ onclick="selectBorder('none')"
 class="border-preview"
 style="
 border:6px solid transparent;
-background:#222;
 "
 ></div>
 
@@ -724,48 +788,208 @@ None
 </div>
 
 
+<div
+class="border-option"
+data-border="custom"
+onclick="selectBorder('custom')"
+>
+
+<div
+class="border-preview"
+style="
+border:6px dashed #aaa;
+"
+></div>
+
+Custom
+
+</div>
+
+
+</div>
+
 </div>
 
 
 
+<!-- ==================================================
+CUSTOM BORDER
+================================================== -->
+
+<div class="panel">
+
+<h2>
+Custom Border Builder
+</h2>
+
+
 <label>
-Custom Border Color
+Border Style
+</label>
+
+<select id="customBorderStyle">
+
+<option value="solid">
+Solid
+</option>
+
+<option value="double">
+Double
+</option>
+
+<option value="dashed">
+Dashed
+</option>
+
+<option value="dotted">
+Dotted
+</option>
+
+</select>
+
+
+<label>
+Border Color 1
 </label>
 
 <input
 type="color"
-id="borderColor"
+id="customColor1"
 value="#ffffff"
 >
 
 
 <label>
-Custom Border Width
+Use Gradient
+</label>
+
+<select id="useGradient">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+
+<label>
+Border Color 2
+</label>
+
+<input
+type="color"
+id="customColor2"
+value="#5865f2"
+>
+
+
+<label>
+Border Width
 </label>
 
 <input
 type="range"
-id="borderWidth"
+id="customWidth"
+min="1"
+max="40"
+value="8"
+>
+
+
+<label>
+Border Opacity
+</label>
+
+<input
+type="range"
+id="customOpacity"
 min="0"
-max="30"
-value="6"
+max="100"
+value="100"
 >
 
-<span
-class="range-value"
-id="borderWidthValue"
->
-6px
-</span>
 
+<label>
+Glow
+</label>
+
+<input
+type="range"
+id="customGlow"
+min="0"
+max="40"
+value="0"
+>
+
+
+<label>
+Glow Color
+</label>
+
+<input
+type="color"
+id="customGlowColor"
+value="#5865f2"
+>
 
 </div>
 
 
 
-<!-- =========================
-     PREVIEW
-========================= -->
+<!-- ==================================================
+UPLOAD BORDER
+================================================== -->
+
+<div class="panel">
+
+<h2>
+Upload Your Own Border
+</h2>
+
+
+<p class="section-note">
+Use a transparent PNG, WebP, or similar image containing your border design.
+</p>
+
+
+<input
+type="file"
+id="borderImageInput"
+accept="image/png,image/webp"
+>
+
+
+<label>
+Uploaded Border Opacity
+</label>
+
+<input
+type="range"
+id="uploadedBorderOpacity"
+min="0"
+max="100"
+value="100"
+>
+
+
+<button
+class="secondary"
+onclick="removeUploadedBorder()"
+>
+Remove Uploaded Border
+</button>
+
+</div>
+
+
+
+<!-- ==================================================
+PREVIEW
+================================================== -->
 
 <div class="panel">
 
@@ -810,13 +1034,18 @@ Reset
 
 <script>
 
-/* =========================
-   VARIABLES
-========================= */
+
+/* ==================================================
+VARIABLES
+================================================== */
 
 let uploadedImage = null;
 
+let uploadedBorderImage = null;
+
 let selectedBorder = "classic";
+
+let uploadedFontName = null;
 
 let dragging = false;
 
@@ -830,9 +1059,9 @@ let startImageY = 0;
 
 
 
-/* =========================
-   ELEMENTS
-========================= */
+/* ==================================================
+ELEMENTS
+================================================== */
 
 const canvas =
 document.getElementById("canvas");
@@ -843,6 +1072,12 @@ canvas.getContext("2d");
 
 const imageInput =
 document.getElementById("imageInput");
+
+const borderImageInput =
+document.getElementById("borderImageInput");
+
+const fontInput =
+document.getElementById("fontInput");
 
 
 const zoom =
@@ -861,8 +1096,13 @@ document.getElementById("characterName");
 const version =
 document.getElementById("version");
 
-const font =
-document.getElementById("font");
+
+const nameFont =
+document.getElementById("nameFont");
+
+const versionFont =
+document.getElementById("versionFont");
+
 
 const nameSize =
 document.getElementById("nameSize");
@@ -874,9 +1114,6 @@ const textY =
 document.getElementById("textY");
 
 
-const backgroundColor =
-document.getElementById("backgroundColor");
-
 const textColor =
 document.getElementById("textColor");
 
@@ -884,17 +1121,60 @@ const textShadow =
 document.getElementById("textShadow");
 
 
-const borderColor =
-document.getElementById("borderColor");
-
-const borderWidth =
-document.getElementById("borderWidth");
+const backgroundColor =
+document.getElementById("backgroundColor");
 
 
+const customBorderStyle =
+document.getElementById(
+"customBorderStyle"
+);
 
-/* =========================
-   IMAGE UPLOAD
-========================= */
+const customColor1 =
+document.getElementById(
+"customColor1"
+);
+
+const customColor2 =
+document.getElementById(
+"customColor2"
+);
+
+const useGradient =
+document.getElementById(
+"useGradient"
+);
+
+const customWidth =
+document.getElementById(
+"customWidth"
+);
+
+const customOpacity =
+document.getElementById(
+"customOpacity"
+);
+
+const customGlow =
+document.getElementById(
+"customGlow"
+);
+
+const customGlowColor =
+document.getElementById(
+"customGlowColor"
+);
+
+const uploadedBorderOpacity =
+document.getElementById(
+"uploadedBorderOpacity"
+);
+
+
+
+/* ==================================================
+IMAGE UPLOAD
+================================================== */
 
 imageInput.addEventListener(
 "change",
@@ -920,7 +1200,8 @@ function(event) {
         img.onload =
         function() {
 
-            uploadedImage = img;
+            uploadedImage =
+            img;
 
             drawCanvas();
 
@@ -939,26 +1220,209 @@ function(event) {
 
 
 
-/* =========================
-   LIVE CONTROLS
-========================= */
+/* ==================================================
+FONT UPLOAD
+================================================== */
+
+fontInput.addEventListener(
+"change",
+async function(event) {
+
+    const file =
+    event.target.files[0];
+
+    if (!file) return;
+
+
+    try {
+
+        const fontData =
+        await file.arrayBuffer();
+
+
+        const safeName =
+        "UploadedFont" +
+        Date.now();
+
+
+        const fontFace =
+        new FontFace(
+        safeName,
+        fontData
+        );
+
+
+        await fontFace.load();
+
+
+        document.fonts.add(
+        fontFace
+        );
+
+
+        uploadedFontName =
+        safeName;
+
+
+        /* Add uploaded font
+           to both selectors */
+
+        const option1 =
+        document.createElement(
+        "option"
+        );
+
+
+        option1.value =
+        safeName;
+
+
+        option1.textContent =
+        file.name;
+
+
+        nameFont.appendChild(
+        option1
+        );
+
+
+        const option2 =
+        document.createElement(
+        "option"
+        );
+
+
+        option2.value =
+        safeName;
+
+
+        option2.textContent =
+        file.name;
+
+
+        versionFont.appendChild(
+        option2
+        );
+
+
+        nameFont.value =
+        safeName;
+
+
+        versionFont.value =
+        safeName;
+
+
+        document.getElementById(
+        "fontPreview"
+        ).style.fontFamily =
+        "'" +
+        safeName +
+        "'";
+
+
+        drawCanvas();
+
+    }
+
+    catch(error) {
+
+        alert(
+        "This font could not be loaded. Try a TTF, OTF, WOFF, or WOFF2 file."
+        );
+
+    }
+
+});
+
+
+
+/* ==================================================
+BORDER IMAGE
+================================================== */
+
+borderImageInput.addEventListener(
+"change",
+function(event) {
+
+    const file =
+    event.target.files[0];
+
+    if (!file) return;
+
+
+    const reader =
+    new FileReader();
+
+
+    reader.onload =
+    function(e) {
+
+        const img =
+        new Image();
+
+
+        img.onload =
+        function() {
+
+            uploadedBorderImage =
+            img;
+
+            selectedBorder =
+            "uploaded";
+
+            drawCanvas();
+
+        };
+
+
+        img.src =
+        e.target.result;
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+});
+
+
+
+/* ==================================================
+LIVE CONTROLS
+================================================== */
 
 const controls = [
 
 zoom,
 imageX,
 imageY,
+
 characterName,
 version,
-font,
+
+nameFont,
+versionFont,
+
 nameSize,
 versionSize,
 textY,
-backgroundColor,
+
 textColor,
 textShadow,
-borderColor,
-borderWidth
+
+backgroundColor,
+
+customBorderStyle,
+customColor1,
+customColor2,
+useGradient,
+customWidth,
+customOpacity,
+customGlow,
+customGlowColor,
+
+uploadedBorderOpacity
 
 ];
 
@@ -980,9 +1444,48 @@ function(control) {
 
 
 
-/* =========================
-   VALUE LABELS
-========================= */
+/* ==================================================
+FONT PREVIEW
+================================================== */
+
+function updateFontPreview() {
+
+    const preview =
+    document.getElementById(
+    "fontPreview"
+    );
+
+
+    preview.style.fontFamily =
+    nameFont.value;
+
+}
+
+
+nameFont.addEventListener(
+"change",
+function() {
+
+    updateFontPreview();
+
+    drawCanvas();
+
+});
+
+
+versionFont.addEventListener(
+"change",
+function() {
+
+    drawCanvas();
+
+});
+
+
+
+/* ==================================================
+VALUES
+================================================== */
 
 function updateValues() {
 
@@ -991,51 +1494,16 @@ function updateValues() {
     ).textContent =
     parseFloat(
     zoom.value
-    ).toFixed(2) + "x";
-
-
-    document.getElementById(
-    "imageXValue"
-    ).textContent =
-    imageX.value;
-
-
-    document.getElementById(
-    "imageYValue"
-    ).textContent =
-    imageY.value;
-
-
-    document.getElementById(
-    "nameSizeValue"
-    ).textContent =
-    nameSize.value + "px";
-
-
-    document.getElementById(
-    "versionSizeValue"
-    ).textContent =
-    versionSize.value + "px";
-
-
-    document.getElementById(
-    "textYValue"
-    ).textContent =
-    textY.value;
-
-
-    document.getElementById(
-    "borderWidthValue"
-    ).textContent =
-    borderWidth.value + "px";
+    ).toFixed(2) +
+    "x";
 
 }
 
 
 
-/* =========================
-   BORDER SELECTION
-========================= */
+/* ==================================================
+SELECT BORDER
+================================================== */
 
 function selectBorder(type) {
 
@@ -1080,58 +1548,374 @@ function selectBorder(type) {
 
 
 
-/* =========================
-   BORDER COLOR
-========================= */
+/* ==================================================
+CUSTOM BORDER
+================================================== */
 
-function getBorderColor() {
+function drawCustomBorder() {
+
+    const width =
+    parseInt(
+    customWidth.value
+    );
+
+
+    const opacity =
+    parseInt(
+    customOpacity.value
+    ) / 100;
+
+
+    ctx.save();
+
+
+    ctx.globalAlpha =
+    opacity;
+
 
     if (
-        selectedBorder ===
-        "gold"
+    useGradient.value ===
+    "yes"
     ) {
 
-        return "#d4af37";
+        const gradient =
+        ctx.createLinearGradient(
+        0,
+        0,
+        600,
+        600
+        );
+
+
+        gradient.addColorStop(
+        0,
+        customColor1.value
+        );
+
+
+        gradient.addColorStop(
+        1,
+        customColor2.value
+        );
+
+
+        ctx.strokeStyle =
+        gradient;
+
+    }
+
+    else {
+
+        ctx.strokeStyle =
+        customColor1.value;
 
     }
 
 
+    ctx.lineWidth =
+    width;
+
+
     if (
-        selectedBorder ===
-        "neon"
+    customBorderStyle.value ===
+    "dashed"
     ) {
 
-        return "#5865f2";
+        ctx.setLineDash(
+        [20,12]
+        );
+
+    }
+
+    else if (
+    customBorderStyle.value ===
+    "dotted"
+    ) {
+
+        ctx.setLineDash(
+        [5,10]
+        );
+
+    }
+
+    else {
+
+        ctx.setLineDash([]);
 
     }
 
 
+    ctx.shadowBlur =
+    parseInt(
+    customGlow.value
+    );
+
+
+    ctx.shadowColor =
+    customGlowColor.value;
+
+
     if (
-        selectedBorder ===
-        "red"
+    customBorderStyle.value ===
+    "double"
     ) {
 
-        return "#d63031";
+        ctx.setLineDash([]);
+
+
+        ctx.lineWidth =
+        Math.max(
+        2,
+        width / 3
+        );
+
+
+        ctx.strokeRect(
+        4,
+        4,
+        592,
+        592
+        );
+
+
+        ctx.strokeRect(
+        12,
+        12,
+        576,
+        576
+        );
+
+    }
+
+    else {
+
+        ctx.strokeRect(
+        width / 2,
+        width / 2,
+        600-width,
+        600-width
+        );
 
     }
 
 
-    return borderColor.value;
+    ctx.restore();
 
 }
 
 
 
-/* =========================
-   DRAW CANVAS
-========================= */
+/* ==================================================
+PRESET BORDER
+================================================== */
+
+function drawPresetBorder() {
+
+    if (
+    selectedBorder ===
+    "none"
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+    selectedBorder ===
+    "custom"
+    ) {
+
+        drawCustomBorder();
+
+        return;
+
+    }
+
+
+    let color =
+    "#ffffff";
+
+
+    let width =
+    6;
+
+
+    if (
+    selectedBorder ===
+    "gold"
+    ) {
+
+        color =
+        "#d4af37";
+
+        width =
+        8;
+
+    }
+
+
+    if (
+    selectedBorder ===
+    "neon"
+    ) {
+
+        color =
+        "#5865f2";
+
+        width =
+        6;
+
+    }
+
+
+    if (
+    selectedBorder ===
+    "red"
+    ) {
+
+        color =
+        "#d63031";
+
+        width =
+        7;
+
+    }
+
+
+    ctx.save();
+
+
+    ctx.strokeStyle =
+    color;
+
+
+    ctx.lineWidth =
+    width;
+
+
+    if (
+    selectedBorder ===
+    "double"
+    ) {
+
+        ctx.strokeRect(
+        5,
+        5,
+        590,
+        590
+        );
+
+
+        ctx.lineWidth =
+        2;
+
+
+        ctx.strokeRect(
+        15,
+        15,
+        570,
+        570
+        );
+
+    }
+
+    else {
+
+        ctx.strokeRect(
+        width / 2,
+        width / 2,
+        600-width,
+        600-width
+        );
+
+    }
+
+
+    if (
+    selectedBorder ===
+    "neon"
+    ) {
+
+        ctx.shadowBlur =
+        15;
+
+        ctx.shadowColor =
+        color;
+
+
+        ctx.strokeRect(
+        width / 2,
+        width / 2,
+        600-width,
+        600-width
+        );
+
+    }
+
+
+    ctx.restore();
+
+}
+
+
+
+/* ==================================================
+UPLOADED BORDER
+================================================== */
+
+function drawUploadedBorder() {
+
+    if (
+    !uploadedBorderImage
+    ) {
+
+        return;
+
+    }
+
+
+    ctx.save();
+
+
+    ctx.globalAlpha =
+    parseInt(
+    uploadedBorderOpacity.value
+    ) / 100;
+
+
+    ctx.drawImage(
+    uploadedBorderImage,
+    0,
+    0,
+    600,
+    600
+    );
+
+
+    ctx.restore();
+
+}
+
+
+
+/* ==================================================
+MAIN DRAW
+================================================== */
 
 function drawCanvas() {
 
-    /* BACKGROUND */
+    ctx.clearRect(
+    0,
+    0,
+    600,
+    600
+    );
+
 
     ctx.fillStyle =
     backgroundColor.value;
+
 
     ctx.fillRect(
     0,
@@ -1167,14 +1951,14 @@ function drawCanvas() {
 
 
         const x =
-        (600 - width) / 2 +
+        (600-width)/2 +
         parseFloat(
         imageX.value
         );
 
 
         const y =
-        (600 - height) / 2 +
+        (600-height)/2 +
         parseFloat(
         imageY.value
         );
@@ -1229,7 +2013,7 @@ function drawCanvas() {
 
     gradient.addColorStop(
     1,
-    "rgba(0,0,0,0.9)"
+    "rgba(0,0,0,.9)"
     );
 
 
@@ -1248,6 +2032,9 @@ function drawCanvas() {
 
     /* TEXT */
 
+    ctx.save();
+
+
     ctx.textAlign =
     "center";
 
@@ -1255,8 +2042,6 @@ function drawCanvas() {
     ctx.textBaseline =
     "middle";
 
-
-    /* SHADOW */
 
     if (
     textShadow.value !==
@@ -1269,11 +2054,6 @@ function drawCanvas() {
         ctx.shadowColor =
         textShadow.value;
 
-    } else {
-
-        ctx.shadowBlur =
-        0;
-
     }
 
 
@@ -1285,7 +2065,7 @@ function drawCanvas() {
     "bold " +
     nameSize.value +
     "px " +
-    font.value;
+    nameFont.value;
 
 
     ctx.fillText(
@@ -1304,7 +2084,7 @@ function drawCanvas() {
     "bold " +
     versionSize.value +
     "px " +
-    font.value;
+    versionFont.value;
 
 
     ctx.fillText(
@@ -1319,108 +2099,24 @@ function drawCanvas() {
     );
 
 
-    ctx.shadowBlur =
-    0;
+    ctx.restore();
 
 
 
     /* BORDER */
 
     if (
-    selectedBorder !==
-    "none"
+    selectedBorder ===
+    "uploaded"
     ) {
 
-        const color =
-        getBorderColor();
+        drawUploadedBorder();
 
+    }
 
-        ctx.strokeStyle =
-        color;
+    else {
 
-
-        ctx.lineWidth =
-        parseInt(
-        borderWidth.value
-        );
-
-
-        if (
-        selectedBorder ===
-        "double"
-        ) {
-
-            ctx.strokeStyle =
-            color;
-
-            ctx.lineWidth =
-            parseInt(
-            borderWidth.value
-            );
-
-
-            ctx.strokeRect(
-            5,
-            5,
-            590,
-            590
-            );
-
-
-            ctx.lineWidth =
-            2;
-
-
-            ctx.strokeRect(
-            15,
-            15,
-            570,
-            570
-            );
-
-        }
-
-
-        else {
-
-            ctx.strokeRect(
-            borderWidth.value / 2,
-            borderWidth.value / 2,
-            600 -
-            borderWidth.value,
-            600 -
-            borderWidth.value
-            );
-
-        }
-
-
-        if (
-        selectedBorder ===
-        "neon"
-        ) {
-
-            ctx.shadowBlur =
-            15;
-
-            ctx.shadowColor =
-            color;
-
-
-            ctx.strokeRect(
-            borderWidth.value / 2,
-            borderWidth.value / 2,
-            600 -
-            borderWidth.value,
-            600 -
-            borderWidth.value
-            );
-
-
-            ctx.shadowBlur =
-            0;
-
-        }
+        drawPresetBorder();
 
     }
 
@@ -1428,15 +2124,16 @@ function drawCanvas() {
 
 
 
-/* =========================
-   DRAGGING
-========================= */
+/* ==================================================
+DRAG IMAGE
+================================================== */
 
 canvas.addEventListener(
 "pointerdown",
 function(event) {
 
-    dragging = true;
+    dragging =
+    true;
 
 
     dragStartX =
@@ -1466,7 +2163,6 @@ function(event) {
 });
 
 
-
 canvas.addEventListener(
 "pointermove",
 function(event) {
@@ -1487,68 +2183,54 @@ function(event) {
 
 
     const movementX =
-    (event.clientX -
-    dragStartX) *
+    (
+    event.clientX -
+    dragStartX
+    ) *
     scaleX;
 
 
     const movementY =
-    (event.clientY -
-    dragStartY) *
+    (
+    event.clientY -
+    dragStartY
+    ) *
     scaleY;
 
 
-    let newX =
-    startImageX +
-    movementX;
-
-
-    let newY =
-    startImageY +
-    movementY;
-
-
-    newX =
-    Math.max(
-    -400,
-    Math.min(
-    400,
-    newX
-    )
-    );
-
-
-    newY =
-    Math.max(
-    -400,
-    Math.min(
-    400,
-    newY
-    )
-    );
-
-
     imageX.value =
-    newX;
+    Math.max(
+    -400,
+    Math.min(
+    400,
+    startImageX +
+    movementX
+    )
+    );
 
 
     imageY.value =
-    newY;
+    Math.max(
+    -400,
+    Math.min(
+    400,
+    startImageY +
+    movementY
+    )
+    );
 
-
-    updateValues();
 
     drawCanvas();
 
 });
 
 
-
 canvas.addEventListener(
 "pointerup",
 function() {
 
-    dragging = false;
+    dragging =
+    false;
 
 });
 
@@ -1557,15 +2239,48 @@ canvas.addEventListener(
 "pointercancel",
 function() {
 
-    dragging = false;
+    dragging =
+    false;
 
 });
 
 
 
-/* =========================
-   DOWNLOAD
-========================= */
+/* ==================================================
+REMOVE BORDER
+================================================== */
+
+function removeUploadedBorder() {
+
+    uploadedBorderImage =
+    null;
+
+
+    borderImageInput.value =
+    "";
+
+
+    if (
+    selectedBorder ===
+    "uploaded"
+    ) {
+
+        selectBorder(
+        "classic"
+        );
+
+    }
+
+
+    drawCanvas();
+
+}
+
+
+
+/* ==================================================
+DOWNLOAD
+================================================== */
 
 function downloadIcon() {
 
@@ -1618,17 +2333,20 @@ function downloadIcon() {
 
 
 
-/* =========================
-   RESET
-========================= */
+/* ==================================================
+RESET
+================================================== */
 
 function resetEditor() {
 
-    zoom.value = 1;
+    zoom.value =
+    1;
 
-    imageX.value = 0;
+    imageX.value =
+    0;
 
-    imageY.value = 0;
+    imageY.value =
+    0;
 
 
     characterName.value =
@@ -1638,7 +2356,10 @@ function resetEditor() {
     "";
 
 
-    font.value =
+    nameFont.value =
+    "Arial";
+
+    versionFont.value =
     "Arial";
 
 
@@ -1648,63 +2369,77 @@ function resetEditor() {
     versionSize.value =
     26;
 
-
     textY.value =
     525;
+
+
+    textColor.value =
+    "#ffffff";
+
+    textShadow.value =
+    "none";
 
 
     backgroundColor.value =
     "#111111";
 
 
-    textColor.value =
+    customBorderStyle.value =
+    "solid";
+
+    customColor1.value =
     "#ffffff";
 
+    customColor2.value =
+    "#5865f2";
 
-    textShadow.value =
-    "none";
+    useGradient.value =
+    "no";
 
+    customWidth.value =
+    8;
 
-    borderColor.value =
-    "#ffffff";
+    customOpacity.value =
+    100;
 
+    customGlow.value =
+    0;
 
-    borderWidth.value =
-    6;
-
-
-    selectedBorder =
-    "classic";
-
-
-    document
-    .querySelectorAll(
-    ".border-option"
-    )
-    .forEach(
-    function(option) {
-
-        option.classList.remove(
-        "selected"
-        );
-
-    });
+    customGlowColor.value =
+    "#5865f2";
 
 
-    const classic =
-    document.querySelector(
-    '[data-border="classic"]'
+    uploadedBorderOpacity.value =
+    100;
+
+
+    uploadedImage =
+    null;
+
+    uploadedBorderImage =
+    null;
+
+
+    uploadedFontName =
+    null;
+
+
+    imageInput.value =
+    "";
+
+    borderImageInput.value =
+    "";
+
+    fontInput.value =
+    "";
+
+
+    selectBorder(
+    "classic"
     );
 
 
-    if (classic) {
-
-        classic.classList.add(
-        "selected"
-        );
-
-    }
-
+    updateFontPreview();
 
     updateValues();
 
@@ -1714,11 +2449,13 @@ function resetEditor() {
 
 
 
-/* =========================
-   START
-========================= */
+/* ==================================================
+START
+================================================== */
 
 updateValues();
+
+updateFontPreview();
 
 drawCanvas();
 
