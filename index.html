@@ -12,7 +12,6 @@ content="width=device-width, initial-scale=1.0"
 
 <title>Tier Icon Maker</title>
 
-
 <style>
 
 * {
@@ -23,7 +22,7 @@ body {
 
     margin: 0;
 
-    padding: 12px;
+    padding: 10px;
 
     background: #0b0b0b;
 
@@ -35,7 +34,7 @@ body {
 
 .container {
 
-    max-width: 850px;
+    max-width: 900px;
 
     margin: auto;
 
@@ -45,9 +44,79 @@ h1 {
 
     text-align: center;
 
-    margin-bottom: 25px;
+    margin: 10px 0 18px;
 
 }
+
+
+/* =========================
+LIVE PREVIEW
+========================= */
+
+.live-preview {
+
+    position: sticky;
+
+    top: 8px;
+
+    z-index: 100;
+
+    background: rgba(11,11,11,.96);
+
+    backdrop-filter: blur(12px);
+
+    padding: 10px;
+
+    margin-bottom: 15px;
+
+    border-radius: 15px;
+
+    border: 1px solid #292929;
+
+}
+
+.live-preview-title {
+
+    text-align: center;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+}
+
+.preview-area {
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+canvas {
+
+    width: min(100%, 430px);
+
+    height: auto;
+
+    display: block;
+
+    border-radius: 10px;
+
+    background: #222;
+
+    touch-action: none;
+
+}
+
+
+/* =========================
+PANELS
+========================= */
 
 .panel {
 
@@ -57,7 +126,7 @@ h1 {
 
     border-radius: 15px;
 
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 
 }
 
@@ -119,25 +188,13 @@ input[type="color"] {
 
 }
 
-.range-value {
-
-    display: block;
-
-    text-align: right;
-
-    color: #aaa;
-
-    font-size: 13px;
-
-}
-
 button {
 
     width: 100%;
 
     padding: 14px;
 
-    margin-top: 18px;
+    margin-top: 15px;
 
     border: none;
 
@@ -165,31 +222,38 @@ button:active {
 
 }
 
-canvas {
+.danger {
 
-    width: 100%;
+    background: #8b3030;
 
-    max-width: 600px;
+}
+
+.range-value {
 
     display: block;
 
-    margin: auto;
+    text-align: right;
 
-    border-radius: 10px;
+    color: #aaa;
 
-    background: #222;
-
-    touch-action: none;
+    font-size: 13px;
 
 }
 
-.preview-area {
+.section-note {
 
-    display: flex;
+    color: #999;
 
-    justify-content: center;
+    font-size: 13px;
+
+    line-height: 1.4;
 
 }
+
+
+/* =========================
+BORDERS
+========================= */
 
 .border-grid {
 
@@ -238,15 +302,10 @@ canvas {
 
 }
 
-.section-note {
 
-    color: #999;
-
-    font-size: 13px;
-
-    line-height: 1.4;
-
-}
+/* =========================
+FONT PREVIEW
+========================= */
 
 .font-preview {
 
@@ -264,6 +323,65 @@ canvas {
 
 }
 
+
+/* =========================
+HIDDEN SECTIONS
+========================= */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 7px;
+
+    }
+
+    .panel {
+
+        padding: 14px;
+
+    }
+
+    h1 {
+
+        font-size: 24px;
+
+    }
+
+    canvas {
+
+        width: min(100%, 330px);
+
+    }
+
+}
+
+
+/* =========================
+DESKTOP
+========================= */
+
+@media (min-width: 601px) {
+
+    canvas {
+
+        width: 420px;
+
+    }
+
+}
+
 </style>
 
 </head>
@@ -278,6 +396,30 @@ canvas {
 <h1>
 Tier Icon Maker
 </h1>
+
+
+
+<!-- ==================================================
+LIVE PREVIEW
+================================================== -->
+
+<div class="live-preview">
+
+<div class="live-preview-title">
+LIVE PREVIEW
+</div>
+
+<div class="preview-area">
+
+<canvas
+id="canvas"
+width="600"
+height="600"
+></canvas>
+
+</div>
+
+</div>
 
 
 
@@ -351,7 +493,7 @@ value="0"
 
 
 <p class="section-note">
-You can also drag the image directly with your finger.
+You can also drag the image directly on the live preview.
 </p>
 
 </div>
@@ -390,9 +532,6 @@ id="version"
 placeholder="Heian Era"
 >
 
-
-
-<!-- NAME FONT -->
 
 <label>
 Character Name Font
@@ -463,9 +602,6 @@ Segoe UI
 </select>
 
 
-
-<!-- VERSION FONT -->
-
 <label>
 Version Font
 </label>
@@ -535,9 +671,6 @@ Segoe UI
 </select>
 
 
-
-<!-- UPLOAD FONT -->
-
 <label>
 Upload Your Own Font
 </label>
@@ -548,12 +681,8 @@ id="fontInput"
 accept=".ttf,.otf,.woff,.woff2"
 >
 
-
 <p class="section-note">
-
-Upload a TTF, OTF, WOFF, or WOFF2 font.
-The font stays in your browser and is used for the current icon.
-
+Upload TTF, OTF, WOFF, or WOFF2 fonts. Uploaded fonts are loaded locally in your browser.
 </p>
 
 
@@ -563,7 +692,6 @@ id="fontPreview"
 >
 Aa Bb Cc 123
 </div>
-
 
 
 <label>
@@ -674,6 +802,10 @@ BORDERS
 <h2>
 Our Border Designs
 </h2>
+
+<p class="section-note">
+Select a border design for your icon.
+</p>
 
 
 <div class="border-grid">
@@ -813,14 +945,22 @@ Custom
 
 
 <!-- ==================================================
-CUSTOM BORDER
+CUSTOM BORDER BUILDER
 ================================================== -->
 
-<div class="panel">
+<div
+class="panel hidden"
+id="customBorderPanel"
+>
 
 <h2>
 Custom Border Builder
 </h2>
+
+<p class="section-note">
+Create your own border.
+This section only appears when Custom is selected.
+</p>
 
 
 <label>
@@ -899,6 +1039,13 @@ max="40"
 value="8"
 >
 
+<span
+class="range-value"
+id="customWidthValue"
+>
+8px
+</span>
+
 
 <label>
 Border Opacity
@@ -912,6 +1059,13 @@ max="100"
 value="100"
 >
 
+<span
+class="range-value"
+id="customOpacityValue"
+>
+100%
+</span>
+
 
 <label>
 Glow
@@ -924,6 +1078,13 @@ min="0"
 max="40"
 value="0"
 >
+
+<span
+class="range-value"
+id="customGlowValue"
+>
+0px
+</span>
 
 
 <label>
@@ -950,9 +1111,8 @@ UPLOAD BORDER
 Upload Your Own Border
 </h2>
 
-
 <p class="section-note">
-Use a transparent PNG, WebP, or similar image containing your border design.
+Upload a border image. The system automatically scales it to the full icon.
 </p>
 
 
@@ -964,7 +1124,7 @@ accept="image/png,image/webp"
 
 
 <label>
-Uploaded Border Opacity
+Border Opacity
 </label>
 
 <input
@@ -988,27 +1148,14 @@ Remove Uploaded Border
 
 
 <!-- ==================================================
-PREVIEW
+DOWNLOAD
 ================================================== -->
 
 <div class="panel">
 
-<h2
-style="text-align:center;"
->
-Preview
+<h2>
+Export
 </h2>
-
-
-<div class="preview-area">
-
-<canvas
-id="canvas"
-width="600"
-height="600"
-></canvas>
-
-</div>
 
 
 <button
@@ -1022,7 +1169,7 @@ Download PNG
 class="secondary"
 onclick="resetEditor()"
 >
-Reset
+Reset Everything
 </button>
 
 </div>
@@ -1123,6 +1270,12 @@ document.getElementById("textShadow");
 
 const backgroundColor =
 document.getElementById("backgroundColor");
+
+
+const customBorderPanel =
+document.getElementById(
+"customBorderPanel"
+);
 
 
 const customBorderStyle =
@@ -1264,9 +1417,6 @@ async function(event) {
         safeName;
 
 
-        /* Add uploaded font
-           to both selectors */
-
         const option1 =
         document.createElement(
         "option"
@@ -1278,6 +1428,7 @@ async function(event) {
 
 
         option1.textContent =
+        "★ " +
         file.name;
 
 
@@ -1297,6 +1448,7 @@ async function(event) {
 
 
         option2.textContent =
+        "★ " +
         file.name;
 
 
@@ -1313,13 +1465,7 @@ async function(event) {
         safeName;
 
 
-        document.getElementById(
-        "fontPreview"
-        ).style.fontFamily =
-        "'" +
-        safeName +
-        "'";
-
+        updateFontPreview();
 
         drawCanvas();
 
@@ -1338,7 +1484,7 @@ async function(event) {
 
 
 /* ==================================================
-BORDER IMAGE
+BORDER UPLOAD
 ================================================== */
 
 borderImageInput.addEventListener(
@@ -1368,8 +1514,23 @@ function(event) {
             uploadedBorderImage =
             img;
 
+
+            /*
+            Automatically select
+            uploaded border.
+            */
+
             selectedBorder =
             "uploaded";
+
+
+            /*
+            We don't need the user
+            to resize or position it.
+            It is automatically
+            stretched to the icon.
+            */
+
 
             drawCanvas();
 
@@ -1497,6 +1658,27 @@ function updateValues() {
     ).toFixed(2) +
     "x";
 
+
+    document.getElementById(
+    "customWidthValue"
+    ).textContent =
+    customWidth.value +
+    "px";
+
+
+    document.getElementById(
+    "customOpacityValue"
+    ).textContent =
+    customOpacity.value +
+    "%";
+
+
+    document.getElementById(
+    "customGlowValue"
+    ).textContent =
+    customGlow.value +
+    "px";
+
 }
 
 
@@ -1537,6 +1719,35 @@ function selectBorder(type) {
 
         selected.classList.add(
         "selected"
+        );
+
+    }
+
+
+    /*
+    Show custom controls
+    ONLY when custom is selected.
+    */
+
+    if (
+    type ===
+    "custom"
+    ) {
+
+        customBorderPanel
+        .classList
+        .remove(
+        "hidden"
+        );
+
+    }
+
+    else {
+
+        customBorderPanel
+        .classList
+        .add(
+        "hidden"
         );
 
     }
@@ -1884,10 +2095,30 @@ function drawUploadedBorder() {
     ) / 100;
 
 
+    /*
+    AUTOMATIC FIT
+
+    No matter what dimensions
+    the uploaded border has,
+    it gets mapped to the
+    entire icon.
+
+    Example:
+
+    1000x1000
+    500x500
+    2000x1500
+
+    all become a 600x600
+    overlay automatically.
+    */
+
     ctx.drawImage(
     uploadedBorderImage,
+
     0,
     0,
+
     600,
     600
     );
@@ -1912,6 +2143,8 @@ function drawCanvas() {
     600
     );
 
+
+    /* BACKGROUND */
 
     ctx.fillStyle =
     backgroundColor.value;
@@ -1994,7 +2227,7 @@ function drawCanvas() {
 
 
 
-    /* GRADIENT */
+    /* DARK TEXT GRADIENT */
 
     const gradient =
     ctx.createLinearGradient(
@@ -2247,7 +2480,7 @@ function() {
 
 
 /* ==================================================
-REMOVE BORDER
+REMOVE UPLOADED BORDER
 ================================================== */
 
 function removeUploadedBorder() {
@@ -2420,17 +2653,10 @@ function resetEditor() {
     null;
 
 
-    uploadedFontName =
-    null;
-
-
     imageInput.value =
     "";
 
     borderImageInput.value =
-    "";
-
-    fontInput.value =
     "";
 
 
