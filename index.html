@@ -1,216 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
 <title>Tier Icon Maker</title>
 
+
 <style>
+
+/* =========================
+   GENERAL
+========================= */
 
 * {
     box-sizing: border-box;
 }
 
 body {
+
     margin: 0;
+
     padding: 15px;
-    background: #0d0d0d;
+
+    background: #0b0b0b;
+
     color: white;
+
     font-family: Arial, sans-serif;
+
 }
 
 .container {
-    max-width: 750px;
+
+    max-width: 800px;
+
     margin: auto;
+
 }
 
 h1 {
+
     text-align: center;
+
     margin-bottom: 25px;
+
 }
 
 .panel {
-    background: #191919;
+
+    background: #181818;
+
     padding: 18px;
+
     border-radius: 15px;
+
     margin-bottom: 18px;
+
 }
 
 h2 {
+
     margin-top: 0;
+
 }
 
 label {
+
     display: block;
+
     margin-top: 15px;
+
     margin-bottom: 7px;
+
     font-weight: bold;
+
 }
 
 input[type="text"],
 input[type="file"],
 select {
+
     width: 100%;
+
     padding: 12px;
+
     border-radius: 8px;
+
     border: none;
+
     background: #292929;
+
     color: white;
+
+    font-size: 15px;
+
 }
 
 input[type="range"] {
+
     width: 100%;
+
 }
 
 input[type="color"] {
-    width: 60px;
-    height: 40px;
+
+    width: 65px;
+
+    height: 42px;
+
     border: none;
+
     padding: 0;
-    background: none;
+
+    background: transparent;
+
 }
 
 .range-value {
+
     display: block;
+
     text-align: right;
+
     color: #aaa;
+
     font-size: 13px;
+
+    margin-top: 3px;
+
 }
 
 button {
+
     width: 100%;
+
     padding: 14px;
+
     margin-top: 18px;
+
     border: none;
+
     border-radius: 10px;
+
     background: #5865f2;
+
     color: white;
+
     font-size: 16px;
+
     font-weight: bold;
+
 }
 
 button:active {
-    transform: scale(0.98);
+
+    transform: scale(.98);
+
 }
 
 .secondary {
+
     background: #333;
+
+}
+
+.danger {
+
+    background: #8b3030;
+
+}
+
+
+/* =========================
+   PREVIEW
+========================= */
+
+.preview-area {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
 }
 
 canvas {
-    display: block;
+
     width: 100%;
+
     max-width: 600px;
-    margin: auto;
+
+    height: auto;
+
+    display: block;
+
     border-radius: 10px;
+
     background: #222;
+
+    touch-action: none;
+
 }
 
-.control-group {
-    margin-bottom: 10px;
+
+/* =========================
+   BORDER PRESETS
+========================= */
+
+.border-grid {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-top: 10px;
+
+}
+
+.border-option {
+
+    padding: 12px;
+
+    background: #292929;
+
+    border: 2px solid transparent;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+}
+
+.border-option.selected {
+
+    border-color: #5865f2;
+
+}
+
+.border-preview {
+
+    width: 100%;
+
+    height: 55px;
+
+    margin-bottom: 7px;
+
+    border-radius: 5px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 10px;
+
+    }
+
+    .panel {
+
+        padding: 15px;
+
+    }
+
+    h1 {
+
+        font-size: 26px;
+
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-<h1>Tier Icon Maker</h1>
+
+<h1>
+Tier Icon Maker
+</h1>
 
 
-<!-- IMAGE -->
+
+<!-- =========================
+     IMAGE
+========================= -->
 
 <div class="panel">
 
-<h2>Image</h2>
+<h2>
+Image
+</h2>
 
-<label>Upload Image</label>
 
-<input
-    type="file"
-    id="imageInput"
-    accept="image/*"
->
-
-<label>Zoom</label>
+<label>
+Upload Image
+</label>
 
 <input
-    type="range"
-    id="zoom"
-    min="0.5"
-    max="3"
-    step="0.01"
-    value="1"
+type="file"
+id="imageInput"
+accept="image/*"
 >
 
-<span class="range-value" id="zoomValue">
+
+<label>
+Zoom
+</label>
+
+<input
+type="range"
+id="zoom"
+min="0.5"
+max="3"
+step="0.01"
+value="1"
+>
+
+<span
+class="range-value"
+id="zoomValue"
+>
 1.00x
 </span>
 
 
-<label>Horizontal Position</label>
+
+<label>
+Horizontal Position
+</label>
 
 <input
-    type="range"
-    id="imageX"
-    min="-300"
-    max="300"
-    value="0"
+type="range"
+id="imageX"
+min="-400"
+max="400"
+value="0"
 >
 
-<span class="range-value" id="imageXValue">
+<span
+class="range-value"
+id="imageXValue"
+>
 0
 </span>
 
 
-<label>Vertical Position</label>
+
+<label>
+Vertical Position
+</label>
 
 <input
-    type="range"
-    id="imageY"
-    min="-300"
-    max="300"
-    value="0"
+type="range"
+id="imageY"
+min="-400"
+max="400"
+value="0"
 >
 
-<span class="range-value" id="imageYValue">
+<span
+class="range-value"
+id="imageYValue"
+>
 0
 </span>
+
+
+<p
+style="color:#aaa;font-size:13px;"
+>
+You can also drag the image directly on the preview.
+</p>
 
 </div>
 
 
 
-<!-- TEXT -->
+<!-- =========================
+     TEXT
+========================= -->
 
 <div class="panel">
 
-<h2>Text</h2>
+<h2>
+Text
+</h2>
 
-<label>Character Name</label>
+
+<label>
+Character Name
+</label>
 
 <input
-    type="text"
-    id="characterName"
-    placeholder="Ryomen Sukuna"
+type="text"
+id="characterName"
+placeholder="Ryomen Sukuna"
 >
 
 
-<label>Version</label>
+<label>
+Version / Form
+</label>
 
 <input
-    type="text"
-    id="version"
-    placeholder="Heian Era"
+type="text"
+id="version"
+placeholder="Heian Era"
 >
 
 
-<label>Font</label>
+<label>
+Font
+</label>
 
 <select id="font">
 
@@ -241,47 +467,65 @@ Courier New
 </select>
 
 
-<label>Name Size</label>
+
+<label>
+Character Name Size
+</label>
 
 <input
-    type="range"
-    id="nameSize"
-    min="15"
-    max="80"
-    value="42"
+type="range"
+id="nameSize"
+min="15"
+max="80"
+value="42"
 >
 
-<span class="range-value" id="nameSizeValue">
+<span
+class="range-value"
+id="nameSizeValue"
+>
 42px
 </span>
 
 
-<label>Version Size</label>
+
+<label>
+Version Size
+</label>
 
 <input
-    type="range"
-    id="versionSize"
-    min="10"
-    max="50"
-    value="26"
+type="range"
+id="versionSize"
+min="10"
+max="50"
+value="26"
 >
 
-<span class="range-value" id="versionSizeValue">
+<span
+class="range-value"
+id="versionSizeValue"
+>
 26px
 </span>
 
 
-<label>Text Vertical Position</label>
+
+<label>
+Text Vertical Position
+</label>
 
 <input
-    type="range"
-    id="textY"
-    min="350"
-    max="590"
-    value="525"
+type="range"
+id="textY"
+min="300"
+max="590"
+value="525"
 >
 
-<span class="range-value" id="textYValue">
+<span
+class="range-value"
+id="textYValue"
+>
 525
 </span>
 
@@ -289,86 +533,276 @@ Courier New
 
 
 
-<!-- COLORS -->
+<!-- =========================
+     APPEARANCE
+========================= -->
 
 <div class="panel">
 
-<h2>Appearance</h2>
+<h2>
+Appearance
+</h2>
 
 
-<label>Background Color</label>
+<label>
+Background Color
+</label>
 
 <input
-    type="color"
-    id="backgroundColor"
-    value="#111111"
+type="color"
+id="backgroundColor"
+value="#111111"
 >
 
 
-<label>Text Color</label>
+<label>
+Text Color
+</label>
 
 <input
-    type="color"
-    id="textColor"
-    value="#ffffff"
+type="color"
+id="textColor"
+value="#ffffff"
 >
 
 
-<label>Border Color</label>
+<label>
+Text Shadow
+</label>
 
-<input
-    type="color"
-    id="borderColor"
-    value="#ffffff"
->
+<select id="textShadow">
 
+<option value="none">
+None
+</option>
 
-<label>Border Thickness</label>
+<option value="black">
+Black
+</option>
 
-<input
-    type="range"
-    id="borderWidth"
-    min="0"
-    max="25"
-    value="6"
->
+<option value="white">
+White
+</option>
 
-<span class="range-value" id="borderWidthValue">
-6px
-</span>
+</select>
 
 </div>
 
 
 
-<!-- PREVIEW -->
+<!-- =========================
+     BORDERS
+========================= -->
 
 <div class="panel">
 
-<h2 style="text-align:center;">
+<h2>
+Borders
+</h2>
+
+
+<label>
+Border Presets
+</label>
+
+
+<div class="border-grid">
+
+
+<div
+class="border-option selected"
+data-border="classic"
+onclick="selectBorder('classic')"
+>
+
+<div
+class="border-preview"
+style="
+border:6px solid white;
+"
+></div>
+
+Classic
+
+</div>
+
+
+
+<div
+class="border-option"
+data-border="gold"
+onclick="selectBorder('gold')"
+>
+
+<div
+class="border-preview"
+style="
+border:8px solid #d4af37;
+"
+></div>
+
+Gold
+
+</div>
+
+
+
+<div
+class="border-option"
+data-border="double"
+onclick="selectBorder('double')"
+>
+
+<div
+class="border-preview"
+style="
+border:6px double white;
+"
+></div>
+
+Double
+
+</div>
+
+
+
+<div
+class="border-option"
+data-border="neon"
+onclick="selectBorder('neon')"
+>
+
+<div
+class="border-preview"
+style="
+border:6px solid #5865f2;
+box-shadow:0 0 10px #5865f2;
+"
+></div>
+
+Neon
+
+</div>
+
+
+
+<div
+class="border-option"
+data-border="red"
+onclick="selectBorder('red')"
+>
+
+<div
+class="border-preview"
+style="
+border:7px solid #d63031;
+"
+></div>
+
+Red
+
+</div>
+
+
+
+<div
+class="border-option"
+data-border="none"
+onclick="selectBorder('none')"
+>
+
+<div
+class="border-preview"
+style="
+border:6px solid transparent;
+background:#222;
+"
+></div>
+
+None
+
+</div>
+
+
+</div>
+
+
+
+<label>
+Custom Border Color
+</label>
+
+<input
+type="color"
+id="borderColor"
+value="#ffffff"
+>
+
+
+<label>
+Custom Border Width
+</label>
+
+<input
+type="range"
+id="borderWidth"
+min="0"
+max="30"
+value="6"
+>
+
+<span
+class="range-value"
+id="borderWidthValue"
+>
+6px
+</span>
+
+
+</div>
+
+
+
+<!-- =========================
+     PREVIEW
+========================= -->
+
+<div class="panel">
+
+<h2
+style="text-align:center;"
+>
 Preview
 </h2>
 
+
+<div class="preview-area">
+
 <canvas
-    id="canvas"
-    width="600"
-    height="600"
+id="canvas"
+width="600"
+height="600"
 ></canvas>
 
+</div>
 
-<button onclick="downloadIcon()">
+
+<button
+onclick="downloadIcon()"
+>
 Download PNG
 </button>
 
 
 <button
-    class="secondary"
-    onclick="resetEditor()"
+class="secondary"
+onclick="resetEditor()"
 >
 Reset
 </button>
 
 </div>
+
 
 </div>
 
@@ -376,7 +810,29 @@ Reset
 
 <script>
 
+/* =========================
+   VARIABLES
+========================= */
+
 let uploadedImage = null;
+
+let selectedBorder = "classic";
+
+let dragging = false;
+
+let dragStartX = 0;
+
+let dragStartY = 0;
+
+let startImageX = 0;
+
+let startImageY = 0;
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
 
 const canvas =
 document.getElementById("canvas");
@@ -384,12 +840,10 @@ document.getElementById("canvas");
 const ctx =
 canvas.getContext("2d");
 
+
 const imageInput =
 document.getElementById("imageInput");
 
-
-
-/* CONTROLS */
 
 const zoom =
 document.getElementById("zoom");
@@ -399,6 +853,7 @@ document.getElementById("imageX");
 
 const imageY =
 document.getElementById("imageY");
+
 
 const characterName =
 document.getElementById("characterName");
@@ -418,11 +873,16 @@ document.getElementById("versionSize");
 const textY =
 document.getElementById("textY");
 
+
 const backgroundColor =
 document.getElementById("backgroundColor");
 
 const textColor =
 document.getElementById("textColor");
+
+const textShadow =
+document.getElementById("textShadow");
+
 
 const borderColor =
 document.getElementById("borderColor");
@@ -432,7 +892,9 @@ document.getElementById("borderWidth");
 
 
 
-/* IMAGE UPLOAD */
+/* =========================
+   IMAGE UPLOAD
+========================= */
 
 imageInput.addEventListener(
 "change",
@@ -443,14 +905,17 @@ function(event) {
 
     if (!file) return;
 
+
     const reader =
     new FileReader();
+
 
     reader.onload =
     function(e) {
 
         const img =
         new Image();
+
 
         img.onload =
         function() {
@@ -461,9 +926,12 @@ function(event) {
 
         };
 
-        img.src = e.target.result;
+
+        img.src =
+        e.target.result;
 
     };
+
 
     reader.readAsDataURL(file);
 
@@ -471,7 +939,9 @@ function(event) {
 
 
 
-/* LIVE CONTROLS */
+/* =========================
+   LIVE CONTROLS
+========================= */
 
 const controls = [
 
@@ -486,13 +956,15 @@ versionSize,
 textY,
 backgroundColor,
 textColor,
+textShadow,
 borderColor,
 borderWidth
 
 ];
 
 
-controls.forEach(control => {
+controls.forEach(
+function(control) {
 
     control.addEventListener(
     "input",
@@ -508,69 +980,166 @@ controls.forEach(control => {
 
 
 
-/* VALUE LABELS */
+/* =========================
+   VALUE LABELS
+========================= */
 
 function updateValues() {
 
     document.getElementById(
-        "zoomValue"
+    "zoomValue"
     ).textContent =
-        parseFloat(zoom.value).toFixed(2)
-        + "x";
+    parseFloat(
+    zoom.value
+    ).toFixed(2) + "x";
 
 
     document.getElementById(
-        "imageXValue"
+    "imageXValue"
     ).textContent =
-        imageX.value;
+    imageX.value;
 
 
     document.getElementById(
-        "imageYValue"
+    "imageYValue"
     ).textContent =
-        imageY.value;
+    imageY.value;
 
 
     document.getElementById(
-        "nameSizeValue"
+    "nameSizeValue"
     ).textContent =
-        nameSize.value + "px";
+    nameSize.value + "px";
 
 
     document.getElementById(
-        "versionSizeValue"
+    "versionSizeValue"
     ).textContent =
-        versionSize.value + "px";
+    versionSize.value + "px";
 
 
     document.getElementById(
-        "textYValue"
+    "textYValue"
     ).textContent =
-        textY.value;
+    textY.value;
 
 
     document.getElementById(
-        "borderWidthValue"
+    "borderWidthValue"
     ).textContent =
-        borderWidth.value + "px";
+    borderWidth.value + "px";
 
 }
 
 
+
+/* =========================
+   BORDER SELECTION
+========================= */
+
+function selectBorder(type) {
+
+    selectedBorder =
+    type;
+
+
+    document
+    .querySelectorAll(
+    ".border-option"
+    )
+    .forEach(
+    function(option) {
+
+        option.classList.remove(
+        "selected"
+        );
+
+    });
+
+
+    const selected =
+    document.querySelector(
+    '[data-border="' +
+    type +
+    '"]'
+    );
+
+
+    if (selected) {
+
+        selected.classList.add(
+        "selected"
+        );
+
+    }
+
+
+    drawCanvas();
+
+}
+
+
+
+/* =========================
+   BORDER COLOR
+========================= */
+
+function getBorderColor() {
+
+    if (
+        selectedBorder ===
+        "gold"
+    ) {
+
+        return "#d4af37";
+
+    }
+
+
+    if (
+        selectedBorder ===
+        "neon"
+    ) {
+
+        return "#5865f2";
+
+    }
+
+
+    if (
+        selectedBorder ===
+        "red"
+    ) {
+
+        return "#d63031";
+
+    }
+
+
+    return borderColor.value;
+
+}
+
+
+
+/* =========================
+   DRAW CANVAS
+========================= */
 
 function drawCanvas() {
 
     /* BACKGROUND */
 
     ctx.fillStyle =
-        backgroundColor.value;
+    backgroundColor.value;
 
     ctx.fillRect(
-        0,
-        0,
-        600,
-        600
+    0,
+    0,
+    600,
+    600
     );
+
 
 
     /* IMAGE */
@@ -578,72 +1147,101 @@ function drawCanvas() {
     if (uploadedImage) {
 
         const scale =
-            Math.max(
-                600 / uploadedImage.width,
-                600 / uploadedImage.height
-            ) * parseFloat(zoom.value);
+        Math.max(
+        600 / uploadedImage.width,
+        600 / uploadedImage.height
+        ) *
+        parseFloat(
+        zoom.value
+        );
 
 
         const width =
-            uploadedImage.width * scale;
+        uploadedImage.width *
+        scale;
+
 
         const height =
-            uploadedImage.height * scale;
+        uploadedImage.height *
+        scale;
 
 
         const x =
-            (600 - width) / 2
-            + parseFloat(imageX.value);
+        (600 - width) / 2 +
+        parseFloat(
+        imageX.value
+        );
 
 
         const y =
-            (600 - height) / 2
-            + parseFloat(imageY.value);
+        (600 - height) / 2 +
+        parseFloat(
+        imageY.value
+        );
+
+
+        ctx.save();
+
+
+        ctx.beginPath();
+
+        ctx.rect(
+        0,
+        0,
+        600,
+        600
+        );
+
+        ctx.clip();
 
 
         ctx.drawImage(
-            uploadedImage,
-            x,
-            y,
-            width,
-            height
+        uploadedImage,
+        x,
+        y,
+        width,
+        height
         );
+
+
+        ctx.restore();
 
     }
 
 
-    /* DARK GRADIENT */
+
+    /* GRADIENT */
 
     const gradient =
-        ctx.createLinearGradient(
-            0,
-            300,
-            0,
-            600
-        );
-
-
-    gradient.addColorStop(
-        0,
-        "rgba(0,0,0,0)"
+    ctx.createLinearGradient(
+    0,
+    300,
+    0,
+    600
     );
 
 
     gradient.addColorStop(
-        1,
-        "rgba(0,0,0,0.9)"
+    0,
+    "rgba(0,0,0,0)"
+    );
+
+
+    gradient.addColorStop(
+    1,
+    "rgba(0,0,0,0.9)"
     );
 
 
     ctx.fillStyle =
-        gradient;
+    gradient;
 
 
     ctx.fillRect(
-        0,
-        300,
-        600,
-        300
+    0,
+    300,
+    600,
+    300
     );
 
 
@@ -651,71 +1249,178 @@ function drawCanvas() {
     /* TEXT */
 
     ctx.textAlign =
-        "center";
+    "center";
+
 
     ctx.textBaseline =
-        "middle";
+    "middle";
+
+
+    /* SHADOW */
+
+    if (
+    textShadow.value !==
+    "none"
+    ) {
+
+        ctx.shadowBlur =
+        8;
+
+        ctx.shadowColor =
+        textShadow.value;
+
+    } else {
+
+        ctx.shadowBlur =
+        0;
+
+    }
 
 
     ctx.fillStyle =
-        textColor.value;
+    textColor.value;
 
 
     ctx.font =
-        "bold "
-        + nameSize.value
-        + "px "
-        + font.value;
+    "bold " +
+    nameSize.value +
+    "px " +
+    font.value;
 
 
     ctx.fillText(
-        characterName.value ||
-        "CHARACTER",
+    characterName.value ||
+    "CHARACTER",
 
-        300,
+    300,
 
-        parseInt(textY.value)
+    parseInt(
+    textY.value
+    )
     );
 
 
     ctx.font =
-        "bold "
-        + versionSize.value
-        + "px "
-        + font.value;
+    "bold " +
+    versionSize.value +
+    "px " +
+    font.value;
 
 
     ctx.fillText(
-        version.value ||
-        "VERSION",
+    version.value ||
+    "VERSION",
 
-        300,
+    300,
 
-        parseInt(textY.value) + 42
+    parseInt(
+    textY.value
+    ) + 42
     );
+
+
+    ctx.shadowBlur =
+    0;
 
 
 
     /* BORDER */
 
     if (
-        parseInt(borderWidth.value)
-        > 0
+    selectedBorder !==
+    "none"
     ) {
 
+        const color =
+        getBorderColor();
+
+
         ctx.strokeStyle =
-            borderColor.value;
+        color;
+
 
         ctx.lineWidth =
-            parseInt(borderWidth.value);
-
-
-        ctx.strokeRect(
-            borderWidth.value / 2,
-            borderWidth.value / 2,
-            600 - borderWidth.value,
-            600 - borderWidth.value
+        parseInt(
+        borderWidth.value
         );
+
+
+        if (
+        selectedBorder ===
+        "double"
+        ) {
+
+            ctx.strokeStyle =
+            color;
+
+            ctx.lineWidth =
+            parseInt(
+            borderWidth.value
+            );
+
+
+            ctx.strokeRect(
+            5,
+            5,
+            590,
+            590
+            );
+
+
+            ctx.lineWidth =
+            2;
+
+
+            ctx.strokeRect(
+            15,
+            15,
+            570,
+            570
+            );
+
+        }
+
+
+        else {
+
+            ctx.strokeRect(
+            borderWidth.value / 2,
+            borderWidth.value / 2,
+            600 -
+            borderWidth.value,
+            600 -
+            borderWidth.value
+            );
+
+        }
+
+
+        if (
+        selectedBorder ===
+        "neon"
+        ) {
+
+            ctx.shadowBlur =
+            15;
+
+            ctx.shadowColor =
+            color;
+
+
+            ctx.strokeRect(
+            borderWidth.value / 2,
+            borderWidth.value / 2,
+            600 -
+            borderWidth.value,
+            600 -
+            borderWidth.value
+            );
+
+
+            ctx.shadowBlur =
+            0;
+
+        }
 
     }
 
@@ -723,46 +1428,188 @@ function drawCanvas() {
 
 
 
-/* DOWNLOAD */
+/* =========================
+   DRAGGING
+========================= */
+
+canvas.addEventListener(
+"pointerdown",
+function(event) {
+
+    dragging = true;
+
+
+    dragStartX =
+    event.clientX;
+
+
+    dragStartY =
+    event.clientY;
+
+
+    startImageX =
+    parseFloat(
+    imageX.value
+    );
+
+
+    startImageY =
+    parseFloat(
+    imageY.value
+    );
+
+
+    canvas.setPointerCapture(
+    event.pointerId
+    );
+
+});
+
+
+
+canvas.addEventListener(
+"pointermove",
+function(event) {
+
+    if (!dragging) return;
+
+
+    const rect =
+    canvas.getBoundingClientRect();
+
+
+    const scaleX =
+    600 / rect.width;
+
+
+    const scaleY =
+    600 / rect.height;
+
+
+    const movementX =
+    (event.clientX -
+    dragStartX) *
+    scaleX;
+
+
+    const movementY =
+    (event.clientY -
+    dragStartY) *
+    scaleY;
+
+
+    let newX =
+    startImageX +
+    movementX;
+
+
+    let newY =
+    startImageY +
+    movementY;
+
+
+    newX =
+    Math.max(
+    -400,
+    Math.min(
+    400,
+    newX
+    )
+    );
+
+
+    newY =
+    Math.max(
+    -400,
+    Math.min(
+    400,
+    newY
+    )
+    );
+
+
+    imageX.value =
+    newX;
+
+
+    imageY.value =
+    newY;
+
+
+    updateValues();
+
+    drawCanvas();
+
+});
+
+
+
+canvas.addEventListener(
+"pointerup",
+function() {
+
+    dragging = false;
+
+});
+
+
+canvas.addEventListener(
+"pointercancel",
+function() {
+
+    dragging = false;
+
+});
+
+
+
+/* =========================
+   DOWNLOAD
+========================= */
 
 function downloadIcon() {
 
     const link =
-        document.createElement("a");
+    document.createElement(
+    "a"
+    );
 
 
     let name =
-        characterName.value
-        || "tier-icon";
+    characterName.value ||
+    "tier-icon";
 
 
     let ver =
-        version.value
-        || "version";
+    version.value ||
+    "version";
 
 
     name =
-        name.replace(
-            /[^a-z0-9]/gi,
-            "_"
-        );
+    name.replace(
+    /[^a-z0-9]/gi,
+    "_"
+    );
 
 
     ver =
-        ver.replace(
-            /[^a-z0-9]/gi,
-            "_"
-        );
+    ver.replace(
+    /[^a-z0-9]/gi,
+    "_"
+    );
 
 
     link.download =
-        name + "_" + ver + ".png";
+    name +
+    "_" +
+    ver +
+    ".png";
 
 
     link.href =
-        canvas.toDataURL(
-            "image/png"
-        );
+    canvas.toDataURL(
+    "image/png"
+    );
 
 
     link.click();
@@ -771,7 +1618,9 @@ function downloadIcon() {
 
 
 
-/* RESET */
+/* =========================
+   RESET
+========================= */
 
 function resetEditor() {
 
@@ -781,28 +1630,80 @@ function resetEditor() {
 
     imageY.value = 0;
 
-    characterName.value = "";
 
-    version.value = "";
+    characterName.value =
+    "";
 
-    font.value = "Arial";
+    version.value =
+    "";
 
-    nameSize.value = 42;
 
-    versionSize.value = 26;
+    font.value =
+    "Arial";
 
-    textY.value = 525;
+
+    nameSize.value =
+    42;
+
+    versionSize.value =
+    26;
+
+
+    textY.value =
+    525;
+
 
     backgroundColor.value =
-        "#111111";
+    "#111111";
+
 
     textColor.value =
-        "#ffffff";
+    "#ffffff";
+
+
+    textShadow.value =
+    "none";
+
 
     borderColor.value =
-        "#ffffff";
+    "#ffffff";
 
-    borderWidth.value = 6;
+
+    borderWidth.value =
+    6;
+
+
+    selectedBorder =
+    "classic";
+
+
+    document
+    .querySelectorAll(
+    ".border-option"
+    )
+    .forEach(
+    function(option) {
+
+        option.classList.remove(
+        "selected"
+        );
+
+    });
+
+
+    const classic =
+    document.querySelector(
+    '[data-border="classic"]'
+    );
+
+
+    if (classic) {
+
+        classic.classList.add(
+        "selected"
+        );
+
+    }
 
 
     updateValues();
@@ -813,7 +1714,9 @@ function resetEditor() {
 
 
 
-/* INITIAL */
+/* =========================
+   START
+========================= */
 
 updateValues();
 
@@ -821,5 +1724,7 @@ drawCanvas();
 
 </script>
 
+
 </body>
+
 </html>
