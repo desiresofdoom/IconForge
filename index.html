@@ -1,475 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>Tier Icon Maker</title>
-
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+<title>Tier Icon Studio</title>
 <style>
-
+/* =========================================================
+GLOBAL
+========================================================= */
 * {
     box-sizing: border-box;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 body {
-
     margin: 0;
-
-    padding: 10px;
-
-    background: #0b0b0b;
-
+    min-height: 100vh;
     color: white;
-
-    font-family: Arial, sans-serif;
-
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(88,101,242,.28),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(153,70,255,.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(0,180,255,.10),
+            transparent 35%
+        ),
+        #07070b;
+    overflow-x: hidden;
 }
-
-.container {
-
-    max-width: 900px;
-
+/* animated background glow */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+    background-size: 40px 40px;
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+    z-index: -2;
+}
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(88,101,242,.13),
+            transparent 70%
+        );
+    top: 30%;
+    left: 50%;
+    transform:
+        translate(-50%,-50%);
+    pointer-events: none;
+    z-index: -1;
+    animation:
+        floatGlow 8s ease-in-out infinite alternate;
+}
+@keyframes floatGlow {
+    from {
+        transform:
+            translate(-50%,-50%)
+            scale(.85);
+    }
+    to {
+        transform:
+            translate(-50%,-50%)
+            scale(1.2);
+    }
+}
+/* =========================================================
+APP
+========================================================= */
+.app {
+    width: 100%;
+    max-width: 1000px;
     margin: auto;
-
+    padding:
+        18px 12px 60px;
 }
-
-h1 {
-
+/* =========================================================
+HEADER
+========================================================= */
+.header {
     text-align: center;
-
-    margin: 10px 0 18px;
-
+    margin-bottom: 18px;
 }
-
-
-/* =========================
-LIVE PREVIEW
-========================= */
-
-.live-preview {
-
-    position: sticky;
-
-    top: 8px;
-
-    z-index: 100;
-
-    background: rgba(11,11,11,.96);
-
-    backdrop-filter: blur(12px);
-
-    padding: 10px;
-
-    margin-bottom: 15px;
-
-    border-radius: 15px;
-
-    border: 1px solid #292929;
-
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #9da7ff,
+            #d3b4ff
+        );
+    -webkit-background-clip: text;
+    color: transparent;
 }
-
-.live-preview-title {
-
-    text-align: center;
-
-    font-weight: bold;
-
-    margin-bottom: 8px;
-
-    color: #aaa;
-
+.subtitle {
+    color: #8d8d9a;
     font-size: 13px;
-
+    margin-top: 5px;
 }
-
-.preview-area {
-
+/* =========================================================
+PREVIEW
+========================================================= */
+.preview-card {
+    position: sticky;
+    top: 8px;
+    z-index: 100;
+    padding: 12px;
+    margin-bottom: 14px;
+    border-radius: 20px;
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+    background:
+        rgba(14,14,20,.88);
+    backdrop-filter:
+        blur(18px);
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.4),
+        inset 0 1px 0
+        rgba(255,255,255,.04);
+}
+.preview-label {
+    text-align: center;
+    color: #888894;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+.preview-container {
     display: flex;
-
     justify-content: center;
-
 }
-
-canvas {
-
-    width: min(100%, 430px);
-
+#canvas {
+    width:
+        min(390px, 100%);
     height: auto;
-
     display: block;
-
-    border-radius: 10px;
-
-    background: #222;
-
+    background: #111;
+    border-radius: 12px;
+    box-shadow:
+        0 0 35px
+        rgba(88,101,242,.13);
     touch-action: none;
-
 }
-
-
-/* =========================
-PANELS
-========================= */
-
-.panel {
-
-    background: #181818;
-
-    padding: 18px;
-
+/* =========================================================
+SECTION NAVIGATION
+========================================================= */
+.section-nav {
+    display: grid;
+    grid-template-columns:
+        repeat(5, 1fr);
+    gap: 7px;
+    padding: 7px;
+    margin-bottom: 14px;
     border-radius: 15px;
-
-    margin-bottom: 15px;
-
+    background:
+        rgba(20,20,27,.88);
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+    backdrop-filter:
+        blur(15px);
 }
-
-h2 {
-
-    margin-top: 0;
-
+.section-button {
+    border: none;
+    border-radius: 10px;
+    padding:
+        11px 5px;
+    background:
+        transparent;
+    color: #8f8f9c;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        .2s ease;
 }
-
-label {
-
+.section-button:hover {
+    color: white;
+    background:
+        rgba(255,255,255,.05);
+}
+.section-button.active {
+    color: white;
+    background:
+        linear-gradient(
+            135deg,
+            #5865f2,
+            #7c4dff
+        );
+    box-shadow:
+        0 5px 20px
+        rgba(88,101,242,.3);
+}
+/* =========================================================
+PANELS
+========================================================= */
+.editor-section {
+    display: none;
+}
+.editor-section.active {
     display: block;
-
-    margin-top: 15px;
-
-    margin-bottom: 7px;
-
-    font-weight: bold;
-
 }
-
+.panel {
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 14px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28,28,37,.95),
+            rgba(17,17,23,.95)
+        );
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.18);
+}
+.panel-title {
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
+.panel-description {
+    color: #858592;
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 16px;
+}
+/* =========================================================
+CONTROLS
+========================================================= */
+label {
+    display: block;
+    color: #d9d9df;
+    font-size: 13px;
+    font-weight: 800;
+    margin:
+        15px 0 7px;
+}
 input[type="text"],
 input[type="file"],
 select {
-
     width: 100%;
-
     padding: 12px;
-
-    border-radius: 8px;
-
-    border: none;
-
-    background: #292929;
-
+    border: 1px solid
+        rgba(255,255,255,.07);
+    border-radius: 10px;
+    background: #24242d;
     color: white;
-
-    font-size: 15px;
-
+    outline: none;
+    font-size: 14px;
 }
-
+input[type="text"]:focus,
+select:focus {
+    border-color:
+        rgba(88,101,242,.7);
+    box-shadow:
+        0 0 0 3px
+        rgba(88,101,242,.10);
+}
 input[type="range"] {
-
     width: 100%;
-
+    accent-color: #6874ff;
 }
-
 input[type="color"] {
-
-    width: 65px;
-
-    height: 42px;
-
+    width: 58px;
+    height: 40px;
+    padding: 2px;
     border: none;
-
-    padding: 0;
-
-    background: transparent;
-
-}
-
-button {
-
-    width: 100%;
-
-    padding: 14px;
-
-    margin-top: 15px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #5865f2;
-
-    color: white;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-}
-
-button:active {
-
-    transform: scale(.98);
-
-}
-
-.secondary {
-
-    background: #333;
-
-}
-
-.danger {
-
-    background: #8b3030;
-
-}
-
-.range-value {
-
-    display: block;
-
-    text-align: right;
-
-    color: #aaa;
-
-    font-size: 13px;
-
-}
-
-.section-note {
-
-    color: #999;
-
-    font-size: 13px;
-
-    line-height: 1.4;
-
-}
-
-
-/* =========================
-BORDERS
-========================= */
-
-.border-grid {
-
-    display: grid;
-
-    grid-template-columns:
-    repeat(2, 1fr);
-
-    gap: 10px;
-
-    margin-top: 10px;
-
-}
-
-.border-option {
-
-    padding: 12px;
-
-    background: #292929;
-
-    border: 2px solid transparent;
-
-    border-radius: 10px;
-
-    text-align: center;
-
-    font-weight: bold;
-
-}
-
-.border-option.selected {
-
-    border-color: #5865f2;
-
-}
-
-.border-preview {
-
-    width: 100%;
-
-    height: 60px;
-
-    margin-bottom: 7px;
-
-    border-radius: 5px;
-
-}
-
-
-/* =========================
-FONT PREVIEW
-========================= */
-
-.font-preview {
-
-    margin-top: 10px;
-
-    padding: 12px;
-
     border-radius: 8px;
-
-    background: #222;
-
+    background: #24242d;
+}
+.value {
+    display: block;
+    text-align: right;
+    color: #777783;
+    font-size: 11px;
+    margin-top: 3px;
+}
+.note {
+    color: #777783;
+    font-size: 12px;
+    line-height: 1.5;
+}
+/* =========================================================
+BUTTONS
+========================================================= */
+.button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 11px;
+    margin-top: 12px;
+    background:
+        linear-gradient(
+            135deg,
+            #5865f2,
+            #7b4dff
+        );
+    color: white;
+    font-weight: 900;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow:
+        0 7px 22px
+        rgba(88,101,242,.18);
+}
+.button.secondary {
+    background: #292930;
+    box-shadow: none;
+}
+.button.danger {
+    background:
+        linear-gradient(
+            135deg,
+            #9d3434,
+            #c04a4a
+        );
+}
+/* =========================================================
+BORDER GRID
+========================================================= */
+.border-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 9px;
+}
+.border-option {
+    min-height: 85px;
+    padding: 9px;
+    border-radius: 11px;
+    border:
+        2px solid
+        transparent;
+    background: #24242c;
+    color: #ddd;
     text-align: center;
-
-    font-size: 24px;
-
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    transition:
+        .2s ease;
 }
-
-
-/* =========================
-HIDDEN SECTIONS
-========================= */
-
-.hidden {
-
-    display: none !important;
-
+.border-option:hover {
+    background: #2d2d37;
 }
-
-
-/* =========================
+.border-option.selected {
+    border-color:
+        #6874ff;
+    background:
+        rgba(88,101,242,.13);
+    box-shadow:
+        0 0 18px
+        rgba(88,101,242,.12);
+}
+.border-demo {
+    height: 47px;
+    border-radius: 6px;
+    background: #111;
+    margin-bottom: 7px;
+}
+/* =========================================================
+CUSTOM BORDER
+========================================================= */
+#customPanel {
+    display: none;
+}
+#customPanel.show {
+    display: block;
+}
+.custom-demo {
+    width: 100%;
+    height: 80px;
+    margin-top: 14px;
+    border-radius: 10px;
+    background: #101015;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777783;
+    font-size: 12px;
+}
+/* =========================================================
+FONT PREVIEW
+========================================================= */
+.font-preview {
+    margin-top: 12px;
+    padding: 14px;
+    text-align: center;
+    background: #111117;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+/* =========================================================
+EXPORT
+========================================================= */
+.export-box {
+    text-align: center;
+    padding: 10px 0;
+}
+.export-icon {
+    font-size: 42px;
+    margin-bottom: 5px;
+}
+/* =========================================================
 MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    body {
-
-        padding: 7px;
-
+========================================================= */
+@media(max-width:600px) {
+    .app {
+        padding:
+            12px 7px 40px;
     }
-
+    .logo {
+        font-size: 25px;
+    }
+    .section-nav {
+        grid-template-columns:
+            repeat(5, 1fr);
+    }
+    .section-button {
+        font-size: 10px;
+        padding:
+            10px 2px;
+    }
+    .preview-card {
+        border-radius: 16px;
+    }
+    #canvas {
+        width:
+            min(335px, 100%);
+    }
     .panel {
-
         padding: 14px;
-
     }
-
-    h1 {
-
-        font-size: 24px;
-
-    }
-
-    canvas {
-
-        width: min(100%, 330px);
-
-    }
-
 }
-
-
-/* =========================
-DESKTOP
-========================= */
-
-@media (min-width: 601px) {
-
-    canvas {
-
-        width: 420px;
-
-    }
-
-}
-
 </style>
-
 </head>
-
-
 <body>
-
-
-<div class="container">
-
-
-<h1>
-Tier Icon Maker
-</h1>
-
-
-
-<!-- ==================================================
+<div class="app">
+<!-- =====================================================
+HEADER
+===================================================== -->
+<header class="header">
+<div class="logo">
+✦ TIER ICON STUDIO
+</div>
+<div class="subtitle">
+Create clean custom icons for your tier lists.
+</div>
+</header>
+<!-- =====================================================
 LIVE PREVIEW
-================================================== -->
-
-<div class="live-preview">
-
-<div class="live-preview-title">
+===================================================== -->
+<div class="preview-card">
+<div class="preview-label">
 LIVE PREVIEW
 </div>
-
-<div class="preview-area">
-
+<div class="preview-container">
 <canvas
 id="canvas"
 width="600"
-height="600"
-></canvas>
-
+height="600">
+</canvas>
 </div>
-
 </div>
-
-
-
-<!-- ==================================================
+<!-- =====================================================
+SECTION NAVIGATION
+===================================================== -->
+<nav class="section-nav">
+<button
+class="section-button active"
+data-section="image">
 IMAGE
-================================================== -->
-
+</button>
+<button
+class="section-button"
+data-section="text">
+TEXT
+</button>
+<button
+class="section-button"
+data-section="border">
+BORDER
+</button>
+<button
+class="section-button"
+data-section="background">
+BG
+</button>
+<button
+class="section-button"
+data-section="export">
+EXPORT
+</button>
+</nav>
+<!-- =====================================================
+IMAGE SECTION
+===================================================== -->
+<section
+class="editor-section active"
+id="section-image">
 <div class="panel">
-
-<h2>
+<div class="panel-title">
 Image
-</h2>
-
-
+</div>
+<div class="panel-description">
+Upload the character image and position it exactly how you want.
+</div>
 <label>
-Upload Image
+Character Image
 </label>
-
 <input
 type="file"
 id="imageInput"
 accept="image/*"
 >
-
-
 <label>
 Zoom
 </label>
-
 <input
 type="range"
 id="zoom"
-min="0.5"
+min=".5"
 max="3"
-step="0.01"
+step=".01"
 value="1"
 >
-
 <span
-class="range-value"
-id="zoomValue"
->
+class="value"
+id="zoomValue">
 1.00x
 </span>
-
-
 <label>
 Horizontal Position
 </label>
-
 <input
 type="range"
 id="imageX"
@@ -477,12 +586,9 @@ min="-400"
 max="400"
 value="0"
 >
-
-
 <label>
 Vertical Position
 </label>
-
 <input
 type="range"
 id="imageY"
@@ -490,214 +596,96 @@ min="-400"
 max="400"
 value="0"
 >
-
-
-<p class="section-note">
-You can also drag the image directly on the live preview.
+<p class="note">
+You can drag the image directly on the preview too.
 </p>
-
 </div>
-
-
-
-<!-- ==================================================
-TEXT
-================================================== -->
-
+</section>
+<!-- =====================================================
+TEXT SECTION
+===================================================== -->
+<section
+class="editor-section"
+id="section-text">
 <div class="panel">
-
-<h2>
+<div class="panel-title">
 Text
-</h2>
-
-
+</div>
+<div class="panel-description">
+Add the character name, version, form, and customize the typography.
+</div>
 <label>
 Character Name
 </label>
-
 <input
 type="text"
 id="characterName"
 placeholder="Ryomen Sukuna"
 >
-
-
 <label>
 Version / Form
 </label>
-
 <input
 type="text"
 id="version"
 placeholder="Heian Era"
 >
-
-
 <label>
-Character Name Font
+Name Font
 </label>
-
 <select id="nameFont">
-
-<option value="Arial">
-Arial
-</option>
-
-<option value="Impact">
-Impact
-</option>
-
-<option value="Georgia">
-Georgia
-</option>
-
-<option value="Verdana">
-Verdana
-</option>
-
-<option value="Trebuchet MS">
-Trebuchet MS
-</option>
-
-<option value="Courier New">
-Courier New
-</option>
-
-<option value="Times New Roman">
-Times New Roman
-</option>
-
-<option value="Comic Sans MS">
-Comic Sans MS
-</option>
-
-<option value="Lucida Console">
-Lucida Console
-</option>
-
-<option value="Tahoma">
-Tahoma
-</option>
-
-<option value="Garamond">
-Garamond
-</option>
-
-<option value="Palatino Linotype">
-Palatino
-</option>
-
-<option value="Arial Black">
-Arial Black
-</option>
-
-<option value="Franklin Gothic Medium">
-Franklin Gothic
-</option>
-
-<option value="Segoe UI">
-Segoe UI
-</option>
-
+<option>Arial</option>
+<option>Impact</option>
+<option>Georgia</option>
+<option>Verdana</option>
+<option>Trebuchet MS</option>
+<option>Courier New</option>
+<option>Times New Roman</option>
+<option>Comic Sans MS</option>
+<option>Lucida Console</option>
+<option>Tahoma</option>
+<option>Garamond</option>
+<option>Palatino Linotype</option>
+<option>Arial Black</option>
+<option>Franklin Gothic Medium</option>
+<option>Segoe UI</option>
 </select>
-
-
 <label>
 Version Font
 </label>
-
 <select id="versionFont">
-
-<option value="Arial">
-Arial
-</option>
-
-<option value="Impact">
-Impact
-</option>
-
-<option value="Georgia">
-Georgia
-</option>
-
-<option value="Verdana">
-Verdana
-</option>
-
-<option value="Trebuchet MS">
-Trebuchet MS
-</option>
-
-<option value="Courier New">
-Courier New
-</option>
-
-<option value="Times New Roman">
-Times New Roman
-</option>
-
-<option value="Comic Sans MS">
-Comic Sans MS
-</option>
-
-<option value="Lucida Console">
-Lucida Console
-</option>
-
-<option value="Tahoma">
-Tahoma
-</option>
-
-<option value="Garamond">
-Garamond
-</option>
-
-<option value="Palatino Linotype">
-Palatino
-</option>
-
-<option value="Arial Black">
-Arial Black
-</option>
-
-<option value="Franklin Gothic Medium">
-Franklin Gothic
-</option>
-
-<option value="Segoe UI">
-Segoe UI
-</option>
-
+<option>Arial</option>
+<option>Impact</option>
+<option>Georgia</option>
+<option>Verdana</option>
+<option>Trebuchet MS</option>
+<option>Courier New</option>
+<option>Times New Roman</option>
+<option>Comic Sans MS</option>
+<option>Lucida Console</option>
+<option>Tahoma</option>
+<option>Garamond</option>
+<option>Palatino Linotype</option>
+<option>Arial Black</option>
+<option>Franklin Gothic Medium</option>
+<option>Segoe UI</option>
 </select>
-
-
 <label>
 Upload Your Own Font
 </label>
-
 <input
 type="file"
 id="fontInput"
 accept=".ttf,.otf,.woff,.woff2"
 >
-
-<p class="section-note">
-Upload TTF, OTF, WOFF, or WOFF2 fonts. Uploaded fonts are loaded locally in your browser.
-</p>
-
-
 <div
 class="font-preview"
-id="fontPreview"
->
+id="fontPreview">
 Aa Bb Cc 123
 </div>
-
-
 <label>
 Name Size
 </label>
-
 <input
 type="range"
 id="nameSize"
@@ -705,25 +693,19 @@ min="15"
 max="80"
 value="42"
 >
-
-
 <label>
 Version Size
 </label>
-
 <input
 type="range"
 id="versionSize"
 min="10"
-max="50"
+max="55"
 value="26"
 >
-
-
 <label>
 Text Vertical Position
 </label>
-
 <input
 type="range"
 id="textY"
@@ -731,306 +713,189 @@ min="300"
 max="590"
 value="525"
 >
-
-
 <label>
 Text Color
 </label>
-
 <input
 type="color"
 id="textColor"
 value="#ffffff"
 >
-
-
 <label>
 Text Shadow
 </label>
-
 <select id="textShadow">
-
 <option value="none">
 None
 </option>
-
 <option value="black">
 Black
 </option>
-
 <option value="white">
 White
 </option>
-
 </select>
-
 </div>
-
-
-
-<!-- ==================================================
-BACKGROUND
-================================================== -->
-
+</section>
+<!-- =====================================================
+BORDER SECTION
+===================================================== -->
+<section
+class="editor-section"
+id="section-border">
 <div class="panel">
-
-<h2>
-Background
-</h2>
-
-
-<label>
-Background Color
-</label>
-
-<input
-type="color"
-id="backgroundColor"
-value="#111111"
->
-
+<div class="panel-title">
+Border
 </div>
-
-
-
-<!-- ==================================================
-BORDERS
-================================================== -->
-
-<div class="panel">
-
-<h2>
-Our Border Designs
-</h2>
-
-<p class="section-note">
-Select a border design for your icon.
-</p>
-
-
+<div class="panel-description">
+Choose one of our designs, build your own, or upload a border image.
+</div>
 <div class="border-grid">
-
-
 <div
 class="border-option selected"
-data-border="classic"
-onclick="selectBorder('classic')"
->
-
+data-border="classic">
 <div
-class="border-preview"
+class="border-demo"
 style="
 border:6px solid white;
-"
-></div>
-
-Classic
-
+">
 </div>
-
-
+Classic
+</div>
 <div
 class="border-option"
-data-border="gold"
-onclick="selectBorder('gold')"
->
-
+data-border="gold">
 <div
-class="border-preview"
+class="border-demo"
 style="
 border:8px solid #d4af37;
-"
-></div>
-
-Gold
-
+">
 </div>
-
-
+Gold
+</div>
 <div
 class="border-option"
-data-border="double"
-onclick="selectBorder('double')"
->
-
+data-border="double">
 <div
-class="border-preview"
+class="border-demo"
 style="
 border:6px double white;
-"
-></div>
-
-Double
-
+">
 </div>
-
-
+Double
+</div>
 <div
 class="border-option"
-data-border="neon"
-onclick="selectBorder('neon')"
->
-
+data-border="neon">
 <div
-class="border-preview"
+class="border-demo"
 style="
 border:6px solid #5865f2;
-box-shadow:0 0 12px #5865f2;
-"
-></div>
-
+box-shadow:0 0 13px #5865f2;
+">
+</div>
 Neon
-
 </div>
-
-
 <div
 class="border-option"
-data-border="red"
-onclick="selectBorder('red')"
->
-
+data-border="red">
 <div
-class="border-preview"
+class="border-demo"
 style="
-border:7px solid #d63031;
-"
-></div>
-
+border:7px solid #e04444;
+">
+</div>
 Red
-
 </div>
-
-
 <div
 class="border-option"
-data-border="none"
-onclick="selectBorder('none')"
->
-
+data-border="none">
 <div
-class="border-preview"
-style="
-border:6px solid transparent;
-"
-></div>
-
+class="border-demo">
+</div>
 None
-
 </div>
-
-
 <div
 class="border-option"
-data-border="custom"
-onclick="selectBorder('custom')"
->
-
+data-border="custom">
 <div
-class="border-preview"
+class="border-demo"
 style="
 border:6px dashed #aaa;
-"
-></div>
-
+">
+</div>
 Custom
-
 </div>
-
-
-</div>
-
-</div>
-
-
-
-<!-- ==================================================
-CUSTOM BORDER BUILDER
-================================================== -->
-
 <div
-class="panel hidden"
-id="customBorderPanel"
->
-
-<h2>
-Custom Border Builder
-</h2>
-
-<p class="section-note">
-Create your own border.
-This section only appears when Custom is selected.
-</p>
-
-
+class="border-option"
+data-border="uploaded">
+<div
+class="border-demo"
+style="
+border:6px dashed #777;
+">
+</div>
+Uploaded
+</div>
+</div>
+</div>
+<!-- CUSTOM BORDER -->
+<div
+class="panel"
+id="customPanel">
+<div class="panel-title">
+Custom Border
+</div>
+<div class="panel-description">
+Design your own border without needing an image editor.
+</div>
 <label>
-Border Style
+Style
 </label>
-
-<select id="customBorderStyle">
-
+<select id="customStyle">
 <option value="solid">
 Solid
 </option>
-
 <option value="double">
 Double
 </option>
-
 <option value="dashed">
 Dashed
 </option>
-
 <option value="dotted">
 Dotted
 </option>
-
 </select>
-
-
 <label>
-Border Color 1
+Color
 </label>
-
 <input
 type="color"
-id="customColor1"
+id="customColor"
 value="#ffffff"
 >
-
-
 <label>
-Use Gradient
+Gradient
 </label>
-
-<select id="useGradient">
-
+<select id="customGradient">
 <option value="no">
 No
 </option>
-
 <option value="yes">
 Yes
 </option>
-
 </select>
-
-
 <label>
-Border Color 2
+Second Color
 </label>
-
 <input
 type="color"
 id="customColor2"
 value="#5865f2"
 >
-
-
 <label>
-Border Width
+Width
 </label>
-
 <input
 type="range"
 id="customWidth"
@@ -1038,19 +903,14 @@ min="1"
 max="40"
 value="8"
 >
-
 <span
-class="range-value"
-id="customWidthValue"
->
+class="value"
+id="customWidthValue">
 8px
 </span>
-
-
 <label>
-Border Opacity
+Opacity
 </label>
-
 <input
 type="range"
 id="customOpacity"
@@ -1058,1636 +918,1207 @@ min="0"
 max="100"
 value="100"
 >
-
 <span
-class="range-value"
-id="customOpacityValue"
->
+class="value"
+id="customOpacityValue">
 100%
 </span>
-
-
 <label>
 Glow
 </label>
-
 <input
 type="range"
 id="customGlow"
 min="0"
-max="40"
+max="50"
 value="0"
 >
-
 <span
-class="range-value"
-id="customGlowValue"
->
+class="value"
+id="customGlowValue">
 0px
 </span>
-
-
 <label>
 Glow Color
 </label>
-
 <input
 type="color"
 id="customGlowColor"
 value="#5865f2"
 >
-
+<div
+class="custom-demo"
+id="customDemo">
+Custom Border Preview
 </div>
-
-
-
-<!-- ==================================================
-UPLOAD BORDER
-================================================== -->
-
+</div>
+<!-- UPLOAD BORDER -->
 <div class="panel">
-
-<h2>
-Upload Your Own Border
-</h2>
-
-<p class="section-note">
-Upload a border image. The system automatically scales it to the full icon.
-</p>
-
-
+<div class="panel-title">
+Upload Border
+</div>
+<div class="panel-description">
+Upload a transparent PNG or WebP. It automatically fits the entire icon.
+</div>
 <input
 type="file"
-id="borderImageInput"
+id="borderInput"
 accept="image/png,image/webp"
 >
-
-
 <label>
 Border Opacity
 </label>
-
 <input
 type="range"
-id="uploadedBorderOpacity"
+id="borderOpacity"
 min="0"
 max="100"
 value="100"
 >
-
-
+<span
+class="value"
+id="borderOpacityValue">
+100%
+</span>
 <button
-class="secondary"
-onclick="removeUploadedBorder()"
->
+class="button secondary"
+id="removeBorder">
 Remove Uploaded Border
 </button>
-
 </div>
-
-
-
-<!-- ==================================================
-DOWNLOAD
-================================================== -->
-
+</section>
+<!-- =====================================================
+BACKGROUND SECTION
+===================================================== -->
+<section
+class="editor-section"
+id="section-background">
 <div class="panel">
-
-<h2>
-Export
-</h2>
-
-
-<button
-onclick="downloadIcon()"
->
-Download PNG
-</button>
-
-
-<button
-class="secondary"
-onclick="resetEditor()"
->
-Reset Everything
-</button>
-
+<div class="panel-title">
+Background
 </div>
-
-
+<div class="panel-description">
+Choose the background behind your character.
 </div>
-
-
-
+<label>
+Background Color
+</label>
+<input
+type="color"
+id="backgroundColor"
+value="#111111"
+>
+</div>
+</section>
+<!-- =====================================================
+EXPORT SECTION
+===================================================== -->
+<section
+class="editor-section"
+id="section-export">
+<div class="panel export-box">
+<div class="export-icon">
+✦
+</div>
+<div class="panel-title">
+Your Icon Is Ready
+</div>
+<div class="panel-description">
+Export your finished icon as a transparent-quality PNG.
+</div>
+<button
+class="button"
+id="downloadButton">
+DOWNLOAD PNG
+</button>
+<button
+class="button secondary"
+id="resetButton">
+RESET EDITOR
+</button>
+</div>
+</section>
+</div>
 <script>
-
-
-/* ==================================================
-VARIABLES
-================================================== */
-
-let uploadedImage = null;
-
-let uploadedBorderImage = null;
-
-let selectedBorder = "classic";
-
-let uploadedFontName = null;
-
-let dragging = false;
-
-let dragStartX = 0;
-
-let dragStartY = 0;
-
-let startImageX = 0;
-
-let startImageY = 0;
-
-
-
-/* ==================================================
-ELEMENTS
-================================================== */
-
+/* =========================================================
+STATE
+========================================================= */
 const canvas =
 document.getElementById("canvas");
-
 const ctx =
 canvas.getContext("2d");
-
-
+let image = null;
+let borderImage = null;
+let selectedBorder = "classic";
+let dragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let startingX = 0;
+let startingY = 0;
+/* =========================================================
+SECTION SWITCHING
+========================================================= */
+const sectionButtons =
+document.querySelectorAll(
+    ".section-button"
+);
+const sections =
+document.querySelectorAll(
+    ".editor-section"
+);
+sectionButtons.forEach(
+function(button) {
+    button.addEventListener(
+        "click",
+        function() {
+            const target =
+                button.dataset.section;
+            sectionButtons.forEach(
+                function(btn) {
+                    btn.classList.remove(
+                        "active"
+                    );
+                }
+            );
+            sections.forEach(
+                function(section) {
+                    section.classList.remove(
+                        "active"
+                    );
+                }
+            );
+            button.classList.add(
+                "active"
+            );
+            document
+                .getElementById(
+                    "section-" +
+                    target
+                )
+                .classList.add(
+                    "active"
+                );
+        }
+    );
+});
+/* =========================================================
+ELEMENTS
+========================================================= */
 const imageInput =
-document.getElementById("imageInput");
-
-const borderImageInput =
-document.getElementById("borderImageInput");
-
+document.getElementById(
+    "imageInput"
+);
+const borderInput =
+document.getElementById(
+    "borderInput"
+);
 const fontInput =
-document.getElementById("fontInput");
-
-
+document.getElementById(
+    "fontInput"
+);
 const zoom =
-document.getElementById("zoom");
-
+document.getElementById(
+    "zoom"
+);
 const imageX =
-document.getElementById("imageX");
-
+document.getElementById(
+    "imageX"
+);
 const imageY =
-document.getElementById("imageY");
-
-
+document.getElementById(
+    "imageY"
+);
 const characterName =
-document.getElementById("characterName");
-
+document.getElementById(
+    "characterName"
+);
 const version =
-document.getElementById("version");
-
-
+document.getElementById(
+    "version"
+);
 const nameFont =
-document.getElementById("nameFont");
-
+document.getElementById(
+    "nameFont"
+);
 const versionFont =
-document.getElementById("versionFont");
-
-
+document.getElementById(
+    "versionFont"
+);
 const nameSize =
-document.getElementById("nameSize");
-
+document.getElementById(
+    "nameSize"
+);
 const versionSize =
-document.getElementById("versionSize");
-
+document.getElementById(
+    "versionSize"
+);
 const textY =
-document.getElementById("textY");
-
-
+document.getElementById(
+    "textY"
+);
 const textColor =
-document.getElementById("textColor");
-
+document.getElementById(
+    "textColor"
+);
 const textShadow =
-document.getElementById("textShadow");
-
-
+document.getElementById(
+    "textShadow"
+);
 const backgroundColor =
-document.getElementById("backgroundColor");
-
-
-const customBorderPanel =
 document.getElementById(
-"customBorderPanel"
+    "backgroundColor"
 );
-
-
-const customBorderStyle =
+const customPanel =
 document.getElementById(
-"customBorderStyle"
+    "customPanel"
 );
-
-const customColor1 =
+const customStyle =
 document.getElementById(
-"customColor1"
+    "customStyle"
 );
-
+const customColor =
+document.getElementById(
+    "customColor"
+);
+const customGradient =
+document.getElementById(
+    "customGradient"
+);
 const customColor2 =
 document.getElementById(
-"customColor2"
+    "customColor2"
 );
-
-const useGradient =
-document.getElementById(
-"useGradient"
-);
-
 const customWidth =
 document.getElementById(
-"customWidth"
+    "customWidth"
 );
-
 const customOpacity =
 document.getElementById(
-"customOpacity"
+    "customOpacity"
 );
-
 const customGlow =
 document.getElementById(
-"customGlow"
+    "customGlow"
 );
-
 const customGlowColor =
 document.getElementById(
-"customGlowColor"
+    "customGlowColor"
 );
-
-const uploadedBorderOpacity =
+const borderOpacity =
 document.getElementById(
-"uploadedBorderOpacity"
+    "borderOpacity"
 );
-
-
-
-/* ==================================================
+/* =========================================================
 IMAGE UPLOAD
-================================================== */
-
+========================================================= */
 imageInput.addEventListener(
-"change",
-function(event) {
-
-    const file =
-    event.target.files[0];
-
-    if (!file) return;
-
-
-    const reader =
-    new FileReader();
-
-
-    reader.onload =
-    function(e) {
-
-        const img =
-        new Image();
-
-
-        img.onload =
-        function() {
-
-            uploadedImage =
-            img;
-
-            drawCanvas();
-
-        };
-
-
-        img.src =
-        e.target.result;
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-});
-
-
-
-/* ==================================================
-FONT UPLOAD
-================================================== */
-
-fontInput.addEventListener(
-"change",
-async function(event) {
-
-    const file =
-    event.target.files[0];
-
-    if (!file) return;
-
-
-    try {
-
-        const fontData =
-        await file.arrayBuffer();
-
-
-        const safeName =
-        "UploadedFont" +
-        Date.now();
-
-
-        const fontFace =
-        new FontFace(
-        safeName,
-        fontData
-        );
-
-
-        await fontFace.load();
-
-
-        document.fonts.add(
-        fontFace
-        );
-
-
-        uploadedFontName =
-        safeName;
-
-
-        const option1 =
-        document.createElement(
-        "option"
-        );
-
-
-        option1.value =
-        safeName;
-
-
-        option1.textContent =
-        "★ " +
-        file.name;
-
-
-        nameFont.appendChild(
-        option1
-        );
-
-
-        const option2 =
-        document.createElement(
-        "option"
-        );
-
-
-        option2.value =
-        safeName;
-
-
-        option2.textContent =
-        "★ " +
-        file.name;
-
-
-        versionFont.appendChild(
-        option2
-        );
-
-
-        nameFont.value =
-        safeName;
-
-
-        versionFont.value =
-        safeName;
-
-
-        updateFontPreview();
-
-        drawCanvas();
-
+    "change",
+    function(event) {
+        const file =
+            event.target.files[0];
+        if (!file) return;
+        const reader =
+            new FileReader();
+        reader.onload =
+            function() {
+                const img =
+                    new Image();
+                img.onload =
+                    function() {
+                        image = img;
+                        draw();
+                    };
+                img.src =
+                    reader.result;
+            };
+        reader.readAsDataURL(file);
     }
-
-    catch(error) {
-
-        alert(
-        "This font could not be loaded. Try a TTF, OTF, WOFF, or WOFF2 file."
-        );
-
-    }
-
-});
-
-
-
-/* ==================================================
+);
+/* =========================================================
 BORDER UPLOAD
-================================================== */
-
-borderImageInput.addEventListener(
-"change",
-function(event) {
-
-    const file =
-    event.target.files[0];
-
-    if (!file) return;
-
-
-    const reader =
-    new FileReader();
-
-
-    reader.onload =
-    function(e) {
-
-        const img =
-        new Image();
-
-
-        img.onload =
-        function() {
-
-            uploadedBorderImage =
-            img;
-
-
-            /*
-            Automatically select
-            uploaded border.
-            */
-
-            selectedBorder =
-            "uploaded";
-
-
-            /*
-            We don't need the user
-            to resize or position it.
-            It is automatically
-            stretched to the icon.
-            */
-
-
-            drawCanvas();
-
-        };
-
-
-        img.src =
-        e.target.result;
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-});
-
-
-
-/* ==================================================
-LIVE CONTROLS
-================================================== */
-
-const controls = [
-
-zoom,
-imageX,
-imageY,
-
-characterName,
-version,
-
-nameFont,
-versionFont,
-
-nameSize,
-versionSize,
-textY,
-
-textColor,
-textShadow,
-
-backgroundColor,
-
-customBorderStyle,
-customColor1,
-customColor2,
-useGradient,
-customWidth,
-customOpacity,
-customGlow,
-customGlowColor,
-
-uploadedBorderOpacity
-
-];
-
-
-controls.forEach(
-function(control) {
-
-    control.addEventListener(
-    "input",
-    function() {
-
-        updateValues();
-
-        drawCanvas();
-
-    });
-
-});
-
-
-
-/* ==================================================
-FONT PREVIEW
-================================================== */
-
-function updateFontPreview() {
-
-    const preview =
-    document.getElementById(
-    "fontPreview"
-    );
-
-
-    preview.style.fontFamily =
-    nameFont.value;
-
-}
-
-
-nameFont.addEventListener(
-"change",
-function() {
-
-    updateFontPreview();
-
-    drawCanvas();
-
-});
-
-
-versionFont.addEventListener(
-"change",
-function() {
-
-    drawCanvas();
-
-});
-
-
-
-/* ==================================================
-VALUES
-================================================== */
-
-function updateValues() {
-
-    document.getElementById(
-    "zoomValue"
-    ).textContent =
-    parseFloat(
-    zoom.value
-    ).toFixed(2) +
-    "x";
-
-
-    document.getElementById(
-    "customWidthValue"
-    ).textContent =
-    customWidth.value +
-    "px";
-
-
-    document.getElementById(
-    "customOpacityValue"
-    ).textContent =
-    customOpacity.value +
-    "%";
-
-
-    document.getElementById(
-    "customGlowValue"
-    ).textContent =
-    customGlow.value +
-    "px";
-
-}
-
-
-
-/* ==================================================
-SELECT BORDER
-================================================== */
-
-function selectBorder(type) {
-
-    selectedBorder =
-    type;
-
-
-    document
+========================================================= */
+borderInput.addEventListener(
+    "change",
+    function(event) {
+        const file =
+            event.target.files[0];
+        if (!file) return;
+        const reader =
+            new FileReader();
+        reader.onload =
+            function() {
+                const img =
+                    new Image();
+                img.onload =
+                    function() {
+                        borderImage =
+                            img;
+                        setBorder(
+                            "uploaded"
+                        );
+                    };
+                img.src =
+                    reader.result;
+            };
+        reader.readAsDataURL(file);
+    }
+);
+/* =========================================================
+FONT UPLOAD
+========================================================= */
+fontInput.addEventListener(
+    "change",
+    async function(event) {
+        const file =
+            event.target.files[0];
+        if (!file) return;
+        try {
+            const buffer =
+                await file.arrayBuffer();
+            const fontName =
+                "CustomUserFont" +
+                Date.now();
+            const font =
+                new FontFace(
+                    fontName,
+                    buffer
+                );
+            await font.load();
+            document.fonts.add(
+                font
+            );
+            const nameOption =
+                document.createElement(
+                    "option"
+                );
+            nameOption.value =
+                fontName;
+            nameOption.textContent =
+                "★ " +
+                file.name;
+            nameFont.appendChild(
+                nameOption
+            );
+            const versionOption =
+                document.createElement(
+                    "option"
+                );
+            versionOption.value =
+                fontName;
+            versionOption.textContent =
+                "★ " +
+                file.name;
+            versionFont.appendChild(
+                versionOption
+            );
+            nameFont.value =
+                fontName;
+            versionFont.value =
+                fontName;
+            updateFontPreview();
+            draw();
+        }
+        catch(error) {
+            alert(
+                "Could not load this font. Try TTF, OTF, WOFF, or WOFF2."
+            );
+        }
+    }
+);
+/* =========================================================
+BORDER SELECTION
+========================================================= */
+document
     .querySelectorAll(
-    ".border-option"
+        ".border-option"
     )
     .forEach(
-    function(option) {
-
-        option.classList.remove(
-        "selected"
-        );
-
-    });
-
-
-    const selected =
-    document.querySelector(
-    '[data-border="' +
-    type +
-    '"]'
+        function(option) {
+            option.addEventListener(
+                "click",
+                function() {
+                    setBorder(
+                        option.dataset.border
+                    );
+                }
+            );
+        }
     );
-
-
-    if (selected) {
-
-        selected.classList.add(
-        "selected"
+function setBorder(type) {
+    selectedBorder =
+        type;
+    document
+        .querySelectorAll(
+            ".border-option"
+        )
+        .forEach(
+            function(option) {
+                option.classList.remove(
+                    "selected"
+                );
+            }
         );
-
+    const active =
+        document.querySelector(
+            '[data-border="' +
+            type +
+            '"]'
+        );
+    if (active) {
+        active.classList.add(
+            "selected"
+        );
     }
-
-
-    /*
-    Show custom controls
-    ONLY when custom is selected.
-    */
-
     if (
-    type ===
-    "custom"
+        type === "custom"
     ) {
-
-        customBorderPanel
-        .classList
-        .remove(
-        "hidden"
+        customPanel.classList.add(
+            "show"
         );
-
     }
-
     else {
-
-        customBorderPanel
-        .classList
-        .add(
-        "hidden"
+        customPanel.classList.remove(
+            "show"
         );
-
     }
-
-
-    drawCanvas();
-
+    draw();
 }
-
-
-
-/* ==================================================
-CUSTOM BORDER
-================================================== */
-
-function drawCustomBorder() {
-
+/* =========================================================
+LIVE CONTROLS
+========================================================= */
+const liveControls = [
+    zoom,
+    imageX,
+    imageY,
+    characterName,
+    version,
+    nameFont,
+    versionFont,
+    nameSize,
+    versionSize,
+    textY,
+    textColor,
+    textShadow,
+    backgroundColor,
+    customStyle,
+    customColor,
+    customGradient,
+    customColor2,
+    customWidth,
+    customOpacity,
+    customGlow,
+    customGlowColor,
+    borderOpacity
+];
+liveControls.forEach(
+    function(control) {
+        control.addEventListener(
+            "input",
+            function() {
+                updateValues();
+                updateFontPreview();
+                draw();
+                updateCustomDemo();
+            }
+        );
+        control.addEventListener(
+            "change",
+            function() {
+                updateValues();
+                updateFontPreview();
+                draw();
+                updateCustomDemo();
+            }
+        );
+    }
+);
+/* =========================================================
+VALUES
+========================================================= */
+function updateValues() {
+    document.getElementById(
+        "zoomValue"
+    ).textContent =
+        Number(
+            zoom.value
+        ).toFixed(2) +
+        "x";
+    document.getElementById(
+        "customWidthValue"
+    ).textContent =
+        customWidth.value +
+        "px";
+    document.getElementById(
+        "customOpacityValue"
+    ).textContent =
+        customOpacity.value +
+        "%";
+    document.getElementById(
+        "customGlowValue"
+    ).textContent =
+        customGlow.value +
+        "px";
+    document.getElementById(
+        "borderOpacityValue"
+    ).textContent =
+        borderOpacity.value +
+        "%";
+}
+/* =========================================================
+FONT PREVIEW
+========================================================= */
+function updateFontPreview() {
+    const preview =
+        document.getElementById(
+            "fontPreview"
+        );
+    preview.style.fontFamily =
+        nameFont.value;
+}
+/* =========================================================
+CUSTOM BORDER DEMO
+========================================================= */
+function updateCustomDemo() {
+    const demo =
+        document.getElementById(
+            "customDemo"
+        );
     const width =
-    parseInt(
-    customWidth.value
-    );
-
-
+        customWidth.value;
     const opacity =
-    parseInt(
-    customOpacity.value
-    ) / 100;
-
-
-    ctx.save();
-
-
-    ctx.globalAlpha =
-    opacity;
-
-
+        Number(
+            customOpacity.value
+        ) / 100;
+    demo.style.opacity =
+        opacity;
+    demo.style.borderWidth =
+        width + "px";
+    demo.style.borderColor =
+        customColor.value;
+    demo.style.borderStyle =
+        customStyle.value;
+    demo.style.boxShadow =
+        customGlow.value +
+        "px " +
+        customGlow.value +
+        "px " +
+        (customGlow.value * 2) +
+        "px " +
+        customGlowColor.value;
     if (
-    useGradient.value ===
-    "yes"
+        customGradient.value ===
+        "yes"
     ) {
-
-        const gradient =
-        ctx.createLinearGradient(
-        0,
-        0,
-        600,
-        600
-        );
-
-
-        gradient.addColorStop(
-        0,
-        customColor1.value
-        );
-
-
-        gradient.addColorStop(
-        1,
-        customColor2.value
-        );
-
-
-        ctx.strokeStyle =
-        gradient;
-
+        demo.style.borderImage =
+            "linear-gradient(90deg," +
+            customColor.value +
+            "," +
+            customColor2.value +
+            ") 1";
     }
-
     else {
-
-        ctx.strokeStyle =
-        customColor1.value;
-
+        demo.style.borderImage =
+            "none";
     }
-
-
-    ctx.lineWidth =
-    width;
-
-
-    if (
-    customBorderStyle.value ===
-    "dashed"
-    ) {
-
-        ctx.setLineDash(
-        [20,12]
-        );
-
-    }
-
-    else if (
-    customBorderStyle.value ===
-    "dotted"
-    ) {
-
-        ctx.setLineDash(
-        [5,10]
-        );
-
-    }
-
-    else {
-
-        ctx.setLineDash([]);
-
-    }
-
-
-    ctx.shadowBlur =
-    parseInt(
-    customGlow.value
-    );
-
-
-    ctx.shadowColor =
-    customGlowColor.value;
-
-
-    if (
-    customBorderStyle.value ===
-    "double"
-    ) {
-
-        ctx.setLineDash([]);
-
-
-        ctx.lineWidth =
-        Math.max(
-        2,
-        width / 3
-        );
-
-
-        ctx.strokeRect(
-        4,
-        4,
-        592,
-        592
-        );
-
-
-        ctx.strokeRect(
-        12,
-        12,
-        576,
-        576
-        );
-
-    }
-
-    else {
-
-        ctx.strokeRect(
-        width / 2,
-        width / 2,
-        600-width,
-        600-width
-        );
-
-    }
-
-
-    ctx.restore();
-
 }
-
-
-
-/* ==================================================
-PRESET BORDER
-================================================== */
-
-function drawPresetBorder() {
-
-    if (
-    selectedBorder ===
-    "none"
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-    selectedBorder ===
-    "custom"
-    ) {
-
-        drawCustomBorder();
-
-        return;
-
-    }
-
-
-    let color =
-    "#ffffff";
-
-
-    let width =
-    6;
-
-
-    if (
-    selectedBorder ===
-    "gold"
-    ) {
-
-        color =
-        "#d4af37";
-
-        width =
-        8;
-
-    }
-
-
-    if (
-    selectedBorder ===
-    "neon"
-    ) {
-
-        color =
-        "#5865f2";
-
-        width =
-        6;
-
-    }
-
-
-    if (
-    selectedBorder ===
-    "red"
-    ) {
-
-        color =
-        "#d63031";
-
-        width =
-        7;
-
-    }
-
-
-    ctx.save();
-
-
-    ctx.strokeStyle =
-    color;
-
-
-    ctx.lineWidth =
-    width;
-
-
-    if (
-    selectedBorder ===
-    "double"
-    ) {
-
-        ctx.strokeRect(
-        5,
-        5,
-        590,
-        590
-        );
-
-
-        ctx.lineWidth =
-        2;
-
-
-        ctx.strokeRect(
-        15,
-        15,
-        570,
-        570
-        );
-
-    }
-
-    else {
-
-        ctx.strokeRect(
-        width / 2,
-        width / 2,
-        600-width,
-        600-width
-        );
-
-    }
-
-
-    if (
-    selectedBorder ===
-    "neon"
-    ) {
-
-        ctx.shadowBlur =
-        15;
-
-        ctx.shadowColor =
-        color;
-
-
-        ctx.strokeRect(
-        width / 2,
-        width / 2,
-        600-width,
-        600-width
-        );
-
-    }
-
-
-    ctx.restore();
-
-}
-
-
-
-/* ==================================================
-UPLOADED BORDER
-================================================== */
-
-function drawUploadedBorder() {
-
-    if (
-    !uploadedBorderImage
-    ) {
-
-        return;
-
-    }
-
-
-    ctx.save();
-
-
-    ctx.globalAlpha =
-    parseInt(
-    uploadedBorderOpacity.value
-    ) / 100;
-
-
-    /*
-    AUTOMATIC FIT
-
-    No matter what dimensions
-    the uploaded border has,
-    it gets mapped to the
-    entire icon.
-
-    Example:
-
-    1000x1000
-    500x500
-    2000x1500
-
-    all become a 600x600
-    overlay automatically.
-    */
-
-    ctx.drawImage(
-    uploadedBorderImage,
-
-    0,
-    0,
-
-    600,
-    600
-    );
-
-
-    ctx.restore();
-
-}
-
-
-
-/* ==================================================
-MAIN DRAW
-================================================== */
-
-function drawCanvas() {
-
-    ctx.clearRect(
-    0,
-    0,
-    600,
-    600
-    );
-
-
-    /* BACKGROUND */
-
+/* =========================================================
+DRAW BACKGROUND
+========================================================= */
+function drawBackground() {
     ctx.fillStyle =
-    backgroundColor.value;
-
-
+        backgroundColor.value;
     ctx.fillRect(
-    0,
-    0,
-    600,
-    600
-    );
-
-
-
-    /* IMAGE */
-
-    if (uploadedImage) {
-
-        const scale =
-        Math.max(
-        600 / uploadedImage.width,
-        600 / uploadedImage.height
-        ) *
-        parseFloat(
-        zoom.value
-        );
-
-
-        const width =
-        uploadedImage.width *
-        scale;
-
-
-        const height =
-        uploadedImage.height *
-        scale;
-
-
-        const x =
-        (600-width)/2 +
-        parseFloat(
-        imageX.value
-        );
-
-
-        const y =
-        (600-height)/2 +
-        parseFloat(
-        imageY.value
-        );
-
-
-        ctx.save();
-
-
-        ctx.beginPath();
-
-        ctx.rect(
         0,
         0,
         600,
         600
+    );
+}
+/* =========================================================
+DRAW IMAGE
+========================================================= */
+function drawImage() {
+    if (!image) return;
+    const scale =
+        Math.max(
+            600 / image.width,
+            600 / image.height
+        ) *
+        Number(
+            zoom.value
         );
-
-        ctx.clip();
-
-
-        ctx.drawImage(
-        uploadedImage,
+    const width =
+        image.width *
+        scale;
+    const height =
+        image.height *
+        scale;
+    const x =
+        (600 - width) / 2 +
+        Number(
+            imageX.value
+        );
+    const y =
+        (600 - height) / 2 +
+        Number(
+            imageY.value
+        );
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(
+        0,
+        0,
+        600,
+        600
+    );
+    ctx.clip();
+    ctx.drawImage(
+        image,
         x,
         y,
         width,
         height
-        );
-
-
-        ctx.restore();
-
-    }
-
-
-
-    /* DARK TEXT GRADIENT */
-
-    const gradient =
-    ctx.createLinearGradient(
-    0,
-    300,
-    0,
-    600
     );
-
-
-    gradient.addColorStop(
-    0,
-    "rgba(0,0,0,0)"
-    );
-
-
-    gradient.addColorStop(
-    1,
-    "rgba(0,0,0,.9)"
-    );
-
-
-    ctx.fillStyle =
-    gradient;
-
-
-    ctx.fillRect(
-    0,
-    300,
-    600,
-    300
-    );
-
-
-
-    /* TEXT */
-
-    ctx.save();
-
-
-    ctx.textAlign =
-    "center";
-
-
-    ctx.textBaseline =
-    "middle";
-
-
-    if (
-    textShadow.value !==
-    "none"
-    ) {
-
-        ctx.shadowBlur =
-        8;
-
-        ctx.shadowColor =
-        textShadow.value;
-
-    }
-
-
-    ctx.fillStyle =
-    textColor.value;
-
-
-    ctx.font =
-    "bold " +
-    nameSize.value +
-    "px " +
-    nameFont.value;
-
-
-    ctx.fillText(
-    characterName.value ||
-    "CHARACTER",
-
-    300,
-
-    parseInt(
-    textY.value
-    )
-    );
-
-
-    ctx.font =
-    "bold " +
-    versionSize.value +
-    "px " +
-    versionFont.value;
-
-
-    ctx.fillText(
-    version.value ||
-    "VERSION",
-
-    300,
-
-    parseInt(
-    textY.value
-    ) + 42
-    );
-
-
     ctx.restore();
-
-
-
-    /* BORDER */
-
-    if (
-    selectedBorder ===
-    "uploaded"
-    ) {
-
-        drawUploadedBorder();
-
-    }
-
-    else {
-
-        drawPresetBorder();
-
-    }
-
 }
-
-
-
-/* ==================================================
-DRAG IMAGE
-================================================== */
-
-canvas.addEventListener(
-"pointerdown",
-function(event) {
-
-    dragging =
-    true;
-
-
-    dragStartX =
-    event.clientX;
-
-
-    dragStartY =
-    event.clientY;
-
-
-    startImageX =
-    parseFloat(
-    imageX.value
-    );
-
-
-    startImageY =
-    parseFloat(
-    imageY.value
-    );
-
-
-    canvas.setPointerCapture(
-    event.pointerId
-    );
-
-});
-
-
-canvas.addEventListener(
-"pointermove",
-function(event) {
-
-    if (!dragging) return;
-
-
-    const rect =
-    canvas.getBoundingClientRect();
-
-
-    const scaleX =
-    600 / rect.width;
-
-
-    const scaleY =
-    600 / rect.height;
-
-
-    const movementX =
-    (
-    event.clientX -
-    dragStartX
-    ) *
-    scaleX;
-
-
-    const movementY =
-    (
-    event.clientY -
-    dragStartY
-    ) *
-    scaleY;
-
-
-    imageX.value =
-    Math.max(
-    -400,
-    Math.min(
-    400,
-    startImageX +
-    movementX
-    )
-    );
-
-
-    imageY.value =
-    Math.max(
-    -400,
-    Math.min(
-    400,
-    startImageY +
-    movementY
-    )
-    );
-
-
-    drawCanvas();
-
-});
-
-
-canvas.addEventListener(
-"pointerup",
-function() {
-
-    dragging =
-    false;
-
-});
-
-
-canvas.addEventListener(
-"pointercancel",
-function() {
-
-    dragging =
-    false;
-
-});
-
-
-
-/* ==================================================
-REMOVE UPLOADED BORDER
-================================================== */
-
-function removeUploadedBorder() {
-
-    uploadedBorderImage =
-    null;
-
-
-    borderImageInput.value =
-    "";
-
-
-    if (
-    selectedBorder ===
-    "uploaded"
-    ) {
-
-        selectBorder(
-        "classic"
+/* =========================================================
+TEXT GRADIENT
+========================================================= */
+function drawTextBackground() {
+    const gradient =
+        ctx.createLinearGradient(
+            0,
+            330,
+            0,
+            600
         );
-
+    gradient.addColorStop(
+        0,
+        "rgba(0,0,0,0)"
+    );
+    gradient.addColorStop(
+        1,
+        "rgba(0,0,0,.88)"
+    );
+    ctx.fillStyle =
+        gradient;
+    ctx.fillRect(
+        0,
+        330,
+        600,
+        270
+    );
+}
+/* =========================================================
+DRAW TEXT
+========================================================= */
+function drawText() {
+    const name =
+        characterName.value;
+    const form =
+        version.value;
+    if (
+        !name &&
+        !form
+    ) return;
+    const y =
+        Number(
+            textY.value
+        );
+    ctx.save();
+    ctx.textAlign =
+        "center";
+    ctx.textBaseline =
+        "middle";
+    if (
+        textShadow.value !==
+        "none"
+    ) {
+        ctx.shadowColor =
+            textShadow.value;
+        ctx.shadowBlur =
+            8;
     }
-
-
-    drawCanvas();
-
+    ctx.fillStyle =
+        textColor.value;
+    if (name) {
+        ctx.font =
+            "bold " +
+            nameSize.value +
+            "px " +
+            nameFont.value;
+        ctx.fillText(
+            name,
+            300,
+            y
+        );
+    }
+    if (form) {
+        ctx.font =
+            "bold " +
+            versionSize.value +
+            "px " +
+            versionFont.value;
+        ctx.fillText(
+            form,
+            300,
+            y + 45
+        );
+    }
+    ctx.restore();
 }
-
-
-
-/* ==================================================
+/* =========================================================
+DRAW PRESET BORDER
+========================================================= */
+function drawPresetBorder() {
+    if (
+        selectedBorder ===
+        "none"
+    ) return;
+    ctx.save();
+    let width = 6;
+    let color = "#ffffff";
+    if (
+        selectedBorder ===
+        "gold"
+    ) {
+        width = 9;
+        color = "#d4af37";
+    }
+    if (
+        selectedBorder ===
+        "red"
+    ) {
+        width = 8;
+        color = "#e04444";
+    }
+    if (
+        selectedBorder ===
+        "neon"
+    ) {
+        width = 7;
+        color = "#5865f2";
+        ctx.shadowBlur =
+            20;
+        ctx.shadowColor =
+            color;
+    }
+    ctx.strokeStyle =
+        color;
+    ctx.lineWidth =
+        width;
+    if (
+        selectedBorder ===
+        "double"
+    ) {
+        ctx.strokeRect(
+            6,
+            6,
+            588,
+            588
+        );
+        ctx.lineWidth =
+            3;
+        ctx.strokeRect(
+            15,
+            15,
+            570,
+            570
+        );
+    }
+    else {
+        ctx.strokeRect(
+            width / 2,
+            width / 2,
+            600 - width,
+            600 - width
+        );
+    }
+    ctx.restore();
+}
+/* =========================================================
+DRAW CUSTOM BORDER
+========================================================= */
+function drawCustomBorder() {
+    ctx.save();
+    const width =
+        Number(
+            customWidth.value
+        );
+    const opacity =
+        Number(
+            customOpacity.value
+        ) / 100;
+    ctx.globalAlpha =
+        opacity;
+    /* color */
+    if (
+        customGradient.value ===
+        "yes"
+    ) {
+        const gradient =
+            ctx.createLinearGradient(
+                0,
+                0,
+                600,
+                600
+            );
+        gradient.addColorStop(
+            0,
+            customColor.value
+        );
+        gradient.addColorStop(
+            1,
+            customColor2.value
+        );
+        ctx.strokeStyle =
+            gradient;
+    }
+    else {
+        ctx.strokeStyle =
+            customColor.value;
+    }
+    ctx.lineWidth =
+        width;
+    /* line style */
+    if (
+        customStyle.value ===
+        "dashed"
+    ) {
+        ctx.setLineDash(
+            [22, 12]
+        );
+    }
+    else if (
+        customStyle.value ===
+        "dotted"
+    ) {
+        ctx.setLineDash(
+            [3, 10]
+        );
+    }
+    else {
+        ctx.setLineDash([]);
+    }
+    /* glow */
+    ctx.shadowBlur =
+        Number(
+            customGlow.value
+        );
+    ctx.shadowColor =
+        customGlowColor.value;
+    /* double */
+    if (
+        customStyle.value ===
+        "double"
+    ) {
+        ctx.setLineDash([]);
+        ctx.lineWidth =
+            Math.max(
+                2,
+                width / 3
+            );
+        ctx.strokeRect(
+            5,
+            5,
+            590,
+            590
+        );
+        ctx.strokeRect(
+            14,
+            14,
+            572,
+            572
+        );
+    }
+    else {
+        ctx.strokeRect(
+            width / 2,
+            width / 2,
+            600 - width,
+            600 - width
+        );
+    }
+    ctx.restore();
+}
+/* =========================================================
+DRAW UPLOADED BORDER
+========================================================= */
+function drawUploadedBorder() {
+    if (!borderImage)
+        return;
+    ctx.save();
+    ctx.globalAlpha =
+        Number(
+            borderOpacity.value
+        ) / 100;
+    /*
+    The border is automatically
+    fitted to the entire canvas.
+    */
+    ctx.drawImage(
+        borderImage,
+        0,
+        0,
+        600,
+        600
+    );
+    ctx.restore();
+}
+/* =========================================================
+MAIN DRAW
+========================================================= */
+function draw() {
+    ctx.clearRect(
+        0,
+        0,
+        600,
+        600
+    );
+    drawBackground();
+    drawImage();
+    drawTextBackground();
+    drawText();
+    if (
+        selectedBorder ===
+        "uploaded"
+    ) {
+        drawUploadedBorder();
+    }
+    else if (
+        selectedBorder ===
+        "custom"
+    ) {
+        drawCustomBorder();
+    }
+    else {
+        drawPresetBorder();
+    }
+}
+/* =========================================================
+DRAGGING
+========================================================= */
+canvas.addEventListener(
+    "pointerdown",
+    function(event) {
+        if (!image)
+            return;
+        dragging =
+            true;
+        dragStartX =
+            event.clientX;
+        dragStartY =
+            event.clientY;
+        startingX =
+            Number(
+                imageX.value
+            );
+        startingY =
+            Number(
+                imageY.value
+            );
+        canvas.setPointerCapture(
+            event.pointerId
+        );
+    }
+);
+canvas.addEventListener(
+    "pointermove",
+    function(event) {
+        if (!dragging)
+            return;
+        const rect =
+            canvas.getBoundingClientRect();
+        const scaleX =
+            600 / rect.width;
+        const scaleY =
+            600 / rect.height;
+        const movementX =
+            (
+                event.clientX -
+                dragStartX
+            ) * scaleX;
+        const movementY =
+            (
+                event.clientY -
+                dragStartY
+            ) * scaleY;
+        imageX.value =
+            Math.max(
+                -400,
+                Math.min(
+                    400,
+                    startingX +
+                    movementX
+                )
+            );
+        imageY.value =
+            Math.max(
+                -400,
+                Math.min(
+                    400,
+                    startingY +
+                    movementY
+                )
+            );
+        draw();
+    }
+);
+canvas.addEventListener(
+    "pointerup",
+    function() {
+        dragging =
+            false;
+    }
+);
+canvas.addEventListener(
+    "pointercancel",
+    function() {
+        dragging =
+            false;
+    }
+);
+/* =========================================================
+REMOVE BORDER
+========================================================= */
+document
+    .getElementById(
+        "removeBorder"
+    )
+    .addEventListener(
+        "click",
+        function() {
+            borderImage =
+                null;
+            borderInput.value =
+                "";
+            setBorder(
+                "classic"
+            );
+        }
+    );
+/* =========================================================
 DOWNLOAD
-================================================== */
-
-function downloadIcon() {
-
-    const link =
-    document.createElement(
-    "a"
+========================================================= */
+document
+    .getElementById(
+        "downloadButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+            const link =
+                document.createElement(
+                    "a"
+                );
+            let name =
+                characterName.value ||
+                "tier-icon";
+            let form =
+                version.value ||
+                "icon";
+            name =
+                name.replace(
+                    /[^a-z0-9]/gi,
+                    "_"
+                );
+            form =
+                form.replace(
+                    /[^a-z0-9]/gi,
+                    "_"
+                );
+            link.download =
+                name +
+                "_" +
+                form +
+                ".png";
+            link.href =
+                canvas.toDataURL(
+                    "image/png"
+                );
+            link.click();
+        }
     );
-
-
-    let name =
-    characterName.value ||
-    "tier-icon";
-
-
-    let ver =
-    version.value ||
-    "version";
-
-
-    name =
-    name.replace(
-    /[^a-z0-9]/gi,
-    "_"
-    );
-
-
-    ver =
-    ver.replace(
-    /[^a-z0-9]/gi,
-    "_"
-    );
-
-
-    link.download =
-    name +
-    "_" +
-    ver +
-    ".png";
-
-
-    link.href =
-    canvas.toDataURL(
-    "image/png"
-    );
-
-
-    link.click();
-
-}
-
-
-
-/* ==================================================
+/* =========================================================
 RESET
-================================================== */
-
-function resetEditor() {
-
-    zoom.value =
-    1;
-
-    imageX.value =
-    0;
-
-    imageY.value =
-    0;
-
-
-    characterName.value =
-    "";
-
-    version.value =
-    "";
-
-
-    nameFont.value =
-    "Arial";
-
-    versionFont.value =
-    "Arial";
-
-
-    nameSize.value =
-    42;
-
-    versionSize.value =
-    26;
-
-    textY.value =
-    525;
-
-
-    textColor.value =
-    "#ffffff";
-
-    textShadow.value =
-    "none";
-
-
-    backgroundColor.value =
-    "#111111";
-
-
-    customBorderStyle.value =
-    "solid";
-
-    customColor1.value =
-    "#ffffff";
-
-    customColor2.value =
-    "#5865f2";
-
-    useGradient.value =
-    "no";
-
-    customWidth.value =
-    8;
-
-    customOpacity.value =
-    100;
-
-    customGlow.value =
-    0;
-
-    customGlowColor.value =
-    "#5865f2";
-
-
-    uploadedBorderOpacity.value =
-    100;
-
-
-    uploadedImage =
-    null;
-
-    uploadedBorderImage =
-    null;
-
-
-    imageInput.value =
-    "";
-
-    borderImageInput.value =
-    "";
-
-
-    selectBorder(
-    "classic"
+========================================================= */
+document
+    .getElementById(
+        "resetButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+            image =
+                null;
+            borderImage =
+                null;
+            imageInput.value =
+                "";
+            borderInput.value =
+                "";
+            fontInput.value =
+                "";
+            zoom.value =
+                1;
+            imageX.value =
+                0;
+            imageY.value =
+                0;
+            characterName.value =
+                "";
+            version.value =
+                "";
+            nameFont.value =
+                "Arial";
+            versionFont.value =
+                "Arial";
+            nameSize.value =
+                42;
+            versionSize.value =
+                26;
+            textY.value =
+                525;
+            textColor.value =
+                "#ffffff";
+            textShadow.value =
+                "none";
+            backgroundColor.value =
+                "#111111";
+            customStyle.value =
+                "solid";
+            customColor.value =
+                "#ffffff";
+            customGradient.value =
+                "no";
+            customColor2.value =
+                "#5865f2";
+            customWidth.value =
+                8;
+            customOpacity.value =
+                100;
+            customGlow.value =
+                0;
+            customGlowColor.value =
+                "#5865f2";
+            borderOpacity.value =
+                100;
+            setBorder(
+                "classic"
+            );
+            updateValues();
+            updateFontPreview();
+            updateCustomDemo();
+            draw();
+        }
     );
-
-
-    updateFontPreview();
-
-    updateValues();
-
-    drawCanvas();
-
-}
-
-
-
-/* ==================================================
-START
-================================================== */
-
+/* =========================================================
+INITIALIZE
+========================================================= */
 updateValues();
-
 updateFontPreview();
-
-drawCanvas();
-
+updateCustomDemo();
+draw();
 </script>
-
-
 </body>
-
 </html>
