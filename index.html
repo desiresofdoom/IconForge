@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tier Icon Maker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .panel {
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: #2b2b2b;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background: #5865f2;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4752c4;
+        }
+
+        .preview-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 10px;
+            background: #222;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Tier Icon Maker</h1>
+
+    <div class="panel">
+
+        <label>Upload Image</label>
+        <input type="file" id="imageInput" accept="image/*">
+
+        <label>Character Name</label>
+        <input
+            type="text"
+            id="characterName"
+            placeholder="Ryomen Sukuna"
+        >
+
+        <label>Version</label>
+        <input
+            type="text"
+            id="version"
+            placeholder="Heian Era"
+        >
+
+        <button onclick="generateIcon()">
+            Generate Icon
+        </button>
+
+    </div>
+
+    <div class="panel">
+
+        <h2 class="preview-title">Preview</h2>
+
+        <canvas id="canvas" width="600" height="600"></canvas>
+
+        <button onclick="downloadIcon()">
+            Download PNG
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+let uploadedImage = null;
+
+const imageInput = document.getElementById("imageInput");
+const characterName = document.getElementById("characterName");
+const version = document.getElementById("version");
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+
+// Upload image
+imageInput.addEventListener("change", function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        const img = new Image();
+
+        img.onload = function() {
+
+            uploadedImage = img;
+
+            generateIcon();
+
+        };
+
+        img.src = e.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+// Generate icon
+function generateIcon() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Background
+    ctx.fillStyle = "#111";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw uploaded image
+    if (uploadedImage) {
+
+        const size = Math.min(
+            uploadedImage.width,
+            uploadedImage.height
+        );
+
+        const sx =
+            (uploadedImage.width - size) / 2;
+
+        const sy =
+            (uploadedImage.height - size) / 2;
+
+        ctx.drawImage(
+            uploadedImage,
+            sx,
+            sy,
+            size,
+            size,
+            0,
+            0,
+            600,
+            600
+        );
+    }
+
+    // Dark gradient at bottom
+    const gradient = ctx.createLinearGradient(
+        0,
+        350,
+        0,
+        600
+    );
+
+    gradient.addColorStop(0, "rgba(0,0,0,0)");
+    gradient.addColorStop(1, "rgba(0,0,0,0.9)");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 300, 600, 300);
+
+    // Character name
+    ctx.textAlign = "center";
+
+    ctx.fillStyle = "white";
+    ctx.font = "bold 42px Arial";
+
+    ctx.fillText(
+        characterName.value || "CHARACTER",
+        300,
+        525
+    );
+
+    // Version
+    ctx.font = "bold 26px Arial";
+
+    ctx.fillStyle = "#dddddd";
+
+    ctx.fillText(
+        version.value || "VERSION",
+        300,
+        565
+    );
+
+    // Border
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 6;
+
+    ctx.strokeRect(
+        3,
+        3,
+        594,
+        594
+    );
+}
+
+
+// Download PNG
+function downloadIcon() {
+
+    const link = document.createElement("a");
+
+    link.download =
+        (characterName.value || "tier-icon")
+        + "-"
+        + (version.value || "version")
+        + ".png";
+
+    link.href = canvas.toDataURL("image/png");
+
+    link.click();
+
+}
+
+</script>
+
+</body>
+</html>
