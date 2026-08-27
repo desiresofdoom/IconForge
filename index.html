@@ -6,9 +6,7 @@
 <title>IconForge</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html,body{
   margin:0;
@@ -26,21 +24,14 @@ body{
     #06070b;
 }
 
-button,input,select{
-  font:inherit;
-}
-
-button{
-  -webkit-tap-highlight-color:transparent;
-}
+button,input,select{font:inherit}
+button{cursor:pointer}
 
 .app{
   width:min(1150px,100%);
   margin:auto;
   padding:12px 10px 60px;
 }
-
-/* HEADER */
 
 .header{
   text-align:center;
@@ -62,8 +53,6 @@ button{
   font-size:12px;
   margin-top:4px;
 }
-
-/* PREVIEW */
 
 .preview{
   position:sticky;
@@ -102,8 +91,6 @@ button{
   user-select:none;
 }
 
-/* NAV */
-
 .nav{
   display:grid;
   grid-template-columns:repeat(7,1fr);
@@ -123,7 +110,6 @@ button{
   padding:11px 2px;
   font-size:8px;
   font-weight:1000;
-  cursor:pointer;
 }
 
 .nav button.active{
@@ -131,15 +117,8 @@ button{
   background:linear-gradient(135deg,#5668ff,#914cff);
 }
 
-/* SECTIONS */
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
+.section{display:none}
+.section.active{display:block}
 
 .panel{
   background:linear-gradient(145deg,#171922,#0d0f15);
@@ -181,9 +160,7 @@ select{
   outline:none;
 }
 
-input[type=file]{
-  font-size:11px;
-}
+input[type=file]{font-size:11px}
 
 input[type=range]{
   width:100%;
@@ -215,24 +192,16 @@ input[type=color]{
   color:#fff;
   font-size:11px;
   font-weight:1000;
-  cursor:pointer;
 }
 
-.button.secondary{
-  background:#292b34;
-}
-
-.button.red{
-  background:#713840;
-}
+.button.secondary{background:#292b34}
+.button.red{background:#713840}
 
 .value{
   float:right;
   color:#737787;
   font-size:9px;
 }
-
-/* FIT */
 
 .fitGrid{
   display:grid;
@@ -245,7 +214,6 @@ input[type=color]{
   background:#20222b;
   border-radius:11px;
   padding:13px 10px;
-  cursor:pointer;
 }
 
 .fitCard.active{
@@ -266,8 +234,6 @@ input[type=color]{
   margin-top:4px;
 }
 
-/* FRAMES */
-
 .frameGrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -279,7 +245,6 @@ input[type=color]{
   background:#11131a;
   border-radius:12px;
   padding:6px;
-  cursor:pointer;
 }
 
 .frameCard.active{
@@ -303,8 +268,6 @@ input[type=color]{
   margin-top:6px;
 }
 
-/* BUILDER */
-
 .shapeGrid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -317,7 +280,6 @@ input[type=color]{
   color:#fff;
   border-radius:9px;
   padding:13px 4px;
-  cursor:pointer;
   font-size:9px;
   font-weight:1000;
 }
@@ -348,8 +310,6 @@ input[type=color]{
   font-size:9px;
 }
 
-/* STATUS */
-
 .status{
   margin-top:10px;
   padding:10px;
@@ -360,25 +320,30 @@ input[type=color]{
   line-height:1.45;
 }
 
-/* MOBILE */
+.effectCard{
+  background:#11131a;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:11px;
+  padding:11px;
+  margin-top:9px;
+}
+
+.effectName{
+  font-size:11px;
+  font-weight:1000;
+}
+
+.effectDescription{
+  color:#777b89;
+  font-size:9px;
+  margin-top:3px;
+}
 
 @media(max-width:600px){
-
-  .logo{
-    font-size:28px;
-  }
-
-  .nav button{
-    font-size:7px;
-  }
-
-  .frameGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .row{
-    grid-template-columns:1fr;
-  }
+  .logo{font-size:28px}
+  .nav button{font-size:7px}
+  .frameGrid{grid-template-columns:repeat(2,1fr)}
+  .row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -387,754 +352,477 @@ input[type=color]{
 
 <div class="app">
 
-  <div class="header">
-    <div class="logo">✦ ICONFORGE</div>
-    <div class="subtitle">Build anime • gaming • tier-list icons</div>
+<div class="header">
+  <div class="logo">✦ ICONFORGE</div>
+  <div class="subtitle">Build anime • gaming • tier-list icons</div>
+</div>
+
+<div class="preview">
+  <div class="previewTitle">LIVE PREVIEW</div>
+  <div class="canvasWrap">
+    <canvas id="canvas" width="600" height="600"></canvas>
   </div>
+</div>
 
-  <!-- LIVE PREVIEW -->
-  <div class="preview">
-    <div class="previewTitle">LIVE PREVIEW</div>
-    <div class="canvasWrap">
-      <canvas id="canvas" width="600" height="600"></canvas>
-    </div>
-  </div>
-
-  <!-- NAVIGATION -->
-  <div class="nav">
-
-    <button class="active" data-section="image">
-      IMAGE
-    </button>
-
-    <button data-section="fit">
-      AUTO FIT
-    </button>
-
-    <button data-section="frames">
-      FRAMES
-    </button>
-
-    <button data-section="builder">
-      BUILDER
-    </button>
-
-    <button data-section="text">
-      TEXT
-    </button>
-
-    <button data-section="background">
-      BACKGROUND
-    </button>
-
-    <button data-section="effects">
-      EFFECTS
-    </button>
+<div class="nav">
 
-  </div>
+<button class="active" data-section="image">IMAGE</button>
+<button data-section="fit">AUTO FIT</button>
+<button data-section="frames">FRAMES</button>
+<button data-section="builder">BUILDER</button>
+<button data-section="text">TEXT</button>
+<button data-section="background">BACKGROUND</button>
+<button data-section="effects">EFFECTS</button>
 
+</div>
 
-  <!-- ==================================================
-       IMAGE
-  ================================================== -->
 
-  <section id="image" class="section active">
+<!-- IMAGE -->
 
-    <div class="panel">
+<section id="image" class="section active">
 
-      <div class="title">Character Image</div>
+<div class="panel">
 
-      <div class="desc">
-        Upload any normal JPG, PNG, WEBP, etc. Transparency is NOT required.
-      </div>
+<div class="title">Character Image</div>
 
-      <label>Character Image</label>
+<div class="desc">
+Upload any normal JPG, PNG, WEBP, etc. Transparency is NOT required.
+</div>
 
-      <input
-        id="characterFile"
-        type="file"
-        accept="image/*"
-      >
+<label>Character Image</label>
+<input id="characterFile" type="file" accept="image/*">
 
-      <label>
-        Zoom
-        <span class="value" id="zoomValue">100%</span>
-      </label>
+<label>
+Zoom
+<span class="value" id="zoomValue">100%</span>
+</label>
+<input id="zoom" type="range" min="0.05" max="8" step="0.01" value="1">
 
-      <input
-        id="zoom"
-        type="range"
-        min="0.05"
-        max="8"
-        step="0.01"
-        value="1"
-      >
+<label>Horizontal Position</label>
+<input id="posX" type="range" min="-600" max="600" value="0">
 
-      <label>
-        Horizontal Position
-      </label>
+<label>Vertical Position</label>
+<input id="posY" type="range" min="-600" max="600" value="0">
 
-      <input
-        id="posX"
-        type="range"
-        min="-600"
-        max="600"
-        value="0"
-      >
+<label>Rotation</label>
+<input id="rotation" type="range" min="-180" max="180" value="0">
 
-      <label>
-        Vertical Position
-      </label>
+<div class="row">
 
-      <input
-        id="posY"
-        type="range"
-        min="-600"
-        max="600"
-        value="0"
-      >
+<button class="button" id="center">CENTER</button>
+<button class="button secondary" id="resetImage">RESET</button>
 
-      <label>
-        Rotation
-      </label>
+</div>
 
-      <input
-        id="rotation"
-        type="range"
-        min="-180"
-        max="180"
-        value="0"
-      >
+<div class="row">
 
-      <div class="row">
+<button class="button secondary" id="flipH">FLIP HORIZONTAL</button>
+<button class="button secondary" id="flipV">FLIP VERTICAL</button>
 
-        <button class="button" id="center">
-          CENTER
-        </button>
+</div>
 
-        <button class="button secondary" id="resetImage">
-          RESET
-        </button>
+</div>
 
-      </div>
+</section>
 
-      <div class="row">
 
-        <button class="button secondary" id="flipH">
-          FLIP HORIZONTAL
-        </button>
+<!-- AUTO FIT -->
 
-        <button class="button secondary" id="flipV">
-          FLIP VERTICAL
-        </button>
+<section id="fit" class="section">
 
-      </div>
+<div class="panel">
 
-    </div>
+<div class="title">Auto Fit</div>
 
-  </section>
+<div class="desc">
+Automatically calculates the image against the actual frame opening.
+</div>
 
+<div class="fitGrid">
 
-  <!-- ==================================================
-       AUTO FIT
-  ================================================== -->
+<div class="fitCard active" data-fit="fill">
+<div class="fitTitle">1 — FILL OPENING</div>
+<div class="fitDesc">Fills the entire frame opening with no empty space.</div>
+</div>
 
-  <section id="fit" class="section">
+<div class="fitCard" data-fit="maximum">
+<div class="fitTitle">2 — MAXIMUM ZOOM</div>
+<div class="fitDesc">Aggressively zooms the character into the icon.</div>
+</div>
 
-    <div class="panel">
+<div class="fitCard" data-fit="cover">
+<div class="fitTitle">3 — COVER</div>
+<div class="fitDesc">Standard cover calculation.</div>
+</div>
 
-      <div class="title">Auto Fit</div>
+<div class="fitCard" data-fit="contain">
+<div class="fitTitle">4 — CONTAIN</div>
+<div class="fitDesc">Keeps the entire source image visible.</div>
+</div>
 
-      <div class="desc">
-        These modes calculate the character against the actual opening inside the selected frame.
-      </div>
+<div class="fitCard" data-fit="smart">
+<div class="fitTitle">5 — SMART</div>
+<div class="fitDesc">Fills aggressively without excessive cropping.</div>
+</div>
 
-      <div class="fitGrid">
+</div>
 
-        <div class="fitCard active" data-fit="fill">
+<button class="button" id="applyFit">APPLY AUTO FIT</button>
 
-          <div class="fitTitle">
-            1 — FILL OPENING
-          </div>
+<div class="status">
+<b>Recommended:</b> Fill Opening for normal icons. Maximum Zoom for extremely close portraits.
+</div>
 
-          <div class="fitDesc">
-            Fills the entire frame opening. No empty space.
-          </div>
+</div>
 
-        </div>
+</section>
 
-        <div class="fitCard" data-fit="maximum">
 
-          <div class="fitTitle">
-            2 — MAXIMUM ZOOM
-          </div>
+<!-- FRAMES -->
 
-          <div class="fitDesc">
-            Very aggressive zoom. Designed for huge character portraits.
-          </div>
+<section id="frames" class="section">
 
-        </div>
+<div class="panel">
 
-        <div class="fitCard" data-fit="cover">
+<div class="title">Frame Library</div>
 
-          <div class="fitTitle">
-            3 — COVER
-          </div>
+<div class="desc">
+Select one of the built-in frames.
+</div>
 
-          <div class="fitDesc">
-            Standard cover calculation. The opening is completely covered.
-          </div>
+<div id="frameGrid" class="frameGrid"></div>
 
-        </div>
+</div>
 
-        <div class="fitCard" data-fit="contain">
+<div class="panel">
 
-          <div class="fitTitle">
-            4 — CONTAIN
-          </div>
+<div class="title">Frame Settings</div>
 
-          <div class="fitDesc">
-            Keeps the entire source image visible.
-          </div>
+<label>
+Frame Thickness
+<span class="value" id="frameWidthValue">14</span>
+</label>
+<input id="frameWidth" type="range" min="2" max="45" value="14">
 
-        </div>
+<label>
+Frame Glow
+<span class="value" id="frameGlowValue">10</span>
+</label>
+<input id="frameGlow" type="range" min="0" max="70" value="10">
 
-        <div class="fitCard" data-fit="smart">
+<label>
+Frame Opacity
+<span class="value" id="frameOpacityValue">100%</span>
+</label>
+<input id="frameOpacity" type="range" min="10" max="100" value="100">
 
-          <div class="fitTitle">
-            5 — SMART
-          </div>
+</div>
 
-          <div class="fitDesc">
-            Fills the opening aggressively while avoiding excessive cropping.
-          </div>
+</section>
 
-        </div>
 
-      </div>
+<!-- BUILDER -->
 
-      <button class="button" id="applyFit">
-        APPLY AUTO FIT
-      </button>
+<section id="builder" class="section">
 
-      <div class="status">
-        <b>Recommended:</b> Start with Fill Opening. If you want the character even larger, use Maximum Zoom.
-      </div>
+<div class="panel">
 
-    </div>
+<div class="title">Custom Frame Builder</div>
 
-  </section>
+<div class="desc">
+Build your own frame using shapes.
+</div>
 
+<div class="row">
 
-  <!-- ==================================================
-       FRAMES
-  ================================================== -->
+<div>
+<label>Shape Color</label>
+<input id="shapeColor" type="color" value="#ffffff">
+</div>
 
-  <section id="frames" class="section">
+<div>
+<label>Shape Size</label>
+<input id="shapeSize" type="range" min="10" max="300" value="100">
+</div>
 
-    <div class="panel">
+</div>
 
-      <div class="title">Frame Library</div>
+<label>Shape Thickness</label>
+<input id="shapeThickness" type="range" min="1" max="30" value="6">
 
-      <div class="desc">
-        Select a built-in frame. These are generated directly by IconForge and do not require a transparent upload.
-      </div>
+<label>Add Shape</label>
 
-      <div id="frameGrid" class="frameGrid"></div>
+<div class="shapeGrid">
 
-    </div>
+<button class="shapeBtn" data-shape="square">□ SQUARE</button>
+<button class="shapeBtn" data-shape="circle">○ CIRCLE</button>
+<button class="shapeBtn" data-shape="diamond">◇ DIAMOND</button>
+<button class="shapeBtn" data-shape="triangle">△ TRIANGLE</button>
+<button class="shapeBtn" data-shape="star">★ STAR</button>
+<button class="shapeBtn" data-shape="hexagon">⬡ HEXAGON</button>
+<button class="shapeBtn" data-shape="line">━ LINE</button>
+<button class="shapeBtn" data-shape="cross">✚ CROSS</button>
 
-    <div class="panel">
+</div>
 
-      <div class="title">Frame Settings</div>
+<div id="shapeList" class="shapeList"></div>
 
-      <label>
-        Frame Thickness
-        <span class="value" id="frameWidthValue">14</span>
-      </label>
+<button class="button red" id="clearShapes">
+CLEAR CUSTOM FRAME
+</button>
 
-      <input
-        id="frameWidth"
-        type="range"
-        min="2"
-        max="45"
-        value="14"
-      >
+</div>
 
-      <label>
-        Frame Glow
-        <span class="value" id="frameGlowValue">10</span>
-      </label>
+</section>
 
-      <input
-        id="frameGlow"
-        type="range"
-        min="0"
-        max="70"
-        value="10"
-      >
 
-      <label>
-        Frame Opacity
-        <span class="value" id="frameOpacityValue">100%</span>
-      </label>
+<!-- TEXT -->
 
-      <input
-        id="frameOpacity"
-        type="range"
-        min="10"
-        max="100"
-        value="100"
-      >
+<section id="text" class="section">
 
-    </div>
+<div class="panel">
 
-  </section>
+<div class="title">Text</div>
 
+<label>Character Name</label>
+<input id="name" type="text" placeholder="Ryomen Sukuna">
 
-  <!-- ==================================================
-       BUILDER
-  ================================================== -->
+<label>Version</label>
+<input id="version" type="text" placeholder="Heian Era">
 
-  <section id="builder" class="section">
+<div class="row">
 
-    <div class="panel">
+<div>
+<label>Name Font</label>
 
-      <div class="title">Custom Frame Builder</div>
+<select id="nameFont">
+<option>Arial</option>
+<option>Impact</option>
+<option>Arial Black</option>
+<option>Verdana</option>
+<option>Georgia</option>
+<option>Trebuchet MS</option>
+<option>Courier New</option>
+<option>Times New Roman</option>
+<option>Garamond</option>
+<option>Palatino Linotype</option>
+</select>
+</div>
 
-      <div class="desc">
-        Add shapes to build your own frame design. Shapes are drawn around the icon opening.
-      </div>
+<div>
+<label>Version Font</label>
 
-      <div class="row">
+<select id="versionFont">
+<option>Arial</option>
+<option>Impact</option>
+<option>Arial Black</option>
+<option>Verdana</option>
+<option>Georgia</option>
+<option>Trebuchet MS</option>
+<option>Courier New</option>
+<option>Times New Roman</option>
+<option>Garamond</option>
+<option>Palatino Linotype</option>
+</select>
+</div>
 
-        <div>
+</div>
 
-          <label>Shape Color</label>
+<label>Upload Your Own Font</label>
+<input id="fontFile" type="file" accept=".ttf,.otf,.woff,.woff2">
 
-          <input
-            id="shapeColor"
-            type="color"
-            value="#ffffff"
-          >
+<label>
+Name Size
+<span class="value" id="nameSizeValue">42</span>
+</label>
+<input id="nameSize" type="range" min="10" max="90" value="42">
 
-        </div>
+<label>
+Version Size
+<span class="value" id="versionSizeValue">24</span>
+</label>
+<input id="versionSize" type="range" min="8" max="60" value="24">
 
-        <div>
+<label>
+Text Position
+<span class="value" id="textYValue">510</span>
+</label>
+<input id="textY" type="range" min="350" max="580" value="510">
 
-          <label>Shape Size</label>
+<div class="row">
 
-          <input
-            id="shapeSize"
-            type="range"
-            min="10"
-            max="300"
-            value="100"
-          >
+<div>
+<label>Text Color</label>
+<input id="textColor" type="color" value="#ffffff">
+</div>
 
-        </div>
+<div>
+<label>Outline Color</label>
+<input id="outlineColor" type="color" value="#000000">
+</div>
 
-      </div>
+</div>
 
-      <label>Shape Thickness</label>
+<label>
+Outline Width
+<span class="value" id="outlineValue">3</span>
+</label>
+<input id="outlineWidth" type="range" min="0" max="15" value="3">
 
-      <input
-        id="shapeThickness"
-        type="range"
-        min="1"
-        max="30"
-        value="6"
-      >
+</div>
 
-      <label>Add Shape</label>
+</section>
 
-      <div class="shapeGrid">
 
-        <button class="shapeBtn" data-shape="square">
-          □ SQUARE
-        </button>
+<!-- BACKGROUND -->
 
-        <button class="shapeBtn" data-shape="circle">
-          ○ CIRCLE
-        </button>
+<section id="background" class="section">
 
-        <button class="shapeBtn" data-shape="diamond">
-          ◇ DIAMOND
-        </button>
+<div class="panel">
 
-        <button class="shapeBtn" data-shape="triangle">
-          △ TRIANGLE
-        </button>
+<div class="title">Background</div>
 
-        <button class="shapeBtn" data-shape="star">
-          ★ STAR
-        </button>
+<label>Background Type</label>
 
-        <button class="shapeBtn" data-shape="hexagon">
-          ⬡ HEXAGON
-        </button>
+<select id="bgType">
+<option value="solid">Solid</option>
+<option value="gradient">Gradient</option>
+<option value="image">Image</option>
+</select>
 
-        <button class="shapeBtn" data-shape="line">
-          ━ LINE
-        </button>
+<div class="row">
 
-        <button class="shapeBtn" data-shape="cross">
-          ✚ CROSS
-        </button>
+<div>
+<label>Color 1</label>
+<input id="bgColor" type="color" value="#111111">
+</div>
 
-      </div>
+<div>
+<label>Color 2</label>
+<input id="bgColor2" type="color" value="#34205e">
+</div>
 
-      <div id="shapeList" class="shapeList"></div>
+</div>
 
-      <button class="button red" id="clearShapes">
-        CLEAR CUSTOM FRAME
-      </button>
+<label>Background Image</label>
+<input id="bgFile" type="file" accept="image/*">
 
-    </div>
+<label>
+Background Blur
+<span class="value" id="bgBlurValue">0</span>
+</label>
+<input id="bgBlur" type="range" min="0" max="30" value="0">
 
-  </section>
+</div>
 
+</section>
 
-  <!-- ==================================================
-       TEXT
-  ================================================== -->
 
-  <section id="text" class="section">
+<!-- EFFECTS -->
 
-    <div class="panel">
+<section id="effects" class="section">
 
-      <div class="title">Text</div>
+<div class="panel">
 
-      <label>Character Name</label>
+<div class="title">Effects</div>
 
-      <input
-        id="name"
-        type="text"
-        placeholder="Ryomen Sukuna"
-      >
+<div class="effectCard">
 
-      <label>Version</label>
+<div class="effectName">☀ Brightness</div>
+<div class="effectDescription">Make the character lighter or darker.</div>
 
-      <input
-        id="version"
-        type="text"
-        placeholder="Heian Era"
-      >
+<label>
+Brightness
+<span class="value" id="brightnessValue">100%</span>
+</label>
 
-      <div class="row">
+<input id="brightness" type="range" min="0" max="200" value="100">
 
-        <div>
+</div>
 
-          <label>Name Font</label>
 
-          <select id="nameFont">
+<div class="effectCard">
 
-            <option>Arial</option>
-            <option>Impact</option>
-            <option>Arial Black</option>
-            <option>Verdana</option>
-            <option>Georgia</option>
-            <option>Trebuchet MS</option>
-            <option>Courier New</option>
-            <option>Times New Roman</option>
-            <option>Garamond</option>
-            <option>Palatino Linotype</option>
+<div class="effectName">◐ Contrast</div>
+<div class="effectDescription">Increase or reduce the difference between dark and light areas.</div>
 
-          </select>
+<label>
+Contrast
+<span class="value" id="contrastValue">100%</span>
+</label>
 
-        </div>
+<input id="contrast" type="range" min="0" max="200" value="100">
 
-        <div>
+</div>
 
-          <label>Version Font</label>
 
-          <select id="versionFont">
+<div class="effectCard">
 
-            <option>Arial</option>
-            <option>Impact</option>
-            <option>Arial Black</option>
-            <option>Verdana</option>
-            <option>Georgia</option>
-            <option>Trebuchet MS</option>
-            <option>Courier New</option>
-            <option>Times New Roman</option>
-            <option>Garamond</option>
-            <option>Palatino Linotype</option>
+<div class="effectName">🌈 Saturation</div>
+<div class="effectDescription">Control how colorful the character appears.</div>
 
-          </select>
+<label>
+Saturation
+<span class="value" id="saturationValue">100%</span>
+</label>
 
-        </div>
+<input id="saturation" type="range" min="0" max="200" value="100">
 
-      </div>
+</div>
 
-      <label>Upload Your Own Font</label>
 
-      <input
-        id="fontFile"
-        type="file"
-        accept=".ttf,.otf,.woff,.woff2"
-      >
+<div class="effectCard">
 
-      <label>
-        Name Size
-        <span class="value" id="nameSizeValue">42</span>
-      </label>
+<div class="effectName">〰 Blur</div>
+<div class="effectDescription">Softens the character image.</div>
 
-      <input
-        id="nameSize"
-        type="range"
-        min="10"
-        max="90"
-        value="42"
-      >
+<label>
+Blur
+<span class="value" id="blurValue">0</span>
+</label>
 
-      <label>
-        Version Size
-        <span class="value" id="versionSizeValue">24</span>
-      </label>
+<input id="blur" type="range" min="0" max="15" step=".1" value="0">
 
-      <input
-        id="versionSize"
-        type="range"
-        min="8"
-        max="60"
-        value="24"
-      >
+</div>
 
-      <label>
-        Text Position
-        <span class="value" id="textYValue">510</span>
-      </label>
 
-      <input
-        id="textY"
-        type="range"
-        min="350"
-        max="580"
-        value="510"
-      >
+<div class="effectCard">
 
-      <div class="row">
+<div class="effectName">◉ Vignette</div>
+<div class="effectDescription">Darkens the outer edges of the finished icon.</div>
 
-        <div>
+<label>
+Vignette
+<span class="value" id="vignetteValue">0%</span>
+</label>
 
-          <label>Text Color</label>
+<input id="vignette" type="range" min="0" max="100" value="0">
 
-          <input
-            id="textColor"
-            type="color"
-            value="#ffffff"
-          >
+</div>
 
-        </div>
 
-        <div>
+<div class="effectCard">
 
-          <label>Outline Color</label>
+<div class="effectName">⬛ Edge Darkening</div>
+<div class="effectDescription">Creates a tighter, heavier dark edge around the icon.</div>
 
-          <input
-            id="outlineColor"
-            type="color"
-            value="#000000"
-          >
+<label>
+Edge Darkening
+<span class="value" id="edgeValue">0%</span>
+</label>
 
-        </div>
+<input id="edgeDark" type="range" min="0" max="100" value="0">
 
-      </div>
+</div>
 
-      <label>
-        Outline Width
-        <span class="value" id="outlineValue">3</span>
-      </label>
+</div>
 
-      <input
-        id="outlineWidth"
-        type="range"
-        min="0"
-        max="15"
-        value="3"
-      >
-
-    </div>
-
-  </section>
-
-
-  <!-- ==================================================
-       BACKGROUND
-  ================================================== -->
-
-  <section id="background" class="section">
-
-    <div class="panel">
-
-      <div class="title">Background</div>
-
-      <label>Background Type</label>
-
-      <select id="bgType">
-
-        <option value="solid">Solid</option>
-        <option value="gradient">Gradient</option>
-        <option value="image">Image</option>
-
-      </select>
-
-      <div class="row">
-
-        <div>
-
-          <label>Color 1</label>
-
-          <input
-            id="bgColor"
-            type="color"
-            value="#111111"
-          >
-
-        </div>
-
-        <div>
-
-          <label>Color 2</label>
-
-          <input
-            id="bgColor2"
-            type="color"
-            value="#34205e"
-          >
-
-        </div>
-
-      </div>
-
-      <label>Background Image</label>
-
-      <input
-        id="bgFile"
-        type="file"
-        accept="image/*"
-      >
-
-      <label>
-        Background Blur
-        <span class="value" id="bgBlurValue">0</span>
-      </label>
-
-      <input
-        id="bgBlur"
-        type="range"
-        min="0"
-        max="30"
-        value="0"
-      >
-
-    </div>
-
-  </section>
-
-
-  <!-- ==================================================
-       EFFECTS
-  ================================================== -->
-
-  <section id="effects" class="section">
-
-    <div class="panel">
-
-      <div class="title">Effects</div>
-
-      <label>
-        Brightness
-        <span class="value" id="brightnessValue">100%</span>
-      </label>
-
-      <input
-        id="brightness"
-        type="range"
-        min="0"
-        max="200"
-        value="100"
-      >
-
-      <label>
-        Contrast
-        <span class="value" id="contrastValue">100%</span>
-      </label>
-
-      <input
-        id="contrast"
-        type="range"
-        min="0"
-        max="200"
-        value="100"
-      >
-
-      <label>
-        Saturation
-        <span class="value" id="saturationValue">100%</span>
-      </label>
-
-      <input
-        id="saturation"
-        type="range"
-        min="0"
-        max="200"
-        value="100"
-      >
-
-      <label>
-        Blur
-        <span class="value" id="blurValue">0</span>
-      </label>
-
-      <input
-        id="blur"
-        type="range"
-        min="0"
-        max="10"
-        step=".1"
-        value="0"
-      >
-
-      <label>
-        Vignette
-        <span class="value" id="vignetteValue">0%</span>
-      </label>
-
-      <input
-        id="vignette"
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-      >
-
-      <label>
-        Edge Darkening
-        <span class="value" id="edgeValue">0%</span>
-      </label>
-
-      <input
-        id="edgeDark"
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-      >
-
-    </div>
-
-  </section>
+</section>
 
 </div>
 
 
 <script>
-
-/* =========================================================
-   ICONFORGE ENGINE
-========================================================= */
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -1157,2303 +845,1902 @@ let startingX = 0;
 let startingY = 0;
 
 
-/* =========================================================
-   IMPORTANT GEOMETRY
-
-   This is the actual frame opening.
-
-   Everything related to Auto Fit uses this.
-========================================================= */
+/* =====================================================
+   ACTUAL FRAME OPENING
+===================================================== */
 
 const OPENING = {
-  x: 55,
-  y: 55,
-  width: 490,
-  height: 490
+  x:55,
+  y:55,
+  width:490,
+  height:490
 };
 
 
-/* =========================================================
+/* =====================================================
    FRAME LIBRARY
-
-   No uploaded frame system exists here.
-========================================================= */
+===================================================== */
 
 const FRAME_LIBRARY = [
 
-  {
-    id:"obsidian",
-    name:"Obsidian",
-    color:"#252833",
-    style:"solid"
-  },
+{
+id:"obsidian",
+name:"Obsidian",
+color:"#252833",
+style:"solid"
+},
 
-  {
-    id:"gold",
-    name:"Emperor Gold",
-    color:"#e8bd4f",
-    style:"gold"
-  },
+{
+id:"gold",
+name:"Emperor Gold",
+color:"#e8bd4f",
+style:"gold"
+},
 
-  {
-    id:"crimson",
-    name:"Crimson",
-    color:"#ef304b",
-    style:"solid"
-  },
+{
+id:"crimson",
+name:"Crimson",
+color:"#ef304b",
+style:"solid"
+},
 
-  {
-    id:"void",
-    name:"Void",
-    color:"#a45cff",
-    style:"energy"
-  },
+{
+id:"void",
+name:"Void",
+color:"#a45cff",
+style:"energy"
+},
 
-  {
-    id:"frost",
-    name:"Frost",
-    color:"#72eaff",
-    style:"energy"
-  },
+{
+id:"frost",
+name:"Frost",
+color:"#72eaff",
+style:"energy"
+},
 
-  {
-    id:"inferno",
-    name:"Inferno",
-    color:"#ff552f",
-    style:"flame"
-  },
+{
+id:"inferno",
+name:"Inferno",
+color:"#ff552f",
+style:"flame"
+},
 
-  {
-    id:"cosmic",
-    name:"Cosmic",
-    color:"#d06cff",
-    style:"cosmic"
-  },
+{
+id:"cosmic",
+name:"Cosmic",
+color:"#d06cff",
+style:"cosmic"
+},
 
-  {
-    id:"neon",
-    name:"Neon",
-    color:"#35ffd0",
-    style:"energy"
-  },
+{
+id:"neon",
+name:"Neon",
+color:"#35ffd0",
+style:"energy"
+},
 
-  {
-    id:"divine",
-    name:"Divine",
-    color:"#ffe47a",
-    style:"double"
-  },
+{
+id:"divine",
+name:"Divine",
+color:"#ffe47a",
+style:"double"
+},
 
-  {
-    id:"blood",
-    name:"Blood Moon",
-    color:"#b90022",
-    style:"energy"
-  },
+{
+id:"blood",
+name:"Blood Moon",
+color:"#b90022",
+style:"energy"
+},
 
-  {
-    id:"diamond",
-    name:"Diamond",
-    color:"#9beaff",
-    style:"diamond"
-  },
+{
+id:"diamond",
+name:"Diamond",
+color:"#9beaff",
+style:"diamond"
+},
 
-  {
-    id:"royal",
-    name:"Royal",
-    color:"#d9bd54",
-    style:"double"
-  }
+{
+id:"royal",
+name:"Royal",
+color:"#d9bd54",
+style:"double"
+}
 
 ];
 
 
-/* =========================================================
-   FRAME THUMBNAILS
-========================================================= */
+/* =====================================================
+   FRAME LIBRARY UI
+===================================================== */
 
 const frameGrid =
-  document.getElementById("frameGrid");
+document.getElementById("frameGrid");
 
 function renderFrameLibrary(){
 
-  frameGrid.innerHTML = "";
+frameGrid.innerHTML="";
 
-  FRAME_LIBRARY.forEach(frame => {
+FRAME_LIBRARY.forEach(frame=>{
 
-    const card =
-      document.createElement("div");
+const card=document.createElement("div");
 
-    card.className =
-      "frameCard" +
-      (frame.id === selectedFrame ? " active" : "");
+card.className=
+"frameCard"+
+(frame.id===selectedFrame?" active":"");
 
-    const thumb =
-      document.createElement("canvas");
+const thumb=document.createElement("canvas");
 
-    thumb.width = 180;
-    thumb.height = 180;
+thumb.width=180;
+thumb.height=180;
+thumb.className="frameThumb";
 
-    thumb.className = "frameThumb";
+const tctx=thumb.getContext("2d");
 
-    const tctx = thumb.getContext("2d");
+drawFrameOnContext(
+tctx,
+180,
+180,
+frame,
+10,
+7,
+1
+);
 
-    drawFrameOnContext(
-      tctx,
-      180,
-      180,
-      frame,
-      10,
-      7,
-      1
-    );
+card.appendChild(thumb);
 
-    card.appendChild(thumb);
+const name=document.createElement("div");
 
-    const name =
-      document.createElement("div");
+name.className="frameName";
+name.textContent=frame.name;
 
-    name.className = "frameName";
-    name.textContent = frame.name;
+card.appendChild(name);
 
-    card.appendChild(name);
+card.onclick=()=>{
 
-    card.onclick = () => {
+selectedFrame=frame.id;
 
-      selectedFrame = frame.id;
+renderFrameLibrary();
 
-      renderFrameLibrary();
+draw();
 
-      draw();
+};
 
-    };
+frameGrid.appendChild(card);
 
-    frameGrid.appendChild(card);
-
-  });
+});
 
 }
 
 renderFrameLibrary();
 
 
-/* =========================================================
-   TAB SYSTEM
-========================================================= */
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+document.querySelectorAll(".nav button").forEach(button=>{
+
+button.addEventListener("click",()=>{
 
 document
-  .querySelectorAll(".nav button")
-  .forEach(button => {
+.querySelectorAll(".nav button")
+.forEach(b=>b.classList.remove("active"));
 
-    button.addEventListener("click", () => {
+document
+.querySelectorAll(".section")
+.forEach(s=>s.classList.remove("active"));
 
-      document
-        .querySelectorAll(".nav button")
-        .forEach(b => b.classList.remove("active"));
+button.classList.add("active");
 
-      document
-        .querySelectorAll(".section")
-        .forEach(s => s.classList.remove("active"));
+document
+.getElementById(button.dataset.section)
+.classList.add("active");
 
-      button.classList.add("active");
+});
 
-      document
-        .getElementById(button.dataset.section)
-        .classList.add("active");
-
-    });
-
-  });
+});
 
 
-/* =========================================================
-   IMAGE LOADING
-========================================================= */
+/* =====================================================
+   LOAD IMAGE
+===================================================== */
 
 function loadImage(file){
 
-  return new Promise((resolve,reject)=>{
+return new Promise((resolve,reject)=>{
 
-    const reader =
-      new FileReader();
+const reader=new FileReader();
 
-    reader.onload = () => {
+reader.onload=()=>{
 
-      const img =
-        new Image();
+const img=new Image();
 
-      img.onload = () => resolve(img);
+img.onload=()=>resolve(img);
 
-      img.onerror = () =>
-        reject(new Error("Image failed to load."));
+img.onerror=()=>reject();
 
-      img.src = reader.result;
+img.src=reader.result;
 
-    };
+};
 
-    reader.onerror = () =>
-      reject(new Error("File failed to read."));
+reader.onerror=()=>reject();
 
-    reader.readAsDataURL(file);
+reader.readAsDataURL(file);
 
-  });
+});
 
 }
 
 
 document
-  .getElementById("characterFile")
-  .addEventListener("change", async e => {
+.getElementById("characterFile")
+.addEventListener("change",async e=>{
 
-    const file = e.target.files[0];
+const file=e.target.files[0];
 
-    if(!file) return;
+if(!file)return;
 
-    try{
+try{
 
-      character =
-        await loadImage(file);
+character=await loadImage(file);
 
-      applyAutoFit();
+applyAutoFit();
 
-    }catch(error){
+}catch{
 
-      alert("Could not load that image.");
+alert("Could not load that image.");
 
-    }
+}
 
-  });
+});
 
 
-/* =========================================================
+/* =====================================================
    BACKGROUND IMAGE
-========================================================= */
+===================================================== */
 
 document
-  .getElementById("bgFile")
-  .addEventListener("change", async e => {
+.getElementById("bgFile")
+.addEventListener("change",async e=>{
 
-    const file = e.target.files[0];
+const file=e.target.files[0];
 
-    if(!file) return;
+if(!file)return;
 
-    try{
+try{
 
-      backgroundImage =
-        await loadImage(file);
+backgroundImage=await loadImage(file);
 
-      document
-        .getElementById("bgType")
-        .value = "image";
+document.getElementById("bgType").value="image";
 
-      draw();
+draw();
 
-    }catch(error){
+}catch{
 
-      alert("Could not load that background.");
+alert("Could not load that background.");
 
-    }
+}
 
-  });
+});
 
 
-/* =========================================================
-   AUTO FIT SELECTION
-========================================================= */
+/* =====================================================
+   FIT SELECTION
+===================================================== */
+
+document.querySelectorAll(".fitCard").forEach(card=>{
+
+card.addEventListener("click",()=>{
 
 document
-  .querySelectorAll(".fitCard")
-  .forEach(card => {
+.querySelectorAll(".fitCard")
+.forEach(c=>c.classList.remove("active"));
 
-    card.addEventListener("click", () => {
+card.classList.add("active");
 
-      document
-        .querySelectorAll(".fitCard")
-        .forEach(c =>
-          c.classList.remove("active")
-        );
+selectedFit=card.dataset.fit;
 
-      card.classList.add("active");
+});
 
-      selectedFit =
-        card.dataset.fit;
-
-    });
-
-  });
+});
 
 
-/* =========================================================
-   AUTO FIT ENGINE
-
-   THIS is the important part.
-
-   It calculates the character against
-   the actual 490x490 opening.
-
-   It never requires transparency.
-========================================================= */
+/* =====================================================
+   AUTO FIT
+===================================================== */
 
 function applyAutoFit(){
 
-  if(!character){
+if(!character){
 
-    alert("Upload a character image first.");
+alert("Upload a character image first.");
 
-    return;
+return;
 
-  }
+}
 
+const imageW=character.width;
+const imageH=character.height;
 
-  const openingW =
-    OPENING.width;
+const openingW=OPENING.width;
+const openingH=OPENING.height;
 
-  const openingH =
-    OPENING.height;
+const coverScale=Math.max(
+openingW/imageW,
+openingH/imageH
+);
 
+let scale=coverScale;
 
-  const imageW =
-    character.width;
+if(selectedFit==="fill"){
 
-  const imageH =
-    character.height;
+scale=coverScale;
 
+}
 
-  /*
-    SCALE REQUIRED TO COVER THE OPENING.
-  */
+else if(selectedFit==="maximum"){
 
-  const coverScale =
-    Math.max(
-      openingW / imageW,
-      openingH / imageH
-    );
+scale=coverScale*1.65;
 
+}
 
-  let scale = coverScale;
+else if(selectedFit==="cover"){
 
+scale=coverScale;
 
-  /*
-    MODE 1:
-    No empty space.
-  */
+}
 
-  if(selectedFit === "fill"){
+else if(selectedFit==="contain"){
 
-    scale =
-      coverScale;
+scale=Math.min(
+openingW/imageW,
+openingH/imageH
+);
 
-  }
+}
 
+else if(selectedFit==="smart"){
 
-  /*
-    MODE 2:
-    Aggressive zoom.
-  */
+scale=coverScale*1.15;
 
-  else if(selectedFit === "maximum"){
+}
 
-    scale =
-      coverScale * 1.65;
+scale=Math.max(.05,Math.min(8,scale));
 
-  }
+document.getElementById("zoom").value=scale;
 
+document.getElementById("posX").value=0;
+document.getElementById("posY").value=0;
+document.getElementById("rotation").value=0;
 
-  /*
-    MODE 3:
-    Standard cover.
-  */
-
-  else if(selectedFit === "cover"){
-
-    scale =
-      coverScale;
-
-  }
-
-
-  /*
-    MODE 4:
-    Entire image visible.
-  */
-
-  else if(selectedFit === "contain"){
-
-    scale =
-      Math.min(
-        openingW / imageW,
-        openingH / imageH
-      );
-
-  }
-
-
-  /*
-    MODE 5:
-    Slightly more aggressive than cover.
-  */
-
-  else if(selectedFit === "smart"){
-
-    scale =
-      coverScale * 1.15;
-
-  }
-
-
-  /*
-    Clamp so the slider remains valid.
-  */
-
-  scale =
-    Math.max(
-      0.05,
-      Math.min(8,scale)
-    );
-
-
-  document
-    .getElementById("zoom")
-    .value = scale;
-
-
-  /*
-    CENTER IT.
-  */
-
-  document
-    .getElementById("posX")
-    .value = 0;
-
-  document
-    .getElementById("posY")
-    .value = 0;
-
-  document
-    .getElementById("rotation")
-    .value = 0;
-
-
-  updateValues();
-
-  draw();
+updateValues();
+draw();
 
 }
 
 
-/* =========================================================
+document
+.getElementById("applyFit")
+.addEventListener("click",applyAutoFit);
+
+
+/* =====================================================
    CENTER
-========================================================= */
+===================================================== */
 
 document
-  .getElementById("center")
-  .addEventListener("click", () => {
+.getElementById("center")
+.addEventListener("click",()=>{
 
-    document
-      .getElementById("posX")
-      .value = 0;
+document.getElementById("posX").value=0;
+document.getElementById("posY").value=0;
 
-    document
-      .getElementById("posY")
-      .value = 0;
+draw();
 
-    draw();
-
-  });
+});
 
 
-/* =========================================================
-   APPLY FIT BUTTON
-========================================================= */
+/* =====================================================
+   RESET
+===================================================== */
 
 document
-  .getElementById("applyFit")
-  .addEventListener(
-    "click",
-    applyAutoFit
-  );
+.getElementById("resetImage")
+.addEventListener("click",()=>{
+
+document.getElementById("zoom").value=1;
+document.getElementById("posX").value=0;
+document.getElementById("posY").value=0;
+document.getElementById("rotation").value=0;
+
+flipH=false;
+flipV=false;
+
+updateValues();
+draw();
+
+});
 
 
-/* =========================================================
-   RESET IMAGE
-========================================================= */
-
-document
-  .getElementById("resetImage")
-  .addEventListener("click", () => {
-
-    document
-      .getElementById("zoom")
-      .value = 1;
-
-    document
-      .getElementById("posX")
-      .value = 0;
-
-    document
-      .getElementById("posY")
-      .value = 0;
-
-    document
-      .getElementById("rotation")
-      .value = 0;
-
-    flipH = false;
-    flipV = false;
-
-    draw();
-    updateValues();
-
-  });
-
-
-/* =========================================================
-   FLIPS
-========================================================= */
+/* =====================================================
+   FLIP
+===================================================== */
 
 document
-  .getElementById("flipH")
-  .addEventListener("click", () => {
+.getElementById("flipH")
+.addEventListener("click",()=>{
 
-    flipH = !flipH;
+flipH=!flipH;
+draw();
 
-    draw();
-
-  });
+});
 
 
 document
-  .getElementById("flipV")
-  .addEventListener("click", () => {
+.getElementById("flipV")
+.addEventListener("click",()=>{
 
-    flipV = !flipV;
+flipV=!flipV;
+draw();
 
-    draw();
-
-  });
+});
 
 
-/* =========================================================
-   BACKGROUND DRAWING
-========================================================= */
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
 function drawBackground(){
 
-  const type =
-    document.getElementById("bgType").value;
+const type=
+document.getElementById("bgType").value;
 
+if(type==="image" && backgroundImage){
 
-  if(type === "image" && backgroundImage){
+ctx.save();
 
-    ctx.save();
+const blur=
+Number(document.getElementById("bgBlur").value);
 
-    const blur =
-      Number(
-        document.getElementById("bgBlur").value
-      );
+ctx.filter=`blur(${blur}px)`;
 
-    ctx.filter =
-      `blur(${blur}px)`;
+drawCoverImage(
+ctx,
+backgroundImage,
+0,
+0,
+600,
+600
+);
 
-    drawCoverImage(
-      ctx,
-      backgroundImage,
-      0,
-      0,
-      600,
-      600
-    );
+ctx.restore();
 
-    ctx.restore();
+return;
 
-    return;
+}
 
-  }
+if(type==="gradient"){
 
+const gradient=
+ctx.createLinearGradient(
+0,
+0,
+600,
+600
+);
 
-  if(type === "gradient"){
+gradient.addColorStop(
+0,
+document.getElementById("bgColor").value
+);
 
-    const gradient =
-      ctx.createLinearGradient(
-        0,
-        0,
-        600,
-        600
-      );
+gradient.addColorStop(
+1,
+document.getElementById("bgColor2").value
+);
 
-    gradient.addColorStop(
-      0,
-      document.getElementById("bgColor").value
-    );
+ctx.fillStyle=gradient;
 
-    gradient.addColorStop(
-      1,
-      document.getElementById("bgColor2").value
-    );
+ctx.fillRect(0,0,600,600);
 
-    ctx.fillStyle = gradient;
+return;
 
-    ctx.fillRect(
-      0,
-      0,
-      600,
-      600
-    );
+}
 
-    return;
+ctx.fillStyle=
+document.getElementById("bgColor").value;
 
-  }
-
-
-  ctx.fillStyle =
-    document.getElementById("bgColor").value;
-
-  ctx.fillRect(
-    0,
-    0,
-    600,
-    600
-  );
+ctx.fillRect(0,0,600,600);
 
 }
 
 
 function drawCoverImage(
-  context,
-  image,
-  x,
-  y,
-  width,
-  height
+context,
+image,
+x,
+y,
+width,
+height
 ){
 
-  const imageRatio =
-    image.width / image.height;
+const imageRatio=image.width/image.height;
+const boxRatio=width/height;
 
-  const boxRatio =
-    width / height;
+let drawWidth;
+let drawHeight;
 
-  let drawWidth;
-  let drawHeight;
+if(imageRatio>boxRatio){
 
-  if(imageRatio > boxRatio){
+drawHeight=height;
+drawWidth=height*imageRatio;
 
-    drawHeight = height;
-    drawWidth =
-      height * imageRatio;
+}else{
 
-  }else{
+drawWidth=width;
+drawHeight=width/imageRatio;
 
-    drawWidth = width;
-    drawHeight =
-      width / imageRatio;
+}
 
-  }
-
-  context.drawImage(
-    image,
-    x + (width-drawWidth)/2,
-    y + (height-drawHeight)/2,
-    drawWidth,
-    drawHeight
-  );
+context.drawImage(
+image,
+x+(width-drawWidth)/2,
+y+(height-drawHeight)/2,
+drawWidth,
+drawHeight
+);
 
 }
 
 
-/* =========================================================
-   CHARACTER DRAWING
-
-   The image is clipped to the actual opening.
-
-   This is what makes a normal JPG work.
-========================================================= */
+/* =====================================================
+   CHARACTER
+===================================================== */
 
 function drawCharacter(){
 
-  if(!character) return;
+if(!character)return;
+
+const zoom=
+Number(document.getElementById("zoom").value);
+
+const x=
+Number(document.getElementById("posX").value);
+
+const y=
+Number(document.getElementById("posY").value);
+
+const rotation=
+Number(document.getElementById("rotation").value)
+*Math.PI/180;
+
+const width=character.width*zoom;
+const height=character.height*zoom;
 
 
-  const zoom =
-    Number(
-      document.getElementById("zoom").value
-    );
+/*
+   EFFECT VALUES
+*/
 
-  const x =
-    Number(
-      document.getElementById("posX").value
-    );
+const brightness=
+Number(document.getElementById("brightness").value);
 
-  const y =
-    Number(
-      document.getElementById("posY").value
-    );
+const contrast=
+Number(document.getElementById("contrast").value);
 
-  const rotation =
-    Number(
-      document.getElementById("rotation").value
-    ) * Math.PI / 180;
+const saturation=
+Number(document.getElementById("saturation").value);
+
+const blur=
+Number(document.getElementById("blur").value);
 
 
-  const width =
-    character.width * zoom;
+/*
+   SAVE CHARACTER STATE
+*/
 
-  const height =
-    character.height * zoom;
-
-
-  ctx.save();
+ctx.save();
 
 
-  /*
-    CLIP TO OPENING.
-  */
+/*
+   CLIP CHARACTER TO FRAME OPENING
+*/
 
-  ctx.beginPath();
+ctx.beginPath();
 
-  ctx.rect(
-    OPENING.x,
-    OPENING.y,
-    OPENING.width,
-    OPENING.height
-  );
+ctx.rect(
+OPENING.x,
+OPENING.y,
+OPENING.width,
+OPENING.height
+);
 
-  ctx.clip();
-
-
-  /*
-    Move to opening center.
-  */
-
-  ctx.translate(
-    OPENING.x +
-    OPENING.width/2 +
-    x,
-
-    OPENING.y +
-    OPENING.height/2 +
-    y
-  );
+ctx.clip();
 
 
-  ctx.rotate(rotation);
+/*
+   POSITION
+*/
+
+ctx.translate(
+OPENING.x+
+OPENING.width/2+
+x,
+
+OPENING.y+
+OPENING.height/2+
+y
+);
+
+ctx.rotate(rotation);
+
+ctx.scale(
+flipH?-1:1,
+flipV?-1:1
+);
 
 
-  ctx.scale(
-    flipH ? -1 : 1,
-    flipV ? -1 : 1
-  );
+/*
+   ACTUAL IMAGE FILTER
+*/
+
+ctx.filter=
+"brightness("+brightness+"%) "+
+"contrast("+contrast+"%) "+
+"saturate("+saturation+"%) "+
+"blur("+blur+"px)";
 
 
-  const brightness =
-    document.getElementById("brightness").value;
+/*
+   DRAW
+*/
 
-  const contrast =
-    document.getElementById("contrast").value;
-
-  const saturation =
-    document.getElementById("saturation").value;
-
-  const blur =
-    document.getElementById("blur").value;
-
-
-  ctx.filter =
-    `
-    brightness(${brightness}%)
-    contrast(${contrast}%)
-    saturate(${saturation}%)
-    blur(${blur}px)
-    `;
+ctx.drawImage(
+character,
+-width/2,
+-height/2,
+width,
+height
+);
 
 
-  ctx.drawImage(
-    character,
-    -width/2,
-    -height/2,
-    width,
-    height
-  );
+/*
+   RESET FILTER BEFORE LEAVING
+*/
 
+ctx.filter="none";
 
-  ctx.restore();
+ctx.restore();
 
 }
 
 
-/* =========================================================
-   FRAME DRAWING
-========================================================= */
+/* =====================================================
+   FRAME
+===================================================== */
 
 function drawFrame(){
 
-  const frame =
-    FRAME_LIBRARY.find(
-      f => f.id === selectedFrame
-    );
+const frame=
+FRAME_LIBRARY.find(
+f=>f.id===selectedFrame
+);
 
-  if(!frame) return;
+if(!frame)return;
 
+const thickness=
+Number(
+document.getElementById("frameWidth").value
+);
 
-  const thickness =
-    Number(
-      document.getElementById("frameWidth").value
-    );
+const glow=
+Number(
+document.getElementById("frameGlow").value
+);
 
-  const glow =
-    Number(
-      document.getElementById("frameGlow").value
-    );
+const opacity=
+Number(
+document.getElementById("frameOpacity").value
+)/100;
 
-  const opacity =
-    Number(
-      document.getElementById("frameOpacity").value
-    ) / 100;
-
-
-  drawFrameOnContext(
-    ctx,
-    600,
-    600,
-    frame,
-    thickness,
-    glow,
-    opacity
-  );
+drawFrameOnContext(
+ctx,
+600,
+600,
+frame,
+thickness,
+glow,
+opacity
+);
 
 }
 
-
-/* =========================================================
-   GENERIC FRAME RENDERER
-
-   Used BOTH for the real canvas and thumbnails.
-========================================================= */
 
 function drawFrameOnContext(
-  context,
-  size,
-  unused,
-  frame,
-  thickness,
-  glow,
-  opacity
+context,
+size,
+unused,
+frame,
+thickness,
+glow,
+opacity
 ){
 
-  const scale =
-    size / 600;
+const scale=size/600;
 
-  context.save();
+context.save();
 
-  context.globalAlpha = opacity;
+context.globalAlpha=opacity;
 
-  context.strokeStyle =
-    frame.color;
+context.strokeStyle=frame.color;
+context.fillStyle=frame.color;
 
-  context.fillStyle =
-    frame.color;
+context.lineWidth=thickness*scale;
 
-  context.lineWidth =
-    thickness * scale;
+context.shadowColor=frame.color;
+context.shadowBlur=glow*scale;
 
-  context.shadowColor =
-    frame.color;
+const inset=28*scale;
 
-  context.shadowBlur =
-    glow * scale;
-
-
-  const inset =
-    28 * scale;
+context.strokeRect(
+inset,
+inset,
+size-inset*2,
+size-inset*2
+);
 
 
-  const outer =
-    300 * scale;
+if(
+frame.style==="double"||
+frame.style==="gold"||
+frame.style==="diamond"
+){
 
-  const box =
-    272 * scale;
+context.lineWidth=
+Math.max(
+2*scale,
+thickness*.35*scale
+);
 
-
-  /*
-    MAIN FRAME.
-  */
-
-  context.strokeRect(
-    inset,
-    inset,
-    size - inset*2,
-    size - inset*2
-  );
-
-
-  /*
-    SECONDARY FRAME.
-  */
-
-  if(
-    frame.style === "double" ||
-    frame.style === "gold" ||
-    frame.style === "diamond"
-  ){
-
-    context.lineWidth =
-      Math.max(
-        2*scale,
-        thickness * .35 * scale
-      );
-
-    context.strokeRect(
-      inset + 13*scale,
-      inset + 13*scale,
-      size - (inset+13*scale)*2,
-      size - (inset+13*scale)*2
-    );
-
-  }
-
-
-  /*
-    DIAMOND CORNERS.
-  */
-
-  if(frame.style === "diamond"){
-
-    drawCornerDiamonds(
-      context,
-      size,
-      frame.color,
-      scale
-    );
-
-  }
-
-
-  /*
-    ENERGY CORNERS.
-  */
-
-  if(
-    frame.style === "energy" ||
-    frame.style === "cosmic"
-  ){
-
-    drawEnergyCorners(
-      context,
-      size,
-      frame.color,
-      scale
-    );
-
-  }
-
-
-  /*
-    FLAME STYLE.
-  */
-
-  if(frame.style === "flame"){
-
-    drawFlames(
-      context,
-      size,
-      frame.color,
-      scale
-    );
-
-  }
-
-
-  /*
-    COSMIC DOTS.
-  */
-
-  if(frame.style === "cosmic"){
-
-    for(let i=0;i<20;i++){
-
-      const angle =
-        i * Math.PI * 2 / 20;
-
-      const radius =
-        274 * scale;
-
-      const x =
-        outer +
-        Math.cos(angle)*radius;
-
-      const y =
-        outer +
-        Math.sin(angle)*radius;
-
-      context.beginPath();
-
-      context.arc(
-        x,
-        y,
-        (i%3+2)*scale,
-        0,
-        Math.PI*2
-      );
-
-      context.fill();
-
-    }
-
-  }
-
-
-  /*
-    CORNER ORNAMENTS FOR GOLD.
-  */
-
-  if(frame.style === "gold"){
-
-    drawGoldCorners(
-      context,
-      size,
-      frame.color,
-      scale
-    );
-
-  }
-
-
-  context.restore();
+context.strokeRect(
+inset+13*scale,
+inset+13*scale,
+size-(inset+13*scale)*2,
+size-(inset+13*scale)*2
+);
 
 }
 
 
-/* =========================================================
-   FRAME DECORATIONS
-========================================================= */
+if(frame.style==="diamond"){
 
-function drawCornerDiamonds(
-  context,
-  size,
-  color,
-  scale
+drawCornerDiamonds(
+context,
+size,
+frame.color,
+scale
+);
+
+}
+
+
+if(
+frame.style==="energy"||
+frame.style==="cosmic"
 ){
 
-  const positions = [
-    [55,55],
-    [545,55],
-    [55,545],
-    [545,545]
-  ];
+drawEnergyCorners(
+context,
+size,
+frame.color,
+scale
+);
 
-  context.save();
+}
 
-  context.fillStyle = color;
 
-  positions.forEach(([x,y]) => {
+if(frame.style==="flame"){
 
-    x *= scale;
-    y *= scale;
+drawFlames(
+context,
+size,
+frame.color,
+scale
+);
 
-    context.beginPath();
+}
 
-    context.moveTo(
-      x,
-      y-18*scale
-    );
 
-    context.lineTo(
-      x+18*scale,
-      y
-    );
+if(frame.style==="cosmic"){
 
-    context.lineTo(
-      x,
-      y+18*scale
-    );
+for(let i=0;i<20;i++){
 
-    context.lineTo(
-      x-18*scale,
-      y
-    );
+const angle=i*Math.PI*2/20;
 
-    context.closePath();
+const radius=274*scale;
 
-    context.fill();
+const x=300*scale+Math.cos(angle)*radius;
+const y=300*scale+Math.sin(angle)*radius;
 
-  });
+context.beginPath();
 
-  context.restore();
+context.arc(
+x,
+y,
+(i%3+2)*scale,
+0,
+Math.PI*2
+);
+
+context.fill();
+
+}
+
+}
+
+
+if(frame.style==="gold"){
+
+drawGoldCorners(
+context,
+size,
+frame.color,
+scale
+);
+
+}
+
+context.restore();
+
+}
+
+
+/* =====================================================
+   FRAME DECORATIONS
+===================================================== */
+
+function drawCornerDiamonds(
+context,
+size,
+color,
+scale
+){
+
+const positions=[
+[55,55],
+[545,55],
+[55,545],
+[545,545]
+];
+
+context.save();
+
+context.fillStyle=color;
+
+positions.forEach(([x,y])=>{
+
+x*=scale;
+y*=scale;
+
+context.beginPath();
+
+context.moveTo(x,y-18*scale);
+context.lineTo(x+18*scale,y);
+context.lineTo(x,y+18*scale);
+context.lineTo(x-18*scale,y);
+
+context.closePath();
+context.fill();
+
+});
+
+context.restore();
 
 }
 
 
 function drawEnergyCorners(
-  context,
-  size,
-  color,
-  scale
+context,
+size,
+color,
+scale
 ){
 
-  const corners = [
-    [50,50,1,1],
-    [550,50,-1,1],
-    [50,550,1,-1],
-    [550,550,-1,-1]
-  ];
+const corners=[
+[50,50,1,1],
+[550,50,-1,1],
+[50,550,1,-1],
+[550,550,-1,-1]
+];
 
-  context.save();
+context.save();
 
-  context.strokeStyle = color;
+context.strokeStyle=color;
+context.lineWidth=5*scale;
 
-  context.lineWidth =
-    5*scale;
+corners.forEach(([x,y,dx,dy])=>{
 
-  corners.forEach(
-    ([x,y,dx,dy]) => {
+x*=scale;
+y*=scale;
 
-      x *= scale;
-      y *= scale;
+context.beginPath();
 
-      context.beginPath();
+context.moveTo(x,y);
 
-      context.moveTo(
-        x,
-        y
-      );
+context.lineTo(
+x+dx*40*scale,
+y
+);
 
-      context.lineTo(
-        x+dx*40*scale,
-        y
-      );
+context.lineTo(
+x+dx*20*scale,
+y+dy*32*scale
+);
 
-      context.lineTo(
-        x+dx*20*scale,
-        y+dy*32*scale
-      );
+context.lineTo(
+x+dx*50*scale,
+y+dy*18*scale
+);
 
-      context.lineTo(
-        x+dx*50*scale,
-        y+dy*18*scale
-      );
+context.stroke();
 
-      context.stroke();
+});
 
-    }
-  );
-
-  context.restore();
+context.restore();
 
 }
 
 
 function drawFlames(
-  context,
-  size,
-  color,
-  scale
+context,
+size,
+color,
+scale
 ){
 
-  context.save();
+context.save();
 
-  context.strokeStyle = color;
+context.strokeStyle=color;
+context.lineWidth=4*scale;
 
-  context.lineWidth =
-    4*scale;
+for(let x=70;x<=530;x+=55){
 
-  for(
-    let x=70;
-    x<=530;
-    x+=55
-  ){
+context.beginPath();
 
-    context.beginPath();
+context.moveTo(x*scale,38*scale);
+context.lineTo((x-10)*scale,18*scale);
+context.lineTo((x+5)*scale,31*scale);
+context.lineTo((x+18)*scale,10*scale);
+context.lineTo((x+15)*scale,38*scale);
 
-    context.moveTo(
-      x*scale,
-      38*scale
-    );
+context.stroke();
 
-    context.lineTo(
-      (x-10)*scale,
-      18*scale
-    );
+context.beginPath();
 
-    context.lineTo(
-      (x+5)*scale,
-      31*scale
-    );
+context.moveTo(x*scale,562*scale);
+context.lineTo((x-10)*scale,582*scale);
+context.lineTo((x+5)*scale,569*scale);
+context.lineTo((x+18)*scale,590*scale);
+context.lineTo((x+15)*scale,562*scale);
 
-    context.lineTo(
-      (x+18)*scale,
-      10*scale
-    );
+context.stroke();
 
-    context.lineTo(
-      (x+15)*scale,
-      38*scale
-    );
+}
 
-    context.stroke();
-
-    context.beginPath();
-
-    context.moveTo(
-      x*scale,
-      562*scale
-    );
-
-    context.lineTo(
-      (x-10)*scale,
-      582*scale
-    );
-
-    context.lineTo(
-      (x+5)*scale,
-      569*scale
-    );
-
-    context.lineTo(
-      (x+18)*scale,
-      590*scale
-    );
-
-    context.lineTo(
-      (x+15)*scale,
-      562*scale
-    );
-
-    context.stroke();
-
-  }
-
-  context.restore();
+context.restore();
 
 }
 
 
 function drawGoldCorners(
-  context,
-  size,
-  color,
-  scale
+context,
+size,
+color,
+scale
 ){
 
-  context.save();
+context.save();
 
-  context.fillStyle = color;
+context.fillStyle=color;
 
-  const points = [
-    [55,55],
-    [545,55],
-    [55,545],
-    [545,545]
-  ];
+[
+[55,55],
+[545,55],
+[55,545],
+[545,545]
+].forEach(([x,y])=>{
 
-  points.forEach(([x,y])=>{
+x*=scale;
+y*=scale;
 
-    x*=scale;
-    y*=scale;
+context.beginPath();
 
-    context.beginPath();
+context.arc(
+x,
+y,
+15*scale,
+0,
+Math.PI*2
+);
 
-    context.arc(
-      x,
-      y,
-      15*scale,
-      0,
-      Math.PI*2
-    );
+context.fill();
 
-    context.fill();
+});
 
-  });
-
-  context.restore();
+context.restore();
 
 }
 
 
-/* =========================================================
-   CUSTOM SHAPES
-========================================================= */
+/* =====================================================
+   CUSTOM BUILDER
+===================================================== */
 
-document
-  .querySelectorAll(".shapeBtn")
-  .forEach(button => {
+document.querySelectorAll(".shapeBtn").forEach(button=>{
 
-    button.addEventListener("click", () => {
+button.addEventListener("click",()=>{
 
-      customShapes.push({
+customShapes.push({
 
-        type:button.dataset.shape,
+type:button.dataset.shape,
 
-        color:
-          document.getElementById("shapeColor").value,
+color:
+document.getElementById("shapeColor").value,
 
-        size:
-          Number(
-            document.getElementById("shapeSize").value
-          ),
+size:
+Number(
+document.getElementById("shapeSize").value
+),
 
-        thickness:
-          Number(
-            document.getElementById("shapeThickness").value
-          ),
+thickness:
+Number(
+document.getElementById("shapeThickness").value
+),
 
-        x:300,
+x:300,
+y:300
 
-        y:300
+});
 
-      });
+renderShapeList();
+draw();
 
-      renderShapeList();
+});
 
-      draw();
-
-    });
-
-  });
+});
 
 
 function renderShapeList(){
 
-  const list =
-    document.getElementById("shapeList");
+const list=document.getElementById("shapeList");
 
-  list.innerHTML = "";
+list.innerHTML="";
 
+customShapes.forEach((shape,index)=>{
 
-  customShapes.forEach(
-    (shape,index) => {
+const item=document.createElement("div");
 
-      const item =
-        document.createElement("div");
+item.className="shapeItem";
 
-      item.className =
-        "shapeItem";
+item.innerHTML=
+`
+<span>${shape.type.toUpperCase()}</span>
+<button class="deleteShape" data-index="${index}">
+DELETE
+</button>
+`;
 
-      item.innerHTML = `
-        <span>
-          ${shape.type.toUpperCase()}
-        </span>
+list.appendChild(item);
 
-        <button
-          class="deleteShape"
-          data-index="${index}"
-        >
-          DELETE
-        </button>
-      `;
+});
 
-      list.appendChild(item);
+document.querySelectorAll(".deleteShape").forEach(button=>{
 
-    }
-  );
+button.addEventListener("click",()=>{
 
+customShapes.splice(
+Number(button.dataset.index),
+1
+);
 
-  document
-    .querySelectorAll(".deleteShape")
-    .forEach(button => {
+renderShapeList();
+draw();
 
-      button.addEventListener(
-        "click",
-        () => {
+});
 
-          customShapes.splice(
-            Number(button.dataset.index),
-            1
-          );
-
-          renderShapeList();
-
-          draw();
-
-        }
-      );
-
-    });
+});
 
 }
 
 
+document
+.getElementById("clearShapes")
+.addEventListener("click",()=>{
+
+customShapes=[];
+
+renderShapeList();
+draw();
+
+});
+
+
 function drawCustomShapes(){
 
-  customShapes.forEach(shape => {
+customShapes.forEach(shape=>{
 
-    ctx.save();
+ctx.save();
 
-    ctx.strokeStyle =
-      shape.color;
+ctx.strokeStyle=shape.color;
+ctx.fillStyle=shape.color;
+ctx.lineWidth=shape.thickness;
 
-    ctx.fillStyle =
-      shape.color;
+const x=shape.x;
+const y=shape.y;
+const s=shape.size;
 
-    ctx.lineWidth =
-      shape.thickness;
+if(shape.type==="square"){
 
-    const x = shape.x;
-    const y = shape.y;
-    const s = shape.size;
+ctx.strokeRect(
+x-s/2,
+y-s/2,
+s,
+s
+);
 
+}
 
-    if(shape.type === "square"){
+if(shape.type==="circle"){
 
-      ctx.strokeRect(
-        x-s/2,
-        y-s/2,
-        s,
-        s
-      );
+ctx.beginPath();
 
-    }
+ctx.arc(
+x,
+y,
+s/2,
+0,
+Math.PI*2
+);
 
+ctx.stroke();
 
-    if(shape.type === "circle"){
+}
 
-      ctx.beginPath();
+if(shape.type==="diamond"){
 
-      ctx.arc(
-        x,
-        y,
-        s/2,
-        0,
-        Math.PI*2
-      );
+ctx.beginPath();
 
-      ctx.stroke();
+ctx.moveTo(x,y-s/2);
+ctx.lineTo(x+s/2,y);
+ctx.lineTo(x,y+s/2);
+ctx.lineTo(x-s/2,y);
 
-    }
+ctx.closePath();
+ctx.stroke();
 
+}
 
-    if(shape.type === "diamond"){
+if(shape.type==="triangle"){
 
-      ctx.beginPath();
+ctx.beginPath();
 
-      ctx.moveTo(
-        x,
-        y-s/2
-      );
+ctx.moveTo(x,y-s/2);
+ctx.lineTo(x+s/2,y+s/2);
+ctx.lineTo(x-s/2,y+s/2);
 
-      ctx.lineTo(
-        x+s/2,
-        y
-      );
+ctx.closePath();
+ctx.stroke();
 
-      ctx.lineTo(
-        x,
-        y+s/2
-      );
+}
 
-      ctx.lineTo(
-        x-s/2,
-        y
-      );
+if(shape.type==="star"){
 
-      ctx.closePath();
+drawStar(
+ctx,
+x,
+y,
+s/2,
+s/4,
+5
+);
 
-      ctx.stroke();
+}
 
-    }
+if(shape.type==="hexagon"){
 
+drawPolygon(
+ctx,
+x,
+y,
+s/2,
+6
+);
 
-    if(shape.type === "triangle"){
+}
 
-      ctx.beginPath();
+if(shape.type==="line"){
 
-      ctx.moveTo(
-        x,
-        y-s/2
-      );
+ctx.beginPath();
 
-      ctx.lineTo(
-        x+s/2,
-        y+s/2
-      );
+ctx.moveTo(x-s/2,y);
+ctx.lineTo(x+s/2,y);
 
-      ctx.lineTo(
-        x-s/2,
-        y+s/2
-      );
+ctx.stroke();
 
-      ctx.closePath();
+}
 
-      ctx.stroke();
+if(shape.type==="cross"){
 
-    }
+ctx.beginPath();
 
+ctx.moveTo(x-s/2,y);
+ctx.lineTo(x+s/2,y);
 
-    if(shape.type === "star"){
+ctx.moveTo(x,y-s/2);
+ctx.lineTo(x,y+s/2);
 
-      drawStar(
-        ctx,
-        x,
-        y,
-        s/2,
-        s/4,
-        5
-      );
+ctx.stroke();
 
-    }
+}
 
+ctx.restore();
 
-    if(shape.type === "hexagon"){
-
-      drawPolygon(
-        ctx,
-        x,
-        y,
-        s/2,
-        6
-      );
-
-    }
-
-
-    if(shape.type === "line"){
-
-      ctx.beginPath();
-
-      ctx.moveTo(
-        x-s/2,
-        y
-      );
-
-      ctx.lineTo(
-        x+s/2,
-        y
-      );
-
-      ctx.stroke();
-
-    }
-
-
-    if(shape.type === "cross"){
-
-      ctx.beginPath();
-
-      ctx.moveTo(
-        x-s/2,
-        y
-      );
-
-      ctx.lineTo(
-        x+s/2,
-        y
-      );
-
-      ctx.moveTo(
-        x,
-        y-s/2
-      );
-
-      ctx.lineTo(
-        x,
-        y+s/2
-      );
-
-      ctx.stroke();
-
-    }
-
-
-    ctx.restore();
-
-  });
+});
 
 }
 
 
 function drawStar(
-  context,
-  cx,
-  cy,
-  outer,
-  inner,
-  points
+context,
+cx,
+cy,
+outer,
+inner,
+points
 ){
 
-  context.beginPath();
+context.beginPath();
 
-  for(
-    let i=0;
-    i<points*2;
-    i++
-  ){
+for(let i=0;i<points*2;i++){
 
-    const angle =
-      -Math.PI/2 +
-      i*Math.PI/points;
+const angle=
+-Math.PI/2+
+i*Math.PI/points;
 
-    const radius =
-      i%2===0
-      ? outer
-      : inner;
+const radius=
+i%2===0?outer:inner;
 
-    const x =
-      cx +
-      Math.cos(angle)*radius;
+const x=
+cx+
+Math.cos(angle)*radius;
 
-    const y =
-      cy +
-      Math.sin(angle)*radius;
+const y=
+cy+
+Math.sin(angle)*radius;
 
-    if(i===0)
-      context.moveTo(x,y);
-    else
-      context.lineTo(x,y);
+if(i===0)
+context.moveTo(x,y);
+else
+context.lineTo(x,y);
 
-  }
+}
 
-  context.closePath();
-
-  context.stroke();
+context.closePath();
+context.stroke();
 
 }
 
 
 function drawPolygon(
-  context,
-  cx,
-  cy,
-  radius,
-  sides
+context,
+cx,
+cy,
+radius,
+sides
 ){
 
-  context.beginPath();
+context.beginPath();
 
-  for(
-    let i=0;
-    i<sides;
-    i++
-  ){
+for(let i=0;i<sides;i++){
 
-    const angle =
-      -Math.PI/2 +
-      i*Math.PI*2/sides;
+const angle=
+-Math.PI/2+
+i*Math.PI*2/sides;
 
-    const x =
-      cx +
-      Math.cos(angle)*radius;
+const x=
+cx+
+Math.cos(angle)*radius;
 
-    const y =
-      cy +
-      Math.sin(angle)*radius;
+const y=
+cy+
+Math.sin(angle)*radius;
 
-    if(i===0)
-      context.moveTo(x,y);
-    else
-      context.lineTo(x,y);
+if(i===0)
+context.moveTo(x,y);
+else
+context.lineTo(x,y);
 
-  }
+}
 
-  context.closePath();
-
-  context.stroke();
+context.closePath();
+context.stroke();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    TEXT
-========================================================= */
+===================================================== */
 
 function drawText(){
 
-  const name =
-    document.getElementById("name").value;
+const name=
+document.getElementById("name").value;
 
-  const version =
-    document.getElementById("version").value;
+const version=
+document.getElementById("version").value;
 
-  if(!name && !version) return;
+if(!name&&!version)return;
 
+const y=
+Number(
+document.getElementById("textY").value
+);
 
-  const y =
-    Number(
-      document.getElementById("textY").value
-    );
+const nameSize=
+Number(
+document.getElementById("nameSize").value
+);
 
-  const nameSize =
-    Number(
-      document.getElementById("nameSize").value
-    );
+const versionSize=
+Number(
+document.getElementById("versionSize").value
+);
 
-  const versionSize =
-    Number(
-      document.getElementById("versionSize").value
-    );
+const outline=
+Number(
+document.getElementById("outlineWidth").value
+);
 
-  const outline =
-    Number(
-      document.getElementById("outlineWidth").value
-    );
+ctx.save();
 
+ctx.textAlign="center";
+ctx.textBaseline="middle";
 
-  ctx.save();
+ctx.fillStyle=
+document.getElementById("textColor").value;
 
-  ctx.textAlign = "center";
+ctx.strokeStyle=
+document.getElementById("outlineColor").value;
 
-  ctx.textBaseline = "middle";
+if(name){
 
-  ctx.fillStyle =
-    document.getElementById("textColor").value;
+ctx.font=
+`900 ${nameSize}px ${
+document.getElementById("nameFont").value
+}`;
 
-  ctx.strokeStyle =
-    document.getElementById("outlineColor").value;
+ctx.lineWidth=outline*2;
 
+if(outline>0){
 
-  if(name){
+ctx.strokeText(
+name,
+300,
+y
+);
 
-    ctx.font =
-      `900 ${nameSize}px ${
-        document.getElementById("nameFont").value
-      }`;
+}
 
-    ctx.lineWidth =
-      outline*2;
+ctx.fillText(
+name,
+300,
+y
+);
 
-    if(outline > 0){
+}
 
-      ctx.strokeText(
-        name,
-        300,
-        y
-      );
+if(version){
 
-    }
+ctx.font=
+`900 ${versionSize}px ${
+document.getElementById("versionFont").value
+}`;
 
-    ctx.fillText(
-      name,
-      300,
-      y
-    );
+ctx.lineWidth=outline*2;
 
-  }
+if(outline>0){
 
+ctx.strokeText(
+version,
+300,
+y+40
+);
 
-  if(version){
+}
 
-    ctx.font =
-      `900 ${versionSize}px ${
-        document.getElementById("versionFont").value
-      }`;
+ctx.fillText(
+version,
+300,
+y+40
+);
 
-    ctx.lineWidth =
-      outline*2;
+}
 
-    if(outline > 0){
-
-      ctx.strokeText(
-        version,
-        300,
-        y+40
-      );
-
-    }
-
-    ctx.fillText(
-      version,
-      300,
-      y+40
-    );
-
-  }
-
-
-  ctx.restore();
+ctx.restore();
 
 }
 
 
-/* =========================================================
-   VIGNETTE + EDGE DARKENING
+/* =====================================================
+   EFFECT ENGINE
+===================================================== */
 
-   Actual radial gradient.
-========================================================= */
+function drawEffects(){
 
-function drawVignette(){
+const vignette=
+Number(
+document.getElementById("vignette").value
+);
 
-  const vignette =
-    Number(
-      document.getElementById("vignette").value
-    );
-
-  const edge =
-    Number(
-      document.getElementById("edgeDark").value
-    );
+const edge=
+Number(
+document.getElementById("edgeDark").value
+);
 
 
-  const amount =
-    Math.max(
-      vignette,
-      edge
-    );
+/*
+   VIGNETTE
+*/
 
+if(vignette>0){
 
-  if(amount <= 0) return;
+const strength=vignette/100;
 
+const gradient=
+ctx.createRadialGradient(
+300,
+300,
+80,
+300,
+300,
+430
+);
 
-  const alpha =
-    amount / 100;
+gradient.addColorStop(
+0,
+"rgba(0,0,0,0)"
+);
 
+gradient.addColorStop(
+.42,
+"rgba(0,0,0,0)"
+);
 
-  const gradient =
-    ctx.createRadialGradient(
-      300,
-      300,
-      100,
-      300,
-      300,
-      430
-    );
+gradient.addColorStop(
+.65,
+`rgba(0,0,0,${strength*.18})`
+);
 
+gradient.addColorStop(
+.82,
+`rgba(0,0,0,${strength*.55})`
+);
 
-  gradient.addColorStop(
-    0,
-    "rgba(0,0,0,0)"
-  );
+gradient.addColorStop(
+1,
+`rgba(0,0,0,${strength})`
+);
 
-  gradient.addColorStop(
-    .45,
-    "rgba(0,0,0,0)"
-  );
+ctx.save();
 
-  gradient.addColorStop(
-    .75,
-    `rgba(0,0,0,${alpha*.25})`
-  );
+ctx.fillStyle=gradient;
 
-  gradient.addColorStop(
-    1,
-    `rgba(0,0,0,${alpha})`
-  );
+ctx.fillRect(
+0,
+0,
+600,
+600
+);
 
-
-  ctx.fillStyle =
-    gradient;
-
-  ctx.fillRect(
-    0,
-    0,
-    600,
-    600
-  );
+ctx.restore();
 
 }
 
 
-/* =========================================================
+/*
+   EDGE DARKENING
+*/
+
+if(edge>0){
+
+const strength=edge/100;
+
+const gradient=
+ctx.createRadialGradient(
+300,
+300,
+170,
+300,
+300,
+425
+);
+
+gradient.addColorStop(
+0,
+"rgba(0,0,0,0)"
+);
+
+gradient.addColorStop(
+.55,
+"rgba(0,0,0,0)"
+);
+
+gradient.addColorStop(
+.75,
+`rgba(0,0,0,${strength*.22})`
+);
+
+gradient.addColorStop(
+.9,
+`rgba(0,0,0,${strength*.65})`
+);
+
+gradient.addColorStop(
+1,
+`rgba(0,0,0,${strength})`
+);
+
+ctx.save();
+
+ctx.fillStyle=gradient;
+
+ctx.fillRect(
+0,
+0,
+600,
+600
+);
+
+ctx.restore();
+
+}
+
+}
+
+
+/* =====================================================
    MASTER DRAW
-========================================================= */
+===================================================== */
 
 function draw(){
 
-  ctx.clearRect(
-    0,
-    0,
-    600,
-    600
-  );
+ctx.clearRect(
+0,
+0,
+600,
+600
+);
 
+drawBackground();
 
-  drawBackground();
+drawCharacter();
 
-  drawCharacter();
+drawCustomShapes();
 
-  drawCustomShapes();
+drawFrame();
 
-  drawFrame();
+drawText();
 
-  drawText();
-
-  drawVignette();
+drawEffects();
 
 }
 
 
-/* =========================================================
-   CONTROL UPDATES
-========================================================= */
+/* =====================================================
+   CONTROLS
+===================================================== */
 
-const controlIds = [
+const controlIds=[
 
-  "zoom",
-  "posX",
-  "posY",
-  "rotation",
+"zoom",
+"posX",
+"posY",
+"rotation",
 
-  "frameWidth",
-  "frameGlow",
-  "frameOpacity",
+"frameWidth",
+"frameGlow",
+"frameOpacity",
 
-  "name",
-  "version",
-  "nameFont",
-  "versionFont",
-  "nameSize",
-  "versionSize",
-  "textY",
-  "textColor",
-  "outlineColor",
-  "outlineWidth",
+"name",
+"version",
+"nameFont",
+"versionFont",
+"nameSize",
+"versionSize",
+"textY",
+"textColor",
+"outlineColor",
+"outlineWidth",
 
-  "bgType",
-  "bgColor",
-  "bgColor2",
-  "bgBlur",
+"bgType",
+"bgColor",
+"bgColor2",
+"bgBlur",
 
-  "brightness",
-  "contrast",
-  "saturation",
-  "blur",
-  "vignette",
-  "edgeDark",
+"brightness",
+"contrast",
+"saturation",
+"blur",
+"vignette",
+"edgeDark",
 
-  "shapeColor",
-  "shapeSize",
-  "shapeThickness"
+"shapeColor",
+"shapeSize",
+"shapeThickness"
 
 ];
 
 
-controlIds.forEach(id => {
+controlIds.forEach(id=>{
 
-  const element =
-    document.getElementById(id);
+const element=document.getElementById(id);
 
-  if(!element) return;
+if(!element)return;
 
-  element.addEventListener(
-    "input",
-    () => {
+element.addEventListener("input",()=>{
 
-      updateValues();
+updateValues();
+draw();
 
-      draw();
+});
 
-    }
-  );
+element.addEventListener("change",()=>{
 
-  element.addEventListener(
-    "change",
-    () => {
+updateValues();
+draw();
 
-      updateValues();
-
-      draw();
-
-    }
-  );
+});
 
 });
 
 
-/* =========================================================
+/* =====================================================
    CUSTOM FONTS
-========================================================= */
+===================================================== */
 
 document
-  .getElementById("fontFile")
-  .addEventListener(
-    "change",
-    async e => {
+.getElementById("fontFile")
+.addEventListener("change",async e=>{
 
-      const file =
-        e.target.files[0];
+const file=e.target.files[0];
 
-      if(!file) return;
+if(!file)return;
 
-      try{
+try{
 
-        const buffer =
-          await file.arrayBuffer();
+const buffer=
+await file.arrayBuffer();
 
-        const fontName =
-          "IconForgeCustom" +
-          Date.now();
+const fontName=
+"IconForgeCustom"+
+Date.now();
 
-        const font =
-          new FontFace(
-            fontName,
-            buffer
-          );
-
-        await font.load();
-
-        document.fonts.add(font);
-
-
-        const nameOption =
-          document.createElement("option");
-
-        nameOption.value =
-          fontName;
-
-        nameOption.textContent =
-          "★ " + file.name;
-
-        document
-          .getElementById("nameFont")
-          .appendChild(nameOption);
-
-
-        const versionOption =
-          document.createElement("option");
-
-        versionOption.value =
-          fontName;
-
-        versionOption.textContent =
-          "★ " + file.name;
-
-        document
-          .getElementById("versionFont")
-          .appendChild(versionOption);
-
-
-        document
-          .getElementById("nameFont")
-          .value =
-          fontName;
-
-        document
-          .getElementById("versionFont")
-          .value =
-          fontName;
-
-
-        draw();
-
-      }catch(error){
-
-        alert(
-          "That font could not be loaded."
-        );
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   DRAG IMAGE
-
-   Dragging directly on the live preview.
-========================================================= */
-
-canvas.addEventListener(
-  "pointerdown",
-  event => {
-
-    if(!character) return;
-
-    dragging = true;
-
-    dragStartX =
-      event.clientX;
-
-    dragStartY =
-      event.clientY;
-
-    startingX =
-      Number(
-        document
-          .getElementById("posX")
-          .value
-      );
-
-    startingY =
-      Number(
-        document
-          .getElementById("posY")
-          .value
-      );
-
-    canvas.setPointerCapture(
-      event.pointerId
-    );
-
-  }
+const font=
+new FontFace(
+fontName,
+buffer
 );
 
+await font.load();
 
-canvas.addEventListener(
-  "pointermove",
-  event => {
+document.fonts.add(font);
 
-    if(!dragging) return;
+const nameOption=
+document.createElement("option");
 
+nameOption.value=fontName;
+nameOption.textContent="★ "+file.name;
 
-    const rect =
-      canvas.getBoundingClientRect();
+document
+.getElementById("nameFont")
+.appendChild(nameOption);
 
+const versionOption=
+document.createElement("option");
 
-    const scaleX =
-      600 / rect.width;
+versionOption.value=fontName;
+versionOption.textContent="★ "+file.name;
 
-    const scaleY =
-      600 / rect.height;
+document
+.getElementById("versionFont")
+.appendChild(versionOption);
 
+document.getElementById("nameFont").value=fontName;
+document.getElementById("versionFont").value=fontName;
 
-    document
-      .getElementById("posX")
-      .value =
-      startingX +
-      (event.clientX-dragStartX)
-      * scaleX;
+draw();
 
+}catch{
 
-    document
-      .getElementById("posY")
-      .value =
-      startingY +
-      (event.clientY-dragStartY)
-      * scaleY;
-
-
-    draw();
-
-  }
-);
-
-
-function stopDragging(){
-
-  dragging = false;
+alert("That font could not be loaded.");
 
 }
 
+});
+
+
+/* =====================================================
+   DRAG CHARACTER
+===================================================== */
+
+canvas.addEventListener("pointerdown",event=>{
+
+if(!character)return;
+
+dragging=true;
+
+dragStartX=event.clientX;
+dragStartY=event.clientY;
+
+startingX=
+Number(document.getElementById("posX").value);
+
+startingY=
+Number(document.getElementById("posY").value);
+
+canvas.setPointerCapture(
+event.pointerId
+);
+
+});
+
+
+canvas.addEventListener("pointermove",event=>{
+
+if(!dragging)return;
+
+const rect=
+canvas.getBoundingClientRect();
+
+const scaleX=
+600/rect.width;
+
+const scaleY=
+600/rect.height;
+
+document.getElementById("posX").value=
+startingX+
+(event.clientX-dragStartX)*scaleX;
+
+document.getElementById("posY").value=
+startingY+
+(event.clientY-dragStartY)*scaleY;
+
+draw();
+
+});
+
+
+function stopDragging(){
+dragging=false;
+}
 
 canvas.addEventListener(
-  "pointerup",
-  stopDragging
+"pointerup",
+stopDragging
 );
 
 canvas.addEventListener(
-  "pointercancel",
-  stopDragging
+"pointercancel",
+stopDragging
 );
 
 
-/* =========================================================
+/* =====================================================
    VALUES
-========================================================= */
+===================================================== */
 
 function setText(id,text){
 
-  const el =
-    document.getElementById(id);
+const el=document.getElementById(id);
 
-  if(el)
-    el.textContent = text;
+if(el)el.textContent=text;
 
 }
 
 
 function updateValues(){
 
-  const zoom =
-    Number(
-      document.getElementById("zoom").value
-    );
+const zoom=
+Number(
+document.getElementById("zoom").value
+);
 
-  setText(
-    "zoomValue",
-    Math.round(zoom*100)+"%"
-  );
+setText(
+"zoomValue",
+Math.round(zoom*100)+"%"
+);
 
+setText(
+"frameWidthValue",
+document.getElementById("frameWidth").value
+);
 
-  setText(
-    "frameWidthValue",
-    document.getElementById("frameWidth").value
-  );
+setText(
+"frameGlowValue",
+document.getElementById("frameGlow").value
+);
 
+setText(
+"frameOpacityValue",
+document.getElementById("frameOpacity").value+"%"
+);
 
-  setText(
-    "frameGlowValue",
-    document.getElementById("frameGlow").value
-  );
+setText(
+"nameSizeValue",
+document.getElementById("nameSize").value
+);
 
+setText(
+"versionSizeValue",
+document.getElementById("versionSize").value
+);
 
-  setText(
-    "frameOpacityValue",
-    document.getElementById("frameOpacity").value+"%"
-  );
+setText(
+"textYValue",
+document.getElementById("textY").value
+);
 
+setText(
+"outlineValue",
+document.getElementById("outlineWidth").value
+);
 
-  setText(
-    "nameSizeValue",
-    document.getElementById("nameSize").value
-  );
+setText(
+"bgBlurValue",
+document.getElementById("bgBlur").value
+);
 
+setText(
+"brightnessValue",
+document.getElementById("brightness").value+"%"
+);
 
-  setText(
-    "versionSizeValue",
-    document.getElementById("versionSize").value
-  );
+setText(
+"contrastValue",
+document.getElementById("contrast").value+"%"
+);
 
+setText(
+"saturationValue",
+document.getElementById("saturation").value+"%"
+);
 
-  setText(
-    "textYValue",
-    document.getElementById("textY").value
-  );
+setText(
+"blurValue",
+document.getElementById("blur").value
+);
 
+setText(
+"vignetteValue",
+document.getElementById("vignette").value+"%"
+);
 
-  setText(
-    "outlineValue",
-    document.getElementById("outlineWidth").value
-  );
-
-
-  setText(
-    "bgBlurValue",
-    document.getElementById("bgBlur").value
-  );
-
-
-  setText(
-    "brightnessValue",
-    document.getElementById("brightness").value+"%"
-  );
-
-
-  setText(
-    "contrastValue",
-    document.getElementById("contrast").value+"%"
-  );
-
-
-  setText(
-    "saturationValue",
-    document.getElementById("saturation").value+"%"
-  );
-
-
-  setText(
-    "blurValue",
-    document.getElementById("blur").value
-  );
-
-
-  setText(
-    "vignetteValue",
-    document.getElementById("vignette").value+"%"
-  );
-
-
-  setText(
-    "edgeValue",
-    document.getElementById("edgeDark").value+"%"
-  );
+setText(
+"edgeValue",
+document.getElementById("edgeDark").value+"%"
+);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
 updateValues();
-
 draw();
 
 </script>
