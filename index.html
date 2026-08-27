@@ -6,12 +6,11 @@
 <meta charset="UTF-8">
 
 <meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Tier Icon Studio</title>
-
 
 <style>
 
@@ -670,9 +669,9 @@ LIVE PREVIEW
 <div class="preview-container">
 
 <canvas
-id="canvas"
-width="600"
-height="600">
+    id="canvas"
+    width="600"
+    height="600">
 </canvas>
 
 </div>
@@ -681,44 +680,44 @@ height="600">
 
 
 <!-- =====================================================
-NAV
+NAVIGATION
 ===================================================== -->
 
 <nav class="section-nav">
 
 <button
-class="section-button active"
-data-section="image">
+    class="section-button active"
+    data-section="image">
 IMAGE
 </button>
 
 <button
-class="section-button"
-data-section="text">
+    class="section-button"
+    data-section="text">
 TEXT
 </button>
 
 <button
-class="section-button"
-data-section="border">
+    class="section-button"
+    data-section="border">
 BORDER
 </button>
 
 <button
-class="section-button"
-data-section="background">
+    class="section-button"
+    data-section="background">
 BACKGROUND
 </button>
 
 <button
-class="section-button"
-data-section="effects">
+    class="section-button"
+    data-section="effects">
 EFFECTS
 </button>
 
 <button
-class="section-button"
-data-section="export">
+    class="section-button"
+    data-section="export">
 EXPORT
 </button>
 
@@ -726,13 +725,12 @@ EXPORT
 
 
 <!-- =====================================================
-IMAGE
+IMAGE SECTION
 ===================================================== -->
 
 <section
-class="editor-section active"
-id="section-image">
-
+    class="editor-section active"
+    id="section-image">
 
 <div class="panel">
 
@@ -741,7 +739,7 @@ Character Image
 </div>
 
 <div class="panel-description">
-Upload your character and automatically fit it to the border opening.
+Upload your character and automatically fit it inside the border opening.
 </div>
 
 
@@ -750,9 +748,9 @@ Upload Character
 </label>
 
 <input
-type="file"
-id="imageInput"
-accept="image/*"
+    type="file"
+    id="imageInput"
+    accept="image/*"
 >
 
 
@@ -761,17 +759,17 @@ Character Zoom
 </label>
 
 <input
-type="range"
-id="zoom"
-min=".05"
-max="10"
-step=".01"
-value="1"
+    type="range"
+    id="zoom"
+    min=".01"
+    max="50"
+    step=".01"
+    value="1"
 >
 
 <span
-class="value"
-id="zoomValue">
+    class="value"
+    id="zoomValue">
 100%
 </span>
 
@@ -781,11 +779,11 @@ Horizontal Position
 </label>
 
 <input
-type="range"
-id="imageX"
-min="-600"
-max="600"
-value="0"
+    type="range"
+    id="imageX"
+    min="-1200"
+    max="1200"
+    value="0"
 >
 
 
@@ -794,30 +792,30 @@ Vertical Position
 </label>
 
 <input
-type="range"
-id="imageY"
-min="-600"
-max="600"
-value="0"
+    type="range"
+    id="imageY"
+    min="-1200"
+    max="1200"
+    value="0"
 >
 
 
 <button
-class="button"
-id="fitImage">
+    class="button"
+    id="fitImage">
 AUTO FIT BORDER OPENING
 </button>
 
 
 <button
-class="button secondary"
-id="centerImage">
+    class="button secondary"
+    id="centerImage">
 CENTER CHARACTER
 </button>
 
 
 <p class="note">
-Auto Fit enlarges the visible character until the border opening is completely covered. Excess image is intentionally cropped.
+Auto Fit enlarges the visible character until it completely covers the border opening. Extra image is intentionally cropped.
 </p>
 
 </div>
@@ -826,13 +824,12 @@ Auto Fit enlarges the visible character until the border opening is completely c
 
 
 <!-- =====================================================
-TEXT
+TEXT SECTION
 ===================================================== -->
 
 <section
-class="editor-section"
-id="section-text">
-
+    class="editor-section"
+    id="section-text">
 
 <div class="panel">
 
@@ -846,9 +843,9 @@ Character Name
 </label>
 
 <input
-type="text"
-id="characterName"
-placeholder="Ryomen Sukuna"
+    type="text"
+    id="characterName"
+    placeholder="Ryomen Sukuna"
 >
 
 
@@ -857,9 +854,9 @@ Version / Form
 </label>
 
 <input
-type="text"
-id="version"
-placeholder="Heian Era"
+    type="text"
+    id="version"
+    placeholder="Heian Era"
 >
 
 
@@ -918,15 +915,15 @@ Upload Your Own Font
 </label>
 
 <input
-type="file"
-id="fontInput"
-accept=".ttf,.otf,.woff,.woff2"
+    type="file"
+    id="fontInput"
+    accept=".ttf,.otf,.woff,.woff2"
 >
 
 
 <div
-class="font-preview"
-id="fontPreview">
+    class="font-preview"
+    id="fontPreview">
 Aa Bb Cc 123
 </div>
 
@@ -936,11 +933,11 @@ Name Size
 </label>
 
 <input
-type="range"
-id="nameSize"
-min="12"
-max="90"
-value="42"
+    type="range"
+    id="nameSize"
+    min="12"
+    max="90"
+    value="42"
 >
 
 
@@ -949,11 +946,11 @@ Version Size
 </label>
 
 <input
-type="range"
-id="versionSize"
-min="8"
-max="60"
-value="25"
+    type="range"
+    id="versionSize"
+    min="8"
+    max="60"
+    value="25"
 >
 
 
@@ -962,11 +959,11 @@ Text Position
 </label>
 
 <input
-type="range"
-id="textY"
-min="300"
-max="590"
-value="515"
+    type="range"
+    id="textY"
+    min="300"
+    max="590"
+    value="515"
 >
 
 
@@ -975,9 +972,9 @@ Text Color
 </label>
 
 <input
-type="color"
-id="textColor"
-value="#ffffff"
+    type="color"
+    id="textColor"
+    value="#ffffff"
 >
 
 
@@ -986,9 +983,9 @@ Outline Color
 </label>
 
 <input
-type="color"
-id="outlineColor"
-value="#000000"
+    type="color"
+    id="outlineColor"
+    value="#000000"
 >
 
 
@@ -997,11 +994,11 @@ Outline Thickness
 </label>
 
 <input
-type="range"
-id="outlineWidth"
-min="0"
-max="15"
-value="3"
+    type="range"
+    id="outlineWidth"
+    min="0"
+    max="15"
+    value="3"
 >
 
 </div>
@@ -1010,12 +1007,12 @@ value="3"
 
 
 <!-- =====================================================
-BORDER
+BORDER SECTION
 ===================================================== -->
 
 <section
-class="editor-section"
-id="section-border">
+    class="editor-section"
+    id="section-border">
 
 
 <div class="panel">
@@ -1025,7 +1022,7 @@ Border Library
 </div>
 
 <div class="panel-description">
-Choose a built-in border or upload your own frame.
+Choose one of our borders or upload your own artwork.
 </div>
 
 
@@ -1033,14 +1030,12 @@ Choose a built-in border or upload your own frame.
 
 
 <div
-class="border-option selected"
-data-border="classic">
+    class="border-option selected"
+    data-border="classic">
 
 <div
-class="border-demo"
-style="
-border:7px solid white;
-">
+    class="border-demo"
+    style="border:7px solid white;">
 </div>
 
 Classic
@@ -1049,14 +1044,12 @@ Classic
 
 
 <div
-class="border-option"
-data-border="gold">
+    class="border-option"
+    data-border="gold">
 
 <div
-class="border-demo"
-style="
-border:8px solid #d4af37;
-">
+    class="border-demo"
+    style="border:8px solid #d4af37;">
 </div>
 
 Gold
@@ -1065,14 +1058,12 @@ Gold
 
 
 <div
-class="border-option"
-data-border="double">
+    class="border-option"
+    data-border="double">
 
 <div
-class="border-demo"
-style="
-border:6px double white;
-">
+    class="border-demo"
+    style="border:6px double white;">
 </div>
 
 Double
@@ -1081,15 +1072,15 @@ Double
 
 
 <div
-class="border-option"
-data-border="neon">
+    class="border-option"
+    data-border="neon">
 
 <div
-class="border-demo"
-style="
-border:6px solid #5865f2;
-box-shadow:0 0 15px #5865f2;
-">
+    class="border-demo"
+    style="
+        border:6px solid #5865f2;
+        box-shadow:0 0 15px #5865f2;
+    ">
 </div>
 
 Neon
@@ -1098,14 +1089,12 @@ Neon
 
 
 <div
-class="border-option"
-data-border="crimson">
+    class="border-option"
+    data-border="crimson">
 
 <div
-class="border-demo"
-style="
-border:7px solid #d94646;
-">
+    class="border-demo"
+    style="border:7px solid #d94646;">
 </div>
 
 Crimson
@@ -1114,8 +1103,8 @@ Crimson
 
 
 <div
-class="border-option"
-data-border="none">
+    class="border-option"
+    data-border="none">
 
 <div class="border-demo">
 </div>
@@ -1126,14 +1115,12 @@ None
 
 
 <div
-class="border-option"
-data-border="custom">
+    class="border-option"
+    data-border="custom">
 
 <div
-class="border-demo"
-style="
-border:6px dashed #aaa;
-">
+    class="border-demo"
+    style="border:6px dashed #aaa;">
 </div>
 
 Builder
@@ -1142,14 +1129,12 @@ Builder
 
 
 <div
-class="border-option"
-data-border="uploaded">
+    class="border-option"
+    data-border="uploaded">
 
 <div
-class="border-demo"
-style="
-border:6px dashed #888;
-">
+    class="border-demo"
+    style="border:6px dashed #888;">
 </div>
 
 My Border
@@ -1167,9 +1152,8 @@ CUSTOM BUILDER
 ===================================================== -->
 
 <div
-class="panel"
-id="customPanel">
-
+    class="panel"
+    id="customPanel">
 
 <div class="panel-title">
 Custom Border Builder
@@ -1206,9 +1190,9 @@ Border Color
 </label>
 
 <input
-type="color"
-id="customColor"
-value="#ffffff"
+    type="color"
+    id="customColor"
+    value="#ffffff"
 >
 
 
@@ -1217,9 +1201,9 @@ Second Color
 </label>
 
 <input
-type="color"
-id="customColor2"
-value="#5865f2"
+    type="color"
+    id="customColor2"
+    value="#5865f2"
 >
 
 
@@ -1245,16 +1229,16 @@ Width
 </label>
 
 <input
-type="range"
-id="customWidth"
-min="1"
-max="50"
-value="8"
+    type="range"
+    id="customWidth"
+    min="1"
+    max="50"
+    value="8"
 >
 
 <span
-class="value"
-id="customWidthValue">
+    class="value"
+    id="customWidthValue">
 8px
 </span>
 
@@ -1264,16 +1248,16 @@ Opacity
 </label>
 
 <input
-type="range"
-id="customOpacity"
-min="0"
-max="100"
-value="100"
+    type="range"
+    id="customOpacity"
+    min="0"
+    max="100"
+    value="100"
 >
 
 <span
-class="value"
-id="customOpacityValue">
+    class="value"
+    id="customOpacityValue">
 100%
 </span>
 
@@ -1283,16 +1267,16 @@ Glow
 </label>
 
 <input
-type="range"
-id="customGlow"
-min="0"
-max="60"
-value="0"
+    type="range"
+    id="customGlow"
+    min="0"
+    max="60"
+    value="0"
 >
 
 <span
-class="value"
-id="customGlowValue">
+    class="value"
+    id="customGlowValue">
 0px
 </span>
 
@@ -1302,9 +1286,9 @@ Glow Color
 </label>
 
 <input
-type="color"
-id="customGlowColor"
-value="#5865f2"
+    type="color"
+    id="customGlowColor"
+    value="#5865f2"
 >
 
 </div>
@@ -1315,20 +1299,16 @@ UPLOADED BORDER
 ===================================================== -->
 
 <div
-class="panel"
-id="uploadedPanel">
-
+    class="panel"
+    id="uploadedPanel">
 
 <div class="panel-title">
 Uploaded Border
 </div>
 
-
 <div class="panel-description">
 
-Your uploaded artwork is converted into a frame.
-The center opening is removed so the character sits
-BEHIND the border rather than underneath a solid image.
+Upload a border image. If the image does not already have a transparent center, choose "Create Center Opening" and the center will be removed from the exact middle.
 
 </div>
 
@@ -1338,9 +1318,9 @@ Upload Border Artwork
 </label>
 
 <input
-type="file"
-id="borderInput"
-accept="image/*"
+    type="file"
+    id="borderInput"
+    accept="image/*"
 >
 
 
@@ -1366,16 +1346,16 @@ Opening Size
 </label>
 
 <input
-type="range"
-id="frameOpening"
-min="30"
-max="100"
-value="82"
+    type="range"
+    id="frameOpening"
+    min="20"
+    max="100"
+    value="82"
 >
 
 <span
-class="value"
-id="frameOpeningValue">
+    class="value"
+    id="frameOpeningValue">
 82%
 </span>
 
@@ -1385,17 +1365,17 @@ Frame Scale
 </label>
 
 <input
-type="range"
-id="borderScale"
-min=".1"
-max="5"
-step=".01"
-value="1"
+    type="range"
+    id="borderScale"
+    min=".01"
+    max="10"
+    step=".01"
+    value="1"
 >
 
 <span
-class="value"
-id="borderScaleValue">
+    class="value"
+    id="borderScaleValue">
 100%
 </span>
 
@@ -1405,11 +1385,11 @@ Frame Horizontal Position
 </label>
 
 <input
-type="range"
-id="borderX"
-min="-600"
-max="600"
-value="0"
+    type="range"
+    id="borderX"
+    min="-1200"
+    max="1200"
+    value="0"
 >
 
 
@@ -1418,11 +1398,11 @@ Frame Vertical Position
 </label>
 
 <input
-type="range"
-id="borderY"
-min="-600"
-max="600"
-value="0"
+    type="range"
+    id="borderY"
+    min="-1200"
+    max="1200"
+    value="0"
 >
 
 
@@ -1431,16 +1411,16 @@ Frame Rotation
 </label>
 
 <input
-type="range"
-id="borderRotation"
-min="-180"
-max="180"
-value="0"
+    type="range"
+    id="borderRotation"
+    min="-180"
+    max="180"
+    value="0"
 >
 
 <span
-class="value"
-id="borderRotationValue">
+    class="value"
+    id="borderRotationValue">
 0°
 </span>
 
@@ -1450,39 +1430,39 @@ Frame Opacity
 </label>
 
 <input
-type="range"
-id="borderOpacity"
-min="0"
-max="100"
-value="100"
+    type="range"
+    id="borderOpacity"
+    min="0"
+    max="100"
+    value="100"
 >
 
 <span
-class="value"
-id="borderOpacityValue">
+    class="value"
+    id="borderOpacityValue">
 100%
 </span>
 
 
 <button
-class="button"
-id="fitBorder">
+    class="button"
+    id="fitBorder">
 FIT FRAME TO ICON
 </button>
 
 
 <button
-class="button secondary"
-id="removeBorder">
+    class="button secondary"
+    id="removeBorder">
 REMOVE BORDER
 </button>
 
 
 <p class="note">
 
-For normal rectangular border artwork, use
-"Create Center Opening". This literally cuts
-the center out of the uploaded image.
+Transparent PNG = the file already contains a transparent hole.
+
+Create Center Opening = the editor creates the transparent center itself.
 
 </p>
 
@@ -1496,9 +1476,8 @@ BACKGROUND
 ===================================================== -->
 
 <section
-class="editor-section"
-id="section-background">
-
+    class="editor-section"
+    id="section-background">
 
 <div class="panel">
 
@@ -1533,9 +1512,9 @@ Background Color
 </label>
 
 <input
-type="color"
-id="backgroundColor"
-value="#111111"
+    type="color"
+    id="backgroundColor"
+    value="#111111"
 >
 
 
@@ -1544,9 +1523,9 @@ Second Gradient Color
 </label>
 
 <input
-type="color"
-id="backgroundColor2"
-value="#292952"
+    type="color"
+    id="backgroundColor2"
+    value="#292952"
 >
 
 
@@ -1555,9 +1534,9 @@ Upload Background
 </label>
 
 <input
-type="file"
-id="backgroundInput"
-accept="image/*"
+    type="file"
+    id="backgroundInput"
+    accept="image/*"
 >
 
 </div>
@@ -1570,9 +1549,8 @@ EFFECTS
 ===================================================== -->
 
 <section
-class="editor-section"
-id="section-effects">
-
+    class="editor-section"
+    id="section-effects">
 
 <div class="panel">
 
@@ -1586,16 +1564,16 @@ Brightness
 </label>
 
 <input
-type="range"
-id="brightness"
-min="0"
-max="200"
-value="100"
+    type="range"
+    id="brightness"
+    min="0"
+    max="200"
+    value="100"
 >
 
 <span
-class="value"
-id="brightnessValue">
+    class="value"
+    id="brightnessValue">
 100%
 </span>
 
@@ -1605,16 +1583,16 @@ Contrast
 </label>
 
 <input
-type="range"
-id="contrast"
-min="0"
-max="200"
-value="100"
+    type="range"
+    id="contrast"
+    min="0"
+    max="200"
+    value="100"
 >
 
 <span
-class="value"
-id="contrastValue">
+    class="value"
+    id="contrastValue">
 100%
 </span>
 
@@ -1624,16 +1602,16 @@ Saturation
 </label>
 
 <input
-type="range"
-id="saturation"
-min="0"
-max="200"
-value="100"
+    type="range"
+    id="saturation"
+    min="0"
+    max="200"
+    value="100"
 >
 
 <span
-class="value"
-id="saturationValue">
+    class="value"
+    id="saturationValue">
 100%
 </span>
 
@@ -1643,17 +1621,17 @@ Blur
 </label>
 
 <input
-type="range"
-id="blur"
-min="0"
-max="10"
-step=".1"
-value="0"
+    type="range"
+    id="blur"
+    min="0"
+    max="10"
+    step=".1"
+    value="0"
 >
 
 <span
-class="value"
-id="blurValue">
+    class="value"
+    id="blurValue">
 0px
 </span>
 
@@ -1663,16 +1641,16 @@ Vignette
 </label>
 
 <input
-type="range"
-id="vignette"
-min="0"
-max="100"
-value="0"
+    type="range"
+    id="vignette"
+    min="0"
+    max="100"
+    value="0"
 >
 
 <span
-class="value"
-id="vignetteValue">
+    class="value"
+    id="vignetteValue">
 0%
 </span>
 
@@ -1682,16 +1660,16 @@ Vignette Start
 </label>
 
 <input
-type="range"
-id="vignetteStart"
-min="0"
-max="90"
-value="45"
+    type="range"
+    id="vignetteStart"
+    min="0"
+    max="90"
+    value="45"
 >
 
 <span
-class="value"
-id="vignetteStartValue">
+    class="value"
+    id="vignetteStartValue">
 45%
 </span>
 
@@ -1701,9 +1679,9 @@ Vignette Color
 </label>
 
 <input
-type="color"
-id="vignetteColor"
-value="#000000"
+    type="color"
+    id="vignetteColor"
+    value="#000000"
 >
 
 </div>
@@ -1716,9 +1694,8 @@ EXPORT
 ===================================================== -->
 
 <section
-class="editor-section"
-id="section-export">
-
+    class="editor-section"
+    id="section-export">
 
 <div class="panel">
 
@@ -1728,29 +1705,29 @@ Export
 
 
 <button
-class="button"
-id="downloadButton">
+    class="button"
+    id="downloadButton">
 DOWNLOAD PNG
 </button>
 
 
 <button
-class="button secondary"
-id="saveButton">
+    class="button"
+    id="saveButton">
 SAVE PROJECT
 </button>
 
 
 <button
-class="button danger"
-id="resetButton">
+    class="button danger"
+    id="resetButton">
 RESET EVERYTHING
 </button>
 
 
 <p
-class="note"
-id="status">
+    class="note"
+    id="status">
 Ready.
 </p>
 
@@ -1786,6 +1763,10 @@ let visibleBounds = null;
 let selectedBorder = "classic";
 
 
+/* =========================================================
+HELPER
+========================================================= */
+
 function el(id) {
 
     return document.getElementById(id);
@@ -1794,7 +1775,7 @@ function el(id) {
 
 
 /* =========================================================
-SECTION NAVIGATION
+NAVIGATION
 ========================================================= */
 
 document
@@ -1849,10 +1830,19 @@ document
 
 
 /* =========================================================
-FIND ACTUAL IMAGE CONTENT
+GET ACTUAL VISIBLE PIXELS
 ========================================================= */
 
 function getVisibleBounds(img) {
+
+    const width =
+        img.naturalWidth ||
+        img.width;
+
+    const height =
+        img.naturalHeight ||
+        img.height;
+
 
     const temp =
         document.createElement(
@@ -1860,31 +1850,31 @@ function getVisibleBounds(img) {
         );
 
 
-    const width =
-        img.naturalWidth ||
-        img.width;
+    temp.width =
+        width;
+
+    temp.height =
+        height;
 
 
-    const height =
-        img.naturalHeight ||
-        img.height;
-
-
-    temp.width = width;
-
-    temp.height = height;
-
-
-    const tctx =
+    const tempCtx =
         temp.getContext(
             "2d",
             {
-                willReadFrequently:true
+                willReadFrequently: true
             }
         );
 
 
-    tctx.drawImage(
+    tempCtx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    tempCtx.drawImage(
         img,
         0,
         0
@@ -1892,7 +1882,7 @@ function getVisibleBounds(img) {
 
 
     const data =
-        tctx.getImageData(
+        tempCtx.getImageData(
             0,
             0,
             width,
@@ -1930,34 +1920,19 @@ function getVisibleBounds(img) {
                 ];
 
 
-            if (alpha > 15) {
+            if (alpha > 10) {
 
-                minX =
-                    Math.min(
-                        minX,
-                        x
-                    );
+                if (x < minX)
+                    minX = x;
 
+                if (y < minY)
+                    minY = y;
 
-                minY =
-                    Math.min(
-                        minY,
-                        y
-                    );
+                if (x > maxX)
+                    maxX = x;
 
-
-                maxX =
-                    Math.max(
-                        maxX,
-                        x
-                    );
-
-
-                maxY =
-                    Math.max(
-                        maxY,
-                        y
-                    );
+                if (y > maxY)
+                    maxY = y;
 
             }
 
@@ -1966,7 +1941,7 @@ function getVisibleBounds(img) {
     }
 
 
-    if (maxX < 0) {
+    if (maxX === -1) {
 
         return {
 
@@ -2005,19 +1980,20 @@ function getVisibleBounds(img) {
 
 
 /* =========================================================
-FRAME OPENING
+OPENING
 ========================================================= */
 
 function getOpening() {
 
-    const percent =
+    const percentage =
         Number(
             el("frameOpening").value
         ) / 100;
 
 
     const size =
-        600 * percent;
+        600 *
+        percentage;
 
 
     return {
@@ -2051,6 +2027,7 @@ el("imageInput")
         const file =
             event.target.files[0];
 
+
         if (!file)
             return;
 
@@ -2076,6 +2053,11 @@ el("imageInput")
                         img
                     );
 
+
+                /*
+                Immediately perform
+                real auto fit.
+                */
 
                 autoFitCharacter();
 
@@ -2114,14 +2096,8 @@ function autoFitCharacter() {
 
 
     /*
-    IMPORTANT:
-
-    visibleBounds is the REAL
-    visible character.
-
-    We do NOT calculate using
-    the entire PNG.
-
+    Calculate how large the
+    VISIBLE CONTENT needs to be.
     */
 
     const scaleX =
@@ -2135,11 +2111,11 @@ function autoFitCharacter() {
 
 
     /*
-    MAX = COVER
+    COVER, NOT CONTAIN.
 
-    This enlarges the character
-    until the opening is filled.
-
+    MAX means the character is
+    enlarged enough to completely
+    cover the opening.
     */
 
     let scale =
@@ -2150,23 +2126,23 @@ function autoFitCharacter() {
 
 
     /*
-    Add a tiny safety multiplier
-    so no tiny transparent edge
-    appears around the character.
+    Tiny safety amount.
     */
 
-    scale *= 1.005;
+    scale *= 1.01;
 
 
     /*
-    Keep inside slider range.
+    Our slider supports up to
+    50x now, so even extremely
+    padded images can fit.
     */
 
     scale =
         Math.max(
-            0.05,
+            0.01,
             Math.min(
-                10,
+                50,
                 scale
             )
         );
@@ -2177,12 +2153,18 @@ function autoFitCharacter() {
 
 
     /*
-    Reset manual positioning.
+    RESET POSITION.
+
+    The visible character itself
+    will then be centered on the
+    opening.
     */
 
-    el("imageX").value = 0;
+    el("imageX").value =
+        0;
 
-    el("imageY").value = 0;
+    el("imageY").value =
+        0;
 
 
     updateValues();
@@ -2193,14 +2175,32 @@ function autoFitCharacter() {
 
 
 /* =========================================================
-CENTER
+🔥 TRUE CENTER CHARACTER
 ========================================================= */
 
 function centerCharacter() {
 
-    el("imageX").value = 0;
+    if (
+        !characterImage ||
+        !visibleBounds
+    )
+        return;
 
-    el("imageY").value = 0;
+
+    /*
+    The drawing formula already
+    centers the visible artwork.
+
+    Therefore manual offsets are
+    simply zero.
+    */
+
+    el("imageX").value =
+        0;
+
+    el("imageY").value =
+        0;
+
 
     draw();
 
@@ -2309,11 +2309,8 @@ function drawBackground() {
             backgroundImage,
 
             0,
-
             0,
-
             600,
-
             600
 
         );
@@ -2380,7 +2377,7 @@ function drawBackground() {
 
 
 /* =========================================================
-CHARACTER
+🔥 DRAW CHARACTER
 ========================================================= */
 
 function drawCharacter() {
@@ -2403,54 +2400,77 @@ function drawCharacter() {
 
 
     /*
-    Center based on ACTUAL visible
-    character rather than PNG.
+    Find the center of the REAL
+    visible artwork.
     */
 
     const visibleCenterX =
         visibleBounds.x +
-        visibleBounds.width /
-        2;
+        visibleBounds.width / 2;
 
 
     const visibleCenterY =
         visibleBounds.y +
-        visibleBounds.height /
-        2;
+        visibleBounds.height / 2;
 
 
-    const imageX =
+    /*
+    Put that visible center
+    exactly at the opening center.
+    */
 
+    const targetCenterX =
         opening.x +
-        opening.width / 2 -
+        opening.width / 2;
 
-        visibleCenterX *
-        scale +
 
+    const targetCenterY =
+        opening.y +
+        opening.height / 2;
+
+
+    const offsetX =
         Number(
             el("imageX").value
         );
 
 
-    const imageY =
-
-        opening.y +
-        opening.height / 2 -
-
-        visibleCenterY *
-        scale +
-
+    const offsetY =
         Number(
             el("imageY").value
         );
 
 
-    const imageWidth =
+    const drawX =
+
+        targetCenterX -
+
+        (
+            visibleCenterX *
+            scale
+        ) +
+
+        offsetX;
+
+
+    const drawY =
+
+        targetCenterY -
+
+        (
+            visibleCenterY *
+            scale
+        ) +
+
+        offsetY;
+
+
+    const drawWidth =
         characterImage.width *
         scale;
 
 
-    const imageHeight =
+    const drawHeight =
         characterImage.height *
         scale;
 
@@ -2459,39 +2479,29 @@ function drawCharacter() {
 
 
     /*
-    If an uploaded border is
-    using Center Opening mode,
-    CLIP the character to the
-    opening.
+    Clip the character to the
+    border opening.
+
+    This means the character
+    cannot spill outside the
+    frame.
     */
 
-    if (
-        selectedBorder ===
-        "uploaded" &&
+    ctx.beginPath();
 
-        el("frameMode").value ===
-        "center"
-    ) {
+    ctx.rect(
 
-        ctx.beginPath();
+        opening.x,
 
+        opening.y,
 
-        ctx.rect(
+        opening.width,
 
-            opening.x,
+        opening.height
 
-            opening.y,
+    );
 
-            opening.width,
-
-            opening.height
-
-        );
-
-
-        ctx.clip();
-
-    }
+    ctx.clip();
 
 
     ctx.filter =
@@ -2517,13 +2527,13 @@ function drawCharacter() {
 
         characterImage,
 
-        imageX,
+        drawX,
 
-        imageY,
+        drawY,
 
-        imageWidth,
+        drawWidth,
 
-        imageHeight
+        drawHeight
 
     );
 
@@ -2548,7 +2558,8 @@ function drawPresetBorder() {
 
     let width = 8;
 
-    let color = "#ffffff";
+    let color =
+        "#ffffff";
 
 
     ctx.save();
@@ -2763,6 +2774,7 @@ function drawCustomBorder() {
 
         ctx.setLineDash([]);
 
+
         ctx.lineWidth =
             Math.max(
                 2,
@@ -2863,15 +2875,9 @@ function drawUploadedBorder() {
         ) / 100;
 
 
-    /*
-    =====================================================
-    TRANSPARENT PNG
-    =====================================================
-
-    If the user's border already has
-    transparent pixels in the middle,
-    simply draw it.
-    */
+    /* =====================================================
+    TRANSPARENT MODE
+    ===================================================== */
 
     if (
         el("frameMode").value ===
@@ -2919,25 +2925,25 @@ function drawUploadedBorder() {
     }
 
 
-    /*
-    =====================================================
-    CENTER OPENING
+    /* =====================================================
+    CENTER OPENING MODE
     =====================================================
 
-    This is the important fix.
+    IMPORTANT FIX:
 
-    We create a NEW transparent
+    We draw the uploaded image
+    onto a 600x600 transparent
     canvas.
 
-    Draw the uploaded artwork.
+    THEN we reset the transform.
 
-    Then use destination-out
-    to literally ERASE the middle.
+    THEN we cut the opening using
+    exact 600x600 coordinates.
 
-    This means the center is no
-    longer an opaque overlay.
+    This prevents the old
+    bottom-right bug.
+    ===================================================== */
 
-    */
 
     const frameCanvas =
         document.createElement(
@@ -2959,6 +2965,10 @@ function drawUploadedBorder() {
         );
 
 
+    /*
+    Completely clear frame.
+    */
+
     frameCtx.clearRect(
         0,
         0,
@@ -2966,6 +2976,10 @@ function drawUploadedBorder() {
         600
     );
 
+
+    /*
+    Draw uploaded artwork.
+    */
 
     frameCtx.save();
 
@@ -2985,10 +2999,6 @@ function drawUploadedBorder() {
     );
 
 
-    /*
-    Draw entire uploaded border.
-    */
-
     frameCtx.drawImage(
 
         borderImage,
@@ -3004,12 +3014,33 @@ function drawUploadedBorder() {
     );
 
 
+    frameCtx.restore();
+
+
     /*
-    NOW REMOVE THE CENTER.
+    =====================================================
+    CRITICAL FIX
+    =====================================================
+
+    The transformation is now
+    completely gone.
+
+    Therefore this rectangle
+    REALLY means:
+
+    x = center of icon
+    y = center of icon
+
+    instead of being transformed
+    into some other location.
     */
+
 
     const opening =
         getOpening();
+
+
+    frameCtx.save();
 
 
     frameCtx.globalCompositeOperation =
@@ -3017,7 +3048,7 @@ function drawUploadedBorder() {
 
 
     frameCtx.fillStyle =
-        "rgba(0,0,0,1)";
+        "#000000";
 
 
     frameCtx.fillRect(
@@ -3037,7 +3068,7 @@ function drawUploadedBorder() {
 
 
     /*
-    Put the resulting frame
+    Put the completed frame
     onto the main canvas.
     */
 
@@ -3046,7 +3077,6 @@ function drawUploadedBorder() {
         frameCanvas,
 
         0,
-
         0
 
     );
@@ -3091,11 +3121,6 @@ el("borderInput")
                     "uploaded";
 
 
-                /*
-                Automatically select
-                uploaded border.
-                */
-
                 document
                 .querySelectorAll(
                     ".border-option"
@@ -3117,21 +3142,14 @@ el("borderInput")
                 );
 
 
-                /*
-                Show settings.
-                */
-
-                el(
-                    "uploadedPanel"
-                )
+                el("uploadedPanel")
                 .classList.add(
                     "show"
                 );
 
 
                 /*
-                Automatically fit
-                uploaded frame.
+                Automatically fit frame.
                 */
 
                 fitUploadedFrame();
@@ -3154,7 +3172,7 @@ el("borderInput")
 
 
 /* =========================================================
-FIT BORDER
+FIT UPLOADED FRAME
 ========================================================= */
 
 function fitUploadedFrame() {
@@ -3164,25 +3182,36 @@ function fitUploadedFrame() {
 
 
     /*
-    Make uploaded border fill
-    the complete 600×600 icon.
-
+    Calculate the scale required
+    for the entire border artwork
+    to cover the 600x600 icon.
     */
+
+    const scaleX =
+        600 /
+        borderImage.width;
+
+
+    const scaleY =
+        600 /
+        borderImage.height;
+
 
     const scale =
         Math.max(
-
-            600 /
-            borderImage.width,
-
-            600 /
-            borderImage.height
-
+            scaleX,
+            scaleY
         );
 
 
     el("borderScale").value =
-        scale;
+        Math.min(
+            10,
+            Math.max(
+                .01,
+                scale
+            )
+        );
 
 
     el("borderX").value =
@@ -3193,12 +3222,17 @@ function fitUploadedFrame() {
         0;
 
 
+    el("borderRotation").value =
+        0;
+
+
+    updateValues();
+
+
     /*
-    IMPORTANT:
-
-    Once the frame is fitted,
-    fit the character AGAIN.
-
+    If we already have a
+    character, refit it to
+    the opening.
     */
 
     if (
@@ -3211,8 +3245,6 @@ function fitUploadedFrame() {
     }
 
 
-    updateValues();
-
     draw();
 
 }
@@ -3221,11 +3253,7 @@ function fitUploadedFrame() {
 el("fitBorder")
 .addEventListener(
     "click",
-    () => {
-
-        fitUploadedFrame();
-
-    }
+    fitUploadedFrame
 );
 
 
@@ -3255,7 +3283,7 @@ el("removeBorder")
 
 
 /* =========================================================
-BORDER SELECT
+BORDER SELECTOR
 ========================================================= */
 
 document
@@ -3314,8 +3342,8 @@ function setBorder(type) {
 
 
     /*
-    Custom builder ONLY appears
-    when custom is selected.
+    Custom settings only show
+    when Custom is selected.
     */
 
     el("customPanel")
@@ -3326,8 +3354,8 @@ function setBorder(type) {
 
 
     /*
-    Uploaded controls ONLY appear
-    when uploaded is selected.
+    Uploaded settings only show
+    when Uploaded is selected.
     */
 
     el("uploadedPanel")
@@ -3337,7 +3365,25 @@ function setBorder(type) {
     );
 
 
-    draw();
+    /*
+    If switching to uploaded,
+    make sure frame is ready.
+    */
+
+    if (
+        type === "uploaded" &&
+        borderImage
+    ) {
+
+        fitUploadedFrame();
+
+    }
+
+    else {
+
+        draw();
+
+    }
 
 }
 
@@ -3374,12 +3420,6 @@ el("backgroundInput")
                 backgroundImage =
                     img;
 
-
-                /*
-                Keep the background behavior
-                that was already working.
-
-                */
 
                 el(
                     "backgroundMode"
@@ -3564,84 +3604,6 @@ function drawVignette() {
 
 
 /* =========================================================
-MAIN DRAW
-========================================================= */
-
-function draw() {
-
-    ctx.clearRect(
-        0,
-        0,
-        600,
-        600
-    );
-
-
-    /*
-    1
-    BACKGROUND
-    */
-
-    drawBackground();
-
-
-    /*
-    2
-    CHARACTER
-    */
-
-    drawCharacter();
-
-
-    /*
-    3
-    BORDER
-    */
-
-    if (
-        selectedBorder ===
-        "uploaded"
-    ) {
-
-        drawUploadedBorder();
-
-    }
-
-    else if (
-        selectedBorder ===
-        "custom"
-    ) {
-
-        drawCustomBorder();
-
-    }
-
-    else {
-
-        drawPresetBorder();
-
-    }
-
-
-    /*
-    4
-    TEXT
-    */
-
-    drawText();
-
-
-    /*
-    5
-    VIGNETTE
-    */
-
-    drawVignette();
-
-}
-
-
-/* =========================================================
 TEXT
 ========================================================= */
 
@@ -3775,85 +3737,130 @@ function drawText() {
 
 
 /* =========================================================
-LIVE CONTROLS
+MAIN DRAW ORDER
+========================================================= */
+
+function draw() {
+
+    ctx.clearRect(
+        0,
+        0,
+        600,
+        600
+    );
+
+
+    /*
+    1. BACKGROUND
+    */
+
+    drawBackground();
+
+
+    /*
+    2. CHARACTER
+    */
+
+    drawCharacter();
+
+
+    /*
+    3. BORDER
+    */
+
+    if (
+        selectedBorder ===
+        "uploaded"
+    ) {
+
+        drawUploadedBorder();
+
+    }
+
+    else if (
+        selectedBorder ===
+        "custom"
+    ) {
+
+        drawCustomBorder();
+
+    }
+
+    else {
+
+        drawPresetBorder();
+
+    }
+
+
+    /*
+    4. TEXT
+    */
+
+    drawText();
+
+
+    /*
+    5. VIGNETTE
+    */
+
+    drawVignette();
+
+}
+
+
+/* =========================================================
+CONTROLS
 ========================================================= */
 
 const controls = [
 
     "zoom",
-
     "imageX",
-
     "imageY",
 
     "characterName",
-
     "version",
 
     "nameFont",
-
     "versionFont",
 
     "nameSize",
-
     "versionSize",
-
     "textY",
 
     "textColor",
-
     "outlineColor",
-
     "outlineWidth",
 
     "backgroundMode",
-
     "backgroundColor",
-
     "backgroundColor2",
 
     "customStyle",
-
     "customColor",
-
     "customColor2",
-
     "customGradient",
-
     "customWidth",
-
     "customOpacity",
-
     "customGlow",
-
     "customGlowColor",
 
     "frameMode",
-
     "frameOpening",
-
     "borderScale",
-
     "borderX",
-
     "borderY",
-
     "borderRotation",
-
     "borderOpacity",
 
     "brightness",
-
     "contrast",
-
     "saturation",
-
     "blur",
 
     "vignette",
-
     "vignetteStart",
-
     "vignetteColor"
 
 ];
@@ -3876,10 +3883,11 @@ controls.forEach(
 
                 updateValues();
 
+
                 /*
-                Changing opening size means
-                the character needs to be
-                refitted automatically.
+                Changing the opening
+                automatically refits the
+                character.
                 */
 
                 if (
@@ -4042,7 +4050,7 @@ function updateFontPreview() {
 
 
 /* =========================================================
-VALUE LABELS
+VALUES
 ========================================================= */
 
 function updateValues() {
@@ -4276,6 +4284,24 @@ canvas.addEventListener(
         dragging = false;
 
     }
+);
+
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+el("fitImage")
+.addEventListener(
+    "click",
+    autoFitCharacter
+);
+
+
+el("centerImage")
+.addEventListener(
+    "click",
+    centerCharacter
 );
 
 
