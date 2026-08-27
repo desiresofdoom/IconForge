@@ -2,348 +2,348 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>IconForge</title>
 
 <style>
 *{box-sizing:border-box}
 
 html,body{
-  margin:0;
-  min-height:100%;
-  background:#06070b;
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
+margin:0;
+min-height:100%;
+background:#06070b;
+color:#fff;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:
-    radial-gradient(circle at 10% 0%,rgba(91,72,255,.20),transparent 28%),
-    radial-gradient(circle at 90% 15%,rgba(0,216,255,.13),transparent 25%),
-    radial-gradient(circle at 50% 100%,rgba(190,40,255,.13),transparent 35%),
-    #06070b;
+background:
+radial-gradient(circle at 10% 0%,rgba(91,72,255,.20),transparent 28%),
+radial-gradient(circle at 90% 15%,rgba(0,216,255,.13),transparent 25%),
+radial-gradient(circle at 50% 100%,rgba(190,40,255,.13),transparent 35%),
+#06070b;
 }
 
 button,input,select{font:inherit}
 button{cursor:pointer}
 
 .app{
-  width:min(1150px,100%);
-  margin:auto;
-  padding:12px 10px 60px;
+width:min(1150px,100%);
+margin:auto;
+padding:12px 10px 60px;
 }
 
 .header{
-  text-align:center;
-  padding:10px 0 14px;
+text-align:center;
+padding:10px 0 14px;
 }
 
 .logo{
-  font-size:34px;
-  font-weight:1000;
-  letter-spacing:-1.5px;
-  background:linear-gradient(90deg,#fff,#7b8cff,#d67aff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+font-size:34px;
+font-weight:1000;
+letter-spacing:-1.5px;
+background:linear-gradient(90deg,#fff,#7b8cff,#d67aff);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
 }
 
 .subtitle{
-  color:#747786;
-  font-size:12px;
-  margin-top:4px;
+color:#747786;
+font-size:12px;
+margin-top:4px;
 }
 
 .preview{
-  position:sticky;
-  top:5px;
-  z-index:100;
-  background:rgba(7,8,13,.94);
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:20px;
-  padding:10px;
-  margin-bottom:10px;
-  box-shadow:0 18px 60px rgba(0,0,0,.55);
+position:sticky;
+top:5px;
+z-index:100;
+background:rgba(7,8,13,.94);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+padding:10px;
+margin-bottom:10px;
+box-shadow:0 18px 60px rgba(0,0,0,.55);
 }
 
 .previewTitle{
-  text-align:center;
-  color:#777b8c;
-  font-size:9px;
-  letter-spacing:2px;
-  font-weight:1000;
-  margin-bottom:8px;
+text-align:center;
+color:#777b8c;
+font-size:9px;
+letter-spacing:2px;
+font-weight:1000;
+margin-bottom:8px;
 }
 
 .canvasWrap{
-  display:flex;
-  justify-content:center;
+display:flex;
+justify-content:center;
 }
 
 #canvas{
-  display:block;
-  width:min(430px,100%);
-  height:auto;
-  border-radius:10px;
-  background:#111;
-  touch-action:none;
-  user-select:none;
+display:block;
+width:min(430px,100%);
+height:auto;
+border-radius:10px;
+background:transparent;
+touch-action:none;
+user-select:none;
 }
 
 .nav{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:5px;
-  background:#11131a;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:15px;
-  padding:5px;
-  margin-bottom:10px;
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px;
+background:#11131a;
+border:1px solid rgba(255,255,255,.06);
+border-radius:15px;
+padding:5px;
+margin-bottom:10px;
 }
 
 .nav button{
-  border:0;
-  border-radius:9px;
-  background:transparent;
-  color:#777b89;
-  padding:11px 2px;
-  font-size:8px;
-  font-weight:1000;
+border:0;
+border-radius:9px;
+background:transparent;
+color:#777b89;
+padding:11px 2px;
+font-size:8px;
+font-weight:1000;
 }
 
 .nav button.active{
-  color:#fff;
-  background:linear-gradient(135deg,#5668ff,#914cff);
+color:#fff;
+background:linear-gradient(135deg,#5668ff,#914cff);
 }
 
 .section{display:none}
 .section.active{display:block}
 
 .panel{
-  background:linear-gradient(145deg,#171922,#0d0f15);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:17px;
-  padding:16px;
-  margin-bottom:10px;
+background:linear-gradient(145deg,#171922,#0d0f15);
+border:1px solid rgba(255,255,255,.07);
+border-radius:17px;
+padding:16px;
+margin-bottom:10px;
 }
 
 .title{
-  font-size:18px;
-  font-weight:1000;
+font-size:18px;
+font-weight:1000;
 }
 
 .desc{
-  color:#777b89;
-  font-size:11px;
-  line-height:1.5;
-  margin:5px 0 14px;
+color:#777b89;
+font-size:11px;
+line-height:1.5;
+margin:5px 0 14px;
 }
 
 label{
-  display:block;
-  color:#cfd1da;
-  font-size:10px;
-  font-weight:1000;
-  margin:12px 0 6px;
+display:block;
+color:#cfd1da;
+font-size:10px;
+font-weight:1000;
+margin:12px 0 6px;
 }
 
 input[type=text],
 input[type=file],
 select{
-  width:100%;
-  border:1px solid rgba(255,255,255,.08);
-  background:#22242d;
-  color:#fff;
-  border-radius:9px;
-  padding:11px;
-  outline:none;
+width:100%;
+border:1px solid rgba(255,255,255,.08);
+background:#22242d;
+color:#fff;
+border-radius:9px;
+padding:11px;
+outline:none;
 }
 
 input[type=file]{font-size:11px}
 
 input[type=range]{
-  width:100%;
-  accent-color:#6d7cff;
+width:100%;
+accent-color:#6d7cff;
 }
 
 input[type=color]{
-  width:62px;
-  height:38px;
-  border:0;
-  padding:2px;
-  background:#22242d;
-  border-radius:8px;
+width:62px;
+height:38px;
+border:0;
+padding:2px;
+background:#22242d;
+border-radius:8px;
 }
 
 .row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
 }
 
 .button{
-  width:100%;
-  border:0;
-  border-radius:10px;
-  padding:12px;
-  margin-top:9px;
-  background:linear-gradient(135deg,#596aff,#844bff);
-  color:#fff;
-  font-size:11px;
-  font-weight:1000;
+width:100%;
+border:0;
+border-radius:10px;
+padding:12px;
+margin-top:9px;
+background:linear-gradient(135deg,#596aff,#844bff);
+color:#fff;
+font-size:11px;
+font-weight:1000;
 }
 
 .button.secondary{background:#292b34}
 .button.red{background:#713840}
 
 .value{
-  float:right;
-  color:#737787;
-  font-size:9px;
+float:right;
+color:#737787;
+font-size:9px;
 }
 
 .fitGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
 }
 
 .fitCard{
-  border:1px solid rgba(255,255,255,.07);
-  background:#20222b;
-  border-radius:11px;
-  padding:13px 10px;
+border:1px solid rgba(255,255,255,.07);
+background:#20222b;
+border-radius:11px;
+padding:13px 10px;
 }
 
 .fitCard.active{
-  border-color:#6b79ff;
-  background:#282c47;
-  box-shadow:0 0 18px rgba(103,119,255,.18);
+border-color:#6b79ff;
+background:#282c47;
+box-shadow:0 0 18px rgba(103,119,255,.18);
 }
 
 .fitTitle{
-  font-size:11px;
-  font-weight:1000;
+font-size:11px;
+font-weight:1000;
 }
 
 .fitDesc{
-  color:#777b89;
-  font-size:9px;
-  line-height:1.35;
-  margin-top:4px;
+color:#777b89;
+font-size:9px;
+line-height:1.35;
+margin-top:4px;
 }
 
 .frameGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
 }
 
 .frameCard{
-  border:2px solid transparent;
-  background:#11131a;
-  border-radius:12px;
-  padding:6px;
+border:2px solid transparent;
+background:#11131a;
+border-radius:12px;
+padding:6px;
 }
 
 .frameCard.active{
-  border-color:#7180ff;
-  box-shadow:0 0 18px rgba(113,128,255,.25);
+border-color:#7180ff;
+box-shadow:0 0 18px rgba(113,128,255,.25);
 }
 
 .frameThumb{
-  width:100%;
-  aspect-ratio:1;
-  border-radius:8px;
-  overflow:hidden;
-  background:#090a0e;
+width:100%;
+aspect-ratio:1;
+border-radius:8px;
+overflow:hidden;
+background:#090a0e;
 }
 
 .frameName{
-  text-align:center;
-  font-size:9px;
-  font-weight:1000;
-  color:#d8dae2;
-  margin-top:6px;
+text-align:center;
+font-size:9px;
+font-weight:1000;
+color:#d8dae2;
+margin-top:6px;
 }
 
 .shapeGrid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:7px;
 }
 
 .shapeBtn{
-  border:1px solid rgba(255,255,255,.07);
-  background:#20222b;
-  color:#fff;
-  border-radius:9px;
-  padding:13px 4px;
-  font-size:9px;
-  font-weight:1000;
+border:1px solid rgba(255,255,255,.07);
+background:#20222b;
+color:#fff;
+border-radius:9px;
+padding:13px 4px;
+font-size:9px;
+font-weight:1000;
 }
 
 .shapeList{
-  margin-top:10px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
+margin-top:10px;
+display:flex;
+flex-direction:column;
+gap:6px;
 }
 
 .shapeItem{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:9px;
-  background:#14161d;
-  border-radius:8px;
-  font-size:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:9px;
+background:#14161d;
+border-radius:8px;
+font-size:10px;
 }
 
 .deleteShape{
-  border:0;
-  background:#713840;
-  color:white;
-  border-radius:6px;
-  padding:5px 8px;
-  font-size:9px;
+border:0;
+background:#713840;
+color:white;
+border-radius:6px;
+padding:5px 8px;
+font-size:9px;
 }
 
 .status{
-  margin-top:10px;
-  padding:10px;
-  background:#11131a;
-  border-radius:9px;
-  color:#777b89;
-  font-size:10px;
-  line-height:1.45;
+margin-top:10px;
+padding:10px;
+background:#11131a;
+border-radius:9px;
+color:#777b89;
+font-size:10px;
+line-height:1.45;
 }
 
 .effectCard{
-  background:#11131a;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:11px;
-  padding:11px;
-  margin-top:9px;
+background:#11131a;
+border:1px solid rgba(255,255,255,.06);
+border-radius:11px;
+padding:11px;
+margin-top:9px;
 }
 
 .effectName{
-  font-size:11px;
-  font-weight:1000;
+font-size:11px;
+font-weight:1000;
 }
 
 .effectDescription{
-  color:#777b89;
-  font-size:9px;
-  margin-top:3px;
+color:#777b89;
+font-size:9px;
+margin-top:3px;
 }
 
 @media(max-width:600px){
-  .logo{font-size:28px}
-  .nav button{font-size:7px}
-  .frameGrid{grid-template-columns:repeat(2,1fr)}
-  .row{grid-template-columns:1fr}
+.logo{font-size:28px}
+.nav button{font-size:7px}
+.frameGrid{grid-template-columns:repeat(2,1fr)}
+.row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -353,15 +353,17 @@ input[type=color]{
 <div class="app">
 
 <div class="header">
-  <div class="logo">✦ ICONFORGE</div>
-  <div class="subtitle">Build anime • gaming • tier-list icons</div>
+<div class="logo">✦ ICONFORGE</div>
+<div class="subtitle">Build anime • gaming • tier-list icons</div>
 </div>
 
 <div class="preview">
-  <div class="previewTitle">LIVE PREVIEW</div>
-  <div class="canvasWrap">
-    <canvas id="canvas" width="600" height="600"></canvas>
-  </div>
+<div class="previewTitle">LIVE PREVIEW</div>
+
+<div class="canvasWrap">
+<canvas id="canvas" width="600" height="600"></canvas>
+</div>
+
 </div>
 
 <div class="nav">
@@ -390,13 +392,15 @@ Upload any normal JPG, PNG, WEBP, etc. Transparency is NOT required.
 </div>
 
 <label>Character Image</label>
+
 <input id="characterFile" type="file" accept="image/*">
 
 <label>
 Zoom
 <span class="value" id="zoomValue">100%</span>
 </label>
-<input id="zoom" type="range" min="0.05" max="8" step="0.01" value="1">
+
+<input id="zoom" type="range" min=".05" max="8" step=".01" value="1">
 
 <label>Horizontal Position</label>
 <input id="posX" type="range" min="-600" max="600" value="0">
@@ -435,7 +439,7 @@ Zoom
 <div class="title">Auto Fit</div>
 
 <div class="desc">
-Automatically calculates the image against the actual frame opening.
+Automatically calculates the character against the actual frame opening.
 </div>
 
 <div class="fitGrid">
@@ -467,7 +471,9 @@ Automatically calculates the image against the actual frame opening.
 
 </div>
 
-<button class="button" id="applyFit">APPLY AUTO FIT</button>
+<button class="button" id="applyFit">
+APPLY AUTO FIT
+</button>
 
 <div class="status">
 <b>Recommended:</b> Fill Opening for normal icons. Maximum Zoom for extremely close portraits.
@@ -502,18 +508,21 @@ Select one of the built-in frames.
 Frame Thickness
 <span class="value" id="frameWidthValue">14</span>
 </label>
+
 <input id="frameWidth" type="range" min="2" max="45" value="14">
 
 <label>
 Frame Glow
 <span class="value" id="frameGlowValue">10</span>
 </label>
+
 <input id="frameGlow" type="range" min="0" max="70" value="10">
 
 <label>
 Frame Opacity
 <span class="value" id="frameOpacityValue">100%</span>
 </label>
+
 <input id="frameOpacity" type="range" min="10" max="100" value="100">
 
 </div>
@@ -536,18 +545,25 @@ Build your own frame using shapes.
 <div class="row">
 
 <div>
+
 <label>Shape Color</label>
+
 <input id="shapeColor" type="color" value="#ffffff">
+
 </div>
 
 <div>
+
 <label>Shape Size</label>
+
 <input id="shapeSize" type="range" min="10" max="300" value="100">
+
 </div>
 
 </div>
 
 <label>Shape Thickness</label>
+
 <input id="shapeThickness" type="range" min="1" max="30" value="6">
 
 <label>Add Shape</label>
@@ -585,17 +601,21 @@ CLEAR CUSTOM FRAME
 <div class="title">Text</div>
 
 <label>Character Name</label>
+
 <input id="name" type="text" placeholder="Ryomen Sukuna">
 
 <label>Version</label>
+
 <input id="version" type="text" placeholder="Heian Era">
 
 <div class="row">
 
 <div>
+
 <label>Name Font</label>
 
 <select id="nameFont">
+
 <option>Arial</option>
 <option>Impact</option>
 <option>Arial Black</option>
@@ -606,13 +626,17 @@ CLEAR CUSTOM FRAME
 <option>Times New Roman</option>
 <option>Garamond</option>
 <option>Palatino Linotype</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>Version Font</label>
 
 <select id="versionFont">
+
 <option>Arial</option>
 <option>Impact</option>
 <option>Arial Black</option>
@@ -623,42 +647,54 @@ CLEAR CUSTOM FRAME
 <option>Times New Roman</option>
 <option>Garamond</option>
 <option>Palatino Linotype</option>
+
 </select>
+
 </div>
 
 </div>
 
 <label>Upload Your Own Font</label>
+
 <input id="fontFile" type="file" accept=".ttf,.otf,.woff,.woff2">
 
 <label>
 Name Size
 <span class="value" id="nameSizeValue">42</span>
 </label>
+
 <input id="nameSize" type="range" min="10" max="90" value="42">
 
 <label>
 Version Size
 <span class="value" id="versionSizeValue">24</span>
 </label>
+
 <input id="versionSize" type="range" min="8" max="60" value="24">
 
 <label>
 Text Position
 <span class="value" id="textYValue">510</span>
 </label>
+
 <input id="textY" type="range" min="350" max="580" value="510">
 
 <div class="row">
 
 <div>
+
 <label>Text Color</label>
+
 <input id="textColor" type="color" value="#ffffff">
+
 </div>
 
 <div>
+
 <label>Outline Color</label>
+
 <input id="outlineColor" type="color" value="#000000">
+
 </div>
 
 </div>
@@ -667,6 +703,7 @@ Text Position
 Outline Width
 <span class="value" id="outlineValue">3</span>
 </label>
+
 <input id="outlineWidth" type="range" min="0" max="15" value="3">
 
 </div>
@@ -685,32 +722,42 @@ Outline Width
 <label>Background Type</label>
 
 <select id="bgType">
+
 <option value="solid">Solid</option>
 <option value="gradient">Gradient</option>
 <option value="image">Image</option>
+
 </select>
 
 <div class="row">
 
 <div>
+
 <label>Color 1</label>
+
 <input id="bgColor" type="color" value="#111111">
+
 </div>
 
 <div>
+
 <label>Color 2</label>
+
 <input id="bgColor2" type="color" value="#34205e">
+
 </div>
 
 </div>
 
 <label>Background Image</label>
+
 <input id="bgFile" type="file" accept="image/*">
 
 <label>
 Background Blur
 <span class="value" id="bgBlurValue">0</span>
 </label>
+
 <input id="bgBlur" type="range" min="0" max="30" value="0">
 
 </div>
@@ -726,10 +773,14 @@ Background Blur
 
 <div class="title">Effects</div>
 
+
 <div class="effectCard">
 
 <div class="effectName">☀ Brightness</div>
-<div class="effectDescription">Make the character lighter or darker.</div>
+
+<div class="effectDescription">
+Make the character lighter or darker.
+</div>
 
 <label>
 Brightness
@@ -744,7 +795,10 @@ Brightness
 <div class="effectCard">
 
 <div class="effectName">◐ Contrast</div>
-<div class="effectDescription">Increase or reduce the difference between dark and light areas.</div>
+
+<div class="effectDescription">
+Increase or reduce contrast.
+</div>
 
 <label>
 Contrast
@@ -759,7 +813,10 @@ Contrast
 <div class="effectCard">
 
 <div class="effectName">🌈 Saturation</div>
-<div class="effectDescription">Control how colorful the character appears.</div>
+
+<div class="effectDescription">
+Control how colorful the character appears.
+</div>
 
 <label>
 Saturation
@@ -774,7 +831,10 @@ Saturation
 <div class="effectCard">
 
 <div class="effectName">〰 Blur</div>
-<div class="effectDescription">Softens the character image.</div>
+
+<div class="effectDescription">
+Softens the character.
+</div>
 
 <label>
 Blur
@@ -789,7 +849,10 @@ Blur
 <div class="effectCard">
 
 <div class="effectName">◉ Vignette</div>
-<div class="effectDescription">Darkens the outer edges of the finished icon.</div>
+
+<div class="effectDescription">
+Darkens the inside edges of the frame opening.
+</div>
 
 <label>
 Vignette
@@ -804,7 +867,10 @@ Vignette
 <div class="effectCard">
 
 <div class="effectName">⬛ Edge Darkening</div>
-<div class="effectDescription">Creates a tighter, heavier dark edge around the icon.</div>
+
+<div class="effectDescription">
+Creates a tighter dark edge around the inside of the icon.
+</div>
 
 <label>
 Edge Darkening
@@ -824,44 +890,44 @@ Edge Darkening
 
 <script>
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
 
-let character = null;
-let backgroundImage = null;
+let character=null;
+let backgroundImage=null;
 
-let selectedFrame = "obsidian";
-let selectedFit = "fill";
+let selectedFrame="obsidian";
+let selectedFit="fill";
 
-let flipH = false;
-let flipV = false;
+let flipH=false;
+let flipV=false;
 
-let customShapes = [];
+let customShapes=[];
 
-let dragging = false;
-let dragStartX = 0;
-let dragStartY = 0;
-let startingX = 0;
-let startingY = 0;
+let dragging=false;
+let dragStartX=0;
+let dragStartY=0;
+let startingX=0;
+let startingY=0;
 
 
 /* =====================================================
-   ACTUAL FRAME OPENING
+FRAME OPENING
 ===================================================== */
 
-const OPENING = {
-  x:55,
-  y:55,
-  width:490,
-  height:490
+const OPENING={
+x:55,
+y:55,
+width:490,
+height:490
 };
 
 
 /* =====================================================
-   FRAME LIBRARY
+FRAME LIBRARY
 ===================================================== */
 
-const FRAME_LIBRARY = [
+const FRAME_LIBRARY=[
 
 {
 id:"obsidian",
@@ -950,12 +1016,7 @@ style:"double"
 ];
 
 
-/* =====================================================
-   FRAME LIBRARY UI
-===================================================== */
-
-const frameGrid =
-document.getElementById("frameGrid");
+const frameGrid=document.getElementById("frameGrid");
 
 function renderFrameLibrary(){
 
@@ -975,11 +1036,8 @@ thumb.width=180;
 thumb.height=180;
 thumb.className="frameThumb";
 
-const tctx=thumb.getContext("2d");
-
 drawFrameOnContext(
-tctx,
-180,
+thumb.getContext("2d"),
 180,
 frame,
 10,
@@ -1001,7 +1059,6 @@ card.onclick=()=>{
 selectedFrame=frame.id;
 
 renderFrameLibrary();
-
 draw();
 
 };
@@ -1016,7 +1073,7 @@ renderFrameLibrary();
 
 
 /* =====================================================
-   NAVIGATION
+NAV
 ===================================================== */
 
 document.querySelectorAll(".nav button").forEach(button=>{
@@ -1043,7 +1100,7 @@ document
 
 
 /* =====================================================
-   LOAD IMAGE
+IMAGE LOADING
 ===================================================== */
 
 function loadImage(file){
@@ -1057,7 +1114,6 @@ reader.onload=()=>{
 const img=new Image();
 
 img.onload=()=>resolve(img);
-
 img.onerror=()=>reject();
 
 img.src=reader.result;
@@ -1096,10 +1152,6 @@ alert("Could not load that image.");
 });
 
 
-/* =====================================================
-   BACKGROUND IMAGE
-===================================================== */
-
 document
 .getElementById("bgFile")
 .addEventListener("change",async e=>{
@@ -1126,7 +1178,7 @@ alert("Could not load that background.");
 
 
 /* =====================================================
-   FIT SELECTION
+FIT
 ===================================================== */
 
 document.querySelectorAll(".fitCard").forEach(card=>{
@@ -1146,16 +1198,11 @@ selectedFit=card.dataset.fit;
 });
 
 
-/* =====================================================
-   AUTO FIT
-===================================================== */
-
 function applyAutoFit(){
 
 if(!character){
 
 alert("Upload a character image first.");
-
 return;
 
 }
@@ -1173,43 +1220,21 @@ openingH/imageH
 
 let scale=coverScale;
 
-if(selectedFit==="fill"){
-
-scale=coverScale;
-
-}
-
-else if(selectedFit==="maximum"){
-
+if(selectedFit==="maximum")
 scale=coverScale*1.65;
 
-}
-
-else if(selectedFit==="cover"){
-
-scale=coverScale;
-
-}
-
-else if(selectedFit==="contain"){
-
+if(selectedFit==="contain")
 scale=Math.min(
 openingW/imageW,
 openingH/imageH
 );
 
-}
-
-else if(selectedFit==="smart"){
-
+if(selectedFit==="smart")
 scale=coverScale*1.15;
-
-}
 
 scale=Math.max(.05,Math.min(8,scale));
 
 document.getElementById("zoom").value=scale;
-
 document.getElementById("posX").value=0;
 document.getElementById("posY").value=0;
 document.getElementById("rotation").value=0;
@@ -1226,7 +1251,7 @@ document
 
 
 /* =====================================================
-   CENTER
+CENTER / RESET
 ===================================================== */
 
 document
@@ -1240,10 +1265,6 @@ draw();
 
 });
 
-
-/* =====================================================
-   RESET
-===================================================== */
 
 document
 .getElementById("resetImage")
@@ -1262,10 +1283,6 @@ draw();
 
 });
 
-
-/* =====================================================
-   FLIP
-===================================================== */
 
 document
 .getElementById("flipH")
@@ -1288,15 +1305,14 @@ draw();
 
 
 /* =====================================================
-   BACKGROUND
+BACKGROUND
 ===================================================== */
 
 function drawBackground(){
 
-const type=
-document.getElementById("bgType").value;
+const type=document.getElementById("bgType").value;
 
-if(type==="image" && backgroundImage){
+if(type==="image"&&backgroundImage){
 
 ctx.save();
 
@@ -1305,15 +1321,33 @@ Number(document.getElementById("bgBlur").value);
 
 ctx.filter=`blur(${blur}px)`;
 
-drawCoverImage(
-ctx,
+const ratio=backgroundImage.width/backgroundImage.height;
+
+const boxRatio=1;
+
+let w,h;
+
+if(ratio>boxRatio){
+
+h=600;
+w=h*ratio;
+
+}else{
+
+w=600;
+h=w/ratio;
+
+}
+
+ctx.drawImage(
 backgroundImage,
-0,
-0,
-600,
-600
+(600-w)/2,
+(600-h)/2,
+w,
+h
 );
 
+ctx.filter="none";
 ctx.restore();
 
 return;
@@ -1322,12 +1356,8 @@ return;
 
 if(type==="gradient"){
 
-const gradient=
-ctx.createLinearGradient(
-0,
-0,
-600,
-600
+const gradient=ctx.createLinearGradient(
+0,0,600,600
 );
 
 gradient.addColorStop(
@@ -1341,7 +1371,6 @@ document.getElementById("bgColor2").value
 );
 
 ctx.fillStyle=gradient;
-
 ctx.fillRect(0,0,600,600);
 
 return;
@@ -1356,51 +1385,30 @@ ctx.fillRect(0,0,600,600);
 }
 
 
-function drawCoverImage(
-context,
-image,
-x,
-y,
-width,
-height
-){
-
-const imageRatio=image.width/image.height;
-const boxRatio=width/height;
-
-let drawWidth;
-let drawHeight;
-
-if(imageRatio>boxRatio){
-
-drawHeight=height;
-drawWidth=height*imageRatio;
-
-}else{
-
-drawWidth=width;
-drawHeight=width/imageRatio;
-
-}
-
-context.drawImage(
-image,
-x+(width-drawWidth)/2,
-y+(height-drawHeight)/2,
-drawWidth,
-drawHeight
-);
-
-}
-
-
 /* =====================================================
-   CHARACTER
+CHARACTER EFFECT ENGINE
 ===================================================== */
 
-function drawCharacter(){
+/*
+IMPORTANT:
 
-if(!character)return;
+Instead of depending on the main canvas filter,
+we render the character onto a temporary canvas.
+
+This makes brightness, contrast, saturation,
+and blur work consistently.
+*/
+
+function createCharacterLayer(){
+
+if(!character)return null;
+
+const temp=document.createElement("canvas");
+
+temp.width=600;
+temp.height=600;
+
+const t=temp.getContext("2d");
 
 const zoom=
 Number(document.getElementById("zoom").value);
@@ -1415,14 +1423,6 @@ const rotation=
 Number(document.getElementById("rotation").value)
 *Math.PI/180;
 
-const width=character.width*zoom;
-const height=character.height*zoom;
-
-
-/*
-   EFFECT VALUES
-*/
-
 const brightness=
 Number(document.getElementById("brightness").value);
 
@@ -1435,68 +1435,61 @@ Number(document.getElementById("saturation").value);
 const blur=
 Number(document.getElementById("blur").value);
 
+const width=
+character.width*zoom;
+
+const height=
+character.height*zoom;
+
 
 /*
-   SAVE CHARACTER STATE
+CLIP TO FRAME OPENING
 */
 
-ctx.save();
+t.save();
 
+t.beginPath();
 
-/*
-   CLIP CHARACTER TO FRAME OPENING
-*/
-
-ctx.beginPath();
-
-ctx.rect(
+t.rect(
 OPENING.x,
 OPENING.y,
 OPENING.width,
 OPENING.height
 );
 
-ctx.clip();
+t.clip();
 
 
 /*
-   POSITION
+IMAGE POSITION
 */
 
-ctx.translate(
-OPENING.x+
-OPENING.width/2+
-x,
-
-OPENING.y+
-OPENING.height/2+
-y
+t.translate(
+OPENING.x+OPENING.width/2+x,
+OPENING.y+OPENING.height/2+y
 );
 
-ctx.rotate(rotation);
+t.rotate(rotation);
 
-ctx.scale(
+t.scale(
 flipH?-1:1,
 flipV?-1:1
 );
 
 
 /*
-   ACTUAL IMAGE FILTER
+THE ACTUAL EFFECTS
 */
 
-ctx.filter=
-"brightness("+brightness+"%) "+
-"contrast("+contrast+"%) "+
-"saturate("+saturation+"%) "+
-"blur("+blur+"px)";
+t.filter=
+`brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) blur(${blur}px)`;
 
 
 /*
-   DRAW
+DRAW CHARACTER
 */
 
-ctx.drawImage(
+t.drawImage(
 character,
 -width/2,
 -height/2,
@@ -1504,20 +1497,36 @@ width,
 height
 );
 
+t.filter="none";
 
-/*
-   RESET FILTER BEFORE LEAVING
-*/
+t.restore();
 
-ctx.filter="none";
-
-ctx.restore();
+return temp;
 
 }
 
 
 /* =====================================================
-   FRAME
+DRAW CHARACTER
+===================================================== */
+
+function drawCharacter(){
+
+const layer=createCharacterLayer();
+
+if(!layer)return;
+
+ctx.drawImage(
+layer,
+0,
+0
+);
+
+}
+
+
+/* =====================================================
+FRAME
 ===================================================== */
 
 function drawFrame(){
@@ -1530,23 +1539,16 @@ f=>f.id===selectedFrame
 if(!frame)return;
 
 const thickness=
-Number(
-document.getElementById("frameWidth").value
-);
+Number(document.getElementById("frameWidth").value);
 
 const glow=
-Number(
-document.getElementById("frameGlow").value
-);
+Number(document.getElementById("frameGlow").value);
 
 const opacity=
-Number(
-document.getElementById("frameOpacity").value
-)/100;
+Number(document.getElementById("frameOpacity").value)/100;
 
 drawFrameOnContext(
 ctx,
-600,
 600,
 frame,
 thickness,
@@ -1560,7 +1562,6 @@ opacity
 function drawFrameOnContext(
 context,
 size,
-unused,
 frame,
 thickness,
 glow,
@@ -1613,55 +1614,30 @@ size-(inset+13*scale)*2
 }
 
 
-if(frame.style==="diamond"){
-
-drawCornerDiamonds(
-context,
-size,
-frame.color,
-scale
-);
-
-}
-
+if(frame.style==="diamond")
+drawCornerDiamonds(context,size,frame.color,scale);
 
 if(
 frame.style==="energy"||
 frame.style==="cosmic"
-){
+)
+drawEnergyCorners(context,size,frame.color,scale);
 
-drawEnergyCorners(
-context,
-size,
-frame.color,
-scale
-);
-
-}
-
-
-if(frame.style==="flame"){
-
-drawFlames(
-context,
-size,
-frame.color,
-scale
-);
-
-}
-
+if(frame.style==="flame")
+drawFlames(context,size,frame.color,scale);
 
 if(frame.style==="cosmic"){
 
 for(let i=0;i<20;i++){
 
 const angle=i*Math.PI*2/20;
-
 const radius=274*scale;
 
-const x=300*scale+Math.cos(angle)*radius;
-const y=300*scale+Math.sin(angle)*radius;
+const x=300*scale+
+Math.cos(angle)*radius;
+
+const y=300*scale+
+Math.sin(angle)*radius;
 
 context.beginPath();
 
@@ -1679,26 +1655,13 @@ context.fill();
 
 }
 
-
-if(frame.style==="gold"){
-
-drawGoldCorners(
-context,
-size,
-frame.color,
-scale
-);
-
-}
+if(frame.style==="gold")
+drawGoldCorners(context,size,frame.color,scale);
 
 context.restore();
 
 }
 
-
-/* =====================================================
-   FRAME DECORATIONS
-===================================================== */
 
 function drawCornerDiamonds(
 context,
@@ -1731,6 +1694,7 @@ context.lineTo(x,y+18*scale);
 context.lineTo(x-18*scale,y);
 
 context.closePath();
+
 context.fill();
 
 });
@@ -1809,20 +1773,55 @@ for(let x=70;x<=530;x+=55){
 context.beginPath();
 
 context.moveTo(x*scale,38*scale);
-context.lineTo((x-10)*scale,18*scale);
-context.lineTo((x+5)*scale,31*scale);
-context.lineTo((x+18)*scale,10*scale);
-context.lineTo((x+15)*scale,38*scale);
+
+context.lineTo(
+(x-10)*scale,
+18*scale
+);
+
+context.lineTo(
+(x+5)*scale,
+31*scale
+);
+
+context.lineTo(
+(x+18)*scale,
+10*scale
+);
+
+context.lineTo(
+(x+15)*scale,
+38*scale
+);
 
 context.stroke();
 
 context.beginPath();
 
-context.moveTo(x*scale,562*scale);
-context.lineTo((x-10)*scale,582*scale);
-context.lineTo((x+5)*scale,569*scale);
-context.lineTo((x+18)*scale,590*scale);
-context.lineTo((x+15)*scale,562*scale);
+context.moveTo(
+x*scale,
+562*scale
+);
+
+context.lineTo(
+(x-10)*scale,
+582*scale
+);
+
+context.lineTo(
+(x+5)*scale,
+569*scale
+);
+
+context.lineTo(
+(x+18)*scale,
+590*scale
+);
+
+context.lineTo(
+(x+15)*scale,
+562*scale
+);
 
 context.stroke();
 
@@ -1874,7 +1873,7 @@ context.restore();
 
 
 /* =====================================================
-   CUSTOM BUILDER
+CUSTOM SHAPES
 ===================================================== */
 
 document.querySelectorAll(".shapeBtn").forEach(button=>{
@@ -1889,14 +1888,10 @@ color:
 document.getElementById("shapeColor").value,
 
 size:
-Number(
-document.getElementById("shapeSize").value
-),
+Number(document.getElementById("shapeSize").value),
 
 thickness:
-Number(
-document.getElementById("shapeThickness").value
-),
+Number(document.getElementById("shapeThickness").value),
 
 x:300,
 y:300
@@ -2112,12 +2107,10 @@ const radius=
 i%2===0?outer:inner;
 
 const x=
-cx+
-Math.cos(angle)*radius;
+cx+Math.cos(angle)*radius;
 
 const y=
-cy+
-Math.sin(angle)*radius;
+cy+Math.sin(angle)*radius;
 
 if(i===0)
 context.moveTo(x,y);
@@ -2149,12 +2142,10 @@ const angle=
 i*Math.PI*2/sides;
 
 const x=
-cx+
-Math.cos(angle)*radius;
+cx+Math.cos(angle)*radius;
 
 const y=
-cy+
-Math.sin(angle)*radius;
+cy+Math.sin(angle)*radius;
 
 if(i===0)
 context.moveTo(x,y);
@@ -2170,7 +2161,7 @@ context.stroke();
 
 
 /* =====================================================
-   TEXT
+TEXT
 ===================================================== */
 
 function drawText(){
@@ -2184,24 +2175,16 @@ document.getElementById("version").value;
 if(!name&&!version)return;
 
 const y=
-Number(
-document.getElementById("textY").value
-);
+Number(document.getElementById("textY").value);
 
 const nameSize=
-Number(
-document.getElementById("nameSize").value
-);
+Number(document.getElementById("nameSize").value);
 
 const versionSize=
-Number(
-document.getElementById("versionSize").value
-);
+Number(document.getElementById("versionSize").value);
 
 const outline=
-Number(
-document.getElementById("outlineWidth").value
-);
+Number(document.getElementById("outlineWidth").value);
 
 ctx.save();
 
@@ -2217,54 +2200,28 @@ document.getElementById("outlineColor").value;
 if(name){
 
 ctx.font=
-`900 ${nameSize}px ${
-document.getElementById("nameFont").value
-}`;
+`900 ${nameSize}px ${document.getElementById("nameFont").value}`;
 
 ctx.lineWidth=outline*2;
 
-if(outline>0){
+if(outline>0)
+ctx.strokeText(name,300,y);
 
-ctx.strokeText(
-name,
-300,
-y
-);
-
-}
-
-ctx.fillText(
-name,
-300,
-y
-);
+ctx.fillText(name,300,y);
 
 }
 
 if(version){
 
 ctx.font=
-`900 ${versionSize}px ${
-document.getElementById("versionFont").value
-}`;
+`900 ${versionSize}px ${document.getElementById("versionFont").value}`;
 
 ctx.lineWidth=outline*2;
 
-if(outline>0){
+if(outline>0)
+ctx.strokeText(version,300,y+40);
 
-ctx.strokeText(
-version,
-300,
-y+40
-);
-
-}
-
-ctx.fillText(
-version,
-300,
-y+40
-);
+ctx.fillText(version,300,y+40);
 
 }
 
@@ -2274,25 +2231,42 @@ ctx.restore();
 
 
 /* =====================================================
-   EFFECT ENGINE
+FIXED VIGNETTE + EDGE DARKENING
 ===================================================== */
 
 function drawEffects(){
 
 const vignette=
-Number(
-document.getElementById("vignette").value
-);
+Number(document.getElementById("vignette").value);
 
 const edge=
-Number(
-document.getElementById("edgeDark").value
-);
+Number(document.getElementById("edgeDark").value);
 
 
 /*
-   VIGNETTE
+CRITICAL:
+
+Everything here is clipped to the FRAME OPENING.
+
+Therefore the effect can NEVER appear
+outside the actual frame.
 */
+
+ctx.save();
+
+ctx.beginPath();
+
+ctx.rect(
+OPENING.x,
+OPENING.y,
+OPENING.width,
+OPENING.height
+);
+
+ctx.clip();
+
+
+/* VIGNETTE */
 
 if(vignette>0){
 
@@ -2305,7 +2279,7 @@ ctx.createRadialGradient(
 80,
 300,
 300,
-430
+350
 );
 
 gradient.addColorStop(
@@ -2314,18 +2288,23 @@ gradient.addColorStop(
 );
 
 gradient.addColorStop(
-.42,
+.40,
 "rgba(0,0,0,0)"
 );
 
 gradient.addColorStop(
-.65,
-`rgba(0,0,0,${strength*.18})`
+.62,
+`rgba(0,0,0,${strength*.15})`
 );
 
 gradient.addColorStop(
-.82,
-`rgba(0,0,0,${strength*.55})`
+.80,
+`rgba(0,0,0,${strength*.50})`
+);
+
+gradient.addColorStop(
+.94,
+`rgba(0,0,0,${strength*.82})`
 );
 
 gradient.addColorStop(
@@ -2333,25 +2312,19 @@ gradient.addColorStop(
 `rgba(0,0,0,${strength})`
 );
 
-ctx.save();
-
 ctx.fillStyle=gradient;
 
 ctx.fillRect(
-0,
-0,
-600,
-600
+OPENING.x,
+OPENING.y,
+OPENING.width,
+OPENING.height
 );
-
-ctx.restore();
 
 }
 
 
-/*
-   EDGE DARKENING
-*/
+/* EDGE DARKENING */
 
 if(edge>0){
 
@@ -2361,10 +2334,10 @@ const gradient=
 ctx.createRadialGradient(
 300,
 300,
-170,
+190,
 300,
 300,
-425
+345
 );
 
 gradient.addColorStop(
@@ -2373,18 +2346,18 @@ gradient.addColorStop(
 );
 
 gradient.addColorStop(
-.55,
+.58,
 "rgba(0,0,0,0)"
 );
 
 gradient.addColorStop(
-.75,
-`rgba(0,0,0,${strength*.22})`
+.76,
+`rgba(0,0,0,${strength*.25})`
 );
 
 gradient.addColorStop(
-.9,
-`rgba(0,0,0,${strength*.65})`
+.90,
+`rgba(0,0,0,${strength*.68})`
 );
 
 gradient.addColorStop(
@@ -2392,26 +2365,24 @@ gradient.addColorStop(
 `rgba(0,0,0,${strength})`
 );
 
-ctx.save();
-
 ctx.fillStyle=gradient;
 
 ctx.fillRect(
-0,
-0,
-600,
-600
+OPENING.x,
+OPENING.y,
+OPENING.width,
+OPENING.height
 );
+
+}
 
 ctx.restore();
 
 }
 
-}
-
 
 /* =====================================================
-   MASTER DRAW
+MASTER DRAW
 ===================================================== */
 
 function draw(){
@@ -2423,15 +2394,46 @@ ctx.clearRect(
 600
 );
 
+
+/*
+BACKGROUND
+*/
+
 drawBackground();
+
+
+/*
+CHARACTER + REAL EFFECT PROCESSING
+*/
 
 drawCharacter();
 
+
+/*
+CUSTOM FRAME SHAPES
+*/
+
 drawCustomShapes();
+
+
+/*
+FRAME
+*/
 
 drawFrame();
 
+
+/*
+TEXT
+*/
+
 drawText();
+
+
+/*
+VIGNETTE + EDGE DARKENING
+ONLY INSIDE FRAME
+*/
 
 drawEffects();
 
@@ -2439,7 +2441,7 @@ drawEffects();
 
 
 /* =====================================================
-   CONTROLS
+CONTROLS
 ===================================================== */
 
 const controlIds=[
@@ -2507,7 +2509,7 @@ draw();
 
 
 /* =====================================================
-   CUSTOM FONTS
+CUSTOM FONT
 ===================================================== */
 
 document
@@ -2520,18 +2522,13 @@ if(!file)return;
 
 try{
 
-const buffer=
-await file.arrayBuffer();
+const buffer=await file.arrayBuffer();
 
 const fontName=
-"IconForgeCustom"+
-Date.now();
+"IconForgeCustom"+Date.now();
 
 const font=
-new FontFace(
-fontName,
-buffer
-);
+new FontFace(fontName,buffer);
 
 await font.load();
 
@@ -2572,7 +2569,7 @@ alert("That font could not be loaded.");
 
 
 /* =====================================================
-   DRAG CHARACTER
+DRAG CHARACTER
 ===================================================== */
 
 canvas.addEventListener("pointerdown",event=>{
@@ -2604,11 +2601,8 @@ if(!dragging)return;
 const rect=
 canvas.getBoundingClientRect();
 
-const scaleX=
-600/rect.width;
-
-const scaleY=
-600/rect.height;
+const scaleX=600/rect.width;
+const scaleY=600/rect.height;
 
 document.getElementById("posX").value=
 startingX+
@@ -2627,19 +2621,12 @@ function stopDragging(){
 dragging=false;
 }
 
-canvas.addEventListener(
-"pointerup",
-stopDragging
-);
-
-canvas.addEventListener(
-"pointercancel",
-stopDragging
-);
+canvas.addEventListener("pointerup",stopDragging);
+canvas.addEventListener("pointercancel",stopDragging);
 
 
 /* =====================================================
-   VALUES
+VALUE DISPLAY
 ===================================================== */
 
 function setText(id,text){
@@ -2654,9 +2641,7 @@ if(el)el.textContent=text;
 function updateValues(){
 
 const zoom=
-Number(
-document.getElementById("zoom").value
-);
+Number(document.getElementById("zoom").value);
 
 setText(
 "zoomValue",
@@ -2731,13 +2716,14 @@ document.getElementById("vignette").value+"%"
 setText(
 "edgeValue",
 document.getElementById("edgeDark").value+"%"
+
 );
 
 }
 
 
 /* =====================================================
-   START
+START
 ===================================================== */
 
 updateValues();
