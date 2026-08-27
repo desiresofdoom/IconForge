@@ -7,75 +7,83 @@
 <title>IconForge</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 html,body{
 margin:0;
 min-height:100%;
-background:#05060a;
-color:#fff;
+background:#050509;
+color:white;
 font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
 background:
-radial-gradient(circle at 10% 0%,rgba(94,76,255,.28),transparent 30%),
-radial-gradient(circle at 90% 10%,rgba(0,210,255,.16),transparent 28%),
-radial-gradient(circle at 50% 100%,rgba(180,40,255,.16),transparent 35%),
-#05060a;
+radial-gradient(circle at 10% 0%,#24215b55,transparent 30%),
+radial-gradient(circle at 90% 10%,#143d4e55,transparent 30%),
+radial-gradient(circle at 50% 100%,#3b155055,transparent 35%),
+#050509;
+}
+
+button,input,select{
+font:inherit;
 }
 
 .app{
-width:min(1100px,100%);
+width:min(1150px,100%);
 margin:auto;
-padding:15px 10px 70px;
+padding:14px 10px 80px;
 }
 
 .header{
 text-align:center;
-padding:8px 0 15px;
+padding:10px 0 15px;
 }
 
 .logo{
-font-size:32px;
+font-size:34px;
 font-weight:1000;
-letter-spacing:-1px;
-background:linear-gradient(90deg,#fff,#8790ff,#d6a8ff);
+letter-spacing:-1.5px;
+background:linear-gradient(90deg,#fff,#7581ff,#d98dff);
 -webkit-background-clip:text;
 color:transparent;
 }
 
 .subtitle{
-color:#858694;
-font-size:13px;
+font-size:12px;
+color:#777987;
 margin-top:5px;
 }
 
-/* LIVE PREVIEW */
+/* =========================
+LIVE PREVIEW
+========================= */
 
 .preview{
 position:sticky;
-top:6px;
-z-index:20;
+top:5px;
+z-index:50;
 padding:10px;
 margin-bottom:12px;
 border-radius:18px;
-border:1px solid rgba(255,255,255,.08);
-background:rgba(9,10,15,.94);
+background:rgba(8,8,13,.95);
+border:1px solid #ffffff12;
+box-shadow:0 20px 70px #0009;
 backdrop-filter:blur(20px);
-box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
-.preview-title{
-text-align:center;
-font-size:10px;
-font-weight:900;
+.previewTitle{
+font-size:9px;
+font-weight:1000;
 letter-spacing:2px;
+text-align:center;
 color:#777987;
 margin-bottom:7px;
 }
 
-.canvas-wrap{
+.canvasHolder{
 display:flex;
 justify-content:center;
 }
@@ -84,51 +92,60 @@ justify-content:center;
 width:min(430px,100%);
 height:auto;
 display:block;
-border-radius:10px;
-touch-action:none;
+border-radius:9px;
 background:#111;
+touch-action:none;
 }
 
-/* NAV */
+/* =========================
+NAVIGATION
+========================= */
 
 .nav{
 display:grid;
-grid-template-columns:repeat(6,1fr);
-gap:6px;
+grid-template-columns:repeat(7,1fr);
+gap:5px;
 padding:6px;
 border-radius:15px;
-background:#16171e;
-border:1px solid rgba(255,255,255,.07);
+background:#111219;
+border:1px solid #ffffff0d;
 margin-bottom:12px;
 }
 
 .nav button{
 border:0;
-border-radius:9px;
 background:transparent;
-color:#858691;
-padding:11px 2px;
-font-size:10px;
-font-weight:900;
+color:#777985;
+padding:11px 3px;
+border-radius:9px;
+font-size:9px;
+font-weight:1000;
 cursor:pointer;
 }
 
 .nav button.active{
-background:linear-gradient(135deg,#5865f2,#874dff);
+background:linear-gradient(135deg,#5967f2,#854cff);
 color:white;
 }
 
-/* SECTIONS */
+/* =========================
+SECTIONS
+========================= */
 
-.section{display:none}
-.section.active{display:block}
+.section{
+display:none;
+}
+
+.section.active{
+display:block;
+}
 
 .panel{
-padding:17px;
+padding:16px;
 margin-bottom:12px;
 border-radius:17px;
-border:1px solid rgba(255,255,255,.07);
-background:linear-gradient(145deg,#1b1c25,#0d0e14);
+background:linear-gradient(145deg,#191a23,#0d0e13);
+border:1px solid #ffffff0d;
 }
 
 .title{
@@ -136,19 +153,19 @@ font-size:18px;
 font-weight:1000;
 }
 
-.description{
+.desc{
 font-size:12px;
 line-height:1.5;
-color:#858691;
+color:#777985;
 margin:5px 0 15px;
 }
 
 label{
 display:block;
-font-size:12px;
+font-size:11px;
 font-weight:900;
-color:#ddd;
-margin:14px 0 6px;
+color:#ccc;
+margin:13px 0 6px;
 }
 
 input[type=text],
@@ -157,7 +174,7 @@ select{
 width:100%;
 padding:11px;
 border-radius:9px;
-border:1px solid rgba(255,255,255,.08);
+border:1px solid #ffffff10;
 background:#252630;
 color:white;
 outline:none;
@@ -165,31 +182,31 @@ outline:none;
 
 input[type=range]{
 width:100%;
-accent-color:#6874ff;
+accent-color:#6875ff;
 }
 
 input[type=color]{
-width:62px;
+width:65px;
 height:40px;
-padding:2px;
 border:0;
+padding:2px;
+background:#22232b;
 border-radius:8px;
-background:#252630;
 }
 
 .row{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
+gap:9px;
 }
 
 .button{
 width:100%;
 border:0;
 border-radius:10px;
-padding:13px;
-margin-top:10px;
-background:linear-gradient(135deg,#5865f2,#824dff);
+padding:12px;
+margin-top:9px;
+background:linear-gradient(135deg,#5967f2,#834dff);
 color:white;
 font-weight:1000;
 cursor:pointer;
@@ -200,186 +217,324 @@ background:#292a32;
 }
 
 .button.danger{
-background:#8d3535;
+background:#873b42;
 }
 
-.value{
+.smallValue{
 display:block;
 text-align:right;
-font-size:11px;
+font-size:10px;
 color:#777985;
 }
+
+/* =========================
+AUTO FIT
+========================= */
+
+.fitGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.fitOption{
+padding:13px 9px;
+border-radius:11px;
+background:#20212a;
+border:1px solid #ffffff0b;
+cursor:pointer;
+}
+
+.fitOption.active{
+border-color:#6674ff;
+background:#252943;
+}
+
+.fitName{
+font-weight:1000;
+font-size:11px;
+}
+
+.fitDescription{
+font-size:9px;
+color:#777985;
+margin-top:3px;
+line-height:1.3;
+}
+
+/* =========================
+FRAMES
+========================= */
+
+.frameGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+}
+
+.frameCard{
+background:#111218;
+border:2px solid transparent;
+border-radius:12px;
+padding:6px;
+cursor:pointer;
+}
+
+.frameCard.selected{
+border-color:#6875ff;
+box-shadow:0 0 18px #6875ff33;
+}
+
+.framePreview{
+height:110px;
+border-radius:7px;
+position:relative;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle,#333,#0a0a0e);
+}
+
+.framePreview:before{
+content:"";
+position:absolute;
+inset:12px;
+border:8px solid white;
+}
+
+.framePreview:after{
+content:"";
+position:absolute;
+inset:25px;
+border:1px solid #ffffff55;
+}
+
+.frameName{
+text-align:center;
+font-size:10px;
+font-weight:900;
+margin-top:6px;
+color:#ddd;
+}
+
+/* frame previews */
+
+.gold{
+background:radial-gradient(circle,#55451c,#0b0905);
+}
+
+.gold:before{
+border-color:#e5bd48;
+box-shadow:0 0 20px #e5bd48;
+}
+
+.crimson{
+background:radial-gradient(circle,#55131d,#090506);
+}
+
+.crimson:before{
+border-color:#e52f46;
+box-shadow:0 0 20px #e52f46;
+}
+
+.void{
+background:radial-gradient(circle,#351b59,#09050d);
+}
+
+.void:before{
+border-color:#9c5cff;
+box-shadow:0 0 25px #9c5cff;
+}
+
+.frost{
+background:radial-gradient(circle,#194b5b,#071013);
+}
+
+.frost:before{
+border-color:#73eaff;
+box-shadow:0 0 25px #73eaff;
+}
+
+.inferno{
+background:radial-gradient(circle,#69230d,#100604);
+}
+
+.inferno:before{
+border-color:#ff542d;
+box-shadow:0 0 25px #ff542d;
+}
+
+.cosmic{
+background:
+radial-gradient(circle at 30% 30%,#7436a5,#090612);
+}
+
+.cosmic:before{
+border-color:#cf74ff;
+box-shadow:0 0 28px #a744ff;
+}
+
+.shadow{
+background:#020203;
+}
+
+.shadow:before{
+border-color:#25252b;
+box-shadow:0 0 25px #000;
+}
+
+.neon{
+background:radial-gradient(circle,#124f47,#030b09);
+}
+
+.neon:before{
+border-color:#39ffd1;
+box-shadow:0 0 25px #39ffd1;
+}
+
+.divine{
+background:radial-gradient(circle,#574b17,#090805);
+}
+
+.divine:before{
+border:7px double #ffe67a;
+box-shadow:0 0 20px #ffe67a;
+}
+
+.blood{
+background:radial-gradient(circle,#5c000c,#090304);
+}
+
+.blood:before{
+border-color:#a80019;
+box-shadow:0 0 30px #ff001e;
+}
+
+.diamond{
+background:radial-gradient(circle,#16475b,#05090d);
+}
+
+.diamond:before{
+border:7px double #9beaff;
+box-shadow:0 0 20px #75dfff;
+}
+
+.royal{
+background:radial-gradient(circle,#514215,#090805);
+}
+
+.royal:before{
+border:7px double #e7c95d;
+box-shadow:0 0 15px #e7c95d;
+}
+
+/* =========================
+SHAPES
+========================= */
+
+.shapeGrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:7px;
+}
+
+.shapeButton{
+padding:14px 5px;
+border:1px solid #ffffff0d;
+border-radius:10px;
+background:#20212a;
+color:white;
+cursor:pointer;
+font-size:10px;
+font-weight:900;
+}
+
+.shapeButton:hover{
+background:#30313d;
+}
+
+.shapeList{
+display:flex;
+flex-direction:column;
+gap:7px;
+margin-top:12px;
+}
+
+.shapeItem{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:9px;
+background:#15161d;
+border-radius:9px;
+font-size:11px;
+}
+
+.shapeDelete{
+border:0;
+background:#71353b;
+color:white;
+border-radius:6px;
+padding:5px 8px;
+cursor:pointer;
+}
+
+/* =========================
+BUILDER
+========================= */
+
+.builderPreview{
+width:100%;
+height:180px;
+border-radius:12px;
+background:#08090d;
+border:1px solid #ffffff0c;
+position:relative;
+overflow:hidden;
+margin-top:10px;
+}
+
+.builderShape{
+position:absolute;
+transform:translate(-50%,-50%);
+}
+
+/* =========================
+STATUS
+========================= */
 
 .status{
 margin-top:10px;
 padding:10px;
 border-radius:9px;
 background:#111218;
-color:#858694;
-font-size:11px;
+color:#777985;
+font-size:10px;
 line-height:1.5;
 }
 
-/* FRAMES */
-
-.frame-categories{
-display:flex;
-gap:7px;
-overflow-x:auto;
-padding-bottom:8px;
-}
-
-.frame-categories button{
-white-space:nowrap;
-border:0;
-border-radius:8px;
-padding:9px 12px;
-background:#252630;
-color:#aaa;
-font-size:10px;
-font-weight:900;
-}
-
-.frame-categories button.active{
-background:#5865f2;
-color:#fff;
-}
-
-.frame-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:9px;
-}
-
-.frame-card{
-position:relative;
-padding:7px;
-border-radius:12px;
-background:#111218;
-border:2px solid transparent;
-cursor:pointer;
-}
-
-.frame-card.selected{
-border-color:#6874ff;
-box-shadow:0 0 18px rgba(104,116,255,.25);
-}
-
-.frame-preview{
-height:105px;
-border-radius:7px;
-position:relative;
-overflow:hidden;
-background:
-linear-gradient(135deg,#20212a,#090a0e);
-}
-
-.frame-preview:after{
-content:"";
-position:absolute;
-inset:14px;
-border:5px solid #fff;
-pointer-events:none;
-}
-
-.frame-name{
-font-size:10px;
-font-weight:900;
-text-align:center;
-margin-top:7px;
-color:#ddd;
-}
-
-/* PRESET FRAME LOOKS */
-
-.frame-preview.gold:after{
-border-color:#d7ad35;
-box-shadow:0 0 12px #d7ad35;
-}
-
-.frame-preview.crimson:after{
-border-color:#d63745;
-box-shadow:0 0 16px #d63745;
-}
-
-.frame-preview.void:after{
-border-color:#8b4dff;
-box-shadow:0 0 20px #8b4dff;
-}
-
-.frame-preview.frost:after{
-border-color:#72e5ff;
-box-shadow:0 0 18px #72e5ff;
-}
-
-.frame-preview.divine:after{
-border:7px double #f5df72;
-box-shadow:0 0 15px #f5df72;
-}
-
-.frame-preview.shadow:after{
-border-color:#222;
-box-shadow:0 0 15px #000;
-}
-
-.frame-preview.lightning:after{
-border-color:#aee8ff;
-box-shadow:0 0 22px #55cfff;
-}
-
-.frame-preview.inferno:after{
-border-color:#ff5b2e;
-box-shadow:0 0 22px #ff3b16;
-}
-
-.frame-preview.cosmic:after{
-border:6px solid #b86cff;
-box-shadow:0 0 18px #8a4dff;
-}
-
-.frame-preview.royal:after{
-border:8px double #e8c65b;
-box-shadow:0 0 10px #e8c65b;
-}
-
-.frame-preview.ancient:after{
-border-color:#ad8b55;
-}
-
-.frame-preview.neon:after{
-border-color:#39ffcf;
-box-shadow:0 0 22px #39ffcf;
-}
-
-.frame-preview.champion:after{
-border:8px solid #fff;
-box-shadow:0 0 10px #fff;
-}
-
-.frame-preview.blood:after{
-border-color:#9b0012;
-box-shadow:0 0 25px #ff001e;
-}
-
-/* MOBILE */
+/* =========================
+MOBILE
+========================= */
 
 @media(max-width:600px){
 
-.logo{font-size:26px}
-
-.nav button{
-font-size:8px;
-padding:10px 1px;
+.logo{
+font-size:27px;
 }
 
-.panel{padding:14px}
+.nav button{
+font-size:7px;
+}
+
+.frameGrid{
+grid-template-columns:repeat(2,1fr);
+}
 
 .row{
 grid-template-columns:1fr;
-}
-
-.frame-grid{
-grid-template-columns:repeat(2,1fr);
 }
 
 }
@@ -390,267 +545,653 @@ grid-template-columns:repeat(2,1fr);
 
 <div class="app">
 
-<header class="header">
+<div class="header">
 <div class="logo">✦ ICONFORGE</div>
-<div class="subtitle">Build insane tier-list icons.</div>
-</header>
+<div class="subtitle">
+Create custom tier-list icons
+</div>
+</div>
+
 
 <!-- LIVE PREVIEW -->
 
 <div class="preview">
 
-<div class="preview-title">
+<div class="previewTitle">
 LIVE PREVIEW
 </div>
 
-<div class="canvas-wrap">
+<div class="canvasHolder">
 <canvas id="canvas" width="600" height="600"></canvas>
 </div>
 
 </div>
 
+
 <!-- NAV -->
 
 <div class="nav">
 
-<button class="active" data-tab="image">IMAGE</button>
-<button data-tab="text">TEXT</button>
-<button data-tab="frames">FRAMES</button>
-<button data-tab="background">BACKGROUND</button>
-<button data-tab="effects">EFFECTS</button>
-<button data-tab="export">EXPORT</button>
+<button class="active" data-tab="image">
+IMAGE
+</button>
+
+<button data-tab="fit">
+AUTO FIT
+</button>
+
+<button data-tab="frames">
+FRAMES
+</button>
+
+<button data-tab="builder">
+BUILDER
+</button>
+
+<button data-tab="text">
+TEXT
+</button>
+
+<button data-tab="background">
+BACKGROUND
+</button>
+
+<button data-tab="effects">
+EFFECTS
+</button>
 
 </div>
 
-<!-- IMAGE -->
 
-<section id="image" class="section active">
+<!-- ================= IMAGE ================= -->
+
+<section class="section active" id="image">
 
 <div class="panel">
 
-<div class="title">Character Image</div>
-
-<div class="description">
-Upload literally any image. Transparency is NOT required.
-Auto Fit enlarges the image until it completely covers the frame opening.
+<div class="title">
+Character Image
 </div>
 
-<label>Upload Character</label>
+<div class="desc">
+Upload any image. Transparency is NOT required.
+</div>
 
-<input id="characterInput" type="file" accept="image/*">
+<label>
+Upload Character
+</label>
 
-<label>Zoom</label>
+<input
+id="characterInput"
+type="file"
+accept="image/*"
+>
 
-<input id="zoom" type="range" min=".05" max="8" step=".01" value="1">
+<label>
+Zoom
+</label>
 
-<span class="value" id="zoomValue">100%</span>
+<input
+id="zoom"
+type="range"
+min=".05"
+max="10"
+step=".01"
+value="1"
+>
 
-<label>Horizontal Position</label>
+<span class="smallValue" id="zoomValue">
+100%
+</span>
 
-<input id="posX" type="range" min="-600" max="600" value="0">
+<label>
+Horizontal Position
+</label>
 
-<label>Vertical Position</label>
+<input
+id="posX"
+type="range"
+min="-600"
+max="600"
+value="0"
+>
 
-<input id="posY" type="range" min="-600" max="600" value="0">
+<label>
+Vertical Position
+</label>
 
-<label>Rotation</label>
+<input
+id="posY"
+type="range"
+min="-600"
+max="600"
+value="0"
+>
 
-<input id="rotation" type="range" min="-180" max="180" value="0">
+<label>
+Rotation
+</label>
+
+<input
+id="rotation"
+type="range"
+min="-180"
+max="180"
+value="0"
+>
 
 <div class="row">
 
-<button class="button" id="autoFit">AUTO FIT</button>
+<button class="button" id="centerButton">
+CENTER
+</button>
 
-<button class="button secondary" id="center">CENTER</button>
+<button class="button" id="resetImage">
+RESET
+</button>
 
 </div>
 
 <div class="row">
 
-<button class="button secondary" id="flipH">FLIP HORIZONTAL</button>
+<button class="button secondary" id="flipH">
+FLIP H
+</button>
 
-<button class="button secondary" id="flipV">FLIP VERTICAL</button>
+<button class="button secondary" id="flipV">
+FLIP V
+</button>
 
 </div>
 
-<button class="button danger" id="resetImage">
-RESET IMAGE
+</div>
+
+</section>
+
+
+<!-- ================= AUTO FIT ================= -->
+
+<section class="section" id="fit">
+
+<div class="panel">
+
+<div class="title">
+Auto Fit Modes
+</div>
+
+<div class="desc">
+Choose exactly how aggressively the image should fill the frame.
+</div>
+
+<div class="fitGrid">
+
+<div class="fitOption active" data-fit="fill">
+
+<div class="fitName">
+1 — FILL OPENING
+</div>
+
+<div class="fitDescription">
+No empty space inside the frame. Enlarges image until the opening is completely covered.
+</div>
+
+</div>
+
+<div class="fitOption" data-fit="maximum">
+
+<div class="fitName">
+2 — MAXIMUM ZOOM
+</div>
+
+<div class="fitDescription">
+Extremely zoomed in. Great when you want the character filling almost everything.
+</div>
+
+</div>
+
+<div class="fitOption" data-fit="cover">
+
+<div class="fitName">
+3 — COVER
+</div>
+
+<div class="fitDescription">
+Classic cover behavior. Entire frame opening is filled.
+</div>
+
+</div>
+
+<div class="fitOption" data-fit="contain">
+
+<div class="fitName">
+4 — CONTAIN
+</div>
+
+<div class="fitDescription">
+Shows the entire image without cropping.
+</div>
+
+</div>
+
+<div class="fitOption" data-fit="smart">
+
+<div class="fitName">
+5 — SMART
+</div>
+
+<div class="fitDescription">
+Fills most of the opening while keeping more of the character visible.
+</div>
+
+</div>
+
+</div>
+
+<button class="button" id="applyFit">
+APPLY SELECTED AUTO FIT
 </button>
 
 <div class="status">
-Auto Fit uses the dimensions of the uploaded image itself and makes it <b>cover</b> the frame opening. It does not require transparent PNGs.
+<strong>Recommended:</strong> Start with <b>1 — FILL OPENING</b>, then use the zoom slider if you want the character even closer.
 </div>
 
 </div>
 
 </section>
 
-<!-- TEXT -->
 
-<section id="text" class="section">
+<!-- ================= FRAMES ================= -->
+
+<section class="section" id="frames">
 
 <div class="panel">
 
-<div class="title">Text</div>
+<div class="title">
+Official Frame Library
+</div>
 
-<label>Name</label>
+<div class="desc">
+These frames are built into IconForge. No uploaded border image is required.
+</div>
 
-<input id="name" type="text" placeholder="Ryomen Sukuna">
+<div id="frameGrid" class="frameGrid">
+</div>
 
-<label>Version</label>
+</div>
 
-<input id="version" type="text" placeholder="Heian Era">
+<div class="panel">
+
+<div class="title">
+Frame Settings
+</div>
+
+<label>
+Thickness
+</label>
+
+<input
+id="frameWidth"
+type="range"
+min="2"
+max="45"
+value="12"
+>
+
+<label>
+Glow
+</label>
+
+<input
+id="frameGlow"
+type="range"
+min="0"
+max="60"
+value="8"
+>
+
+<label>
+Opacity
+</label>
+
+<input
+id="frameOpacity"
+type="range"
+min="10"
+max="100"
+value="100"
+>
+
+</div>
+
+</section>
+
+
+<!-- ================= BUILDER ================= -->
+
+<section class="section" id="builder">
+
+<div class="panel">
+
+<div class="title">
+Custom Frame Builder
+</div>
+
+<div class="desc">
+Build your own frame using shapes. These shapes become part of the final icon.
+</div>
+
+<label>
+Shape Color
+</label>
+
+<input
+id="shapeColor"
+type="color"
+value="#ffffff"
+>
+
+<label>
+Shape Size
+</label>
+
+<input
+id="shapeSize"
+type="range"
+min="10"
+max="300"
+value="100"
+>
+
+<label>
+Shape Thickness
+</label>
+
+<input
+id="shapeThickness"
+type="range"
+min="1"
+max="30"
+value="5"
+>
+
+<div class="shapeGrid">
+
+<button class="shapeButton" data-shape="square">
+□ SQUARE
+</button>
+
+<button class="shapeButton" data-shape="circle">
+○ CIRCLE
+</button>
+
+<button class="shapeButton" data-shape="diamond">
+◇ DIAMOND
+</button>
+
+<button class="shapeButton" data-shape="triangle">
+△ TRIANGLE
+</button>
+
+<button class="shapeButton" data-shape="star">
+★ STAR
+</button>
+
+<button class="shapeButton" data-shape="hexagon">
+⬡ HEXAGON
+</button>
+
+<button class="shapeButton" data-shape="line">
+━ LINE
+</button>
+
+<button class="shapeButton" data-shape="cross">
+✚ CROSS
+</button>
+
+</div>
+
+<div class="status">
+Tap a shape to add it to your custom frame.
+</div>
+
+<div id="shapeList" class="shapeList">
+</div>
+
+<button class="button danger" id="clearShapes">
+CLEAR CUSTOM FRAME
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= TEXT ================= -->
+
+<section class="section" id="text">
+
+<div class="panel">
+
+<div class="title">
+Text
+</div>
+
+<label>
+Character Name
+</label>
+
+<input
+id="name"
+type="text"
+placeholder="Ryomen Sukuna"
+>
+
+<label>
+Version
+</label>
+
+<input
+id="version"
+type="text"
+placeholder="Heian Era"
+>
 
 <div class="row">
 
 <div>
 
-<label>Name Font</label>
+<label>
+Name Font
+</label>
 
 <select id="nameFont">
+
 <option>Arial</option>
 <option>Impact</option>
+<option>Arial Black</option>
 <option>Georgia</option>
 <option>Verdana</option>
 <option>Trebuchet MS</option>
 <option>Courier New</option>
 <option>Times New Roman</option>
-<option>Arial Black</option>
 <option>Garamond</option>
 <option>Palatino Linotype</option>
-<option>Segoe UI</option>
+
 </select>
 
 </div>
 
 <div>
 
-<label>Version Font</label>
+<label>
+Version Font
+</label>
 
 <select id="versionFont">
+
 <option>Arial</option>
 <option>Impact</option>
+<option>Arial Black</option>
 <option>Georgia</option>
 <option>Verdana</option>
 <option>Trebuchet MS</option>
 <option>Courier New</option>
 <option>Times New Roman</option>
-<option>Arial Black</option>
 <option>Garamond</option>
 <option>Palatino Linotype</option>
-<option>Segoe UI</option>
+
 </select>
 
 </div>
 
 </div>
 
-<label>Upload Custom Font</label>
+<label>
+Upload Custom Font
+</label>
 
-<input id="fontInput" type="file" accept=".ttf,.otf,.woff,.woff2">
-
-<div class="row">
-
-<div>
-<label>Name Size</label>
-<input id="nameSize" type="range" min="10" max="90" value="42">
-</div>
-
-<div>
-<label>Version Size</label>
-<input id="versionSize" type="range" min="8" max="60" value="24">
-</div>
-
-</div>
-
-<label>Text Position</label>
-<input id="textY" type="range" min="350" max="590" value="510">
+<input
+id="fontInput"
+type="file"
+accept=".ttf,.otf,.woff,.woff2"
+>
 
 <div class="row">
 
 <div>
-<label>Text Color</label>
-<input id="textColor" type="color" value="#ffffff">
+
+<label>
+Name Size
+</label>
+
+<input
+id="nameSize"
+type="range"
+min="10"
+max="90"
+value="42"
+>
+
 </div>
 
 <div>
-<label>Outline Color</label>
-<input id="outlineColor" type="color" value="#000000">
+
+<label>
+Version Size
+</label>
+
+<input
+id="versionSize"
+type="range"
+min="8"
+max="60"
+value="24"
+>
+
+</div>
+
+</div>
+
+<label>
+Text Y Position
+</label>
+
+<input
+id="textY"
+type="range"
+min="350"
+max="590"
+value="510"
+>
+
+<div class="row">
+
+<div>
+
+<label>
+Text Color
+</label>
+
+<input
+id="textColor"
+type="color"
+value="#ffffff"
+>
+
+</div>
+
+<div>
+
+<label>
+Outline
+</label>
+
+<input
+id="outlineColor"
+type="color"
+value="#000000"
+>
+
 </div>
 
 </div>
 
-<label>Outline Thickness</label>
-<input id="outlineWidth" type="range" min="0" max="15" value="3">
+<label>
+Outline Width
+</label>
 
-<label>Text Shadow</label>
-<input id="textShadow" type="range" min="0" max="30" value="0">
+<input
+id="outlineWidth"
+type="range"
+min="0"
+max="15"
+value="3"
+>
+
+<label>
+Text Shadow
+</label>
+
+<input
+id="textShadow"
+type="range"
+min="0"
+max="30"
+value="0"
+>
 
 </div>
 
 </section>
 
-<!-- FRAMES -->
 
-<section id="frames" class="section">
+<!-- ================= BACKGROUND ================= -->
 
-<div class="panel">
-
-<div class="title">Official Frame Library</div>
-
-<div class="description">
-These are built-in IconForge frames. They don't rely on uploaded border images, so their openings are always perfectly aligned.
-</div>
-
-<div class="frame-categories">
-
-<button class="active" data-category="all">ALL</button>
-<button data-category="anime">ANIME</button>
-<button data-category="dark">DARK</button>
-<button data-category="energy">ENERGY</button>
-<button data-category="royal">ROYAL</button>
-
-</div>
-
-<div id="frameGrid" class="frame-grid"></div>
-
-</div>
+<section class="section" id="background">
 
 <div class="panel">
 
-<div class="title">Frame Settings</div>
-
-<label>Frame Thickness</label>
-
-<input id="frameWidth" type="range" min="2" max="35" value="10">
-
-<label>Frame Glow</label>
-
-<input id="frameGlow" type="range" min="0" max="50" value="8">
-
-<label>Frame Opacity</label>
-
-<input id="frameOpacity" type="range" min="10" max="100" value="100">
-
+<div class="title">
+Background
 </div>
 
-</section>
-
-<!-- BACKGROUND -->
-
-<section id="background" class="section">
-
-<div class="panel">
-
-<div class="title">Background</div>
-
-<label>Type</label>
+<label>
+Background Type
+</label>
 
 <select id="bgType">
 
-<option value="solid">Solid</option>
-<option value="gradient">Gradient</option>
-<option value="image">Image</option>
+<option value="solid">
+Solid
+</option>
+
+<option value="gradient">
+Gradient
+</option>
+
+<option value="image">
+Image
+</option>
 
 </select>
 
@@ -658,98 +1199,150 @@ These are built-in IconForge frames. They don't rely on uploaded border images, 
 
 <div>
 
-<label>Color</label>
-<input id="bgColor" type="color" value="#111111">
+<label>
+Color
+</label>
+
+<input
+id="bgColor"
+type="color"
+value="#111111"
+>
 
 </div>
 
 <div>
 
-<label>Second Color</label>
-<input id="bgColor2" type="color" value="#292952">
+<label>
+Second Color
+</label>
+
+<input
+id="bgColor2"
+type="color"
+value="#292952"
+>
 
 </div>
 
 </div>
 
-<label>Upload Background</label>
+<label>
+Upload Background
+</label>
 
-<input id="bgInput" type="file" accept="image/*">
+<input
+id="bgInput"
+type="file"
+accept="image/*"
+>
 
-<label>Background Blur</label>
+<label>
+Background Blur
+</label>
 
-<input id="bgBlur" type="range" min="0" max="30" value="0">
+<input
+id="bgBlur"
+type="range"
+min="0"
+max="30"
+value="0"
+>
 
 </div>
 
 </section>
 
-<!-- EFFECTS -->
 
-<section id="effects" class="section">
+<!-- ================= EFFECTS ================= -->
+
+<section class="section" id="effects">
 
 <div class="panel">
 
-<div class="title">Effects</div>
+<div class="title">
+Effects
+</div>
 
-<label>Brightness</label>
-<input id="brightness" type="range" min="0" max="200" value="100">
+<label>
+Brightness
+</label>
 
-<label>Contrast</label>
-<input id="contrast" type="range" min="0" max="200" value="100">
+<input
+id="brightness"
+type="range"
+min="0"
+max="200"
+value="100"
+>
 
-<label>Saturation</label>
-<input id="saturation" type="range" min="0" max="200" value="100">
+<label>
+Contrast
+</label>
 
-<label>Blur</label>
-<input id="blur" type="range" min="0" max="10" step=".1" value="0">
+<input
+id="contrast"
+type="range"
+min="0"
+max="200"
+value="100"
+>
 
-<label>Vignette</label>
-<input id="vignette" type="range" min="0" max="100" value="0">
+<label>
+Saturation
+</label>
 
-<label>Vignette Color</label>
-<input id="vignetteColor" type="color" value="#000000">
+<input
+id="saturation"
+type="range"
+min="0"
+max="200"
+value="100"
+>
 
-<label>Edge Darkening</label>
-<input id="edgeDark" type="range" min="0" max="100" value="0">
+<label>
+Blur
+</label>
+
+<input
+id="blur"
+type="range"
+min="0"
+max="10"
+step=".1"
+value="0"
+>
+
+<label>
+Vignette
+</label>
+
+<input
+id="vignette"
+type="range"
+min="0"
+max="100"
+value="0"
+>
+
+<label>
+Edge Darkening
+</label>
+
+<input
+id="edgeDark"
+type="range"
+min="0"
+max="100"
+value="0"
+>
 
 </div>
 
 </section>
 
-<!-- EXPORT -->
-
-<section id="export" class="section">
-
-<div class="panel">
-
-<div class="title">Export</div>
-
-<button class="button" id="download">
-DOWNLOAD PNG
-</button>
-
-<button class="button secondary" id="save">
-SAVE PROJECT
-</button>
-
-<button class="button secondary" id="load">
-LOAD PROJECT
-</button>
-
-<button class="button danger" id="reset">
-RESET EVERYTHING
-</button>
-
-<div id="status" class="status">
-Ready.
 </div>
 
-</div>
-
-</section>
-
-</div>
 
 <script>
 
@@ -760,18 +1353,21 @@ CORE
 const canvas=document.getElementById("canvas");
 const ctx=canvas.getContext("2d");
 
-const W=600;
-const H=600;
-
 let character=null;
 let background=null;
 
-let flipH=false;
-let flipV=false;
+let flipHorizontal=false;
+let flipVertical=false;
+
+let selectedFrame="classic";
+
+let selectedFit="fill";
+
+let customShapes=[];
 
 
 /* =====================================================
-FRAME LIBRARY
+FRAME DATA
 ===================================================== */
 
 const frames=[
@@ -779,177 +1375,108 @@ const frames=[
 {
 id:"classic",
 name:"Classic",
-category:"anime",
-color:"#ffffff",
-style:"solid",
-shape:"square"
+css:""
 },
 
 {
 id:"gold",
 name:"Gold Emperor",
-category:"royal",
-color:"#d7ad35",
-style:"solid",
-shape:"square"
+css:"gold"
 },
 
 {
 id:"crimson",
 name:"Crimson",
-category:"dark",
-color:"#d63745",
-style:"solid",
-shape:"square"
+css:"crimson"
 },
 
 {
 id:"void",
 name:"Void",
-category:"dark",
-color:"#8b4dff",
-style:"solid",
-shape:"square"
+css:"void"
 },
 
 {
 id:"frost",
 name:"Frost",
-category:"energy",
-color:"#72e5ff",
-style:"solid",
-shape:"square"
-},
-
-{
-id:"divine",
-name:"Divine",
-category:"royal",
-color:"#f5df72",
-style:"double",
-shape:"square"
-},
-
-{
-id:"shadow",
-name:"Shadow",
-category:"dark",
-color:"#151515",
-style:"solid",
-shape:"square"
-},
-
-{
-id:"lightning",
-name:"Lightning",
-category:"energy",
-color:"#aee8ff",
-style:"solid",
-shape:"square"
+css:"frost"
 },
 
 {
 id:"inferno",
 name:"Inferno",
-category:"energy",
-color:"#ff5b2e",
-style:"solid",
-shape:"square"
+css:"inferno"
 },
 
 {
 id:"cosmic",
 name:"Cosmic",
-category:"energy",
-color:"#b86cff",
-style:"double",
-shape:"square"
+css:"cosmic"
 },
 
 {
-id:"royal",
-name:"Royal",
-category:"royal",
-color:"#e8c65b",
-style:"double",
-shape:"square"
-},
-
-{
-id:"ancient",
-name:"Ancient",
-category:"anime",
-color:"#ad8b55",
-style:"double",
-shape:"square"
+id:"shadow",
+name:"Shadow",
+css:"shadow"
 },
 
 {
 id:"neon",
 name:"Neon",
-category:"energy",
-color:"#39ffcf",
-style:"solid",
-shape:"square"
+css:"neon"
 },
 
 {
-id:"champion",
-name:"Champion",
-category:"royal",
-color:"#ffffff",
-style:"double",
-shape:"square"
+id:"divine",
+name:"Divine",
+css:"divine"
 },
 
 {
 id:"blood",
 name:"Blood Moon",
-category:"dark",
-color:"#9b0012",
-style:"solid",
-shape:"square"
+css:"blood"
 },
 
 {
 id:"diamond",
 name:"Diamond",
-category:"royal",
-color:"#8eeaff",
-style:"double",
-shape:"square"
+css:"diamond"
+},
+
+{
+id:"royal",
+name:"Royal",
+css:"royal"
 }
 
 ];
 
-let selectedFrame="classic";
+
+/* =====================================================
+FRAME UI
+===================================================== */
 
 const frameGrid=document.getElementById("frameGrid");
 
-
-function renderFrames(category="all"){
+function renderFrames(){
 
 frameGrid.innerHTML="";
 
-frames
-.filter(frame=>
-category==="all" ||
-frame.category===category
-)
-.forEach(frame=>{
+frames.forEach(frame=>{
 
 const card=document.createElement("div");
 
 card.className=
-"frame-card"+
+"frameCard"+
 (frame.id===selectedFrame?" selected":"");
 
 card.innerHTML=`
 
-<div class="frame-preview ${frame.id}">
+<div class="framePreview ${frame.css}">
 </div>
 
-<div class="frame-name">
+<div class="frameName">
 ${frame.name}
 </div>
 
@@ -959,7 +1486,7 @@ card.onclick=()=>{
 
 selectedFrame=frame.id;
 
-renderFrames(category);
+renderFrames();
 
 draw();
 
@@ -972,25 +1499,6 @@ frameGrid.appendChild(card);
 }
 
 renderFrames();
-
-
-document
-.querySelectorAll(".frame-categories button")
-.forEach(button=>{
-
-button.onclick=()=>{
-
-document
-.querySelectorAll(".frame-categories button")
-.forEach(x=>x.classList.remove("active"));
-
-button.classList.add("active");
-
-renderFrames(button.dataset.category);
-
-};
-
-});
 
 
 /* =====================================================
@@ -1023,7 +1531,7 @@ document
 
 
 /* =====================================================
-LOAD IMAGE
+IMAGE LOADER
 ===================================================== */
 
 function loadImage(file,callback){
@@ -1061,7 +1569,7 @@ loadImage(file,img=>{
 
 character=img;
 
-autoFit();
+applyFit();
 
 });
 
@@ -1069,56 +1577,155 @@ autoFit();
 
 
 /* =====================================================
-🔥 AUTO FIT
+AUTO FIT OPTIONS
 ===================================================== */
 
-function autoFit(){
+document
+.querySelectorAll(".fitOption")
+.forEach(option=>{
+
+option.onclick=()=>{
+
+document
+.querySelectorAll(".fitOption")
+.forEach(x=>
+x.classList.remove("active")
+);
+
+option.classList.add("active");
+
+selectedFit=option.dataset.fit;
+
+};
+
+});
+
+
+/* =====================================================
+AUTO FIT ENGINE
+===================================================== */
+
+function applyFit(){
 
 if(!character)return;
 
 
 /*
-THE OPENING.
-
-Our official frames use this same
-opening every time.
+The actual opening of every official frame.
 */
-
-const openingX=55;
-const openingY=55;
 
 const openingW=490;
 const openingH=490;
 
 
 /*
-This is the important part.
-
-We don't care if the uploaded image
-has transparency.
-
-We simply make the ENTIRE IMAGE
-COVER the opening.
-
-MAX is what makes it enlarge
-instead of shrink.
+Calculate the scale required
+to COVER the opening.
 */
 
-const scaleX=
-openingW/character.width;
+const coverScale=Math.max(
 
-const scaleY=
-openingH/character.height;
+openingW/character.width,
 
-const scale=
-Math.max(scaleX,scaleY);
+openingH/character.height
+
+);
 
 
-document.getElementById("zoom").value=
-Math.min(8,scale);
+let scale=coverScale;
 
-document.getElementById("posX").value=0;
-document.getElementById("posY").value=0;
+
+if(selectedFit==="fill"){
+
+/*
+NO EMPTY SPACE.
+*/
+
+scale=coverScale;
+
+}
+
+
+if(selectedFit==="cover"){
+
+scale=coverScale;
+
+}
+
+
+if(selectedFit==="contain"){
+
+/*
+Entire image visible.
+*/
+
+scale=Math.min(
+
+openingW/character.width,
+
+openingH/character.height
+
+);
+
+}
+
+
+if(selectedFit==="smart"){
+
+/*
+Slightly more aggressive
+than normal cover.
+*/
+
+scale=coverScale*1.15;
+
+}
+
+
+if(selectedFit==="maximum"){
+
+/*
+Aggressive zoom.
+
+The important part:
+we don't shrink the image.
+
+We multiply the cover scale.
+*/
+
+scale=coverScale*1.65;
+
+}
+
+
+/*
+Set zoom slider.
+
+Our slider starts at .05,
+so scale directly represents
+actual image scale.
+*/
+
+document
+.getElementById("zoom")
+.value=Math.min(10,Math.max(.05,scale));
+
+
+/*
+Reset positioning.
+*/
+
+document
+.getElementById("posX")
+.value=0;
+
+document
+.getElementById("posY")
+.value=0;
+
+document
+.getElementById("rotation")
+.value=0;
 
 draw();
 
@@ -1131,14 +1738,90 @@ updateUI();
 CENTER
 ===================================================== */
 
-function center(){
+document
+.getElementById("centerButton")
+.onclick=()=>{
 
-document.getElementById("posX").value=0;
-document.getElementById("posY").value=0;
+document
+.getElementById("posX")
+.value=0;
+
+document
+.getElementById("posY")
+.value=0;
 
 draw();
 
-}
+};
+
+
+/* =====================================================
+APPLY FIT
+===================================================== */
+
+document
+.getElementById("applyFit")
+.onclick=applyFit;
+
+
+/* =====================================================
+IMAGE RESET
+===================================================== */
+
+document
+.getElementById("resetImage")
+.onclick=()=>{
+
+document
+.getElementById("zoom")
+.value=1;
+
+document
+.getElementById("posX")
+.value=0;
+
+document
+.getElementById("posY")
+.value=0;
+
+document
+.getElementById("rotation")
+.value=0;
+
+flipHorizontal=false;
+flipVertical=false;
+
+draw();
+
+updateUI();
+
+};
+
+
+/* =====================================================
+FLIP
+===================================================== */
+
+document
+.getElementById("flipH")
+.onclick=()=>{
+
+flipHorizontal=!flipHorizontal;
+
+draw();
+
+};
+
+
+document
+.getElementById("flipV")
+.onclick=()=>{
+
+flipVertical=!flipVertical;
+
+draw();
+
+};
 
 
 /* =====================================================
@@ -1157,7 +1840,9 @@ loadImage(file,img=>{
 
 background=img;
 
-document.getElementById("bgType").value="image";
+document
+.getElementById("bgType")
+.value="image";
 
 draw();
 
@@ -1216,7 +1901,12 @@ document.getElementById("bgColor2").value
 
 ctx.fillStyle=gradient;
 
-ctx.fillRect(0,0,600,600);
+ctx.fillRect(
+0,
+0,
+600,
+600
+);
 
 return;
 
@@ -1226,7 +1916,12 @@ return;
 ctx.fillStyle=
 document.getElementById("bgColor").value;
 
-ctx.fillRect(0,0,600,600);
+ctx.fillRect(
+0,
+0,
+600,
+600
+);
 
 }
 
@@ -1266,7 +1961,7 @@ dh
 
 
 /* =====================================================
-CHARACTER DRAW
+DRAW CHARACTER
 ===================================================== */
 
 function drawCharacter(){
@@ -1274,16 +1969,24 @@ function drawCharacter(){
 if(!character)return;
 
 const zoom=
-Number(document.getElementById("zoom").value);
+Number(
+document.getElementById("zoom").value
+);
 
 const x=
-Number(document.getElementById("posX").value);
+Number(
+document.getElementById("posX").value
+);
 
 const y=
-Number(document.getElementById("posY").value);
+Number(
+document.getElementById("posY").value
+);
 
 const rotation=
-Number(document.getElementById("rotation").value)
+Number(
+document.getElementById("rotation").value
+)
 *Math.PI/180;
 
 
@@ -1298,26 +2001,19 @@ ctx.save();
 
 
 /*
-Opening is ALWAYS centered.
-*/
+This clipping rectangle is the
+actual frame opening.
 
-const openingX=55;
-const openingY=55;
-const openingW=490;
-const openingH=490;
-
-
-/*
-Clip to opening.
+The character gets clipped here.
 */
 
 ctx.beginPath();
 
 ctx.rect(
-openingX,
-openingY,
-openingW,
-openingH
+55,
+55,
+490,
+490
 );
 
 ctx.clip();
@@ -1330,19 +2026,19 @@ ctx.translate(
 
 ctx.rotate(rotation);
 
-
 ctx.scale(
-flipH?-1:1,
-flipV?-1:1
+flipHorizontal?-1:1,
+flipVertical?-1:1
 );
 
 
 ctx.filter=
-
-`brightness(${document.getElementById("brightness").value}%)
+`
+brightness(${document.getElementById("brightness").value}%)
 contrast(${document.getElementById("contrast").value}%)
 saturate(${document.getElementById("saturation").value}%)
-blur(${document.getElementById("blur").value}px)`;
+blur(${document.getElementById("blur").value}px)
+`;
 
 
 ctx.drawImage(
@@ -1371,29 +2067,75 @@ if(!frame)return;
 
 
 const width=
-Number(document.getElementById("frameWidth").value);
+Number(
+document.getElementById("frameWidth").value
+);
 
 const glow=
-Number(document.getElementById("frameGlow").value);
+Number(
+document.getElementById("frameGlow").value
+);
 
 const opacity=
-Number(document.getElementById("frameOpacity").value)/100;
+Number(
+document.getElementById("frameOpacity").value
+)/100;
+
+
+const colors={
+
+classic:"#ffffff",
+
+gold:"#e5bd48",
+
+crimson:"#e52f46",
+
+void:"#9c5cff",
+
+frost:"#73eaff",
+
+inferno:"#ff542d",
+
+cosmic:"#cf74ff",
+
+shadow:"#25252b",
+
+neon:"#39ffd1",
+
+divine:"#ffe67a",
+
+blood:"#a80019",
+
+diamond:"#9beaff",
+
+royal:"#e7c95d"
+
+};
+
+
+const color=
+colors[frame.id] ||
+"#ffffff";
 
 
 ctx.save();
 
 ctx.globalAlpha=opacity;
 
-ctx.strokeStyle=frame.color;
+ctx.strokeStyle=color;
 
 ctx.lineWidth=width;
 
-ctx.shadowColor=frame.color;
+ctx.shadowColor=color;
 
 ctx.shadowBlur=glow;
 
 
-if(frame.style==="double"){
+if(
+frame.id==="divine" ||
+frame.id==="royal" ||
+frame.id==="diamond"
+){
 
 ctx.lineWidth=
 Math.max(2,width/3);
@@ -1424,7 +2166,419 @@ width/2,
 }
 
 
+/*
+Additional frame decoration.
+*/
+
+if(frame.id==="inferno" ||
+frame.id==="blood"){
+
+ctx.beginPath();
+
+ctx.arc(
+300,
+300,
+270,
+0,
+Math.PI*2
+);
+
+ctx.lineWidth=3;
+
+ctx.stroke();
+
+}
+
+
+if(frame.id==="cosmic" ||
+frame.id==="void"){
+
+for(let i=0;i<8;i++){
+
+const angle=
+(i/8)*Math.PI*2;
+
+const x=
+300+Math.cos(angle)*275;
+
+const y=
+300+Math.sin(angle)*275;
+
+ctx.beginPath();
+
+ctx.arc(
+x,
+y,
+5,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle=color;
+
+ctx.fill();
+
+}
+
+}
+
+
 ctx.restore();
+
+}
+
+
+/* =====================================================
+CUSTOM SHAPES
+===================================================== */
+
+document
+.querySelectorAll(".shapeButton")
+.forEach(button=>{
+
+button.onclick=()=>{
+
+customShapes.push({
+
+type:button.dataset.shape,
+
+color:
+document.getElementById("shapeColor").value,
+
+size:
+Number(
+document.getElementById("shapeSize").value
+),
+
+thickness:
+Number(
+document.getElementById("shapeThickness").value
+),
+
+x:300,
+
+y:300
+
+});
+
+renderShapeList();
+
+draw();
+
+};
+
+});
+
+
+function renderShapeList(){
+
+const list=
+document.getElementById("shapeList");
+
+list.innerHTML="";
+
+customShapes.forEach((shape,index)=>{
+
+const item=
+document.createElement("div");
+
+item.className="shapeItem";
+
+item.innerHTML=`
+
+<span>
+${shape.type.toUpperCase()}
+</span>
+
+<button
+class="shapeDelete"
+data-index="${index}"
+>
+DELETE
+</button>
+
+`;
+
+list.appendChild(item);
+
+});
+
+document
+.querySelectorAll(".shapeDelete")
+.forEach(button=>{
+
+button.onclick=()=>{
+
+customShapes.splice(
+Number(button.dataset.index),
+1
+);
+
+renderShapeList();
+
+draw();
+
+};
+
+});
+
+}
+
+
+/* =====================================================
+DRAW CUSTOM SHAPES
+===================================================== */
+
+function drawCustomShapes(){
+
+customShapes.forEach(shape=>{
+
+ctx.save();
+
+ctx.strokeStyle=shape.color;
+
+ctx.fillStyle=shape.color;
+
+ctx.lineWidth=shape.thickness;
+
+const s=shape.size;
+
+const x=shape.x;
+const y=shape.y;
+
+
+if(shape.type==="square"){
+
+ctx.strokeRect(
+x-s/2,
+y-s/2,
+s,
+s
+);
+
+}
+
+
+if(shape.type==="circle"){
+
+ctx.beginPath();
+
+ctx.arc(
+x,
+y,
+s/2,
+0,
+Math.PI*2
+);
+
+ctx.stroke();
+
+}
+
+
+if(shape.type==="diamond"){
+
+ctx.beginPath();
+
+ctx.moveTo(x,y-s/2);
+ctx.lineTo(x+s/2,y);
+ctx.lineTo(x,y+s/2);
+ctx.lineTo(x-s/2,y);
+ctx.closePath();
+
+ctx.stroke();
+
+}
+
+
+if(shape.type==="triangle"){
+
+ctx.beginPath();
+
+ctx.moveTo(
+x,
+y-s/2
+);
+
+ctx.lineTo(
+x+s/2,
+y+s/2
+);
+
+ctx.lineTo(
+x-s/2,
+y+s/2
+);
+
+ctx.closePath();
+
+ctx.stroke();
+
+}
+
+
+if(shape.type==="star"){
+
+drawStar(
+x,
+y,
+s/2,
+s/4,
+5
+);
+
+}
+
+
+if(shape.type==="hexagon"){
+
+drawPolygon(
+x,
+y,
+s/2,
+6
+);
+
+}
+
+
+if(shape.type==="line"){
+
+ctx.beginPath();
+
+ctx.moveTo(
+x-s/2,
+y
+);
+
+ctx.lineTo(
+x+s/2,
+y
+);
+
+ctx.stroke();
+
+}
+
+
+if(shape.type==="cross"){
+
+ctx.beginPath();
+
+ctx.moveTo(
+x-s/2,
+y
+);
+
+ctx.lineTo(
+x+s/2,
+y
+);
+
+ctx.moveTo(
+x,
+y-s/2
+);
+
+ctx.lineTo(
+x,
+y+s/2
+);
+
+ctx.stroke();
+
+}
+
+
+ctx.restore();
+
+});
+
+}
+
+
+function drawStar(
+cx,
+cy,
+outer,
+inner,
+points
+){
+
+ctx.beginPath();
+
+for(
+let i=0;
+i<points*2;
+i++
+){
+
+const angle=
+-i*Math.PI/points-
+Math.PI/2;
+
+const radius=
+i%2===0?outer:inner;
+
+const x=
+cx+
+Math.cos(angle)*radius;
+
+const y=
+cy+
+Math.sin(angle)*radius;
+
+if(i===0)
+ctx.moveTo(x,y);
+else
+ctx.lineTo(x,y);
+
+}
+
+ctx.closePath();
+
+ctx.stroke();
+
+}
+
+
+function drawPolygon(
+cx,
+cy,
+radius,
+sides
+){
+
+ctx.beginPath();
+
+for(
+let i=0;
+i<sides;
+i++
+){
+
+const angle=
+i*Math.PI*2/sides-
+Math.PI/2;
+
+const x=
+cx+
+Math.cos(angle)*radius;
+
+const y=
+cy+
+Math.sin(angle)*radius;
+
+if(i===0)
+ctx.moveTo(x,y);
+else
+ctx.lineTo(x,y);
+
+}
+
+ctx.closePath();
+
+ctx.stroke();
 
 }
 
@@ -1445,18 +2599,25 @@ if(!name && !version)return;
 
 
 const y=
-Number(document.getElementById("textY").value);
+Number(
+document.getElementById("textY").value
+);
 
 const outline=
-Number(document.getElementById("outlineWidth").value);
+Number(
+document.getElementById("outlineWidth").value
+);
 
 const shadow=
-Number(document.getElementById("textShadow").value);
+Number(
+document.getElementById("textShadow").value
+);
 
 
 ctx.save();
 
 ctx.textAlign="center";
+
 ctx.textBaseline="middle";
 
 ctx.fillStyle=
@@ -1466,6 +2627,7 @@ ctx.strokeStyle=
 document.getElementById("outlineColor").value;
 
 ctx.shadowColor="#000";
+
 ctx.shadowBlur=shadow;
 
 
@@ -1474,12 +2636,21 @@ if(name){
 ctx.font=
 `bold ${document.getElementById("nameSize").value}px ${document.getElementById("nameFont").value}`;
 
-ctx.lineWidth=outline*2;
+ctx.lineWidth=
+outline*2;
 
 if(outline)
-ctx.strokeText(name,300,y);
+ctx.strokeText(
+name,
+300,
+y
+);
 
-ctx.fillText(name,300,y);
+ctx.fillText(
+name,
+300,
+y
+);
 
 }
 
@@ -1489,15 +2660,23 @@ if(version){
 ctx.font=
 `bold ${document.getElementById("versionSize").value}px ${document.getElementById("versionFont").value}`;
 
-ctx.lineWidth=outline*2;
+ctx.lineWidth=
+outline*2;
 
 if(outline)
-ctx.strokeText(version,300,y+40);
+ctx.strokeText(
+version,
+300,
+y+40
+);
 
-ctx.fillText(version,300,y+40);
+ctx.fillText(
+version,
+300,
+y+40
+);
 
 }
-
 
 ctx.restore();
 
@@ -1511,26 +2690,29 @@ VIGNETTE
 function drawVignette(){
 
 const amount=
-Number(document.getElementById("vignette").value)/100;
+Number(
+document.getElementById("vignette").value
+);
 
 const edge=
-Number(document.getElementById("edgeDark").value)/100;
+Number(
+document.getElementById("edgeDark").value
+);
 
 const strength=
-Math.max(amount,edge);
+Math.max(
+amount,
+edge
+)/100;
 
 if(strength<=0)return;
-
-
-const color=
-document.getElementById("vignetteColor").value;
 
 
 const gradient=
 ctx.createRadialGradient(
 300,
 300,
-100,
+110,
 300,
 300,
 430
@@ -1548,25 +2730,17 @@ gradient.addColorStop(
 
 gradient.addColorStop(
 1,
-hexToRGBA(color,strength)
+`rgba(0,0,0,${strength})`
 );
 
 ctx.fillStyle=gradient;
 
-ctx.fillRect(0,0,600,600);
-
-}
-
-
-function hexToRGBA(hex,a){
-
-hex=hex.replace("#","");
-
-const r=parseInt(hex.substring(0,2),16);
-const g=parseInt(hex.substring(2,4),16);
-const b=parseInt(hex.substring(4,6),16);
-
-return `rgba(${r},${g},${b},${a})`;
+ctx.fillRect(
+0,
+0,
+600,
+600
+);
 
 }
 
@@ -1577,11 +2751,18 @@ MASTER DRAW
 
 function draw(){
 
-ctx.clearRect(0,0,600,600);
+ctx.clearRect(
+0,
+0,
+600,
+600
+);
 
 drawBackground();
 
 drawCharacter();
+
+drawCustomShapes();
 
 drawFrame();
 
@@ -1593,7 +2774,7 @@ drawVignette();
 
 
 /* =====================================================
-CONTROLS
+CONTROL LIST
 ===================================================== */
 
 const controls=[
@@ -1629,33 +2810,38 @@ const controls=[
 "saturation",
 "blur",
 "vignette",
-"vignetteColor",
-"edgeDark"
+"edgeDark",
+
+"shapeColor",
+"shapeSize",
+"shapeThickness"
 
 ];
 
 
 controls.forEach(id=>{
 
-const element=
+const el=
 document.getElementById(id);
 
-if(!element)return;
+if(!el)return;
 
-element.addEventListener(
+el.addEventListener(
 "input",
 ()=>{
 
 draw();
+
 updateUI();
 
 });
 
-element.addEventListener(
+el.addEventListener(
 "change",
 ()=>{
 
 draw();
+
 updateUI();
 
 });
@@ -1664,66 +2850,94 @@ updateUI();
 
 
 /* =====================================================
-BUTTONS
+CUSTOM FONT
 ===================================================== */
 
 document
-.getElementById("autoFit")
-.onclick=autoFit;
+.getElementById("fontInput")
+.addEventListener(
+"change",
+async e=>{
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+try{
+
+const buffer=
+await file.arrayBuffer();
+
+const fontName=
+"CustomIconFont"+
+Date.now();
+
+const font=
+new FontFace(
+fontName,
+buffer
+);
+
+await font.load();
+
+document.fonts.add(font);
+
+
+const option1=
+document.createElement("option");
+
+option1.value=fontName;
+
+option1.textContent=
+"★ "+file.name;
 
 document
-.getElementById("center")
-.onclick=center;
+.getElementById("nameFont")
+.appendChild(option1);
+
+
+const option2=
+document.createElement("option");
+
+option2.value=fontName;
+
+option2.textContent=
+"★ "+file.name;
+
+document
+.getElementById("versionFont")
+.appendChild(option2);
 
 
 document
-.getElementById("flipH")
-.onclick=()=>{
+.getElementById("nameFont")
+.value=fontName;
 
-flipH=!flipH;
+document
+.getElementById("versionFont")
+.value=fontName;
 
 draw();
 
-};
+}catch(error){
 
+alert(
+"That font could not be loaded."
+);
 
-document
-.getElementById("flipV")
-.onclick=()=>{
+}
 
-flipV=!flipV;
-
-draw();
-
-};
-
-
-document
-.getElementById("resetImage")
-.onclick=()=>{
-
-document.getElementById("zoom").value=1;
-document.getElementById("posX").value=0;
-document.getElementById("posY").value=0;
-document.getElementById("rotation").value=0;
-
-flipH=false;
-flipV=false;
-
-draw();
-updateUI();
-
-};
+});
 
 
 /* =====================================================
-DRAGGING
+DRAG CHARACTER
 ===================================================== */
 
 let dragging=false;
 
-let startX=0;
-let startY=0;
+let dragStartX=0;
+let dragStartY=0;
 
 let originalX=0;
 let originalY=0;
@@ -1737,14 +2951,19 @@ if(!character)return;
 
 dragging=true;
 
-startX=e.clientX;
-startY=e.clientY;
+dragStartX=e.clientX;
+
+dragStartY=e.clientY;
 
 originalX=
-Number(document.getElementById("posX").value);
+Number(
+document.getElementById("posX").value
+);
 
 originalY=
-Number(document.getElementById("posY").value);
+Number(
+document.getElementById("posY").value
+);
 
 canvas.setPointerCapture(
 e.pointerId
@@ -1769,17 +2988,18 @@ const scaleY=
 600/rect.height;
 
 
-document.getElementById("posX").value=
-
+document
+.getElementById("posX")
+.value=
 originalX+
-(e.clientX-startX)*scaleX;
+(e.clientX-dragStartX)*scaleX;
 
 
-document.getElementById("posY").value=
-
+document
+.getElementById("posY")
+.value=
 originalY+
-(e.clientY-startY)*scaleY;
-
+(e.clientY-dragStartY)*scaleY;
 
 draw();
 
@@ -1788,235 +3008,66 @@ draw();
 
 canvas.addEventListener(
 "pointerup",
-()=>dragging=false
-);
+()=>{
+dragging=false;
+});
 
 canvas.addEventListener(
 "pointercancel",
-()=>dragging=false
-);
+()=>{
+dragging=false;
+});
 
 
 /* =====================================================
-CUSTOM FONT
+KEYBOARD SHORTCUTS
 ===================================================== */
 
-document
-.getElementById("fontInput")
-.addEventListener(
-"change",
-async e=>{
+document.addEventListener(
+"keydown",
+e=>{
 
-const file=e.target.files[0];
-
-if(!file)return;
-
-try{
-
-const buffer=
-await file.arrayBuffer();
-
-const fontName=
-"IconForgeCustom"+Date.now();
-
-const font=
-new FontFace(
-fontName,
-buffer
-);
-
-await font.load();
-
-document.fonts.add(font);
-
-
-const nameOption=
-document.createElement("option");
-
-nameOption.value=fontName;
-nameOption.textContent=
-"★ "+file.name;
+if(e.key==="ArrowLeft"){
 
 document
-.getElementById("nameFont")
-.appendChild(nameOption);
-
-
-const versionOption=
-document.createElement("option");
-
-versionOption.value=fontName;
-versionOption.textContent=
-"★ "+file.name;
-
-document
-.getElementById("versionFont")
-.appendChild(versionOption);
-
-
-document.getElementById("nameFont").value=
-fontName;
-
-document.getElementById("versionFont").value=
-fontName;
+.getElementById("posX")
+.stepDown();
 
 draw();
 
-}catch(err){
-
-alert("That font could not be loaded.");
-
 }
 
-});
-
-
-/* =====================================================
-SAVE / LOAD
-===================================================== */
+if(e.key==="ArrowRight"){
 
 document
-.getElementById("save")
-.onclick=()=>{
-
-const data={};
-
-controls.forEach(id=>{
-
-const el=document.getElementById(id);
-
-if(el)
-data[id]=el.value;
-
-});
-
-data.selectedFrame=selectedFrame;
-data.flipH=flipH;
-data.flipV=flipV;
-
-localStorage.setItem(
-"iconforgeProject",
-JSON.stringify(data)
-);
-
-document.getElementById("status").textContent=
-"Project saved.";
-
-};
-
-
-document
-.getElementById("load")
-.onclick=()=>{
-
-const saved=
-localStorage.getItem(
-"iconforgeProject"
-);
-
-if(!saved){
-
-document.getElementById("status").textContent=
-"No saved project found.";
-
-return;
-
-}
-
-const data=
-JSON.parse(saved);
-
-
-controls.forEach(id=>{
-
-const el=document.getElementById(id);
-
-if(el && data[id]!==undefined)
-el.value=data[id];
-
-});
-
-
-if(data.selectedFrame){
-
-selectedFrame=
-data.selectedFrame;
-
-renderFrames();
-
-}
-
-
-flipH=!!data.flipH;
-flipV=!!data.flipV;
+.getElementById("posX")
+.stepUp();
 
 draw();
-updateUI();
-
-document.getElementById("status").textContent=
-"Project loaded.";
-
-};
-
-
-/* =====================================================
-DOWNLOAD
-===================================================== */
-
-document
-.getElementById("download")
-.onclick=()=>{
-
-const link=
-document.createElement("a");
-
-let filename=
-document.getElementById("name").value ||
-"iconforge-icon";
-
-filename=
-filename.replace(
-/[^a-z0-9]/gi,
-"_"
-);
-
-link.download=
-filename+".png";
-
-link.href=
-canvas.toDataURL(
-"image/png"
-);
-
-link.click();
-
-document.getElementById("status").textContent=
-"PNG exported.";
-
-};
-
-
-/* =====================================================
-RESET EVERYTHING
-===================================================== */
-
-document
-.getElementById("reset")
-.onclick=()=>{
-
-if(
-confirm("Reset the entire editor?")
-){
-
-localStorage.removeItem(
-"iconforgeProject"
-);
-
-location.reload();
 
 }
 
-};
+if(e.key==="ArrowUp"){
+
+document
+.getElementById("posY")
+.stepDown();
+
+draw();
+
+}
+
+if(e.key==="ArrowDown"){
+
+document
+.getElementById("posY")
+.stepUp();
+
+draw();
+
+}
+
+});
 
 
 /* =====================================================
@@ -2030,7 +3081,9 @@ Number(
 document.getElementById("zoom").value
 );
 
-document.getElementById("zoomValue").textContent=
+document
+.getElementById("zoomValue")
+.textContent=
 Math.round(zoom*100)+"%";
 
 }
