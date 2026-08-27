@@ -1,778 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>IconForge</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html,body{
 margin:0;
-padding:0;
 min-height:100%;
+background:#05060a;
+color:#fff;
 font-family:Arial,Helvetica,sans-serif;
-background:#06070b;
-color:white;
 }
 
 body{
-
 background:
-radial-gradient(circle at 10% 0%,rgba(91,79,255,.28),transparent 30%),
-radial-gradient(circle at 90% 10%,rgba(0,190,255,.18),transparent 28%),
-radial-gradient(circle at 50% 100%,rgba(175,60,255,.15),transparent 35%),
-#06070b;
-
-}
-
-body:before{
-
-content:"";
-
-position:fixed;
-
-inset:0;
-
-pointer-events:none;
-
-opacity:.25;
-
-background-image:
-linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-
-background-size:40px 40px;
-
+radial-gradient(circle at 10% 0%,rgba(94,76,255,.28),transparent 30%),
+radial-gradient(circle at 90% 10%,rgba(0,210,255,.16),transparent 28%),
+radial-gradient(circle at 50% 100%,rgba(180,40,255,.16),transparent 35%),
+#05060a;
 }
 
 .app{
-
 width:min(1100px,100%);
-
 margin:auto;
-
 padding:15px 10px 70px;
-
 }
 
 .header{
-
 text-align:center;
-
-padding:12px 0 15px;
-
+padding:8px 0 15px;
 }
 
 .logo{
-
 font-size:32px;
-
 font-weight:1000;
-
 letter-spacing:-1px;
-
-background:linear-gradient(90deg,#fff,#a9b1ff,#d8b9ff);
-
+background:linear-gradient(90deg,#fff,#8790ff,#d6a8ff);
 -webkit-background-clip:text;
-
 color:transparent;
-
 }
 
 .subtitle{
-
-color:#858693;
-
+color:#858694;
 font-size:13px;
-
 margin-top:5px;
-
 }
 
-
-/* ==============================
-PREVIEW
-============================== */
+/* LIVE PREVIEW */
 
 .preview{
-
 position:sticky;
-
-top:7px;
-
-z-index:50;
-
+top:6px;
+z-index:20;
 padding:10px;
-
 margin-bottom:12px;
-
-border:1px solid rgba(255,255,255,.08);
-
 border-radius:18px;
-
-background:rgba(10,11,16,.94);
-
+border:1px solid rgba(255,255,255,.08);
+background:rgba(9,10,15,.94);
 backdrop-filter:blur(20px);
-
 box-shadow:0 20px 60px rgba(0,0,0,.5);
-
 }
 
-.preview-label{
-
-font-size:10px;
-
-font-weight:900;
-
-letter-spacing:2px;
-
-color:#777985;
-
+.preview-title{
 text-align:center;
-
+font-size:10px;
+font-weight:900;
+letter-spacing:2px;
+color:#777987;
 margin-bottom:7px;
-
 }
 
 .canvas-wrap{
-
 display:flex;
-
 justify-content:center;
-
 }
 
 #canvas{
-
 width:min(430px,100%);
-
 height:auto;
-
 display:block;
-
 border-radius:10px;
-
-background:#111;
-
 touch-action:none;
-
+background:#111;
 }
 
-
-/* ==============================
-NAV
-============================== */
+/* NAV */
 
 .nav{
-
 display:grid;
-
 grid-template-columns:repeat(6,1fr);
-
 gap:6px;
-
 padding:6px;
-
 border-radius:15px;
-
-background:rgba(22,23,30,.96);
-
+background:#16171e;
 border:1px solid rgba(255,255,255,.07);
-
 margin-bottom:12px;
-
 }
 
 .nav button{
-
 border:0;
-
 border-radius:9px;
-
 background:transparent;
-
 color:#858691;
-
-padding:11px 3px;
-
+padding:11px 2px;
 font-size:10px;
-
 font-weight:900;
-
 cursor:pointer;
-
 }
 
 .nav button.active{
-
-background:linear-gradient(135deg,#5865f2,#824dff);
-
+background:linear-gradient(135deg,#5865f2,#874dff);
 color:white;
-
 }
 
+/* SECTIONS */
 
-/* ==============================
-SECTIONS
-============================== */
-
-.section{
-
-display:none;
-
-}
-
-.section.active{
-
-display:block;
-
-}
+.section{display:none}
+.section.active{display:block}
 
 .panel{
-
 padding:17px;
-
 margin-bottom:12px;
-
 border-radius:17px;
-
 border:1px solid rgba(255,255,255,.07);
-
-background:
-linear-gradient(145deg,rgba(28,29,38,.98),rgba(13,14,20,.98));
-
+background:linear-gradient(145deg,#1b1c25,#0d0e14);
 }
 
 .title{
-
 font-size:18px;
-
 font-weight:1000;
-
 }
 
 .description{
-
 font-size:12px;
-
-color:#858691;
-
 line-height:1.5;
-
+color:#858691;
 margin:5px 0 15px;
-
 }
 
-
-/* ==============================
-CONTROLS
-============================== */
-
 label{
-
 display:block;
-
 font-size:12px;
-
 font-weight:900;
-
-color:#d8d8df;
-
+color:#ddd;
 margin:14px 0 6px;
-
 }
 
 input[type=text],
 input[type=file],
 select{
-
 width:100%;
-
 padding:11px;
-
 border-radius:9px;
-
 border:1px solid rgba(255,255,255,.08);
-
 background:#252630;
-
 color:white;
-
 outline:none;
-
 }
 
 input[type=range]{
-
 width:100%;
-
 accent-color:#6874ff;
-
 }
 
 input[type=color]{
-
 width:62px;
-
 height:40px;
-
 padding:2px;
-
 border:0;
-
 border-radius:8px;
-
 background:#252630;
-
-}
-
-.value{
-
-display:block;
-
-text-align:right;
-
-font-size:11px;
-
-color:#777985;
-
-margin-top:3px;
-
 }
 
 .row{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:10px;
-
 }
 
 .button{
-
 width:100%;
-
 border:0;
-
 border-radius:10px;
-
 padding:13px;
-
 margin-top:10px;
-
 background:linear-gradient(135deg,#5865f2,#824dff);
-
 color:white;
-
 font-weight:1000;
-
 cursor:pointer;
-
 }
 
 .button.secondary{
-
 background:#292a32;
-
 }
 
 .button.danger{
-
-background:linear-gradient(135deg,#8f3434,#c84b4b);
-
+background:#8d3535;
 }
 
-.note{
-
-font-size:11px;
-
-line-height:1.5;
-
-color:#747581;
-
-}
-
-
-/* ==============================
-BORDER GRID
-============================== */
-
-.border-grid{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:9px;
-
-}
-
-.border-choice{
-
-min-height:85px;
-
-border-radius:11px;
-
-padding:9px;
-
-border:2px solid transparent;
-
-background:#24252d;
-
-cursor:pointer;
-
-text-align:center;
-
-font-size:11px;
-
-font-weight:900;
-
-}
-
-.border-choice.selected{
-
-border-color:#6874ff;
-
-background:rgba(88,101,242,.15);
-
-}
-
-.demo{
-
-height:45px;
-
-border-radius:6px;
-
-background:#101116;
-
-margin-bottom:6px;
-
-}
-
-
-/* ==============================
-CONDITIONAL
-============================== */
-
-.hidden-panel{
-
-display:none;
-
-}
-
-.hidden-panel.visible{
-
+.value{
 display:block;
-
+text-align:right;
+font-size:11px;
+color:#777985;
 }
-
-
-/* ==============================
-STATUS
-============================== */
 
 .status{
-
-padding:10px;
-
-border-radius:9px;
-
-background:#111218;
-
-color:#8d8e99;
-
-font-size:12px;
-
 margin-top:10px;
-
+padding:10px;
+border-radius:9px;
+background:#111218;
+color:#858694;
+font-size:11px;
+line-height:1.5;
 }
 
+/* FRAMES */
 
-/* ==============================
-MOBILE
-============================== */
+.frame-categories{
+display:flex;
+gap:7px;
+overflow-x:auto;
+padding-bottom:8px;
+}
+
+.frame-categories button{
+white-space:nowrap;
+border:0;
+border-radius:8px;
+padding:9px 12px;
+background:#252630;
+color:#aaa;
+font-size:10px;
+font-weight:900;
+}
+
+.frame-categories button.active{
+background:#5865f2;
+color:#fff;
+}
+
+.frame-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+}
+
+.frame-card{
+position:relative;
+padding:7px;
+border-radius:12px;
+background:#111218;
+border:2px solid transparent;
+cursor:pointer;
+}
+
+.frame-card.selected{
+border-color:#6874ff;
+box-shadow:0 0 18px rgba(104,116,255,.25);
+}
+
+.frame-preview{
+height:105px;
+border-radius:7px;
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(135deg,#20212a,#090a0e);
+}
+
+.frame-preview:after{
+content:"";
+position:absolute;
+inset:14px;
+border:5px solid #fff;
+pointer-events:none;
+}
+
+.frame-name{
+font-size:10px;
+font-weight:900;
+text-align:center;
+margin-top:7px;
+color:#ddd;
+}
+
+/* PRESET FRAME LOOKS */
+
+.frame-preview.gold:after{
+border-color:#d7ad35;
+box-shadow:0 0 12px #d7ad35;
+}
+
+.frame-preview.crimson:after{
+border-color:#d63745;
+box-shadow:0 0 16px #d63745;
+}
+
+.frame-preview.void:after{
+border-color:#8b4dff;
+box-shadow:0 0 20px #8b4dff;
+}
+
+.frame-preview.frost:after{
+border-color:#72e5ff;
+box-shadow:0 0 18px #72e5ff;
+}
+
+.frame-preview.divine:after{
+border:7px double #f5df72;
+box-shadow:0 0 15px #f5df72;
+}
+
+.frame-preview.shadow:after{
+border-color:#222;
+box-shadow:0 0 15px #000;
+}
+
+.frame-preview.lightning:after{
+border-color:#aee8ff;
+box-shadow:0 0 22px #55cfff;
+}
+
+.frame-preview.inferno:after{
+border-color:#ff5b2e;
+box-shadow:0 0 22px #ff3b16;
+}
+
+.frame-preview.cosmic:after{
+border:6px solid #b86cff;
+box-shadow:0 0 18px #8a4dff;
+}
+
+.frame-preview.royal:after{
+border:8px double #e8c65b;
+box-shadow:0 0 10px #e8c65b;
+}
+
+.frame-preview.ancient:after{
+border-color:#ad8b55;
+}
+
+.frame-preview.neon:after{
+border-color:#39ffcf;
+box-shadow:0 0 22px #39ffcf;
+}
+
+.frame-preview.champion:after{
+border:8px solid #fff;
+box-shadow:0 0 10px #fff;
+}
+
+.frame-preview.blood:after{
+border-color:#9b0012;
+box-shadow:0 0 25px #ff001e;
+}
+
+/* MOBILE */
 
 @media(max-width:600px){
 
-.logo{
-
-font-size:26px;
-
-}
+.logo{font-size:26px}
 
 .nav button{
-
 font-size:8px;
-
-padding:10px 2px;
-
+padding:10px 1px;
 }
 
-.panel{
-
-padding:14px;
-
-}
+.panel{padding:14px}
 
 .row{
-
 grid-template-columns:1fr;
+}
 
+.frame-grid{
+grid-template-columns:repeat(2,1fr);
 }
 
 }
-
 </style>
-
 </head>
 
 <body>
 
 <div class="app">
 
-
 <header class="header">
-
-<div class="logo">
-✦ ICONFORGE
-</div>
-
-<div class="subtitle">
-Build custom tier-list icons.
-</div>
-
+<div class="logo">✦ ICONFORGE</div>
+<div class="subtitle">Build insane tier-list icons.</div>
 </header>
 
-
-<!-- =============================================
-LIVE PREVIEW
-============================================= -->
+<!-- LIVE PREVIEW -->
 
 <div class="preview">
 
-<div class="preview-label">
+<div class="preview-title">
 LIVE PREVIEW
 </div>
 
 <div class="canvas-wrap">
-
-<canvas
-id="canvas"
-width="600"
-height="600">
-</canvas>
-
+<canvas id="canvas" width="600" height="600"></canvas>
 </div>
 
 </div>
 
-
-<!-- =============================================
-NAVIGATION
-============================================= -->
+<!-- NAV -->
 
 <div class="nav">
 
-<button class="active"
-data-tab="image">
-IMAGE
-</button>
-
-<button
-data-tab="text">
-TEXT
-</button>
-
-<button
-data-tab="border">
-BORDER
-</button>
-
-<button
-data-tab="background">
-BACKGROUND
-</button>
-
-<button
-data-tab="effects">
-EFFECTS
-</button>
-
-<button
-data-tab="export">
-EXPORT
-</button>
+<button class="active" data-tab="image">IMAGE</button>
+<button data-tab="text">TEXT</button>
+<button data-tab="frames">FRAMES</button>
+<button data-tab="background">BACKGROUND</button>
+<button data-tab="effects">EFFECTS</button>
+<button data-tab="export">EXPORT</button>
 
 </div>
 
+<!-- IMAGE -->
 
-<!-- =============================================
-IMAGE
-============================================= -->
-
-<section
-id="image"
-class="section active">
+<section id="image" class="section active">
 
 <div class="panel">
 
-<div class="title">
-Character Image
-</div>
+<div class="title">Character Image</div>
 
 <div class="description">
-Upload your character. Auto Fit uses the actual visible artwork rather than the transparent padding around your PNG.
+Upload literally any image. Transparency is NOT required.
+Auto Fit enlarges the image until it completely covers the frame opening.
 </div>
 
-<label>
-Character Image
-</label>
+<label>Upload Character</label>
 
-<input
-id="characterInput"
-type="file"
-accept="image/*">
+<input id="characterInput" type="file" accept="image/*">
 
+<label>Zoom</label>
 
-<label>
-Zoom
-</label>
+<input id="zoom" type="range" min=".05" max="8" step=".01" value="1">
 
-<input
-id="characterZoom"
-type="range"
-min=".01"
-max="50"
-step=".01"
-value="1">
+<span class="value" id="zoomValue">100%</span>
 
-<span
-class="value"
-id="characterZoomValue">
-100%
-</span>
+<label>Horizontal Position</label>
 
+<input id="posX" type="range" min="-600" max="600" value="0">
 
-<label>
-Horizontal Position
-</label>
+<label>Vertical Position</label>
 
-<input
-id="characterX"
-type="range"
-min="-1200"
-max="1200"
-value="0">
+<input id="posY" type="range" min="-600" max="600" value="0">
 
+<label>Rotation</label>
 
-<label>
-Vertical Position
-</label>
+<input id="rotation" type="range" min="-180" max="180" value="0">
 
-<input
-id="characterY"
-type="range"
-min="-1200"
-max="1200"
-value="0">
+<div class="row">
 
+<button class="button" id="autoFit">AUTO FIT</button>
 
-<button
-class="button"
-id="autoFitCharacter">
+<button class="button secondary" id="center">CENTER</button>
 
-AUTO FIT TO OPENING
+</div>
 
+<div class="row">
+
+<button class="button secondary" id="flipH">FLIP HORIZONTAL</button>
+
+<button class="button secondary" id="flipV">FLIP VERTICAL</button>
+
+</div>
+
+<button class="button danger" id="resetImage">
+RESET IMAGE
 </button>
-
-
-<button
-class="button secondary"
-id="centerCharacter">
-
-CENTER CHARACTER
-
-</button>
-
-
-<button
-class="button secondary"
-id="resetCharacter">
-
-RESET CHARACTER
-
-</button>
-
 
 <div class="status">
-
-<strong>Auto Fit:</strong>
-
-The character is enlarged until its visible artwork completely covers the opening. It is intentionally cropped instead of being shrunk.
-
+Auto Fit uses the dimensions of the uploaded image itself and makes it <b>cover</b> the frame opening. It does not require transparent PNGs.
 </div>
 
 </div>
 
 </section>
 
+<!-- TEXT -->
 
-<!-- =============================================
-TEXT
-============================================= -->
-
-<section
-id="text"
-class="section">
+<section id="text" class="section">
 
 <div class="panel">
 
-<div class="title">
-Text
-</div>
+<div class="title">Text</div>
 
+<label>Name</label>
 
-<label>
-Character Name
-</label>
+<input id="name" type="text" placeholder="Ryomen Sukuna">
 
-<input
-id="characterName"
-type="text"
-placeholder="Ryomen Sukuna">
+<label>Version</label>
 
-
-<label>
-Version
-</label>
-
-<input
-id="characterVersion"
-type="text"
-placeholder="Heian Era">
-
+<input id="version" type="text" placeholder="Heian Era">
 
 <div class="row">
 
 <div>
 
-<label>
-Name Font
-</label>
+<label>Name Font</label>
 
 <select id="nameFont">
-
 <option>Arial</option>
 <option>Impact</option>
 <option>Georgia</option>
@@ -780,26 +515,19 @@ Name Font
 <option>Trebuchet MS</option>
 <option>Courier New</option>
 <option>Times New Roman</option>
-<option>Comic Sans MS</option>
-<option>Lucida Console</option>
-<option>Tahoma</option>
+<option>Arial Black</option>
 <option>Garamond</option>
 <option>Palatino Linotype</option>
-<option>Arial Black</option>
 <option>Segoe UI</option>
-
 </select>
 
 </div>
 
 <div>
 
-<label>
-Version Font
-</label>
+<label>Version Font</label>
 
 <select id="versionFont">
-
 <option>Arial</option>
 <option>Impact</option>
 <option>Georgia</option>
@@ -807,839 +535,213 @@ Version Font
 <option>Trebuchet MS</option>
 <option>Courier New</option>
 <option>Times New Roman</option>
-<option>Comic Sans MS</option>
-<option>Lucida Console</option>
-<option>Tahoma</option>
+<option>Arial Black</option>
 <option>Garamond</option>
 <option>Palatino Linotype</option>
-<option>Arial Black</option>
 <option>Segoe UI</option>
-
 </select>
 
 </div>
 
 </div>
 
+<label>Upload Custom Font</label>
 
-<label>
-Upload Your Own Font
-</label>
-
-<input
-id="fontInput"
-type="file"
-accept=".ttf,.otf,.woff,.woff2">
-
-
-<div
-id="fontPreview"
-style="
-padding:12px;
-margin-top:10px;
-background:#111218;
-border-radius:9px;
-text-align:center;
-font-size:22px;
-font-weight:bold;
-">
-Aa Bb Cc 123
-</div>
-
+<input id="fontInput" type="file" accept=".ttf,.otf,.woff,.woff2">
 
 <div class="row">
 
 <div>
-
-<label>
-Name Size
-</label>
-
-<input
-id="nameSize"
-type="range"
-min="10"
-max="90"
-value="42">
-
+<label>Name Size</label>
+<input id="nameSize" type="range" min="10" max="90" value="42">
 </div>
 
 <div>
-
-<label>
-Version Size
-</label>
-
-<input
-id="versionSize"
-type="range"
-min="8"
-max="60"
-value="24">
-
+<label>Version Size</label>
+<input id="versionSize" type="range" min="8" max="60" value="24">
 </div>
 
 </div>
 
-
-<label>
-Text Vertical Position
-</label>
-
-<input
-id="textY"
-type="range"
-min="350"
-max="590"
-value="515">
-
+<label>Text Position</label>
+<input id="textY" type="range" min="350" max="590" value="510">
 
 <div class="row">
 
 <div>
-
-<label>
-Text Color
-</label>
-
-<input
-id="textColor"
-type="color"
-value="#ffffff">
-
+<label>Text Color</label>
+<input id="textColor" type="color" value="#ffffff">
 </div>
 
 <div>
-
-<label>
-Outline Color
-</label>
-
-<input
-id="outlineColor"
-type="color"
-value="#000000">
-
+<label>Outline Color</label>
+<input id="outlineColor" type="color" value="#000000">
 </div>
 
 </div>
 
+<label>Outline Thickness</label>
+<input id="outlineWidth" type="range" min="0" max="15" value="3">
 
-<label>
-Outline Thickness
-</label>
-
-<input
-id="outlineWidth"
-type="range"
-min="0"
-max="15"
-value="3">
+<label>Text Shadow</label>
+<input id="textShadow" type="range" min="0" max="30" value="0">
 
 </div>
 
 </section>
 
+<!-- FRAMES -->
 
-<!-- =============================================
-BORDER
-============================================= -->
-
-<section
-id="border"
-class="section">
-
+<section id="frames" class="section">
 
 <div class="panel">
 
-<div class="title">
-Border Library
-</div>
+<div class="title">Official Frame Library</div>
 
 <div class="description">
-Pick one of our frames, build your own, or upload your own border artwork.
+These are built-in IconForge frames. They don't rely on uploaded border images, so their openings are always perfectly aligned.
 </div>
 
+<div class="frame-categories">
 
-<div class="border-grid">
-
-
-<div
-class="border-choice selected"
-data-border="classic">
-
-<div
-class="demo"
-style="border:8px solid white">
-</div>
-
-Classic
+<button class="active" data-category="all">ALL</button>
+<button data-category="anime">ANIME</button>
+<button data-category="dark">DARK</button>
+<button data-category="energy">ENERGY</button>
+<button data-category="royal">ROYAL</button>
 
 </div>
 
-
-<div
-class="border-choice"
-data-border="gold">
-
-<div
-class="demo"
-style="border:9px solid #d4af37">
-</div>
-
-Gold
+<div id="frameGrid" class="frame-grid"></div>
 
 </div>
 
+<div class="panel">
 
-<div
-class="border-choice"
-data-border="double">
+<div class="title">Frame Settings</div>
 
-<div
-class="demo"
-style="border:7px double white">
-</div>
+<label>Frame Thickness</label>
 
-Double
+<input id="frameWidth" type="range" min="2" max="35" value="10">
 
-</div>
+<label>Frame Glow</label>
 
+<input id="frameGlow" type="range" min="0" max="50" value="8">
 
-<div
-class="border-choice"
-data-border="neon">
+<label>Frame Opacity</label>
 
-<div
-class="demo"
-style="
-border:7px solid #5865f2;
-box-shadow:0 0 18px #5865f2;
-">
-</div>
-
-Neon
-
-</div>
-
-
-<div
-class="border-choice"
-data-border="crimson">
-
-<div
-class="demo"
-style="border:8px solid #d94646">
-</div>
-
-Crimson
-
-</div>
-
-
-<div
-class="border-choice"
-data-border="none">
-
-<div class="demo">
-</div>
-
-None
-
-</div>
-
-
-<div
-class="border-choice"
-data-border="custom">
-
-<div
-class="demo"
-style="border:7px dashed #aaa">
-</div>
-
-Custom
-
-</div>
-
-
-<div
-class="border-choice"
-data-border="uploaded">
-
-<div
-class="demo"
-style="border:7px dashed #aaa">
-</div>
-
-Uploaded
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- =============================================
-CUSTOM BORDER
-============================================= -->
-
-<div
-id="customPanel"
-class="panel hidden-panel">
-
-<div class="title">
-Custom Border Builder
-</div>
-
-
-<label>
-Style
-</label>
-
-<select id="customStyle">
-
-<option value="solid">
-Solid
-</option>
-
-<option value="double">
-Double
-</option>
-
-<option value="dashed">
-Dashed
-</option>
-
-<option value="dotted">
-Dotted
-</option>
-
-</select>
-
-
-<div class="row">
-
-<div>
-
-<label>
-Color
-</label>
-
-<input
-id="customColor"
-type="color"
-value="#ffffff">
-
-</div>
-
-<div>
-
-<label>
-Second Color
-</label>
-
-<input
-id="customColor2"
-type="color"
-value="#5865f2">
-
-</div>
-
-</div>
-
-
-<label>
-Gradient
-</label>
-
-<select id="customGradient">
-
-<option value="no">
-No
-</option>
-
-<option value="yes">
-Yes
-</option>
-
-</select>
-
-
-<label>
-Width
-</label>
-
-<input
-id="customWidth"
-type="range"
-min="1"
-max="50"
-value="8">
-
-
-<label>
-Glow
-</label>
-
-<input
-id="customGlow"
-type="range"
-min="0"
-max="60"
-value="0">
-
-
-<label>
-Glow Color
-</label>
-
-<input
-id="customGlowColor"
-type="color"
-value="#5865f2">
-
-</div>
-
-
-<!-- =============================================
-UPLOADED BORDER
-============================================= -->
-
-<div
-id="uploadedPanel"
-class="panel hidden-panel">
-
-<div class="title">
-Uploaded Border
-</div>
-
-<div class="description">
-
-This is the important part.
-
-Your uploaded artwork is first placed into the 600×600 workspace. Only AFTER it has been positioned and scaled do we create the opening.
-
-That prevents the old corner/bottom-right cutout problem.
-
-</div>
-
-
-<label>
-Upload Border Artwork
-</label>
-
-<input
-id="borderInput"
-type="file"
-accept="image/*">
-
-
-<label>
-Opening Shape
-</label>
-
-<select id="openingShape">
-
-<option value="square">
-Square
-</option>
-
-<option value="rounded">
-Rounded Square
-</option>
-
-<option value="circle">
-Circle
-</option>
-
-</select>
-
-
-<label>
-Opening Width
-</label>
-
-<input
-id="openingWidth"
-type="range"
-min="20"
-max="100"
-value="82">
-
-
-<label>
-Opening Height
-</label>
-
-<input
-id="openingHeight"
-type="range"
-min="20"
-max="100"
-value="82">
-
-
-<label>
-Opening Corner Radius
-</label>
-
-<input
-id="openingRadius"
-type="range"
-min="0"
-max="150"
-value="40">
-
-
-<button
-class="button"
-id="fitUploadedBorder">
-
-FIT BORDER TO ICON
-
-</button>
-
-
-<label>
-Border Scale
-</label>
-
-<input
-id="borderScale"
-type="range"
-min=".01"
-max="20"
-step=".01"
-value="1">
-
-
-<label>
-Border X
-</label>
-
-<input
-id="borderX"
-type="range"
-min="-1200"
-max="1200"
-value="0">
-
-
-<label>
-Border Y
-</label>
-
-<input
-id="borderY"
-type="range"
-min="-1200"
-max="1200"
-value="0">
-
-
-<label>
-Rotation
-</label>
-
-<input
-id="borderRotation"
-type="range"
-min="-180"
-max="180"
-value="0">
-
-
-<label>
-Opacity
-</label>
-
-<input
-id="borderOpacity"
-type="range"
-min="0"
-max="100"
-value="100">
-
-
-<button
-class="button secondary"
-id="centerUploadedBorder">
-
-CENTER BORDER
-
-</button>
-
-
-<button
-class="button danger"
-id="removeUploadedBorder">
-
-REMOVE UPLOADED BORDER
-
-</button>
-
-
-<div class="status">
-
-<strong>Recommended:</strong>
-
-Use <b>Square</b> or <b>Rounded Square</b> when making normal tier-list frames. The opening is always calculated around the exact center of the 600×600 workspace.
-
-</div>
+<input id="frameOpacity" type="range" min="10" max="100" value="100">
 
 </div>
 
 </section>
 
+<!-- BACKGROUND -->
 
-<!-- =============================================
-BACKGROUND
-============================================= -->
-
-<section
-id="background"
-class="section">
+<section id="background" class="section">
 
 <div class="panel">
 
-<div class="title">
-Background
-</div>
+<div class="title">Background</div>
 
+<label>Type</label>
 
-<label>
-Background Type
-</label>
+<select id="bgType">
 
-<select id="backgroundType">
-
-<option value="solid">
-Solid
-</option>
-
-<option value="gradient">
-Gradient
-</option>
-
-<option value="image">
-Uploaded Image
-</option>
+<option value="solid">Solid</option>
+<option value="gradient">Gradient</option>
+<option value="image">Image</option>
 
 </select>
 
-
 <div class="row">
 
 <div>
 
-<label>
-Color
-</label>
-
-<input
-id="backgroundColor"
-type="color"
-value="#111111">
+<label>Color</label>
+<input id="bgColor" type="color" value="#111111">
 
 </div>
 
 <div>
 
-<label>
-Second Color
-</label>
-
-<input
-id="backgroundColor2"
-type="color"
-value="#292952">
+<label>Second Color</label>
+<input id="bgColor2" type="color" value="#292952">
 
 </div>
 
 </div>
 
+<label>Upload Background</label>
 
-<label>
-Upload Background
-</label>
+<input id="bgInput" type="file" accept="image/*">
 
-<input
-id="backgroundInput"
-type="file"
-accept="image/*">
+<label>Background Blur</label>
+
+<input id="bgBlur" type="range" min="0" max="30" value="0">
 
 </div>
 
 </section>
 
+<!-- EFFECTS -->
 
-<!-- =============================================
-EFFECTS
-============================================= -->
-
-<section
-id="effects"
-class="section">
+<section id="effects" class="section">
 
 <div class="panel">
 
-<div class="title">
-Effects
-</div>
+<div class="title">Effects</div>
 
+<label>Brightness</label>
+<input id="brightness" type="range" min="0" max="200" value="100">
 
-<label>
-Brightness
-</label>
+<label>Contrast</label>
+<input id="contrast" type="range" min="0" max="200" value="100">
 
-<input
-id="brightness"
-type="range"
-min="0"
-max="200"
-value="100">
+<label>Saturation</label>
+<input id="saturation" type="range" min="0" max="200" value="100">
 
+<label>Blur</label>
+<input id="blur" type="range" min="0" max="10" step=".1" value="0">
 
-<label>
-Contrast
-</label>
+<label>Vignette</label>
+<input id="vignette" type="range" min="0" max="100" value="0">
 
-<input
-id="contrast"
-type="range"
-min="0"
-max="200"
-value="100">
+<label>Vignette Color</label>
+<input id="vignetteColor" type="color" value="#000000">
 
-
-<label>
-Saturation
-</label>
-
-<input
-id="saturation"
-type="range"
-min="0"
-max="200"
-value="100">
-
-
-<label>
-Blur
-</label>
-
-<input
-id="blur"
-type="range"
-min="0"
-max="10"
-step=".1"
-value="0">
-
-
-<label>
-Vignette
-</label>
-
-<input
-id="vignette"
-type="range"
-min="0"
-max="100"
-value="0">
-
-
-<label>
-Vignette Start
-</label>
-
-<input
-id="vignetteStart"
-type="range"
-min="0"
-max="90"
-value="45">
-
-
-<div class="row">
-
-<div>
-
-<label>
-Vignette Color
-</label>
-
-<input
-id="vignetteColor"
-type="color"
-value="#000000">
-
-</div>
-
-</div>
+<label>Edge Darkening</label>
+<input id="edgeDark" type="range" min="0" max="100" value="0">
 
 </div>
 
 </section>
 
+<!-- EXPORT -->
 
-<!-- =============================================
-EXPORT
-============================================= -->
-
-<section
-id="export"
-class="section">
+<section id="export" class="section">
 
 <div class="panel">
 
-<div class="title">
-Export
-</div>
+<div class="title">Export</div>
 
-
-<button
-class="button"
-id="download">
-
+<button class="button" id="download">
 DOWNLOAD PNG
-
 </button>
 
-
-<button
-class="button secondary"
-id="saveProject">
-
+<button class="button secondary" id="save">
 SAVE PROJECT
-
 </button>
 
-
-<button
-class="button secondary"
-id="loadProject">
-
+<button class="button secondary" id="load">
 LOAD PROJECT
-
 </button>
 
-
-<button
-class="button danger"
-id="resetAll">
-
+<button class="button danger" id="reset">
 RESET EVERYTHING
-
 </button>
 
-
-<div
-class="status"
-id="status">
+<div id="status" class="status">
 Ready.
 </div>
 
@@ -1647,106 +749,294 @@ Ready.
 
 </section>
 
-
 </div>
-
 
 <script>
 
-/* =========================================================
+/* =====================================================
 CORE
-========================================================= */
+===================================================== */
 
-const canvas =
-document.getElementById("canvas");
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
 
-const ctx =
-canvas.getContext("2d");
+const W=600;
+const H=600;
 
+let character=null;
+let background=null;
 
-const W = 600;
-const H = 600;
-
-
-let character = null;
-
-let border = null;
-
-let background = null;
+let flipH=false;
+let flipV=false;
 
 
-/*
-This stores the actual visible
-pixel bounds of the character.
-*/
+/* =====================================================
+FRAME LIBRARY
+===================================================== */
 
-let characterBounds = null;
+const frames=[
+
+{
+id:"classic",
+name:"Classic",
+category:"anime",
+color:"#ffffff",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"gold",
+name:"Gold Emperor",
+category:"royal",
+color:"#d7ad35",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"crimson",
+name:"Crimson",
+category:"dark",
+color:"#d63745",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"void",
+name:"Void",
+category:"dark",
+color:"#8b4dff",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"frost",
+name:"Frost",
+category:"energy",
+color:"#72e5ff",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"divine",
+name:"Divine",
+category:"royal",
+color:"#f5df72",
+style:"double",
+shape:"square"
+},
+
+{
+id:"shadow",
+name:"Shadow",
+category:"dark",
+color:"#151515",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"lightning",
+name:"Lightning",
+category:"energy",
+color:"#aee8ff",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"inferno",
+name:"Inferno",
+category:"energy",
+color:"#ff5b2e",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"cosmic",
+name:"Cosmic",
+category:"energy",
+color:"#b86cff",
+style:"double",
+shape:"square"
+},
+
+{
+id:"royal",
+name:"Royal",
+category:"royal",
+color:"#e8c65b",
+style:"double",
+shape:"square"
+},
+
+{
+id:"ancient",
+name:"Ancient",
+category:"anime",
+color:"#ad8b55",
+style:"double",
+shape:"square"
+},
+
+{
+id:"neon",
+name:"Neon",
+category:"energy",
+color:"#39ffcf",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"champion",
+name:"Champion",
+category:"royal",
+color:"#ffffff",
+style:"double",
+shape:"square"
+},
+
+{
+id:"blood",
+name:"Blood Moon",
+category:"dark",
+color:"#9b0012",
+style:"solid",
+shape:"square"
+},
+
+{
+id:"diamond",
+name:"Diamond",
+category:"royal",
+color:"#8eeaff",
+style:"double",
+shape:"square"
+}
+
+];
+
+let selectedFrame="classic";
+
+const frameGrid=document.getElementById("frameGrid");
 
 
-let selectedBorder = "classic";
+function renderFrames(category="all"){
 
+frameGrid.innerHTML="";
 
-/* =========================================================
-HELPER
-========================================================= */
+frames
+.filter(frame=>
+category==="all" ||
+frame.category===category
+)
+.forEach(frame=>{
 
-function $(id){
+const card=document.createElement("div");
 
-return document.getElementById(id);
+card.className=
+"frame-card"+
+(frame.id===selectedFrame?" selected":"");
+
+card.innerHTML=`
+
+<div class="frame-preview ${frame.id}">
+</div>
+
+<div class="frame-name">
+${frame.name}
+</div>
+
+`;
+
+card.onclick=()=>{
+
+selectedFrame=frame.id;
+
+renderFrames(category);
+
+draw();
+
+};
+
+frameGrid.appendChild(card);
+
+});
 
 }
 
+renderFrames();
 
-/* =========================================================
-TAB SYSTEM
-========================================================= */
+
+document
+.querySelectorAll(".frame-categories button")
+.forEach(button=>{
+
+button.onclick=()=>{
+
+document
+.querySelectorAll(".frame-categories button")
+.forEach(x=>x.classList.remove("active"));
+
+button.classList.add("active");
+
+renderFrames(button.dataset.category);
+
+};
+
+});
+
+
+/* =====================================================
+TABS
+===================================================== */
 
 document
 .querySelectorAll(".nav button")
 .forEach(button=>{
 
-button.addEventListener("click",()=>{
+button.onclick=()=>{
 
 document
 .querySelectorAll(".nav button")
-.forEach(b=>b.classList.remove("active"));
+.forEach(x=>x.classList.remove("active"));
 
 document
 .querySelectorAll(".section")
-.forEach(s=>s.classList.remove("active"));
+.forEach(x=>x.classList.remove("active"));
 
 button.classList.add("active");
 
-$(button.dataset.tab)
+document
+.getElementById(button.dataset.tab)
 .classList.add("active");
-
-});
-
-});
-
-
-/* =========================================================
-IMAGE LOADING
-========================================================= */
-
-function loadImage(file,callback){
-
-const reader =
-new FileReader();
-
-reader.onload = ()=>{
-
-const img =
-new Image();
-
-img.onload = ()=>{
-
-callback(img);
 
 };
 
-img.src =
-reader.result;
+});
+
+
+/* =====================================================
+LOAD IMAGE
+===================================================== */
+
+function loadImage(file,callback){
+
+const reader=new FileReader();
+
+reader.onload=()=>{
+
+const img=new Image();
+
+img.onload=()=>callback(img);
+
+img.src=reader.result;
 
 };
 
@@ -1755,1038 +1045,158 @@ reader.readAsDataURL(file);
 }
 
 
-/* =========================================================
-ACTUAL NON-TRANSPARENT BOUNDS
-========================================================= */
+/* =====================================================
+CHARACTER
+===================================================== */
 
-function getVisibleBounds(img){
+document
+.getElementById("characterInput")
+.addEventListener("change",e=>{
 
-const width =
-img.naturalWidth;
+const file=e.target.files[0];
 
-const height =
-img.naturalHeight;
+if(!file)return;
 
+loadImage(file,img=>{
 
-const temp =
-document.createElement("canvas");
+character=img;
 
-temp.width =
-width;
+autoFit();
 
-temp.height =
-height;
-
-
-const tctx =
-temp.getContext(
-"2d",
-{
-willReadFrequently:true
-}
-);
-
-
-tctx.clearRect(
-0,
-0,
-width,
-height
-);
-
-
-tctx.drawImage(
-img,
-0,
-0
-);
-
-
-const pixels =
-tctx.getImageData(
-0,
-0,
-width,
-height
-).data;
-
-
-let minX = width;
-let minY = height;
-
-let maxX = -1;
-let maxY = -1;
-
-
-for(let y=0;y<height;y++){
-
-for(let x=0;x<width;x++){
-
-const alpha =
-pixels[
-(y*width+x)*4+3
-];
-
-
-if(alpha > 8){
-
-if(x<minX)
-minX=x;
-
-if(y<minY)
-minY=y;
-
-if(x>maxX)
-maxX=x;
-
-if(y>maxY)
-maxY=y;
-
-}
-
-}
-
-}
-
-
-if(maxX === -1){
-
-return {
-x:0,
-y:0,
-width:width,
-height:height
-};
-
-}
-
-
-return {
-
-x:minX,
-
-y:minY,
-
-width:maxX-minX+1,
-
-height:maxY-minY+1
-
-};
-
-}
-
-
-/* =========================================================
-OPENING
-========================================================= */
-
-function getOpening(){
-
-const width =
-W *
-Number(
-$("openingWidth").value
-) / 100;
-
-
-const height =
-H *
-Number(
-$("openingHeight").value
-) / 100;
-
-
-return {
-
-x:(W-width)/2,
-
-y:(H-height)/2,
-
-width:width,
-
-height:height
-
-};
-
-}
-
-
-/* =========================================================
-CREATE OPENING PATH
-========================================================= */
-
-function openingPath(targetCtx){
-
-const opening =
-getOpening();
-
-
-const shape =
-$("openingShape").value;
-
-
-targetCtx.beginPath();
-
-
-if(shape === "circle"){
-
-const radius =
-Math.min(
-opening.width,
-opening.height
-) / 2;
-
-
-targetCtx.arc(
-opening.x + opening.width/2,
-opening.y + opening.height/2,
-radius,
-0,
-Math.PI*2
-);
-
-}
-
-
-else if(shape === "rounded"){
-
-const radius =
-Math.min(
-Number(
-$("openingRadius").value
-),
-opening.width/2,
-opening.height/2
-);
-
-
-const x =
-opening.x;
-
-const y =
-opening.y;
-
-const w =
-opening.width;
-
-const h =
-opening.height;
-
-
-targetCtx.moveTo(
-x+radius,
-y
-);
-
-targetCtx.lineTo(
-x+w-radius,
-y
-);
-
-targetCtx.quadraticCurveTo(
-x+w,
-y,
-x+w,
-y+radius
-);
-
-targetCtx.lineTo(
-x+w,
-y+h-radius
-);
-
-targetCtx.quadraticCurveTo(
-x+w,
-y+h,
-x+w-radius,
-y+h
-);
-
-targetCtx.lineTo(
-x+radius,
-y+h
-);
-
-targetCtx.quadraticCurveTo(
-x,
-y+h,
-x,
-y+h-radius
-);
-
-targetCtx.lineTo(
-x,
-y+radius
-);
-
-targetCtx.quadraticCurveTo(
-x,
-y,
-x+radius,
-y
-);
-
-}
-
-
-else{
-
-targetCtx.rect(
-opening.x,
-opening.y,
-opening.width,
-opening.height
-);
-
-}
-
-}
-
-
-/* =========================================================
-CHARACTER UPLOAD
-========================================================= */
-
-$("characterInput")
-.addEventListener("change",event=>{
-
-const file =
-event.target.files[0];
-
-if(!file)
-return;
-
-
-loadImage(
-file,
-img=>{
-
-character = img;
-
-characterBounds =
-getVisibleBounds(img);
-
-
-/*
-Immediately perform a REAL
-visible-artwork fit.
-*/
-
-autoFitCharacter();
-
-}
-);
+});
 
 });
 
 
-/* =========================================================
-🔥 AUTO FIT CHARACTER
-========================================================= */
+/* =====================================================
+🔥 AUTO FIT
+===================================================== */
 
-function autoFitCharacter(){
+function autoFit(){
 
-if(
-!character ||
-!characterBounds
-)
-return;
-
-
-const opening =
-getOpening();
+if(!character)return;
 
 
 /*
-IMPORTANT:
+THE OPENING.
 
-We are NOT fitting the entire
-PNG.
-
-We're fitting only the actual
-non-transparent artwork.
+Our official frames use this same
+opening every time.
 */
 
+const openingX=55;
+const openingY=55;
 
-const scaleX =
-opening.width /
-characterBounds.width;
-
-
-const scaleY =
-opening.height /
-characterBounds.height;
+const openingW=490;
+const openingH=490;
 
 
 /*
-COVER.
+This is the important part.
 
-This is why MAX is used.
+We don't care if the uploaded image
+has transparency.
 
-The character will be enlarged
-until it completely covers the
-opening.
+We simply make the ENTIRE IMAGE
+COVER the opening.
 
-It will NOT shrink just to
-preserve the entire character.
+MAX is what makes it enlarge
+instead of shrink.
 */
 
-let scale =
-Math.max(
-scaleX,
-scaleY
-);
+const scaleX=
+openingW/character.width;
+
+const scaleY=
+openingH/character.height;
+
+const scale=
+Math.max(scaleX,scaleY);
 
 
-/*
-Tiny 1% safety margin so there
-cannot be tiny gaps around the
-edge.
-*/
+document.getElementById("zoom").value=
+Math.min(8,scale);
 
-scale *= 1.01;
+document.getElementById("posX").value=0;
+document.getElementById("posY").value=0;
 
-
-/*
-Never let the slider become
-too small.
-*/
-
-scale =
-Math.max(
-.01,
-Math.min(
-50,
-scale
-)
-);
-
-
-$("characterZoom").value =
-scale;
-
-
-/*
-Reset offsets.
-
-The actual visible center gets
-placed exactly at the opening
-center during drawing.
-*/
-
-$("characterX").value =
-0;
-
-$("characterY").value =
-0;
-
+draw();
 
 updateUI();
 
-draw();
-
 }
 
 
-/* =========================================================
-🔥 CENTER CHARACTER
-========================================================= */
+/* =====================================================
+CENTER
+===================================================== */
 
-function centerCharacter(){
+function center(){
 
-if(
-!character ||
-!characterBounds
-)
-return;
-
-
-$("characterX").value =
-0;
-
-$("characterY").value =
-0;
-
+document.getElementById("posX").value=0;
+document.getElementById("posY").value=0;
 
 draw();
 
 }
 
 
-/* =========================================================
-DRAW BACKGROUND
-========================================================= */
+/* =====================================================
+BACKGROUND
+===================================================== */
+
+document
+.getElementById("bgInput")
+.addEventListener("change",e=>{
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+loadImage(file,img=>{
+
+background=img;
+
+document.getElementById("bgType").value="image";
+
+draw();
+
+});
+
+});
+
 
 function drawBackground(){
 
-const type =
-$("backgroundType").value;
+const type=
+document.getElementById("bgType").value;
 
 
-if(
-type === "image" &&
-background
-){
+if(type==="image" && background){
+
+ctx.save();
+
+ctx.filter=
+`blur(${document.getElementById("bgBlur").value}px)`;
 
 drawCover(
 background,
 0,
 0,
-W,
-H
+600,
+600
 );
-
-return;
-
-}
-
-
-if(type === "gradient"){
-
-const gradient =
-ctx.createLinearGradient(
-0,
-0,
-W,
-H
-);
-
-
-gradient.addColorStop(
-0,
-$("backgroundColor").value
-);
-
-
-gradient.addColorStop(
-1,
-$("backgroundColor2").value
-);
-
-
-ctx.fillStyle =
-gradient;
-
-ctx.fillRect(
-0,
-0,
-W,
-H
-);
-
-return;
-
-}
-
-
-ctx.fillStyle =
-$("backgroundColor").value;
-
-ctx.fillRect(
-0,
-0,
-W,
-H
-);
-
-}
-
-
-/* =========================================================
-DRAW COVER IMAGE
-========================================================= */
-
-function drawCover(
-img,
-x,
-y,
-width,
-height
-){
-
-const ratio =
-img.width /
-img.height;
-
-
-const targetRatio =
-width /
-height;
-
-
-let drawWidth;
-let drawHeight;
-
-
-if(ratio > targetRatio){
-
-drawHeight =
-height;
-
-drawWidth =
-drawHeight * ratio;
-
-}
-
-else{
-
-drawWidth =
-width;
-
-drawHeight =
-drawWidth / ratio;
-
-}
-
-
-ctx.drawImage(
-
-img,
-
-x +
-(width-drawWidth)/2,
-
-y +
-(height-drawHeight)/2,
-
-drawWidth,
-drawHeight
-
-);
-
-}
-
-
-/* =========================================================
-🔥 DRAW CHARACTER
-========================================================= */
-
-function drawCharacter(){
-
-if(
-!character ||
-!characterBounds
-)
-return;
-
-
-const opening =
-getOpening();
-
-
-const scale =
-Number(
-$("characterZoom").value
-);
-
-
-const visibleCenterX =
-characterBounds.x +
-characterBounds.width/2;
-
-
-const visibleCenterY =
-characterBounds.y +
-characterBounds.height/2;
-
-
-const targetCenterX =
-opening.x +
-opening.width/2;
-
-
-const targetCenterY =
-opening.y +
-opening.height/2;
-
-
-const offsetX =
-Number(
-$("characterX").value
-);
-
-
-const offsetY =
-Number(
-$("characterY").value
-);
-
-
-/*
-This is the key formula.
-
-The CENTER OF THE ACTUAL
-VISIBLE CHARACTER is moved to
-the CENTER OF THE OPENING.
-
-Transparent padding does not
-matter.
-*/
-
-const drawX =
-
-targetCenterX -
-
-visibleCenterX * scale +
-
-offsetX;
-
-
-const drawY =
-
-targetCenterY -
-
-visibleCenterY * scale +
-
-offsetY;
-
-
-const drawWidth =
-character.width *
-scale;
-
-
-const drawHeight =
-character.height *
-scale;
-
-
-ctx.save();
-
-
-/*
-Clip character to the opening.
-*/
-
-openingPath(ctx);
-
-ctx.clip();
-
-
-ctx.filter =
-
-"brightness(" +
-$("brightness").value +
-"%) " +
-
-"contrast(" +
-$("contrast").value +
-"%) " +
-
-"saturate(" +
-$("saturation").value +
-"%) " +
-
-"blur(" +
-$("blur").value +
-"px)";
-
-
-ctx.drawImage(
-
-character,
-
-drawX,
-drawY,
-
-drawWidth,
-drawHeight
-
-);
-
 
 ctx.restore();
 
-}
-
-
-/* =========================================================
-PRESET BORDER
-========================================================= */
-
-function drawPresetBorder(){
-
-if(
-selectedBorder === "none"
-)
 return;
 
-
-ctx.save();
-
-
-let width = 8;
-
-let color = "#ffffff";
-
-
-if(
-selectedBorder === "gold"
-){
-
-width=10;
-
-color="#d4af37";
-
 }
 
 
-if(
-selectedBorder === "crimson"
-){
+if(type==="gradient"){
 
-width=9;
-
-color="#d94646";
-
-}
-
-
-if(
-selectedBorder === "neon"
-){
-
-width=8;
-
-color="#5865f2";
-
-ctx.shadowColor=color;
-
-ctx.shadowBlur=25;
-
-}
-
-
-ctx.strokeStyle =
-color;
-
-
-if(
-selectedBorder === "double"
-){
-
-ctx.lineWidth=5;
-
-ctx.strokeRect(
-4,
-4,
-592,
-592
-);
-
-ctx.lineWidth=3;
-
-ctx.strokeRect(
-15,
-15,
-570,
-570
-);
-
-}
-
-else{
-
-ctx.lineWidth =
-width;
-
-ctx.strokeRect(
-width/2,
-width/2,
-W-width,
-H-width
-);
-
-}
-
-
-ctx.restore();
-
-}
-
-
-/* =========================================================
-🔥 UPLOADED BORDER
-========================================================= */
-
-function drawUploadedBorder(){
-
-if(!border)
-return;
-
-
-/*
-Everything is first rendered
-onto a separate 600×600 frame.
-*/
-
-const frame =
-document.createElement("canvas");
-
-frame.width =
-W;
-
-frame.height =
-H;
-
-
-const fctx =
-frame.getContext("2d");
-
-
-fctx.clearRect(
-0,
-0,
-W,
-H
-);
-
-
-const scale =
-Number(
-$("borderScale").value
-);
-
-
-const width =
-border.width *
-scale;
-
-
-const height =
-border.height *
-scale;
-
-
-const centerX =
-300 +
-Number(
-$("borderX").value
-);
-
-
-const centerY =
-300 +
-Number(
-$("borderY").value
-);
-
-
-const rotation =
-Number(
-$("borderRotation").value
-) *
-Math.PI/180;
-
-
-fctx.save();
-
-
-fctx.globalAlpha =
-Number(
-$("borderOpacity").value
-)/100;
-
-
-fctx.translate(
-centerX,
-centerY
-);
-
-
-fctx.rotate(
-rotation
-);
-
-
-fctx.drawImage(
-
-border,
-
--width/2,
--height/2,
-
-width,
-height
-
-);
-
-
-fctx.restore();
-
-
-/*
-=====================================================
-IMPORTANT FIX
-=====================================================
-
-The transform is completely
-finished BEFORE we cut the
-opening.
-
-Therefore the opening is
-always calculated in the
-actual 600×600 workspace.
-
-No transformed coordinates.
-
-No bottom-right bug.
-*/
-
-
-fctx.save();
-
-
-fctx.globalCompositeOperation =
-"destination-out";
-
-
-openingPath(fctx);
-
-
-fctx.fill();
-
-
-fctx.restore();
-
-
-/*
-Now the frame is already a
-finished transparent frame.
-
-Put it onto the main canvas.
-*/
-
-ctx.drawImage(
-frame,
-0,
-0
-);
-
-}
-
-
-/* =========================================================
-CUSTOM BORDER
-========================================================= */
-
-function drawCustomBorder(){
-
-ctx.save();
-
-
-const width =
-Number(
-$("customWidth").value
-);
-
-
-if(
-$("customGradient").value ===
-"yes"
-){
-
-const gradient =
+const gradient=
 ctx.createLinearGradient(
 0,
 0,
@@ -2794,97 +1204,215 @@ ctx.createLinearGradient(
 600
 );
 
-
 gradient.addColorStop(
 0,
-$("customColor").value
+document.getElementById("bgColor").value
 );
-
 
 gradient.addColorStop(
 1,
-$("customColor2").value
+document.getElementById("bgColor2").value
+);
+
+ctx.fillStyle=gradient;
+
+ctx.fillRect(0,0,600,600);
+
+return;
+
+}
+
+
+ctx.fillStyle=
+document.getElementById("bgColor").value;
+
+ctx.fillRect(0,0,600,600);
+
+}
+
+
+function drawCover(img,x,y,w,h){
+
+const ratio=
+img.width/img.height;
+
+const target=
+w/h;
+
+let dw;
+let dh;
+
+if(ratio>target){
+
+dh=h;
+dw=dh*ratio;
+
+}else{
+
+dw=w;
+dh=dw/ratio;
+
+}
+
+ctx.drawImage(
+img,
+x+(w-dw)/2,
+y+(h-dh)/2,
+dw,
+dh
+);
+
+}
+
+
+/* =====================================================
+CHARACTER DRAW
+===================================================== */
+
+function drawCharacter(){
+
+if(!character)return;
+
+const zoom=
+Number(document.getElementById("zoom").value);
+
+const x=
+Number(document.getElementById("posX").value);
+
+const y=
+Number(document.getElementById("posY").value);
+
+const rotation=
+Number(document.getElementById("rotation").value)
+*Math.PI/180;
+
+
+const dw=
+character.width*zoom;
+
+const dh=
+character.height*zoom;
+
+
+ctx.save();
+
+
+/*
+Opening is ALWAYS centered.
+*/
+
+const openingX=55;
+const openingY=55;
+const openingW=490;
+const openingH=490;
+
+
+/*
+Clip to opening.
+*/
+
+ctx.beginPath();
+
+ctx.rect(
+openingX,
+openingY,
+openingW,
+openingH
+);
+
+ctx.clip();
+
+
+ctx.translate(
+300+x,
+300+y
+);
+
+ctx.rotate(rotation);
+
+
+ctx.scale(
+flipH?-1:1,
+flipV?-1:1
 );
 
 
-ctx.strokeStyle =
-gradient;
+ctx.filter=
 
-}
-
-else{
-
-ctx.strokeStyle =
-$("customColor").value;
-
-}
+`brightness(${document.getElementById("brightness").value}%)
+contrast(${document.getElementById("contrast").value}%)
+saturate(${document.getElementById("saturation").value}%)
+blur(${document.getElementById("blur").value}px)`;
 
 
-ctx.lineWidth =
-width;
-
-
-ctx.shadowColor =
-$("customGlowColor").value;
-
-
-ctx.shadowBlur =
-Number(
-$("customGlow").value
+ctx.drawImage(
+character,
+-dw/2,
+-dh/2,
+dw,
+dh
 );
 
-
-const style =
-$("customStyle").value;
-
-
-if(style === "dashed"){
-
-ctx.setLineDash([
-20,
-12
-]);
+ctx.restore();
 
 }
 
 
-if(style === "dotted"){
+/* =====================================================
+FRAME
+===================================================== */
 
-ctx.setLineDash([
-3,
-9
-]);
+function drawFrame(){
 
-}
+const frame=
+frames.find(x=>x.id===selectedFrame);
+
+if(!frame)return;
 
 
-if(style === "double"){
+const width=
+Number(document.getElementById("frameWidth").value);
 
-ctx.setLineDash([]);
+const glow=
+Number(document.getElementById("frameGlow").value);
 
-ctx.lineWidth =
-Math.max(
-2,
-width/3
+const opacity=
+Number(document.getElementById("frameOpacity").value)/100;
+
+
+ctx.save();
+
+ctx.globalAlpha=opacity;
+
+ctx.strokeStyle=frame.color;
+
+ctx.lineWidth=width;
+
+ctx.shadowColor=frame.color;
+
+ctx.shadowBlur=glow;
+
+
+if(frame.style==="double"){
+
+ctx.lineWidth=
+Math.max(2,width/3);
+
+ctx.strokeRect(
+width,
+width,
+600-width*2,
+600-width*2
 );
 
 ctx.strokeRect(
-5,
-5,
-590,
-590
+width*2,
+width*2,
+600-width*4,
+600-width*4
 );
 
-ctx.strokeRect(
-15,
-15,
-570,
-570
-);
-
-}
-
-else{
+}else{
 
 ctx.strokeRect(
 width/2,
@@ -2901,431 +1429,72 @@ ctx.restore();
 }
 
 
-/* =========================================================
-BORDER SELECTION
-========================================================= */
-
-document
-.querySelectorAll(".border-choice")
-.forEach(choice=>{
-
-choice.addEventListener("click",()=>{
-
-selectBorder(
-choice.dataset.border
-);
-
-});
-
-});
-
-
-function selectBorder(type){
-
-selectedBorder =
-type;
-
-
-document
-.querySelectorAll(".border-choice")
-.forEach(
-x=>x.classList.remove("selected")
-);
-
-
-const selected =
-document.querySelector(
-'[data-border="' +
-type +
-'"]'
-);
-
-
-if(selected)
-selected.classList.add("selected");
-
-
-$("customPanel")
-.classList.toggle(
-"visible",
-type === "custom"
-);
-
-
-$("uploadedPanel")
-.classList.toggle(
-"visible",
-type === "uploaded"
-);
-
-
-draw();
-
-}
-
-
-/* =========================================================
-BORDER UPLOAD
-========================================================= */
-
-$("borderInput")
-.addEventListener(
-"change",
-event=>{
-
-const file =
-event.target.files[0];
-
-if(!file)
-return;
-
-
-loadImage(
-file,
-img=>{
-
-border =
-img;
-
-
-selectBorder(
-"uploaded"
-);
-
-
-/*
-Automatically make it cover
-the entire icon.
-*/
-
-fitUploadedBorder();
-
-}
-);
-
-});
-
-
-/* =========================================================
-FIT UPLOADED BORDER
-========================================================= */
-
-function fitUploadedBorder(){
-
-if(!border)
-return;
-
-
-const scaleX =
-W /
-border.width;
-
-
-const scaleY =
-H /
-border.height;
-
-
-/*
-Cover the entire icon.
-*/
-
-const scale =
-Math.max(
-scaleX,
-scaleY
-);
-
-
-$("borderScale").value =
-scale;
-
-
-$("borderX").value =
-0;
-
-
-$("borderY").value =
-0;
-
-
-$("borderRotation").value =
-0;
-
-
-updateUI();
-
-draw();
-
-}
-
-
-/* =========================================================
-CENTER UPLOADED BORDER
-========================================================= */
-
-function centerUploadedBorder(){
-
-$("borderX").value =
-0;
-
-$("borderY").value =
-0;
-
-
-draw();
-
-}
-
-
-/* =========================================================
-BACKGROUND UPLOAD
-========================================================= */
-
-$("backgroundInput")
-.addEventListener(
-"change",
-event=>{
-
-const file =
-event.target.files[0];
-
-if(!file)
-return;
-
-
-loadImage(
-file,
-img=>{
-
-background =
-img;
-
-$("backgroundType").value =
-"image";
-
-draw();
-
-}
-);
-
-});
-
-
-/* =========================================================
-FONT UPLOAD
-========================================================= */
-
-$("fontInput")
-.addEventListener(
-"change",
-async event=>{
-
-const file =
-event.target.files[0];
-
-if(!file)
-return;
-
-
-try{
-
-const buffer =
-await file.arrayBuffer();
-
-
-const fontName =
-"CustomFont_" +
-Date.now();
-
-
-const font =
-new FontFace(
-fontName,
-buffer
-);
-
-
-await font.load();
-
-
-document.fonts.add(font);
-
-
-const option1 =
-document.createElement("option");
-
-
-option1.value =
-fontName;
-
-option1.textContent =
-"★ " +
-file.name;
-
-
-$("nameFont")
-.appendChild(
-option1
-);
-
-
-const option2 =
-document.createElement("option");
-
-
-option2.value =
-fontName;
-
-option2.textContent =
-"★ " +
-file.name;
-
-
-$("versionFont")
-.appendChild(
-option2
-);
-
-
-$("nameFont").value =
-fontName;
-
-
-$("versionFont").value =
-fontName;
-
-
-$("fontPreview").style.fontFamily =
-fontName;
-
-
-draw();
-
-}
-
-catch(error){
-
-alert(
-"That font could not be loaded."
-);
-
-}
-
-});
-
-
-/* =========================================================
+/* =====================================================
 TEXT
-========================================================= */
+===================================================== */
 
 function drawText(){
 
-const name =
-$("characterName").value;
+const name=
+document.getElementById("name").value;
 
-const version =
-$("characterVersion").value;
+const version=
+document.getElementById("version").value;
+
+if(!name && !version)return;
 
 
-if(
-!name &&
-!version
-)
-return;
+const y=
+Number(document.getElementById("textY").value);
+
+const outline=
+Number(document.getElementById("outlineWidth").value);
+
+const shadow=
+Number(document.getElementById("textShadow").value);
 
 
 ctx.save();
 
+ctx.textAlign="center";
+ctx.textBaseline="middle";
 
-ctx.textAlign =
-"center";
+ctx.fillStyle=
+document.getElementById("textColor").value;
 
-ctx.textBaseline =
-"middle";
+ctx.strokeStyle=
+document.getElementById("outlineColor").value;
 
-
-ctx.fillStyle =
-$("textColor").value;
-
-ctx.strokeStyle =
-$("outlineColor").value;
-
-
-const y =
-Number(
-$("textY").value
-);
-
-
-const outline =
-Number(
-$("outlineWidth").value
-);
+ctx.shadowColor="#000";
+ctx.shadowBlur=shadow;
 
 
 if(name){
 
-ctx.font =
-"bold " +
-$("nameSize").value +
-"px " +
-$("nameFont").value;
+ctx.font=
+`bold ${document.getElementById("nameSize").value}px ${document.getElementById("nameFont").value}`;
 
+ctx.lineWidth=outline*2;
 
-ctx.lineWidth =
-outline*2;
+if(outline)
+ctx.strokeText(name,300,y);
 
-
-if(outline>0){
-
-ctx.strokeText(
-name,
-300,
-y
-);
-
-}
-
-
-ctx.fillText(
-name,
-300,
-y
-);
+ctx.fillText(name,300,y);
 
 }
 
 
 if(version){
 
-ctx.font =
-"bold " +
-$("versionSize").value +
-"px " +
-$("versionFont").value;
+ctx.font=
+`bold ${document.getElementById("versionSize").value}px ${document.getElementById("versionFont").value}`;
 
+ctx.lineWidth=outline*2;
 
-ctx.lineWidth =
-outline*2;
+if(outline)
+ctx.strokeText(version,300,y+40);
 
-
-if(outline>0){
-
-ctx.strokeText(
-version,
-300,
-y+42
-);
-
-}
-
-
-ctx.fillText(
-version,
-300,
-y+42
-);
+ctx.fillText(version,300,y+40);
 
 }
 
@@ -3335,757 +1504,541 @@ ctx.restore();
 }
 
 
-/* =========================================================
+/* =====================================================
 VIGNETTE
-========================================================= */
-
-function hexRGB(hex){
-
-hex =
-hex.replace("#","");
-
-
-return {
-
-r:parseInt(
-hex.substring(0,2),
-16
-),
-
-g:parseInt(
-hex.substring(2,4),
-16
-),
-
-b:parseInt(
-hex.substring(4,6),
-16
-)
-
-};
-
-}
-
+===================================================== */
 
 function drawVignette(){
 
-const strength =
-Number(
-$("vignette").value
-)/100;
+const amount=
+Number(document.getElementById("vignette").value)/100;
+
+const edge=
+Number(document.getElementById("edgeDark").value)/100;
+
+const strength=
+Math.max(amount,edge);
+
+if(strength<=0)return;
 
 
-if(strength<=0)
-return;
+const color=
+document.getElementById("vignetteColor").value;
 
 
-const start =
-Number(
-$("vignetteStart").value
-)/100;
-
-
-const rgb =
-hexRGB(
-$("vignetteColor").value
-);
-
-
-const gradient =
+const gradient=
 ctx.createRadialGradient(
 300,
 300,
-50,
+100,
 300,
 300,
 430
 );
 
-
 gradient.addColorStop(
 0,
-"rgba("+
-rgb.r+
-","+
-rgb.g+
-","+
-rgb.b+
-",0)"
+"rgba(0,0,0,0)"
 );
-
 
 gradient.addColorStop(
-Math.max(.05,start),
-"rgba("+
-rgb.r+
-","+
-rgb.g+
-","+
-rgb.b+
-",0)"
+.55,
+"rgba(0,0,0,0)"
 );
-
 
 gradient.addColorStop(
 1,
-"rgba("+
-rgb.r+
-","+
-rgb.g+
-","+
-rgb.b+
-","+
-strength+
-")"
+hexToRGBA(color,strength)
 );
 
+ctx.fillStyle=gradient;
 
-ctx.fillStyle =
-gradient;
-
-
-ctx.fillRect(
-0,
-0,
-600,
-600
-);
+ctx.fillRect(0,0,600,600);
 
 }
 
 
-/* =========================================================
-🔥 MASTER DRAW
-========================================================= */
+function hexToRGBA(hex,a){
+
+hex=hex.replace("#","");
+
+const r=parseInt(hex.substring(0,2),16);
+const g=parseInt(hex.substring(2,4),16);
+const b=parseInt(hex.substring(4,6),16);
+
+return `rgba(${r},${g},${b},${a})`;
+
+}
+
+
+/* =====================================================
+MASTER DRAW
+===================================================== */
 
 function draw(){
 
-ctx.clearRect(
-0,
-0,
-W,
-H
-);
-
-
-/*
-1 BACKGROUND
-*/
+ctx.clearRect(0,0,600,600);
 
 drawBackground();
 
-
-/*
-2 CHARACTER
-*/
-
 drawCharacter();
 
-
-/*
-3 BORDER
-*/
-
-if(
-selectedBorder === "uploaded"
-){
-
-drawUploadedBorder();
-
-}
-
-else if(
-selectedBorder === "custom"
-){
-
-drawCustomBorder();
-
-}
-
-else{
-
-drawPresetBorder();
-
-}
-
-
-/*
-4 TEXT
-*/
+drawFrame();
 
 drawText();
-
-
-/*
-5 VIGNETTE
-*/
 
 drawVignette();
 
 }
 
 
-/* =========================================================
-CONTROL LIST
-========================================================= */
+/* =====================================================
+CONTROLS
+===================================================== */
 
-const controls = [
+const controls=[
 
-"characterZoom",
-"characterX",
-"characterY",
+"zoom",
+"posX",
+"posY",
+"rotation",
 
-"characterName",
-"characterVersion",
-
+"name",
+"version",
 "nameFont",
 "versionFont",
-
 "nameSize",
 "versionSize",
 "textY",
-
 "textColor",
 "outlineColor",
 "outlineWidth",
+"textShadow",
 
-"backgroundType",
-"backgroundColor",
-"backgroundColor2",
+"bgType",
+"bgColor",
+"bgColor2",
+"bgBlur",
 
-"customStyle",
-"customColor",
-"customColor2",
-"customGradient",
-"customWidth",
-"customGlow",
-"customGlowColor",
-
-"openingShape",
-"openingWidth",
-"openingHeight",
-"openingRadius",
-
-"borderScale",
-"borderX",
-"borderY",
-"borderRotation",
-"borderOpacity",
+"frameWidth",
+"frameGlow",
+"frameOpacity",
 
 "brightness",
 "contrast",
 "saturation",
 "blur",
-
 "vignette",
-"vignetteStart",
-"vignetteColor"
+"vignetteColor",
+"edgeDark"
 
 ];
 
 
 controls.forEach(id=>{
 
-const control =
-$(id);
+const element=
+document.getElementById(id);
 
+if(!element)return;
 
-if(!control)
-return;
-
-
-control.addEventListener(
+element.addEventListener(
 "input",
 ()=>{
 
-/*
-If opening dimensions change,
-automatically refit the
-character.
-*/
-
-if(
-(
-id === "openingWidth" ||
-id === "openingHeight"
-) &&
-character
-){
-
-autoFitCharacter();
-
-}
-
-else{
-
 draw();
-
-}
-
-
 updateUI();
 
-}
-);
+});
 
-
-control.addEventListener(
+element.addEventListener(
 "change",
 ()=>{
 
 draw();
-
 updateUI();
 
-}
+});
+
+});
+
+
+/* =====================================================
+BUTTONS
+===================================================== */
+
+document
+.getElementById("autoFit")
+.onclick=autoFit;
+
+document
+.getElementById("center")
+.onclick=center;
+
+
+document
+.getElementById("flipH")
+.onclick=()=>{
+
+flipH=!flipH;
+
+draw();
+
+};
+
+
+document
+.getElementById("flipV")
+.onclick=()=>{
+
+flipV=!flipV;
+
+draw();
+
+};
+
+
+document
+.getElementById("resetImage")
+.onclick=()=>{
+
+document.getElementById("zoom").value=1;
+document.getElementById("posX").value=0;
+document.getElementById("posY").value=0;
+document.getElementById("rotation").value=0;
+
+flipH=false;
+flipV=false;
+
+draw();
+updateUI();
+
+};
+
+
+/* =====================================================
+DRAGGING
+===================================================== */
+
+let dragging=false;
+
+let startX=0;
+let startY=0;
+
+let originalX=0;
+let originalY=0;
+
+
+canvas.addEventListener(
+"pointerdown",
+e=>{
+
+if(!character)return;
+
+dragging=true;
+
+startX=e.clientX;
+startY=e.clientY;
+
+originalX=
+Number(document.getElementById("posX").value);
+
+originalY=
+Number(document.getElementById("posY").value);
+
+canvas.setPointerCapture(
+e.pointerId
 );
 
 });
 
 
-/* =========================================================
-CHARACTER BUTTONS
-========================================================= */
-
-$("autoFitCharacter")
-.addEventListener(
-"click",
-autoFitCharacter
-);
-
-
-$("centerCharacter")
-.addEventListener(
-"click",
-centerCharacter
-);
-
-
-$("resetCharacter")
-.addEventListener(
-"click",
-()=>{
-
-$("characterZoom").value =
-1;
-
-$("characterX").value =
-0;
-
-$("characterY").value =
-0;
-
-draw();
-
-}
-);
-
-
-/* =========================================================
-BORDER BUTTONS
-========================================================= */
-
-$("fitUploadedBorder")
-.addEventListener(
-"click",
-fitUploadedBorder
-);
-
-
-$("centerUploadedBorder")
-.addEventListener(
-"click",
-centerUploadedBorder
-);
-
-
-$("removeUploadedBorder")
-.addEventListener(
-"click",
-()=>{
-
-border =
-null;
-
-$("borderInput").value =
-"";
-
-selectBorder(
-"classic"
-);
-
-}
-);
-
-
-/* =========================================================
-DRAG CHARACTER
-========================================================= */
-
-let dragging =
-false;
-
-let startPointerX = 0;
-
-let startPointerY = 0;
-
-let startCharacterX = 0;
-
-let startCharacterY = 0;
-
-
-canvas.addEventListener(
-"pointerdown",
-event=>{
-
-if(!character)
-return;
-
-
-dragging =
-true;
-
-
-startPointerX =
-event.clientX;
-
-startPointerY =
-event.clientY;
-
-
-startCharacterX =
-Number(
-$("characterX").value
-);
-
-
-startCharacterY =
-Number(
-$("characterY").value
-);
-
-
-canvas.setPointerCapture(
-event.pointerId
-);
-
-}
-);
-
-
 canvas.addEventListener(
 "pointermove",
-event=>{
+e=>{
 
-if(!dragging)
-return;
+if(!dragging)return;
 
-
-const rect =
+const rect=
 canvas.getBoundingClientRect();
 
+const scaleX=
+600/rect.width;
 
-const scaleX =
-600 /
-rect.width;
-
-
-const scaleY =
-600 /
-rect.height;
+const scaleY=
+600/rect.height;
 
 
-$("characterX").value =
+document.getElementById("posX").value=
 
-startCharacterX +
-
-(
-event.clientX -
-startPointerX
-) *
-scaleX;
+originalX+
+(e.clientX-startX)*scaleX;
 
 
-$("characterY").value =
+document.getElementById("posY").value=
 
-startCharacterY +
-
-(
-event.clientY -
-startPointerY
-) *
-scaleY;
+originalY+
+(e.clientY-startY)*scaleY;
 
 
 draw();
 
-}
-);
+});
 
 
 canvas.addEventListener(
 "pointerup",
-()=>{
-dragging=false;
-}
+()=>dragging=false
 );
-
 
 canvas.addEventListener(
 "pointercancel",
-()=>{
-dragging=false;
-}
+()=>dragging=false
 );
 
 
-/* =========================================================
-SAVE
-========================================================= */
+/* =====================================================
+CUSTOM FONT
+===================================================== */
 
-$("saveProject")
+document
+.getElementById("fontInput")
 .addEventListener(
-"click",
-()=>{
+"change",
+async e=>{
 
-const data = {
+const file=e.target.files[0];
 
-characterName:
-$("characterName").value,
+if(!file)return;
 
-characterVersion:
-$("characterVersion").value,
+try{
 
-characterZoom:
-$("characterZoom").value,
+const buffer=
+await file.arrayBuffer();
 
-characterX:
-$("characterX").value,
+const fontName=
+"IconForgeCustom"+Date.now();
 
-characterY:
-$("characterY").value,
+const font=
+new FontFace(
+fontName,
+buffer
+);
 
-selectedBorder:
-selectedBorder,
+await font.load();
 
-openingShape:
-$("openingShape").value,
+document.fonts.add(font);
 
-openingWidth:
-$("openingWidth").value,
 
-openingHeight:
-$("openingHeight").value,
+const nameOption=
+document.createElement("option");
 
-openingRadius:
-$("openingRadius").value,
+nameOption.value=fontName;
+nameOption.textContent=
+"★ "+file.name;
 
-borderScale:
-$("borderScale").value,
+document
+.getElementById("nameFont")
+.appendChild(nameOption);
 
-borderX:
-$("borderX").value,
 
-borderY:
-$("borderY").value,
+const versionOption=
+document.createElement("option");
 
-borderRotation:
-$("borderRotation").value,
+versionOption.value=fontName;
+versionOption.textContent=
+"★ "+file.name;
 
-backgroundType:
-$("backgroundType").value,
+document
+.getElementById("versionFont")
+.appendChild(versionOption);
 
-backgroundColor:
-$("backgroundColor").value,
 
-backgroundColor2:
-$("backgroundColor2").value,
+document.getElementById("nameFont").value=
+fontName;
 
-brightness:
-$("brightness").value,
+document.getElementById("versionFont").value=
+fontName;
 
-contrast:
-$("contrast").value,
+draw();
 
-saturation:
-$("saturation").value,
+}catch(err){
 
-blur:
-$("blur").value,
+alert("That font could not be loaded.");
 
-vignette:
-$("vignette").value,
+}
 
-textY:
-$("textY").value
+});
 
-};
 
+/* =====================================================
+SAVE / LOAD
+===================================================== */
+
+document
+.getElementById("save")
+.onclick=()=>{
+
+const data={};
+
+controls.forEach(id=>{
+
+const el=document.getElementById(id);
+
+if(el)
+data[id]=el.value;
+
+});
+
+data.selectedFrame=selectedFrame;
+data.flipH=flipH;
+data.flipV=flipV;
 
 localStorage.setItem(
 "iconforgeProject",
 JSON.stringify(data)
 );
 
+document.getElementById("status").textContent=
+"Project saved.";
 
-$("status").textContent =
-"Project settings saved.";
-
-}
-);
+};
 
 
-/* =========================================================
-LOAD
-========================================================= */
+document
+.getElementById("load")
+.onclick=()=>{
 
-$("loadProject")
-.addEventListener(
-"click",
-()=>{
-
-const saved =
+const saved=
 localStorage.getItem(
 "iconforgeProject"
 );
 
-
 if(!saved){
 
-$("status").textContent =
+document.getElementById("status").textContent=
 "No saved project found.";
 
 return;
 
 }
 
-
-const data =
+const data=
 JSON.parse(saved);
 
 
-Object.keys(data)
-.forEach(key=>{
+controls.forEach(id=>{
 
-if(
-$(key) &&
-key !== "selectedBorder"
-){
+const el=document.getElementById(id);
 
-$(key).value =
-data[key];
-
-}
+if(el && data[id]!==undefined)
+el.value=data[id];
 
 });
 
 
-if(data.selectedBorder){
+if(data.selectedFrame){
 
-selectBorder(
-data.selectedBorder
-);
+selectedFrame=
+data.selectedFrame;
+
+renderFrames();
 
 }
 
+
+flipH=!!data.flipH;
+flipV=!!data.flipV;
 
 draw();
+updateUI();
 
-$("status").textContent =
-"Project settings loaded.";
+document.getElementById("status").textContent=
+"Project loaded.";
 
-}
-);
+};
 
 
-/* =========================================================
+/* =====================================================
 DOWNLOAD
-========================================================= */
+===================================================== */
 
-$("download")
-.addEventListener(
-"click",
-()=>{
+document
+.getElementById("download")
+.onclick=()=>{
 
-const link =
+const link=
 document.createElement("a");
 
+let filename=
+document.getElementById("name").value ||
+"iconforge-icon";
 
-let filename =
-$("characterName").value ||
-"tier-icon";
-
-
-filename =
+filename=
 filename.replace(
 /[^a-z0-9]/gi,
 "_"
 );
 
+link.download=
+filename+".png";
 
-link.download =
-filename +
-".png";
-
-
-link.href =
+link.href=
 canvas.toDataURL(
 "image/png"
 );
 
-
 link.click();
 
-
-$("status").textContent =
+document.getElementById("status").textContent=
 "PNG exported.";
 
-}
-);
+};
 
 
-/* =========================================================
-RESET
-========================================================= */
+/* =====================================================
+RESET EVERYTHING
+===================================================== */
 
-$("resetAll")
-.addEventListener(
-"click",
-()=>{
+document
+.getElementById("reset")
+.onclick=()=>{
 
 if(
-confirm(
-"Reset the entire editor?"
-)
+confirm("Reset the entire editor?")
 ){
+
+localStorage.removeItem(
+"iconforgeProject"
+);
 
 location.reload();
 
 }
 
-}
-);
+};
 
 
-/* =========================================================
-UI VALUES
-========================================================= */
+/* =====================================================
+UI
+===================================================== */
 
 function updateUI(){
 
-$("characterZoomValue").textContent =
-Math.round(
+const zoom=
 Number(
-$("characterZoom").value
-)*100
-)+"%";
+document.getElementById("zoom").value
+);
+
+document.getElementById("zoomValue").textContent=
+Math.round(zoom*100)+"%";
 
 }
 
 
-/* =========================================================
-INITIALIZE
-========================================================= */
+/* =====================================================
+START
+===================================================== */
 
 updateUI();
 
