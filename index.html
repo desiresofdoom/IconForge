@@ -12,10 +12,6 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
-/* =========================================================
-GLOBAL
-========================================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -40,26 +36,24 @@ body {
     background:
         radial-gradient(
             circle at 10% 10%,
-            rgba(88,101,242,.30),
+            rgba(88,101,242,.35),
             transparent 30%
         ),
         radial-gradient(
             circle at 90% 15%,
-            rgba(151,71,255,.24),
+            rgba(160,70,255,.25),
             transparent 30%
         ),
         radial-gradient(
             circle at 50% 100%,
-            rgba(0,174,255,.12),
-            transparent 35%
+            rgba(0,170,255,.12),
+            transparent 40%
         ),
-        #06070b;
+        #05060a;
 
     overflow-x: hidden;
 }
 
-
-/* background grid */
 
 body::before {
 
@@ -72,89 +66,23 @@ body::before {
     pointer-events: none;
 
     background-image:
-
         linear-gradient(
             rgba(255,255,255,.025) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(255,255,255,.025) 1px,
             transparent 1px
         );
 
-    background-size: 42px 42px;
+    background-size: 40px 40px;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 90%
-        );
-
-    z-index: -2;
-}
-
-
-/* glowing orb */
-
-body::after {
-
-    content: "";
-
-    position: fixed;
-
-    width: 500px;
-
-    height: 500px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(88,101,242,.12),
-            transparent 70%
-        );
-
-    left: 50%;
-
-    top: 40%;
-
-    transform:
-        translate(-50%,-50%);
-
-    pointer-events: none;
+    opacity: .4;
 
     z-index: -1;
-
-    animation:
-        floatingGlow 8s
-        ease-in-out
-        infinite alternate;
 }
 
-@keyframes floatingGlow {
-
-    from {
-        transform:
-            translate(-50%,-50%)
-            scale(.8);
-    }
-
-    to {
-        transform:
-            translate(-50%,-50%)
-            scale(1.2);
-    }
-
-}
-
-
-/* =========================================================
-APP
-========================================================= */
 
 .app {
 
@@ -165,37 +93,35 @@ APP
     margin: auto;
 
     padding:
-        18px 12px 70px;
+        15px 10px 70px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
 HEADER
-========================================================= */
+===================================================== */
 
 .header {
 
     text-align: center;
 
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 
 }
 
 .logo {
 
-    font-size: 31px;
+    font-size: 30px;
 
     font-weight: 900;
-
-    letter-spacing: -1px;
 
     background:
         linear-gradient(
             90deg,
             white,
-            #9ca7ff,
-            #d6b9ff
+            #9da7ff,
+            #d3b7ff
         );
 
     -webkit-background-clip: text;
@@ -206,50 +132,50 @@ HEADER
 
 .subtitle {
 
-    color: #888894;
+    color: #858590;
 
     font-size: 13px;
 
-    margin-top: 6px;
+    margin-top: 5px;
 
 }
 
 
-/* =========================================================
-PREVIEW
-========================================================= */
+/* =====================================================
+LIVE PREVIEW
+===================================================== */
 
 .preview-card {
 
     position: sticky;
 
-    top: 8px;
+    top: 7px;
 
     z-index: 100;
 
-    padding: 12px;
+    padding: 10px;
 
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 
-    border-radius: 20px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
+    border-radius: 18px;
 
     background:
-        rgba(12,13,19,.90);
+        rgba(10,11,16,.93);
 
     backdrop-filter:
         blur(20px);
 
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     box-shadow:
-        0 20px 60px
+        0 15px 50px
         rgba(0,0,0,.45);
 
 }
 
-.preview-label {
+.preview-title {
 
     text-align: center;
 
@@ -261,7 +187,7 @@ PREVIEW
 
     letter-spacing: 2px;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 
 }
 
@@ -273,31 +199,27 @@ PREVIEW
 
 }
 
-#canvas {
-
-    width:
-        min(410px,100%);
-
-    height: auto;
+canvas {
 
     display: block;
 
+    width:
+        min(420px,100%);
+
+    height: auto;
+
+    border-radius: 10px;
+
     background: #111;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 0 40px
-        rgba(88,101,242,.12);
 
     touch-action: none;
 
 }
 
 
-/* =========================================================
-NAV
-========================================================= */
+/* =====================================================
+NAVIGATION
+===================================================== */
 
 .section-nav {
 
@@ -308,31 +230,28 @@ NAV
 
     gap: 6px;
 
-    padding: 7px;
+    padding: 6px;
 
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
     background:
-        rgba(20,21,29,.9);
+        rgba(22,23,30,.95);
 
     border:
         1px solid
         rgba(255,255,255,.07);
 
-    backdrop-filter:
-        blur(15px);
-
 }
 
 .section-button {
 
-    border: none;
+    border: 0;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    padding: 11px 4px;
+    padding: 11px 3px;
 
     color: #858592;
 
@@ -354,19 +273,15 @@ NAV
         linear-gradient(
             135deg,
             #5865f2,
-            #7d4dff
+            #7a4dff
         );
-
-    box-shadow:
-        0 6px 20px
-        rgba(88,101,242,.25);
 
 }
 
 
-/* =========================================================
+/* =====================================================
 SECTIONS
-========================================================= */
+===================================================== */
 
 .editor-section {
 
@@ -381,32 +296,28 @@ SECTIONS
 }
 
 
-/* =========================================================
+/* =====================================================
 PANELS
-========================================================= */
+===================================================== */
 
 .panel {
 
-    padding: 18px;
+    padding: 17px;
 
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 
-    border-radius: 18px;
+    border-radius: 17px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(29,30,39,.96),
-            rgba(16,17,23,.96)
+            rgba(28,29,38,.97),
+            rgba(14,15,21,.97)
         );
 
     border:
         1px solid
         rgba(255,255,255,.07);
-
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.20);
 
 }
 
@@ -416,33 +327,32 @@ PANELS
 
     font-weight: 900;
 
-    margin-bottom: 4px;
-
 }
 
 .panel-description {
 
-    color: #80808c;
+    color: #80808b;
 
     font-size: 12px;
 
     line-height: 1.5;
 
-    margin-bottom: 15px;
+    margin:
+        4px 0 15px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
 INPUTS
-========================================================= */
+===================================================== */
 
 label {
 
     display: block;
 
     margin:
-        15px 0 7px;
+        14px 0 6px;
 
     color: #d8d8df;
 
@@ -458,29 +368,19 @@ select {
 
     width: 100%;
 
-    padding: 12px;
+    padding: 11px;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
     border:
         1px solid
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.08);
 
     background: #252630;
 
     color: white;
 
-    font-size: 14px;
-
     outline: none;
-
-}
-
-input[type="text"]:focus,
-select:focus {
-
-    border-color:
-        rgba(88,101,242,.8);
 
 }
 
@@ -488,8 +388,7 @@ input[type="range"] {
 
     width: 100%;
 
-    accent-color:
-        #6874ff;
+    accent-color: #6874ff;
 
 }
 
@@ -499,9 +398,9 @@ input[type="color"] {
 
     height: 40px;
 
-    padding: 2px;
+    border: 0;
 
-    border: none;
+    padding: 2px;
 
     border-radius: 8px;
 
@@ -534,21 +433,23 @@ input[type="color"] {
 }
 
 
-/* =========================================================
+/* =====================================================
 BUTTONS
-========================================================= */
+===================================================== */
 
 .button {
 
     width: 100%;
 
+    border: 0;
+
+    border-radius: 10px;
+
     padding: 13px;
 
-    margin-top: 11px;
+    margin-top: 10px;
 
-    border: none;
-
-    border-radius: 11px;
+    color: white;
 
     background:
         linear-gradient(
@@ -557,11 +458,7 @@ BUTTONS
             #7c4dff
         );
 
-    color: white;
-
     font-weight: 900;
-
-    font-size: 13px;
 
     cursor: pointer;
 
@@ -578,16 +475,16 @@ BUTTONS
     background:
         linear-gradient(
             135deg,
-            #9e3838,
-            #c94b4b
+            #963b3b,
+            #c84a4a
         );
 
 }
 
 
-/* =========================================================
+/* =====================================================
 BORDER GRID
-========================================================= */
+===================================================== */
 
 .border-grid {
 
@@ -602,7 +499,7 @@ BORDER GRID
 
 .border-option {
 
-    min-height: 86px;
+    min-height: 80px;
 
     padding: 9px;
 
@@ -614,9 +511,9 @@ BORDER GRID
 
     background: #24252d;
 
-    text-align: center;
-
     color: #ddd;
+
+    text-align: center;
 
     font-size: 12px;
 
@@ -638,9 +535,9 @@ BORDER GRID
 
 .border-demo {
 
-    height: 47px;
+    height: 45px;
 
-    margin-bottom: 7px;
+    margin-bottom: 6px;
 
     border-radius: 6px;
 
@@ -649,85 +546,58 @@ BORDER GRID
 }
 
 
-/* =========================================================
+/* =====================================================
 CONDITIONAL PANELS
-========================================================= */
+===================================================== */
 
-#customPanel {
-
-    display: none;
-
-}
-
-#customPanel.show {
-
-    display: block;
-
-}
-
-#uploadSettings {
+#customPanel,
+#uploadedPanel {
 
     display: none;
 
 }
 
-#uploadSettings.show {
+#customPanel.show,
+#uploadedPanel.show {
 
     display: block;
 
 }
 
 
-/* =========================================================
+/* =====================================================
 FONT PREVIEW
-========================================================= */
+===================================================== */
 
 .font-preview {
 
-    margin-top: 12px;
+    margin-top: 10px;
 
-    padding: 14px;
+    padding: 13px;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
     background: #111218;
 
     text-align: center;
 
-    font-size: 24px;
+    font-size: 23px;
 
     font-weight: bold;
 
 }
 
 
-/* =========================================================
-SAVE STATUS
-========================================================= */
-
-.status {
-
-    text-align: center;
-
-    margin-top: 10px;
-
-    color: #777783;
-
-    font-size: 12px;
-
-}
-
-
-/* =========================================================
+/* =====================================================
 MOBILE
-========================================================= */
+===================================================== */
 
 @media(max-width:600px) {
 
     .app {
 
         padding:
-            12px 7px 50px;
+            10px 7px 50px;
 
     }
 
@@ -737,16 +607,16 @@ MOBILE
 
     }
 
-    #canvas {
+    canvas {
 
         width:
-            min(335px,100%);
+            min(340px,100%);
 
     }
 
     .section-button {
 
-        font-size: 9px;
+        font-size: 8px;
 
         padding:
             10px 2px;
@@ -772,10 +642,6 @@ MOBILE
 <div class="app">
 
 
-<!-- =====================================================
-HEADER
-===================================================== -->
-
 <header class="header">
 
 <div class="logo">
@@ -789,14 +655,13 @@ Build your perfect tier-list icon.
 </header>
 
 
-
 <!-- =====================================================
-PREVIEW
+LIVE PREVIEW
 ===================================================== -->
 
 <div class="preview-card">
 
-<div class="preview-label">
+<div class="preview-title">
 LIVE PREVIEW
 </div>
 
@@ -813,9 +678,8 @@ height="600">
 </div>
 
 
-
 <!-- =====================================================
-NAVIGATION
+NAV
 ===================================================== -->
 
 <nav class="section-nav">
@@ -859,7 +723,6 @@ EXPORT
 </nav>
 
 
-
 <!-- =====================================================
 IMAGE
 ===================================================== -->
@@ -876,7 +739,7 @@ Character Image
 </div>
 
 <div class="panel-description">
-Upload an image and automatically fit it into your icon.
+Upload your character. The editor analyzes the visible part of the image so automatic fitting works much better with transparent PNGs.
 </div>
 
 
@@ -898,8 +761,8 @@ Zoom
 <input
 type="range"
 id="zoom"
-min=".5"
-max="3"
+min=".1"
+max="4"
 step=".01"
 value="1"
 >
@@ -907,7 +770,7 @@ value="1"
 <span
 class="value"
 id="zoomValue">
-1.00x
+100%
 </span>
 
 
@@ -918,8 +781,8 @@ Horizontal Position
 <input
 type="range"
 id="imageX"
-min="-400"
-max="400"
+min="-500"
+max="500"
 value="0"
 >
 
@@ -931,34 +794,33 @@ Vertical Position
 <input
 type="range"
 id="imageY"
-min="-400"
-max="400"
+min="-500"
+max="500"
 value="0"
 >
 
 
 <button
-class="button secondary"
+class="button"
 id="fitImage">
-AUTO FIT IMAGE
+AUTO FIT
 </button>
 
 
 <button
 class="button secondary"
 id="centerImage">
-CENTER IMAGE
+CENTER
 </button>
 
 
 <p class="note">
-You can also drag the character directly on the live preview.
+You can also drag the character directly on the preview.
 </p>
 
 </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -977,7 +839,7 @@ Text
 </div>
 
 <div class="panel-description">
-Add the character and version labels.
+Create the labels used on your tier-list icons.
 </div>
 
 
@@ -1054,7 +916,7 @@ Version Font
 
 
 <label>
-Upload Your Own Font
+Upload Your Font
 </label>
 
 <input
@@ -1078,8 +940,8 @@ Name Size
 <input
 type="range"
 id="nameSize"
-min="15"
-max="80"
+min="12"
+max="90"
 value="42"
 >
 
@@ -1091,9 +953,9 @@ Version Size
 <input
 type="range"
 id="versionSize"
-min="10"
-max="55"
-value="26"
+min="8"
+max="60"
+value="25"
 >
 
 
@@ -1106,7 +968,7 @@ type="range"
 id="textY"
 min="300"
 max="590"
-value="525"
+value="515"
 >
 
 
@@ -1122,7 +984,7 @@ value="#ffffff"
 
 
 <label>
-Text Outline Color
+Outline Color
 </label>
 
 <input
@@ -1133,14 +995,14 @@ value="#000000"
 
 
 <label>
-Text Outline Thickness
+Outline Thickness
 </label>
 
 <input
 type="range"
 id="outlineWidth"
 min="0"
-max="12"
+max="15"
 value="3"
 >
 
@@ -1170,7 +1032,6 @@ White
 </section>
 
 
-
 <!-- =====================================================
 BORDER
 ===================================================== -->
@@ -1187,7 +1048,7 @@ Border Library
 </div>
 
 <div class="panel-description">
-Pick one of the built-in frames.
+Choose a built-in border or upload literally any border artwork.
 </div>
 
 
@@ -1261,12 +1122,12 @@ Neon
 
 <div
 class="border-option"
-data-border="red">
+data-border="crimson">
 
 <div
 class="border-demo"
 style="
-border:7px solid #df4545;
+border:7px solid #d94646;
 ">
 </div>
 
@@ -1299,7 +1160,7 @@ border:6px dashed #aaa;
 ">
 </div>
 
-Custom
+Builder
 
 </div>
 
@@ -1315,14 +1176,14 @@ border:6px dashed #888;
 ">
 </div>
 
-Uploaded
+Upload
+
+</div>
+
 
 </div>
 
 </div>
-
-</div>
-
 
 
 <!-- =====================================================
@@ -1338,12 +1199,12 @@ Custom Border Builder
 </div>
 
 <div class="panel-description">
-Create your own frame.
+Make your own border directly inside the editor.
 </div>
 
 
 <label>
-Style
+Border Style
 </label>
 
 <select id="customStyle">
@@ -1368,7 +1229,7 @@ Dotted
 
 
 <label>
-Primary Color
+Border Color
 </label>
 
 <input
@@ -1379,7 +1240,7 @@ value="#ffffff"
 
 
 <label>
-Use Gradient
+Gradient
 </label>
 
 <select id="customGradient">
@@ -1396,7 +1257,7 @@ Yes
 
 
 <label>
-Second Gradient Color
+Second Color
 </label>
 
 <input
@@ -1414,7 +1275,7 @@ Border Width
 type="range"
 id="customWidth"
 min="1"
-max="40"
+max="50"
 value="8"
 >
 
@@ -1452,7 +1313,7 @@ Glow
 type="range"
 id="customGlow"
 min="0"
-max="50"
+max="60"
 value="0"
 >
 
@@ -1476,48 +1337,32 @@ value="#5865f2"
 </div>
 
 
-
 <!-- =====================================================
 UPLOADED BORDER
 ===================================================== -->
 
-<div class="panel">
+<div
+class="panel"
+id="uploadedPanel">
 
 <div class="panel-title">
-Upload Your Own Border
+Uploaded Border
 </div>
 
 <div class="panel-description">
-For the best result, upload a transparent PNG/WebP where the center is transparent and the decorative frame is around the edges.
+Upload ANY border picture. It will be placed over your character as artwork. Transparent PNGs work especially well, but they are no longer required.
 </div>
 
+
+<label>
+Border Picture
+</label>
 
 <input
 type="file"
 id="borderInput"
-accept="image/png,image/webp"
+accept="image/*"
 >
-
-
-<div
-id="uploadSettings">
-
-
-<label>
-Border Mode
-</label>
-
-<select id="borderMode">
-
-<option value="frame">
-Transparent Frame
-</option>
-
-<option value="overlay">
-Full Overlay
-</option>
-
-</select>
 
 
 <label>
@@ -1527,8 +1372,8 @@ Border Scale
 <input
 type="range"
 id="borderScale"
-min=".5"
-max="1.5"
+min=".1"
+max="3"
 step=".01"
 value="1"
 >
@@ -1541,33 +1386,33 @@ id="borderScaleValue">
 
 
 <label>
-Border Horizontal Position
+Horizontal Position
 </label>
 
 <input
 type="range"
 id="borderX"
-min="-300"
-max="300"
+min="-600"
+max="600"
 value="0"
 >
 
 
 <label>
-Border Vertical Position
+Vertical Position
 </label>
 
 <input
 type="range"
 id="borderY"
-min="-300"
-max="300"
+min="-600"
+max="600"
 value="0"
 >
 
 
 <label>
-Border Rotation
+Rotation
 </label>
 
 <input
@@ -1586,7 +1431,7 @@ id="borderRotationValue">
 
 
 <label>
-Border Opacity
+Opacity
 </label>
 
 <input
@@ -1606,16 +1451,20 @@ id="borderOpacityValue">
 
 <button
 class="button secondary"
+id="fitBorder">
+FIT BORDER TO ICON
+</button>
+
+
+<button
+class="button secondary"
 id="removeBorder">
-REMOVE UPLOADED BORDER
+REMOVE BORDER
 </button>
 
 </div>
 
-</div>
-
 </section>
-
 
 
 <!-- =====================================================
@@ -1634,12 +1483,12 @@ Background
 </div>
 
 <div class="panel-description">
-Customize the background behind your character.
+Customize what appears behind your character.
 </div>
 
 
 <label>
-Background Mode
+Background Type
 </label>
 
 <select id="backgroundMode">
@@ -1677,12 +1526,12 @@ Second Gradient Color
 <input
 type="color"
 id="backgroundColor2"
-value="#252552"
+value="#292952"
 >
 
 
 <label>
-Upload Background Image
+Background Image
 </label>
 
 <input
@@ -1694,7 +1543,6 @@ accept="image/*"
 </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1709,11 +1557,11 @@ id="section-effects">
 <div class="panel">
 
 <div class="panel-title">
-Image Effects
+Effects
 </div>
 
 <div class="panel-description">
-Give your character image more control.
+Add finishing effects to make the icon look more polished.
 </div>
 
 
@@ -1793,10 +1641,80 @@ id="blurValue">
 0px
 </span>
 
+
+<!-- VIGNETTE -->
+
+<label>
+Vignette
+</label>
+
+<input
+type="range"
+id="vignette"
+min="0"
+max="100"
+value="0"
+>
+
+<span
+class="value"
+id="vignetteValue">
+0%
+</span>
+
+
+<label>
+Vignette Size
+</label>
+
+<input
+type="range"
+id="vignetteSize"
+min="0"
+max="100"
+value="65"
+>
+
+<span
+class="value"
+id="vignetteSizeValue">
+65%
+</span>
+
+
+<label>
+Vignette Softness
+</label>
+
+<input
+type="range"
+id="vignetteSoftness"
+min="0"
+max="100"
+value="70"
+>
+
+<span
+class="value"
+id="vignetteSoftnessValue">
+70%
+</span>
+
+
+<label>
+Vignette Color
+</label>
+
+<input
+type="color"
+id="vignetteColor"
+value="#000000"
+>
+
+
 </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1875,12 +1793,11 @@ Ready.
 </div>
 
 
-
 <script>
 
-/* =========================================================
+/* =====================================================
 CANVAS
-========================================================= */
+===================================================== */
 
 const canvas =
 document.getElementById("canvas");
@@ -1889,9 +1806,9 @@ const ctx =
 canvas.getContext("2d");
 
 
-/* =========================================================
+/* =====================================================
 STATE
-========================================================= */
+===================================================== */
 
 let image = null;
 
@@ -1899,7 +1816,10 @@ let borderImage = null;
 
 let backgroundImage = null;
 
-let selectedBorder = "classic";
+let selectedBorder =
+"classic";
+
+let visibleBounds = null;
 
 let dragging = false;
 
@@ -1911,14 +1831,10 @@ let startImageX = 0;
 
 let startImageY = 0;
 
-let history = [];
 
-let historyIndex = -1;
-
-
-/* =========================================================
-ELEMENT HELPER
-========================================================= */
+/* =====================================================
+HELPER
+===================================================== */
 
 function el(id) {
 
@@ -1927,35 +1843,28 @@ function el(id) {
 }
 
 
-/* =========================================================
+/* =====================================================
 SECTION NAVIGATION
-========================================================= */
+===================================================== */
 
 document
 .querySelectorAll(".section-button")
 .forEach(
-    function(button) {
+    button => {
 
         button.addEventListener(
             "click",
-            function() {
-
-                const target =
-                    button.dataset.section;
-
+            () => {
 
                 document
                 .querySelectorAll(
                     ".section-button"
                 )
                 .forEach(
-                    function(btn) {
-
-                        btn.classList.remove(
-                            "active"
-                        );
-
-                    }
+                    b =>
+                    b.classList.remove(
+                        "active"
+                    )
                 );
 
 
@@ -1964,13 +1873,10 @@ document
                     ".editor-section"
                 )
                 .forEach(
-                    function(section) {
-
-                        section.classList.remove(
-                            "active"
-                        );
-
-                    }
+                    s =>
+                    s.classList.remove(
+                        "active"
+                    )
                 );
 
 
@@ -1981,8 +1887,9 @@ document
 
                 el(
                     "section-" +
-                    target
-                ).classList.add(
+                    button.dataset.section
+                )
+                .classList.add(
                     "active"
                 );
 
@@ -1993,609 +1900,344 @@ document
 );
 
 
-/* =========================================================
+/* =====================================================
+FIND VISIBLE IMAGE BOUNDS
+===================================================== */
+
+/*
+This is the important improvement.
+
+A PNG might technically be 2000x2000,
+but the character could only occupy
+the middle 900x1500 pixels.
+
+We inspect the alpha channel and
+find where actual visible pixels exist.
+*/
+
+function findVisibleBounds(img) {
+
+    const temp =
+        document.createElement(
+            "canvas"
+        );
+
+
+    const tctx =
+        temp.getContext(
+            "2d",
+            {
+                willReadFrequently:
+                true
+            }
+        );
+
+
+    temp.width =
+        img.naturalWidth ||
+        img.width;
+
+
+    temp.height =
+        img.naturalHeight ||
+        img.height;
+
+
+    tctx.clearRect(
+        0,
+        0,
+        temp.width,
+        temp.height
+    );
+
+
+    tctx.drawImage(
+        img,
+        0,
+        0
+    );
+
+
+    const data =
+        tctx.getImageData(
+            0,
+            0,
+            temp.width,
+            temp.height
+        )
+        .data;
+
+
+    let minX =
+        temp.width;
+
+    let minY =
+        temp.height;
+
+    let maxX =
+        -1;
+
+    let maxY =
+        -1;
+
+
+    for (
+        let y = 0;
+        y < temp.height;
+        y++
+    ) {
+
+        for (
+            let x = 0;
+            x < temp.width;
+            x++
+        ) {
+
+            const alpha =
+                data[
+                    (
+                        y *
+                        temp.width +
+                        x
+                    ) *
+                    4 +
+                    3
+                ];
+
+
+            /*
+            Ignore nearly invisible pixels.
+            */
+
+            if (
+                alpha > 12
+            ) {
+
+                if (
+                    x < minX
+                )
+                    minX = x;
+
+                if (
+                    y < minY
+                )
+                    minY = y;
+
+                if (
+                    x > maxX
+                )
+                    maxX = x;
+
+                if (
+                    y > maxY
+                )
+                    maxY = y;
+
+            }
+
+        }
+
+    }
+
+
+    if (
+        maxX === -1
+    ) {
+
+        return {
+
+            x: 0,
+            y: 0,
+            width: temp.width,
+            height: temp.height
+
+        };
+
+    }
+
+
+    return {
+
+        x: minX,
+
+        y: minY,
+
+        width:
+            maxX - minX + 1,
+
+        height:
+            maxY - minY + 1
+
+    };
+
+}
+
+
+/* =====================================================
 IMAGE UPLOAD
-========================================================= */
+===================================================== */
 
 el("imageInput")
 .addEventListener(
     "change",
-    function(event) {
+    event => {
 
         const file =
             event.target.files[0];
 
-        if (!file) return;
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function() {
-
-                const img =
-                    new Image();
-
-
-                img.onload =
-                    function() {
-
-                        image = img;
-
-                        fitImage();
-
-                        saveHistory();
-
-                        draw();
-
-                    };
-
-
-                img.src =
-                    reader.result;
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-/* =========================================================
-BACKGROUND IMAGE
-========================================================= */
-
-el("backgroundInput")
-.addEventListener(
-    "change",
-    function(event) {
-
-        const file =
-            event.target.files[0];
-
-        if (!file) return;
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function() {
-
-                const img =
-                    new Image();
-
-
-                img.onload =
-                    function() {
-
-                        backgroundImage =
-                            img;
-
-                        draw();
-
-                    };
-
-
-                img.src =
-                    reader.result;
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-/* =========================================================
-BORDER UPLOAD
-========================================================= */
-
-el("borderInput")
-.addEventListener(
-    "change",
-    function(event) {
-
-        const file =
-            event.target.files[0];
-
-        if (!file) return;
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function() {
-
-                const img =
-                    new Image();
-
-
-                img.onload =
-                    function() {
-
-                        borderImage =
-                            img;
-
-
-                        setBorder(
-                            "uploaded"
-                        );
-
-
-                        el(
-                            "uploadSettings"
-                        ).classList.add(
-                            "show"
-                        );
-
-
-                        draw();
-
-                    };
-
-
-                img.src =
-                    reader.result;
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-/* =========================================================
-FONT UPLOAD
-========================================================= */
-
-el("fontInput")
-.addEventListener(
-    "change",
-    async function(event) {
-
-        const file =
-            event.target.files[0];
-
-        if (!file) return;
-
-
-        try {
-
-            const buffer =
-                await file.arrayBuffer();
-
-
-            const fontName =
-                "UserFont_" +
-                Date.now();
-
-
-            const font =
-                new FontFace(
-                    fontName,
-                    buffer
-                );
-
-
-            await font.load();
-
-
-            document.fonts.add(
-                font
-            );
-
-
-            const nameOption =
-                document.createElement(
-                    "option"
-                );
-
-
-            nameOption.value =
-                fontName;
-
-
-            nameOption.textContent =
-                "★ " +
-                file.name;
-
-
-            el("nameFont")
-                .appendChild(
-                    nameOption
-                );
-
-
-            const versionOption =
-                document.createElement(
-                    "option"
-                );
-
-
-            versionOption.value =
-                fontName;
-
-
-            versionOption.textContent =
-                "★ " +
-                file.name;
-
-
-            el("versionFont")
-                .appendChild(
-                    versionOption
-                );
-
-
-            el("nameFont").value =
-                fontName;
-
-
-            el("versionFont").value =
-                fontName;
-
-
-            updateFontPreview();
-
-            draw();
-
-        }
-
-        catch(error) {
-
-            alert(
-                "This font could not be loaded."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-BORDER SELECTION
-========================================================= */
-
-document
-.querySelectorAll(".border-option")
-.forEach(
-    function(option) {
-
-        option.addEventListener(
-            "click",
-            function() {
-
-                setBorder(
-                    option.dataset.border
-                );
-
-            }
-        );
-
-    }
-);
-
-
-function setBorder(type) {
-
-    selectedBorder =
-        type;
-
-
-    document
-    .querySelectorAll(
-        ".border-option"
-    )
-    .forEach(
-        function(option) {
-
-            option.classList.remove(
-                "selected"
-            );
-
-        }
-    );
-
-
-    const selected =
-        document.querySelector(
-            '[data-border="' +
-            type +
-            '"]'
-        );
-
-
-    if (selected) {
-
-        selected.classList.add(
-            "selected"
-        );
-
-    }
-
-
-    if (
-        type === "custom"
-    ) {
-
-        el("customPanel")
-        .classList.add(
-            "show"
-        );
-
-    }
-
-    else {
-
-        el("customPanel")
-        .classList.remove(
-            "show"
-        );
-
-    }
-
-
-    if (
-        type === "uploaded"
-        &&
-        borderImage
-    ) {
-
-        el("uploadSettings")
-        .classList.add(
-            "show"
-        );
-
-    }
-
-    else if (
-        type !== "uploaded"
-    ) {
-
-        el("uploadSettings")
-        .classList.remove(
-            "show"
-        );
-
-    }
-
-
-    draw();
-
-}
-
-
-/* =========================================================
-LIVE CONTROLS
-========================================================= */
-
-const controls = [
-
-    "zoom",
-    "imageX",
-    "imageY",
-
-    "characterName",
-    "version",
-    "nameFont",
-    "versionFont",
-    "nameSize",
-    "versionSize",
-    "textY",
-    "textColor",
-    "outlineColor",
-    "outlineWidth",
-    "textShadow",
-
-    "backgroundMode",
-    "backgroundColor",
-    "backgroundColor2",
-
-    "customStyle",
-    "customColor",
-    "customGradient",
-    "customColor2",
-    "customWidth",
-    "customOpacity",
-    "customGlow",
-    "customGlowColor",
-
-    "borderMode",
-    "borderScale",
-    "borderX",
-    "borderY",
-    "borderRotation",
-    "borderOpacity",
-
-    "brightness",
-    "contrast",
-    "saturation",
-    "blur"
-
-];
-
-
-controls.forEach(
-    function(id) {
-
-        const control =
-            el(id);
-
-
-        if (!control)
+        if (!file)
             return;
 
 
-        control.addEventListener(
-            "input",
-            function() {
-
-                updateValues();
-
-                updateFontPreview();
-
-                draw();
-
-            }
-        );
+        const reader =
+            new FileReader();
 
 
-        control.addEventListener(
-            "change",
-            function() {
+        reader.onload =
+            () => {
 
-                updateValues();
+                const img =
+                    new Image();
 
-                updateFontPreview();
 
-                draw();
+                img.onload =
+                    () => {
 
-            }
+                        image =
+                            img;
+
+
+                        visibleBounds =
+                            findVisibleBounds(
+                                img
+                            );
+
+
+                        autoFitImage();
+
+                    };
+
+
+                img.src =
+                    reader.result;
+
+            };
+
+
+        reader.readAsDataURL(
+            file
         );
 
     }
 );
 
 
-/* =========================================================
-VALUE LABELS
-========================================================= */
+/* =====================================================
+AUTO FIT IMAGE
+===================================================== */
 
-function updateValues() {
+function autoFitImage() {
 
-    el("zoomValue")
-    .textContent =
-        Number(
-            el("zoom").value
-        ).toFixed(2) +
-        "x";
-
-
-    el("customWidthValue")
-    .textContent =
-        el("customWidth").value +
-        "px";
-
-
-    el("customOpacityValue")
-    .textContent =
-        el("customOpacity").value +
-        "%";
-
-
-    el("customGlowValue")
-    .textContent =
-        el("customGlow").value +
-        "px";
-
-
-    el("borderScaleValue")
-    .textContent =
-        Math.round(
-            Number(
-                el("borderScale").value
-            ) * 100
-        ) +
-        "%";
-
-
-    el("borderRotationValue")
-    .textContent =
-        el("borderRotation").value +
-        "°";
-
-
-    el("borderOpacityValue")
-    .textContent =
-        el("borderOpacity").value +
-        "%";
-
-
-    el("brightnessValue")
-    .textContent =
-        el("brightness").value +
-        "%";
-
-
-    el("contrastValue")
-    .textContent =
-        el("contrast").value +
-        "%";
-
-
-    el("saturationValue")
-    .textContent =
-        el("saturation").value +
-        "%";
-
-
-    el("blurValue")
-    .textContent =
-        el("blur").value +
-        "px";
-
-}
-
-
-/* =========================================================
-FONT PREVIEW
-========================================================= */
-
-function updateFontPreview() {
-
-    el("fontPreview")
-    .style.fontFamily =
-        el("nameFont").value;
-
-}
-
-
-/* =========================================================
-FIT IMAGE
-========================================================= */
-
-function fitImage() {
-
-    if (!image)
+    if (
+        !image ||
+        !visibleBounds
+    )
         return;
 
 
+    /*
+    We want the visible character
+    to occupy roughly 78% of the
+    icon's height.
+
+    This leaves room for text and
+    the border.
+    */
+
+
+    const targetHeight =
+        465;
+
+
     const scale =
-        Math.max(
-            600 / image.width,
-            600 / image.height
-        );
+        targetHeight /
+        visibleBounds.height;
+
+
+    /*
+    The zoom slider is relative to
+    the base scale calculated from
+    the actual image dimensions.
+    */
+
+
+    const baseScale =
+        scale;
+
+
+    /*
+    Store the scale needed by the
+    drawing system.
+    */
+
+
+    imageBaseScale =
+        baseScale;
 
 
     el("zoom").value =
-        Math.min(
-            3,
-            Math.max(
-                .5,
-                scale
-            )
-        );
+        1;
+
+
+    /*
+    Position the visible character,
+    not the transparent PNG box,
+    in the center.
+    */
+
+
+    const scaledVisibleWidth =
+        visibleBounds.width *
+        baseScale;
+
+
+    const scaledVisibleHeight =
+        visibleBounds.height *
+        baseScale;
+
+
+    const imageLeft =
+        (
+            600 -
+            scaledVisibleWidth
+        ) / 2;
+
+
+    const imageTop =
+        (
+            600 -
+            scaledVisibleHeight
+        ) / 2;
+
+
+    const imageX =
+        imageLeft -
+        visibleBounds.x *
+        baseScale;
+
+
+    const imageY =
+        imageTop -
+        visibleBounds.y *
+        baseScale;
 
 
     el("imageX").value =
-        0;
+        imageX;
 
 
     el("imageY").value =
-        0;
+        imageY;
 
 
     updateValues();
@@ -2605,45 +2247,91 @@ function fitImage() {
 }
 
 
+/* =====================================================
+BASE SCALE
+===================================================== */
+
+let imageBaseScale = 1;
+
+
+/* =====================================================
+CENTER IMAGE
+===================================================== */
+
+function centerImage() {
+
+    if (
+        !image ||
+        !visibleBounds
+    )
+        return;
+
+
+    const scale =
+        imageBaseScale *
+        Number(
+            el("zoom").value
+        );
+
+
+    const visibleWidth =
+        visibleBounds.width *
+        scale;
+
+
+    const visibleHeight =
+        visibleBounds.height *
+        scale;
+
+
+    const desiredX =
+        (
+            600 -
+            visibleWidth
+        ) / 2;
+
+
+    const desiredY =
+        (
+            600 -
+            visibleHeight
+        ) / 2;
+
+
+    el("imageX").value =
+        desiredX -
+        visibleBounds.x *
+        scale;
+
+
+    el("imageY").value =
+        desiredY -
+        visibleBounds.y *
+        scale;
+
+
+    draw();
+
+}
+
+
 el("fitImage")
 .addEventListener(
     "click",
-    function() {
-
-        fitImage();
-
-        saveHistory();
-
-    }
+    autoFitImage
 );
 
-
-/* =========================================================
-CENTER IMAGE
-========================================================= */
 
 el("centerImage")
 .addEventListener(
     "click",
-    function() {
-
-        el("imageX").value =
-            0;
-
-        el("imageY").value =
-            0;
-
-        draw();
-
-        saveHistory();
-
-    }
+    centerImage
 );
 
 
-/* =========================================================
+/* =====================================================
 BACKGROUND
-========================================================= */
+===================================================== */
 
 function drawBackground() {
 
@@ -2652,7 +2340,8 @@ function drawBackground() {
 
 
     if (
-        mode === "gradient"
+        mode ===
+        "gradient"
     ) {
 
         const gradient =
@@ -2690,15 +2379,19 @@ function drawBackground() {
     }
 
     else if (
-        mode === "image"
+        mode ===
+        "image"
         &&
         backgroundImage
     ) {
 
         const scale =
             Math.max(
-                600 / backgroundImage.width,
-                600 / backgroundImage.height
+                600 /
+                backgroundImage.width,
+
+                600 /
+                backgroundImage.height
             );
 
 
@@ -2740,9 +2433,9 @@ function drawBackground() {
 }
 
 
-/* =========================================================
+/* =====================================================
 DRAW IMAGE
-========================================================= */
+===================================================== */
 
 function drawImage() {
 
@@ -2751,10 +2444,7 @@ function drawImage() {
 
 
     const scale =
-        Math.max(
-            600 / image.width,
-            600 / image.height
-        ) *
+        imageBaseScale *
         Number(
             el("zoom").value
         );
@@ -2771,32 +2461,58 @@ function drawImage() {
 
 
     const x =
-        (600-width)/2 +
+        (
+            600 -
+            visibleBounds.width *
+            scale
+        ) / 2
+        -
+        visibleBounds.x *
+        scale
+        +
         Number(
             el("imageX").value
+        )
+        -
+        (
+            (
+                600 -
+                visibleBounds.width *
+                scale
+            ) / 2
+            -
+            visibleBounds.x *
+            scale
         );
 
 
     const y =
-        (600-height)/2 +
+        (
+            600 -
+            visibleBounds.height *
+            scale
+        ) / 2
+        -
+        visibleBounds.y *
+        scale
+        +
         Number(
             el("imageY").value
+        )
+        -
+        (
+            (
+                600 -
+                visibleBounds.height *
+                scale
+            ) / 2
+            -
+            visibleBounds.y *
+            scale
         );
 
 
     ctx.save();
-
-
-    ctx.beginPath();
-
-    ctx.rect(
-        0,
-        0,
-        600,
-        600
-    );
-
-    ctx.clip();
 
 
     ctx.filter =
@@ -2831,16 +2547,16 @@ function drawImage() {
 }
 
 
-/* =========================================================
-TEXT BACKGROUND
-========================================================= */
+/* =====================================================
+TEXT DARK AREA
+===================================================== */
 
 function drawTextBackground() {
 
     const gradient =
         ctx.createLinearGradient(
             0,
-            350,
+            370,
             0,
             600
         );
@@ -2854,7 +2570,7 @@ function drawTextBackground() {
 
     gradient.addColorStop(
         1,
-        "rgba(0,0,0,.88)"
+        "rgba(0,0,0,.85)"
     );
 
 
@@ -2864,17 +2580,17 @@ function drawTextBackground() {
 
     ctx.fillRect(
         0,
-        350,
+        360,
         600,
-        250
+        240
     );
 
 }
 
 
-/* =========================================================
+/* =====================================================
 TEXT
-========================================================= */
+===================================================== */
 
 function drawText() {
 
@@ -2910,20 +2626,6 @@ function drawText() {
         "middle";
 
 
-    if (
-        el("textShadow").value !==
-        "none"
-    ) {
-
-        ctx.shadowColor =
-            el("textShadow").value;
-
-        ctx.shadowBlur =
-            9;
-
-    }
-
-
     ctx.fillStyle =
         el("textColor").value;
 
@@ -2936,6 +2638,20 @@ function drawText() {
         "round";
 
 
+    if (
+        el("textShadow").value !==
+        "none"
+    ) {
+
+        ctx.shadowColor =
+            el("textShadow").value;
+
+        ctx.shadowBlur =
+            8;
+
+    }
+
+
     if (name) {
 
         ctx.font =
@@ -2945,16 +2661,15 @@ function drawText() {
             el("nameFont").value;
 
 
-        const outline =
+        ctx.lineWidth =
             Number(
                 el("outlineWidth").value
-            );
+            ) * 2;
 
 
-        if (outline > 0) {
-
-            ctx.lineWidth =
-                outline * 2;
+        if (
+            ctx.lineWidth > 0
+        ) {
 
             ctx.strokeText(
                 name,
@@ -2983,21 +2698,14 @@ function drawText() {
             el("versionFont").value;
 
 
-        const outline =
-            Number(
-                el("outlineWidth").value
-            );
-
-
-        if (outline > 0) {
-
-            ctx.lineWidth =
-                outline * 2;
+        if (
+            ctx.lineWidth > 0
+        ) {
 
             ctx.strokeText(
                 form,
                 300,
-                y + 45
+                y + 43
             );
 
         }
@@ -3006,7 +2714,7 @@ function drawText() {
         ctx.fillText(
             form,
             300,
-            y + 45
+            y + 43
         );
 
     }
@@ -3017,9 +2725,9 @@ function drawText() {
 }
 
 
-/* =========================================================
+/* =====================================================
 PRESET BORDER
-========================================================= */
+===================================================== */
 
 function drawPresetBorder() {
 
@@ -3030,12 +2738,13 @@ function drawPresetBorder() {
         return;
 
 
-    ctx.save();
-
-
     let width = 7;
 
-    let color = "#ffffff";
+    let color =
+        "#ffffff";
+
+
+    ctx.save();
 
 
     if (
@@ -3053,13 +2762,13 @@ function drawPresetBorder() {
 
     if (
         selectedBorder ===
-        "red"
+        "crimson"
     ) {
 
         width = 8;
 
         color =
-            "#df4545";
+            "#d94646";
 
     }
 
@@ -3074,11 +2783,11 @@ function drawPresetBorder() {
         color =
             "#5865f2";
 
-        ctx.shadowBlur =
-            20;
-
         ctx.shadowColor =
             color;
+
+        ctx.shadowBlur =
+            22;
 
     }
 
@@ -3120,10 +2829,10 @@ function drawPresetBorder() {
     else {
 
         ctx.strokeRect(
-            width/2,
-            width/2,
-            600-width,
-            600-width
+            width / 2,
+            width / 2,
+            600 - width,
+            600 - width
         );
 
     }
@@ -3134,9 +2843,9 @@ function drawPresetBorder() {
 }
 
 
-/* =========================================================
+/* =====================================================
 CUSTOM BORDER
-========================================================= */
+===================================================== */
 
 function drawCustomBorder() {
 
@@ -3149,14 +2858,10 @@ function drawCustomBorder() {
         );
 
 
-    const opacity =
+    ctx.globalAlpha =
         Number(
             el("customOpacity").value
         ) / 100;
-
-
-    ctx.globalAlpha =
-        opacity;
 
 
     if (
@@ -3218,7 +2923,7 @@ function drawCustomBorder() {
     ) {
 
         ctx.setLineDash(
-            [22,12]
+            [20,12]
         );
 
     }
@@ -3229,14 +2934,8 @@ function drawCustomBorder() {
     ) {
 
         ctx.setLineDash(
-            [3,10]
+            [3,9]
         );
-
-    }
-
-    else {
-
-        ctx.setLineDash([]);
 
     }
 
@@ -3252,7 +2951,7 @@ function drawCustomBorder() {
         ctx.lineWidth =
             Math.max(
                 2,
-                width/3
+                width / 3
             );
 
 
@@ -3265,10 +2964,10 @@ function drawCustomBorder() {
 
 
         ctx.strokeRect(
-            14,
-            14,
-            572,
-            572
+            15,
+            15,
+            570,
+            570
         );
 
     }
@@ -3276,10 +2975,10 @@ function drawCustomBorder() {
     else {
 
         ctx.strokeRect(
-            width/2,
-            width/2,
-            600-width,
-            600-width
+            width / 2,
+            width / 2,
+            600 - width,
+            600 - width
         );
 
     }
@@ -3290,9 +2989,9 @@ function drawCustomBorder() {
 }
 
 
-/* =========================================================
+/* =====================================================
 UPLOADED BORDER
-========================================================= */
+===================================================== */
 
 function drawUploadedBorder() {
 
@@ -3307,22 +3006,32 @@ function drawUploadedBorder() {
 
 
     const width =
-        600 * scale;
+        borderImage.width *
+        scale;
 
 
     const height =
-        600 * scale;
+        borderImage.height *
+        scale;
 
 
     const x =
-        (600-width)/2 +
+        (
+            600 -
+            width
+        ) / 2
+        +
         Number(
             el("borderX").value
         );
 
 
     const y =
-        (600-height)/2 +
+        (
+            600 -
+            height
+        ) / 2
+        +
         Number(
             el("borderY").value
         );
@@ -3358,16 +3067,15 @@ function drawUploadedBorder() {
 
 
     /*
-    FRAME MODE
+    IMPORTANT:
 
-    The uploaded transparent image
-    is stretched to the entire icon.
+    This does NOT care whether
+    the image has transparency.
 
-    Because its center is transparent,
-    the character remains visible
-    underneath while the decorative
-    edges form the frame.
+    The entire uploaded picture
+    becomes the border artwork.
     */
+
 
     ctx.drawImage(
         borderImage,
@@ -3383,9 +3091,208 @@ function drawUploadedBorder() {
 }
 
 
-/* =========================================================
+/* =====================================================
+FIT BORDER
+===================================================== */
+
+el("fitBorder")
+.addEventListener(
+    "click",
+    function() {
+
+        if (!borderImage)
+            return;
+
+
+        const scale =
+            Math.max(
+                600 /
+                borderImage.width,
+
+                600 /
+                borderImage.height
+            );
+
+
+        el("borderScale").value =
+            scale;
+
+
+        el("borderX").value =
+            0;
+
+
+        el("borderY").value =
+            0;
+
+
+        updateValues();
+
+        draw();
+
+    }
+);
+
+
+/* =====================================================
+VIGNETTE
+===================================================== */
+
+function drawVignette() {
+
+    const amount =
+        Number(
+            el("vignette").value
+        ) / 100;
+
+
+    if (
+        amount <= 0
+    )
+        return;
+
+
+    const size =
+        Number(
+            el("vignetteSize").value
+        ) / 100;
+
+
+    const softness =
+        Number(
+            el("vignetteSoftness").value
+        ) / 100;
+
+
+    /*
+    Inner radius controls how far
+    toward the center the darkness
+    begins.
+    */
+
+
+    const inner =
+        150 +
+        (
+            180 *
+            size
+        );
+
+
+    const outer =
+        inner +
+        (
+            120 +
+            250 *
+            softness
+        );
+
+
+    const gradient =
+        ctx.createRadialGradient(
+            300,
+            300,
+            inner,
+            300,
+            300,
+            outer
+        );
+
+
+    gradient.addColorStop(
+        0,
+        "rgba(0,0,0,0)"
+    );
+
+
+    const color =
+        el("vignetteColor").value;
+
+
+    /*
+    Convert hex to RGB.
+    */
+
+    const rgb =
+        hexToRgb(
+            color
+        );
+
+
+    gradient.addColorStop(
+        1,
+        "rgba(" +
+        rgb.r +
+        "," +
+        rgb.g +
+        "," +
+        rgb.b +
+        "," +
+        amount +
+        ")"
+    );
+
+
+    ctx.fillStyle =
+        gradient;
+
+
+    ctx.fillRect(
+        0,
+        0,
+        600,
+        600
+    );
+
+}
+
+
+function hexToRgb(hex) {
+
+    const clean =
+        hex.replace(
+            "#",
+            ""
+        );
+
+
+    return {
+
+        r:
+            parseInt(
+                clean.substring(
+                    0,
+                    2
+                ),
+                16
+            ),
+
+        g:
+            parseInt(
+                clean.substring(
+                    2,
+                    4
+                ),
+                16
+            ),
+
+        b:
+            parseInt(
+                clean.substring(
+                    4,
+                    6
+                ),
+                16
+            )
+
+    };
+
+}
+
+
+/* =====================================================
 MAIN DRAW
-========================================================= */
+===================================================== */
 
 function draw() {
 
@@ -3430,16 +3337,662 @@ function draw() {
 
     }
 
+
+    /*
+    Vignette is deliberately LAST.
+
+    This makes the darkening affect
+    the entire finished icon instead
+    of only the character.
+    */
+
+    drawVignette();
+
 }
 
 
-/* =========================================================
-DRAG IMAGE
-========================================================= */
+/* =====================================================
+BORDER SELECTION
+===================================================== */
+
+document
+.querySelectorAll(".border-option")
+.forEach(
+    option => {
+
+        option.addEventListener(
+            "click",
+            () => {
+
+                selectedBorder =
+                    option.dataset.border;
+
+
+                document
+                .querySelectorAll(
+                    ".border-option"
+                )
+                .forEach(
+                    o =>
+                    o.classList.remove(
+                        "selected"
+                    )
+                );
+
+
+                option.classList.add(
+                    "selected"
+                );
+
+
+                el("customPanel")
+                .classList.toggle(
+                    "show",
+                    selectedBorder ===
+                    "custom"
+                );
+
+
+                el("uploadedPanel")
+                .classList.toggle(
+                    "show",
+                    selectedBorder ===
+                    "uploaded"
+                );
+
+
+                draw();
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+BORDER UPLOAD
+===================================================== */
+
+el("borderInput")
+.addEventListener(
+    "change",
+    event => {
+
+        const file =
+            event.target.files[0];
+
+        if (!file)
+            return;
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            () => {
+
+                const img =
+                    new Image();
+
+
+                img.onload =
+                    () => {
+
+                        borderImage =
+                            img;
+
+
+                        selectedBorder =
+                            "uploaded";
+
+
+                        document
+                        .querySelectorAll(
+                            ".border-option"
+                        )
+                        .forEach(
+                            o =>
+                            o.classList.remove(
+                                "selected"
+                            )
+                        );
+
+
+                        document
+                        .querySelector(
+                            '[data-border="uploaded"]'
+                        )
+                        .classList.add(
+                            "selected"
+                        );
+
+
+                        el("uploadedPanel")
+                        .classList.add(
+                            "show"
+                        );
+
+
+                        fitUploadedBorder();
+
+
+                    };
+
+
+                img.src =
+                    reader.result;
+
+            };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+    }
+);
+
+
+/* =====================================================
+FIT UPLOADED BORDER
+===================================================== */
+
+function fitUploadedBorder() {
+
+    if (!borderImage)
+        return;
+
+
+    const scale =
+        Math.max(
+            600 /
+            borderImage.width,
+
+            600 /
+            borderImage.height
+        );
+
+
+    el("borderScale").value =
+        scale;
+
+
+    el("borderX").value =
+        0;
+
+
+    el("borderY").value =
+        0;
+
+
+    updateValues();
+
+    draw();
+
+}
+
+
+/* =====================================================
+REMOVE BORDER
+===================================================== */
+
+el("removeBorder")
+.addEventListener(
+    "click",
+    () => {
+
+        borderImage =
+            null;
+
+
+        el("borderInput").value =
+            "";
+
+
+        setBorder(
+            "classic"
+        );
+
+    }
+);
+
+
+function setBorder(type) {
+
+    selectedBorder =
+        type;
+
+
+    document
+    .querySelectorAll(
+        ".border-option"
+    )
+    .forEach(
+        o =>
+        o.classList.remove(
+            "selected"
+        )
+    );
+
+
+    const option =
+        document.querySelector(
+            '[data-border="' +
+            type +
+            '"]'
+        );
+
+
+    if (option)
+        option.classList.add(
+            "selected"
+        );
+
+
+    el("customPanel")
+    .classList.toggle(
+        "show",
+        type === "custom"
+    );
+
+
+    el("uploadedPanel")
+    .classList.toggle(
+        "show",
+        type === "uploaded"
+    );
+
+
+    draw();
+
+}
+
+
+/* =====================================================
+BACKGROUND IMAGE
+===================================================== */
+
+el("backgroundInput")
+.addEventListener(
+    "change",
+    event => {
+
+        const file =
+            event.target.files[0];
+
+        if (!file)
+            return;
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            () => {
+
+                const img =
+                    new Image();
+
+
+                img.onload =
+                    () => {
+
+                        backgroundImage =
+                            img;
+
+                        draw();
+
+                    };
+
+
+                img.src =
+                    reader.result;
+
+            };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+    }
+);
+
+
+/* =====================================================
+FONT UPLOAD
+===================================================== */
+
+el("fontInput")
+.addEventListener(
+    "change",
+    async event => {
+
+        const file =
+            event.target.files[0];
+
+        if (!file)
+            return;
+
+
+        try {
+
+            const buffer =
+                await file.arrayBuffer();
+
+
+            const fontName =
+                "UserFont_" +
+                Date.now();
+
+
+            const font =
+                new FontFace(
+                    fontName,
+                    buffer
+                );
+
+
+            await font.load();
+
+
+            document.fonts.add(
+                font
+            );
+
+
+            const option1 =
+                document.createElement(
+                    "option"
+                );
+
+
+            option1.value =
+                fontName;
+
+
+            option1.textContent =
+                "★ " +
+                file.name;
+
+
+            el("nameFont")
+            .appendChild(
+                option1
+            );
+
+
+            const option2 =
+                document.createElement(
+                    "option"
+                );
+
+
+            option2.value =
+                fontName;
+
+
+            option2.textContent =
+                "★ " +
+                file.name;
+
+
+            el("versionFont")
+            .appendChild(
+                option2
+            );
+
+
+            el("nameFont").value =
+                fontName;
+
+
+            el("versionFont").value =
+                fontName;
+
+
+            updateFontPreview();
+
+            draw();
+
+        }
+
+        catch {
+
+            alert(
+                "This font could not be loaded."
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+FONT PREVIEW
+===================================================== */
+
+function updateFontPreview() {
+
+    el("fontPreview")
+    .style.fontFamily =
+        el("nameFont").value;
+
+}
+
+
+/* =====================================================
+LIVE CONTROLS
+===================================================== */
+
+const controlIds = [
+
+    "zoom",
+    "imageX",
+    "imageY",
+
+    "characterName",
+    "version",
+
+    "nameFont",
+    "versionFont",
+
+    "nameSize",
+    "versionSize",
+    "textY",
+
+    "textColor",
+    "outlineColor",
+    "outlineWidth",
+    "textShadow",
+
+    "backgroundMode",
+    "backgroundColor",
+    "backgroundColor2",
+
+    "customStyle",
+    "customColor",
+    "customGradient",
+    "customColor2",
+    "customWidth",
+    "customOpacity",
+    "customGlow",
+    "customGlowColor",
+
+    "borderScale",
+    "borderX",
+    "borderY",
+    "borderRotation",
+    "borderOpacity",
+
+    "brightness",
+    "contrast",
+    "saturation",
+    "blur",
+
+    "vignette",
+    "vignetteSize",
+    "vignetteSoftness",
+    "vignetteColor"
+
+];
+
+
+controlIds.forEach(
+    id => {
+
+        const control =
+            el(id);
+
+
+        if (!control)
+            return;
+
+
+        control.addEventListener(
+            "input",
+            () => {
+
+                updateValues();
+
+                updateFontPreview();
+
+                draw();
+
+            }
+        );
+
+
+        control.addEventListener(
+            "change",
+            () => {
+
+                updateValues();
+
+                updateFontPreview();
+
+                draw();
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+VALUE LABELS
+===================================================== */
+
+function updateValues() {
+
+    el("zoomValue")
+    .textContent =
+        Math.round(
+            Number(
+                el("zoom").value
+            ) *
+            100
+        ) +
+        "%";
+
+
+    el("customWidthValue")
+    .textContent =
+        el("customWidth").value +
+        "px";
+
+
+    el("customOpacityValue")
+    .textContent =
+        el("customOpacity").value +
+        "%";
+
+
+    el("customGlowValue")
+    .textContent =
+        el("customGlow").value +
+        "px";
+
+
+    el("borderScaleValue")
+    .textContent =
+        Math.round(
+            Number(
+                el("borderScale").value
+            ) *
+            100
+        ) +
+        "%";
+
+
+    el("borderRotationValue")
+    .textContent =
+        el("borderRotation").value +
+        "°";
+
+
+    el("borderOpacityValue")
+    .textContent =
+        el("borderOpacity").value +
+        "%";
+
+
+    el("brightnessValue")
+    .textContent =
+        el("brightness").value +
+        "%";
+
+
+    el("contrastValue")
+    .textContent =
+        el("contrast").value +
+        "%";
+
+
+    el("saturationValue")
+    .textContent =
+        el("saturation").value +
+        "%";
+
+
+    el("blurValue")
+    .textContent =
+        el("blur").value +
+        "px";
+
+
+    el("vignetteValue")
+    .textContent =
+        el("vignette").value +
+        "%";
+
+
+    el("vignetteSizeValue")
+    .textContent =
+        el("vignetteSize").value +
+        "%";
+
+
+    el("vignetteSoftnessValue")
+    .textContent =
+        el("vignetteSoftness").value +
+        "%";
+
+}
+
+
+/* =====================================================
+DRAG CHARACTER
+===================================================== */
 
 canvas.addEventListener(
     "pointerdown",
-    function(event) {
+    event => {
 
         if (!image)
             return;
@@ -3479,7 +4032,7 @@ canvas.addEventListener(
 
 canvas.addEventListener(
     "pointermove",
-    function(event) {
+    event => {
 
         if (!dragging)
             return;
@@ -3490,11 +4043,13 @@ canvas.addEventListener(
 
 
         const scaleX =
-            600 / rect.width;
+            600 /
+            rect.width;
 
 
         const scaleY =
-            600 / rect.height;
+            600 /
+            rect.height;
 
 
         const dx =
@@ -3514,23 +4069,13 @@ canvas.addEventListener(
 
 
         el("imageX").value =
-            Math.max(
-                -400,
-                Math.min(
-                    400,
-                    startImageX + dx
-                )
-            );
+            startImageX +
+            dx;
 
 
         el("imageY").value =
-            Math.max(
-                -400,
-                Math.min(
-                    400,
-                    startImageY + dy
-                )
-            );
+            startImageY +
+            dy;
 
 
         draw();
@@ -3541,7 +4086,7 @@ canvas.addEventListener(
 
 canvas.addEventListener(
     "pointerup",
-    function() {
+    () => {
 
         dragging =
             false;
@@ -3552,7 +4097,7 @@ canvas.addEventListener(
 
 canvas.addEventListener(
     "pointercancel",
-    function() {
+    () => {
 
         dragging =
             false;
@@ -3561,38 +4106,69 @@ canvas.addEventListener(
 );
 
 
-/* =========================================================
-REMOVE BORDER
-========================================================= */
+/* =====================================================
+DOWNLOAD
+===================================================== */
 
-el("removeBorder")
+el("downloadButton")
 .addEventListener(
     "click",
-    function() {
+    () => {
 
-        borderImage =
-            null;
-
-
-        el("borderInput").value =
-            "";
+        const link =
+            document.createElement(
+                "a"
+            );
 
 
-        setBorder(
-            "classic"
+        let name =
+            el("characterName")
+            .value ||
+            "tier-icon";
+
+
+        name =
+            name.replace(
+                /[^a-z0-9]/gi,
+                "_"
+            );
+
+
+        link.download =
+            name +
+            ".png";
+
+
+        link.href =
+            canvas.toDataURL(
+                "image/png"
+            );
+
+
+        link.click();
+
+
+        setStatus(
+            "PNG exported."
         );
 
     }
 );
 
 
-/* =========================================================
-HISTORY
-========================================================= */
+/* =====================================================
+LOCAL SAVE
+===================================================== */
 
-function getState() {
+function getProject() {
 
     return {
+
+        characterName:
+            el("characterName").value,
+
+        version:
+            el("version").value,
 
         zoom:
             el("zoom").value,
@@ -3602,18 +4178,6 @@ function getState() {
 
         imageY:
             el("imageY").value,
-
-        characterName:
-            el("characterName").value,
-
-        version:
-            el("version").value,
-
-        nameFont:
-            el("nameFont").value,
-
-        versionFont:
-            el("versionFont").value,
 
         nameSize:
             el("nameSize").value,
@@ -3651,6 +4215,18 @@ function getState() {
         blur:
             el("blur").value,
 
+        vignette:
+            el("vignette").value,
+
+        vignetteSize:
+            el("vignetteSize").value,
+
+        vignetteSoftness:
+            el("vignetteSoftness").value,
+
+        vignetteColor:
+            el("vignetteColor").value,
+
         selectedBorder:
             selectedBorder
 
@@ -3659,161 +4235,15 @@ function getState() {
 }
 
 
-function applyState(state) {
-
-    Object.keys(state)
-    .forEach(
-        function(key) {
-
-            if (
-                key ===
-                "selectedBorder"
-            )
-                return;
-
-
-            const control =
-                el(key);
-
-
-            if (control) {
-
-                control.value =
-                    state[key];
-
-            }
-
-        }
-    );
-
-
-    if (
-        state.selectedBorder
-    ) {
-
-        setBorder(
-            state.selectedBorder
-        );
-
-    }
-
-
-    updateValues();
-
-    draw();
-
-}
-
-
-function saveHistory() {
-
-    const state =
-        getState();
-
-
-    history =
-        history.slice(
-            0,
-            historyIndex + 1
-        );
-
-
-    history.push(
-        state
-    );
-
-
-    historyIndex =
-        history.length - 1;
-
-
-    if (
-        history.length > 30
-    ) {
-
-        history.shift();
-
-        historyIndex--;
-
-    }
-
-}
-
-
-el("undoButton")
-.addEventListener(
-    "click",
-    function() {
-
-        if (
-            historyIndex <= 0
-        ) {
-
-            setStatus(
-                "Nothing to undo."
-            );
-
-            return;
-
-        }
-
-
-        historyIndex--;
-
-        applyState(
-            history[
-                historyIndex
-            ]
-        );
-
-    }
-);
-
-
-el("redoButton")
-.addEventListener(
-    "click",
-    function() {
-
-        if (
-            historyIndex >=
-            history.length - 1
-        ) {
-
-            setStatus(
-                "Nothing to redo."
-            );
-
-            return;
-
-        }
-
-
-        historyIndex++;
-
-        applyState(
-            history[
-                historyIndex
-            ]
-        );
-
-    }
-);
-
-
-/* =========================================================
-SAVE PROJECT
-========================================================= */
-
 el("saveButton")
 .addEventListener(
     "click",
-    function() {
+    () => {
 
         localStorage.setItem(
             "tierIconProject",
             JSON.stringify(
-                getState()
+                getProject()
             )
         );
 
@@ -3826,14 +4256,14 @@ el("saveButton")
 );
 
 
-/* =========================================================
-LOAD PROJECT
-========================================================= */
+/* =====================================================
+LOAD
+===================================================== */
 
 el("loadButton")
 .addEventListener(
     "click",
-    function() {
+    () => {
 
         const saved =
             localStorage.getItem(
@@ -3844,7 +4274,7 @@ el("loadButton")
         if (!saved) {
 
             setStatus(
-                "No saved project found."
+                "No saved project."
             );
 
             return;
@@ -3852,36 +4282,62 @@ el("loadButton")
         }
 
 
-        try {
+        const project =
+            JSON.parse(
+                saved
+            );
 
-            applyState(
-                JSON.parse(
-                    saved
+
+        Object.keys(project)
+        .forEach(
+            key => {
+
+                if (
+                    key ===
+                    "selectedBorder"
                 )
-            );
+                    return;
 
 
-            setStatus(
-                "Project loaded."
+                const control =
+                    el(key);
+
+
+                if (control)
+                    control.value =
+                        project[key];
+
+            }
+        );
+
+
+        if (
+            project.selectedBorder
+        ) {
+
+            setBorder(
+                project.selectedBorder
             );
 
         }
 
-        catch(error) {
 
-            setStatus(
-                "Could not load project."
-            );
+        updateValues();
 
-        }
+        draw();
+
+
+        setStatus(
+            "Project loaded."
+        );
 
     }
 );
 
 
-/* =========================================================
+/* =====================================================
 STATUS
-========================================================= */
+===================================================== */
 
 function setStatus(message) {
 
@@ -3892,103 +4348,36 @@ function setStatus(message) {
 }
 
 
-/* =========================================================
-DOWNLOAD
-========================================================= */
-
-el("downloadButton")
-.addEventListener(
-    "click",
-    function() {
-
-        const link =
-            document.createElement(
-                "a"
-            );
-
-
-        let name =
-            el("characterName")
-            .value ||
-            "tier-icon";
-
-
-        let form =
-            el("version")
-            .value ||
-            "icon";
-
-
-        name =
-            name.replace(
-                /[^a-z0-9]/gi,
-                "_"
-            );
-
-
-        form =
-            form.replace(
-                /[^a-z0-9]/gi,
-                "_"
-            );
-
-
-        link.download =
-            name +
-            "_" +
-            form +
-            ".png";
-
-
-        link.href =
-            canvas.toDataURL(
-                "image/png"
-            );
-
-
-        link.click();
-
-
-        setStatus(
-            "PNG exported."
-        );
-
-    }
-);
-
-
-/* =========================================================
+/* =====================================================
 RESET
-========================================================= */
+===================================================== */
 
 el("resetButton")
 .addEventListener(
     "click",
-    function() {
+    () => {
 
         if (
-            !confirm(
-                "Reset the entire editor?"
+            confirm(
+                "Reset everything?"
             )
-        )
-            return;
+        ) {
 
+            location.reload();
 
-        location.reload();
+        }
 
     }
 );
 
 
-/* =========================================================
+/* =====================================================
 INITIALIZE
-========================================================= */
+===================================================== */
 
 updateValues();
 
 updateFontPreview();
-
-saveHistory();
 
 draw();
 
