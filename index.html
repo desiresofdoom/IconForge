@@ -2,541 +2,383 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IconForge</title>
 
 <style>
 *{
-box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 html,body{
-margin:0;
-min-height:100%;
-background:#050509;
-color:white;
-font-family:Arial,Helvetica,sans-serif;
+  margin:0;
+  min-height:100%;
+  background:#06070b;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-background:
-radial-gradient(circle at 10% 0%,#24215b55,transparent 30%),
-radial-gradient(circle at 90% 10%,#143d4e55,transparent 30%),
-radial-gradient(circle at 50% 100%,#3b155055,transparent 35%),
-#050509;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(91,72,255,.20),transparent 28%),
+    radial-gradient(circle at 90% 15%,rgba(0,216,255,.13),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(190,40,255,.13),transparent 35%),
+    #06070b;
 }
 
 button,input,select{
-font:inherit;
+  font:inherit;
+}
+
+button{
+  -webkit-tap-highlight-color:transparent;
 }
 
 .app{
-width:min(1150px,100%);
-margin:auto;
-padding:14px 10px 80px;
+  width:min(1150px,100%);
+  margin:auto;
+  padding:12px 10px 60px;
 }
 
+/* HEADER */
+
 .header{
-text-align:center;
-padding:10px 0 15px;
+  text-align:center;
+  padding:10px 0 14px;
 }
 
 .logo{
-font-size:34px;
-font-weight:1000;
-letter-spacing:-1.5px;
-background:linear-gradient(90deg,#fff,#7581ff,#d98dff);
--webkit-background-clip:text;
-color:transparent;
+  font-size:34px;
+  font-weight:1000;
+  letter-spacing:-1.5px;
+  background:linear-gradient(90deg,#fff,#7b8cff,#d67aff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 .subtitle{
-font-size:12px;
-color:#777987;
-margin-top:5px;
+  color:#747786;
+  font-size:12px;
+  margin-top:4px;
 }
 
-/* =========================
-LIVE PREVIEW
-========================= */
+/* PREVIEW */
 
 .preview{
-position:sticky;
-top:5px;
-z-index:50;
-padding:10px;
-margin-bottom:12px;
-border-radius:18px;
-background:rgba(8,8,13,.95);
-border:1px solid #ffffff12;
-box-shadow:0 20px 70px #0009;
-backdrop-filter:blur(20px);
+  position:sticky;
+  top:5px;
+  z-index:100;
+  background:rgba(7,8,13,.94);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:10px;
+  margin-bottom:10px;
+  box-shadow:0 18px 60px rgba(0,0,0,.55);
 }
 
 .previewTitle{
-font-size:9px;
-font-weight:1000;
-letter-spacing:2px;
-text-align:center;
-color:#777987;
-margin-bottom:7px;
+  text-align:center;
+  color:#777b8c;
+  font-size:9px;
+  letter-spacing:2px;
+  font-weight:1000;
+  margin-bottom:8px;
 }
 
-.canvasHolder{
-display:flex;
-justify-content:center;
+.canvasWrap{
+  display:flex;
+  justify-content:center;
 }
 
 #canvas{
-width:min(430px,100%);
-height:auto;
-display:block;
-border-radius:9px;
-background:#111;
-touch-action:none;
+  display:block;
+  width:min(430px,100%);
+  height:auto;
+  border-radius:10px;
+  background:#111;
+  touch-action:none;
+  user-select:none;
 }
 
-/* =========================
-NAVIGATION
-========================= */
+/* NAV */
 
 .nav{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:5px;
-padding:6px;
-border-radius:15px;
-background:#111219;
-border:1px solid #ffffff0d;
-margin-bottom:12px;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+  background:#11131a;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:15px;
+  padding:5px;
+  margin-bottom:10px;
 }
 
 .nav button{
-border:0;
-background:transparent;
-color:#777985;
-padding:11px 3px;
-border-radius:9px;
-font-size:9px;
-font-weight:1000;
-cursor:pointer;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#777b89;
+  padding:11px 2px;
+  font-size:8px;
+  font-weight:1000;
+  cursor:pointer;
 }
 
 .nav button.active{
-background:linear-gradient(135deg,#5967f2,#854cff);
-color:white;
+  color:#fff;
+  background:linear-gradient(135deg,#5668ff,#914cff);
 }
 
-/* =========================
-SECTIONS
-========================= */
+/* SECTIONS */
 
 .section{
-display:none;
+  display:none;
 }
 
 .section.active{
-display:block;
+  display:block;
 }
 
 .panel{
-padding:16px;
-margin-bottom:12px;
-border-radius:17px;
-background:linear-gradient(145deg,#191a23,#0d0e13);
-border:1px solid #ffffff0d;
+  background:linear-gradient(145deg,#171922,#0d0f15);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:17px;
+  padding:16px;
+  margin-bottom:10px;
 }
 
 .title{
-font-size:18px;
-font-weight:1000;
+  font-size:18px;
+  font-weight:1000;
 }
 
 .desc{
-font-size:12px;
-line-height:1.5;
-color:#777985;
-margin:5px 0 15px;
+  color:#777b89;
+  font-size:11px;
+  line-height:1.5;
+  margin:5px 0 14px;
 }
 
 label{
-display:block;
-font-size:11px;
-font-weight:900;
-color:#ccc;
-margin:13px 0 6px;
+  display:block;
+  color:#cfd1da;
+  font-size:10px;
+  font-weight:1000;
+  margin:12px 0 6px;
 }
 
 input[type=text],
 input[type=file],
 select{
-width:100%;
-padding:11px;
-border-radius:9px;
-border:1px solid #ffffff10;
-background:#252630;
-color:white;
-outline:none;
+  width:100%;
+  border:1px solid rgba(255,255,255,.08);
+  background:#22242d;
+  color:#fff;
+  border-radius:9px;
+  padding:11px;
+  outline:none;
+}
+
+input[type=file]{
+  font-size:11px;
 }
 
 input[type=range]{
-width:100%;
-accent-color:#6875ff;
+  width:100%;
+  accent-color:#6d7cff;
 }
 
 input[type=color]{
-width:65px;
-height:40px;
-border:0;
-padding:2px;
-background:#22232b;
-border-radius:8px;
+  width:62px;
+  height:38px;
+  border:0;
+  padding:2px;
+  background:#22242d;
+  border-radius:8px;
 }
 
 .row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:9px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
 .button{
-width:100%;
-border:0;
-border-radius:10px;
-padding:12px;
-margin-top:9px;
-background:linear-gradient(135deg,#5967f2,#834dff);
-color:white;
-font-weight:1000;
-cursor:pointer;
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  margin-top:9px;
+  background:linear-gradient(135deg,#596aff,#844bff);
+  color:#fff;
+  font-size:11px;
+  font-weight:1000;
+  cursor:pointer;
 }
 
 .button.secondary{
-background:#292a32;
+  background:#292b34;
 }
 
-.button.danger{
-background:#873b42;
+.button.red{
+  background:#713840;
 }
 
-.smallValue{
-display:block;
-text-align:right;
-font-size:10px;
-color:#777985;
+.value{
+  float:right;
+  color:#737787;
+  font-size:9px;
 }
 
-/* =========================
-AUTO FIT
-========================= */
+/* FIT */
 
 .fitGrid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:8px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
-.fitOption{
-padding:13px 9px;
-border-radius:11px;
-background:#20212a;
-border:1px solid #ffffff0b;
-cursor:pointer;
+.fitCard{
+  border:1px solid rgba(255,255,255,.07);
+  background:#20222b;
+  border-radius:11px;
+  padding:13px 10px;
+  cursor:pointer;
 }
 
-.fitOption.active{
-border-color:#6674ff;
-background:#252943;
+.fitCard.active{
+  border-color:#6b79ff;
+  background:#282c47;
+  box-shadow:0 0 18px rgba(103,119,255,.18);
 }
 
-.fitName{
-font-weight:1000;
-font-size:11px;
+.fitTitle{
+  font-size:11px;
+  font-weight:1000;
 }
 
-.fitDescription{
-font-size:9px;
-color:#777985;
-margin-top:3px;
-line-height:1.3;
+.fitDesc{
+  color:#777b89;
+  font-size:9px;
+  line-height:1.35;
+  margin-top:4px;
 }
 
-/* =========================
-FRAMES
-========================= */
+/* FRAMES */
 
 .frameGrid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:9px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 
 .frameCard{
-background:#111218;
-border:2px solid transparent;
-border-radius:12px;
-padding:6px;
-cursor:pointer;
+  border:2px solid transparent;
+  background:#11131a;
+  border-radius:12px;
+  padding:6px;
+  cursor:pointer;
 }
 
-.frameCard.selected{
-border-color:#6875ff;
-box-shadow:0 0 18px #6875ff33;
+.frameCard.active{
+  border-color:#7180ff;
+  box-shadow:0 0 18px rgba(113,128,255,.25);
 }
 
-.framePreview{
-height:110px;
-border-radius:7px;
-position:relative;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
-background:
-radial-gradient(circle,#333,#0a0a0e);
-}
-
-.framePreview:before{
-content:"";
-position:absolute;
-inset:12px;
-border:8px solid white;
-}
-
-.framePreview:after{
-content:"";
-position:absolute;
-inset:25px;
-border:1px solid #ffffff55;
+.frameThumb{
+  width:100%;
+  aspect-ratio:1;
+  border-radius:8px;
+  overflow:hidden;
+  background:#090a0e;
 }
 
 .frameName{
-text-align:center;
-font-size:10px;
-font-weight:900;
-margin-top:6px;
-color:#ddd;
+  text-align:center;
+  font-size:9px;
+  font-weight:1000;
+  color:#d8dae2;
+  margin-top:6px;
 }
 
-/* frame previews */
-
-.gold{
-background:radial-gradient(circle,#55451c,#0b0905);
-}
-
-.gold:before{
-border-color:#e5bd48;
-box-shadow:0 0 20px #e5bd48;
-}
-
-.crimson{
-background:radial-gradient(circle,#55131d,#090506);
-}
-
-.crimson:before{
-border-color:#e52f46;
-box-shadow:0 0 20px #e52f46;
-}
-
-.void{
-background:radial-gradient(circle,#351b59,#09050d);
-}
-
-.void:before{
-border-color:#9c5cff;
-box-shadow:0 0 25px #9c5cff;
-}
-
-.frost{
-background:radial-gradient(circle,#194b5b,#071013);
-}
-
-.frost:before{
-border-color:#73eaff;
-box-shadow:0 0 25px #73eaff;
-}
-
-.inferno{
-background:radial-gradient(circle,#69230d,#100604);
-}
-
-.inferno:before{
-border-color:#ff542d;
-box-shadow:0 0 25px #ff542d;
-}
-
-.cosmic{
-background:
-radial-gradient(circle at 30% 30%,#7436a5,#090612);
-}
-
-.cosmic:before{
-border-color:#cf74ff;
-box-shadow:0 0 28px #a744ff;
-}
-
-.shadow{
-background:#020203;
-}
-
-.shadow:before{
-border-color:#25252b;
-box-shadow:0 0 25px #000;
-}
-
-.neon{
-background:radial-gradient(circle,#124f47,#030b09);
-}
-
-.neon:before{
-border-color:#39ffd1;
-box-shadow:0 0 25px #39ffd1;
-}
-
-.divine{
-background:radial-gradient(circle,#574b17,#090805);
-}
-
-.divine:before{
-border:7px double #ffe67a;
-box-shadow:0 0 20px #ffe67a;
-}
-
-.blood{
-background:radial-gradient(circle,#5c000c,#090304);
-}
-
-.blood:before{
-border-color:#a80019;
-box-shadow:0 0 30px #ff001e;
-}
-
-.diamond{
-background:radial-gradient(circle,#16475b,#05090d);
-}
-
-.diamond:before{
-border:7px double #9beaff;
-box-shadow:0 0 20px #75dfff;
-}
-
-.royal{
-background:radial-gradient(circle,#514215,#090805);
-}
-
-.royal:before{
-border:7px double #e7c95d;
-box-shadow:0 0 15px #e7c95d;
-}
-
-/* =========================
-SHAPES
-========================= */
+/* BUILDER */
 
 .shapeGrid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:7px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
 }
 
-.shapeButton{
-padding:14px 5px;
-border:1px solid #ffffff0d;
-border-radius:10px;
-background:#20212a;
-color:white;
-cursor:pointer;
-font-size:10px;
-font-weight:900;
-}
-
-.shapeButton:hover{
-background:#30313d;
+.shapeBtn{
+  border:1px solid rgba(255,255,255,.07);
+  background:#20222b;
+  color:#fff;
+  border-radius:9px;
+  padding:13px 4px;
+  cursor:pointer;
+  font-size:9px;
+  font-weight:1000;
 }
 
 .shapeList{
-display:flex;
-flex-direction:column;
-gap:7px;
-margin-top:12px;
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
 .shapeItem{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:9px;
-background:#15161d;
-border-radius:9px;
-font-size:11px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:9px;
+  background:#14161d;
+  border-radius:8px;
+  font-size:10px;
 }
 
-.shapeDelete{
-border:0;
-background:#71353b;
-color:white;
-border-radius:6px;
-padding:5px 8px;
-cursor:pointer;
+.deleteShape{
+  border:0;
+  background:#713840;
+  color:white;
+  border-radius:6px;
+  padding:5px 8px;
+  font-size:9px;
 }
 
-/* =========================
-BUILDER
-========================= */
-
-.builderPreview{
-width:100%;
-height:180px;
-border-radius:12px;
-background:#08090d;
-border:1px solid #ffffff0c;
-position:relative;
-overflow:hidden;
-margin-top:10px;
-}
-
-.builderShape{
-position:absolute;
-transform:translate(-50%,-50%);
-}
-
-/* =========================
-STATUS
-========================= */
+/* STATUS */
 
 .status{
-margin-top:10px;
-padding:10px;
-border-radius:9px;
-background:#111218;
-color:#777985;
-font-size:10px;
-line-height:1.5;
+  margin-top:10px;
+  padding:10px;
+  background:#11131a;
+  border-radius:9px;
+  color:#777b89;
+  font-size:10px;
+  line-height:1.45;
 }
 
-/* =========================
-MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:600px){
 
-.logo{
-font-size:27px;
-}
+  .logo{
+    font-size:28px;
+  }
 
-.nav button{
-font-size:7px;
-}
+  .nav button{
+    font-size:7px;
+  }
 
-.frameGrid{
-grid-template-columns:repeat(2,1fr);
-}
+  .frameGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.row{
-grid-template-columns:1fr;
-}
-
+  .row{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -545,2555 +387,3072 @@ grid-template-columns:1fr;
 
 <div class="app">
 
-<div class="header">
-<div class="logo">✦ ICONFORGE</div>
-<div class="subtitle">
-Create custom tier-list icons
-</div>
-</div>
+  <div class="header">
+    <div class="logo">✦ ICONFORGE</div>
+    <div class="subtitle">Build anime • gaming • tier-list icons</div>
+  </div>
+
+  <!-- LIVE PREVIEW -->
+  <div class="preview">
+    <div class="previewTitle">LIVE PREVIEW</div>
+    <div class="canvasWrap">
+      <canvas id="canvas" width="600" height="600"></canvas>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="nav">
+
+    <button class="active" data-section="image">
+      IMAGE
+    </button>
+
+    <button data-section="fit">
+      AUTO FIT
+    </button>
+
+    <button data-section="frames">
+      FRAMES
+    </button>
+
+    <button data-section="builder">
+      BUILDER
+    </button>
+
+    <button data-section="text">
+      TEXT
+    </button>
+
+    <button data-section="background">
+      BACKGROUND
+    </button>
+
+    <button data-section="effects">
+      EFFECTS
+    </button>
+
+  </div>
+
+
+  <!-- ==================================================
+       IMAGE
+  ================================================== -->
 
+  <section id="image" class="section active">
 
-<!-- LIVE PREVIEW -->
+    <div class="panel">
 
-<div class="preview">
+      <div class="title">Character Image</div>
 
-<div class="previewTitle">
-LIVE PREVIEW
-</div>
+      <div class="desc">
+        Upload any normal JPG, PNG, WEBP, etc. Transparency is NOT required.
+      </div>
 
-<div class="canvasHolder">
-<canvas id="canvas" width="600" height="600"></canvas>
-</div>
+      <label>Character Image</label>
 
-</div>
+      <input
+        id="characterFile"
+        type="file"
+        accept="image/*"
+      >
 
+      <label>
+        Zoom
+        <span class="value" id="zoomValue">100%</span>
+      </label>
 
-<!-- NAV -->
+      <input
+        id="zoom"
+        type="range"
+        min="0.05"
+        max="8"
+        step="0.01"
+        value="1"
+      >
 
-<div class="nav">
+      <label>
+        Horizontal Position
+      </label>
 
-<button class="active" data-tab="image">
-IMAGE
-</button>
+      <input
+        id="posX"
+        type="range"
+        min="-600"
+        max="600"
+        value="0"
+      >
 
-<button data-tab="fit">
-AUTO FIT
-</button>
+      <label>
+        Vertical Position
+      </label>
 
-<button data-tab="frames">
-FRAMES
-</button>
+      <input
+        id="posY"
+        type="range"
+        min="-600"
+        max="600"
+        value="0"
+      >
 
-<button data-tab="builder">
-BUILDER
-</button>
+      <label>
+        Rotation
+      </label>
 
-<button data-tab="text">
-TEXT
-</button>
+      <input
+        id="rotation"
+        type="range"
+        min="-180"
+        max="180"
+        value="0"
+      >
 
-<button data-tab="background">
-BACKGROUND
-</button>
+      <div class="row">
 
-<button data-tab="effects">
-EFFECTS
-</button>
+        <button class="button" id="center">
+          CENTER
+        </button>
 
-</div>
+        <button class="button secondary" id="resetImage">
+          RESET
+        </button>
 
+      </div>
 
-<!-- ================= IMAGE ================= -->
+      <div class="row">
 
-<section class="section active" id="image">
+        <button class="button secondary" id="flipH">
+          FLIP HORIZONTAL
+        </button>
 
-<div class="panel">
+        <button class="button secondary" id="flipV">
+          FLIP VERTICAL
+        </button>
 
-<div class="title">
-Character Image
-</div>
+      </div>
 
-<div class="desc">
-Upload any image. Transparency is NOT required.
-</div>
+    </div>
 
-<label>
-Upload Character
-</label>
+  </section>
 
-<input
-id="characterInput"
-type="file"
-accept="image/*"
->
 
-<label>
-Zoom
-</label>
+  <!-- ==================================================
+       AUTO FIT
+  ================================================== -->
 
-<input
-id="zoom"
-type="range"
-min=".05"
-max="10"
-step=".01"
-value="1"
->
+  <section id="fit" class="section">
 
-<span class="smallValue" id="zoomValue">
-100%
-</span>
+    <div class="panel">
 
-<label>
-Horizontal Position
-</label>
+      <div class="title">Auto Fit</div>
 
-<input
-id="posX"
-type="range"
-min="-600"
-max="600"
-value="0"
->
+      <div class="desc">
+        These modes calculate the character against the actual opening inside the selected frame.
+      </div>
 
-<label>
-Vertical Position
-</label>
+      <div class="fitGrid">
 
-<input
-id="posY"
-type="range"
-min="-600"
-max="600"
-value="0"
->
+        <div class="fitCard active" data-fit="fill">
 
-<label>
-Rotation
-</label>
+          <div class="fitTitle">
+            1 — FILL OPENING
+          </div>
 
-<input
-id="rotation"
-type="range"
-min="-180"
-max="180"
-value="0"
->
+          <div class="fitDesc">
+            Fills the entire frame opening. No empty space.
+          </div>
 
-<div class="row">
+        </div>
 
-<button class="button" id="centerButton">
-CENTER
-</button>
+        <div class="fitCard" data-fit="maximum">
 
-<button class="button" id="resetImage">
-RESET
-</button>
+          <div class="fitTitle">
+            2 — MAXIMUM ZOOM
+          </div>
 
-</div>
+          <div class="fitDesc">
+            Very aggressive zoom. Designed for huge character portraits.
+          </div>
 
-<div class="row">
+        </div>
 
-<button class="button secondary" id="flipH">
-FLIP H
-</button>
+        <div class="fitCard" data-fit="cover">
 
-<button class="button secondary" id="flipV">
-FLIP V
-</button>
+          <div class="fitTitle">
+            3 — COVER
+          </div>
 
-</div>
+          <div class="fitDesc">
+            Standard cover calculation. The opening is completely covered.
+          </div>
 
-</div>
+        </div>
 
-</section>
+        <div class="fitCard" data-fit="contain">
 
+          <div class="fitTitle">
+            4 — CONTAIN
+          </div>
 
-<!-- ================= AUTO FIT ================= -->
+          <div class="fitDesc">
+            Keeps the entire source image visible.
+          </div>
 
-<section class="section" id="fit">
+        </div>
 
-<div class="panel">
+        <div class="fitCard" data-fit="smart">
 
-<div class="title">
-Auto Fit Modes
-</div>
+          <div class="fitTitle">
+            5 — SMART
+          </div>
 
-<div class="desc">
-Choose exactly how aggressively the image should fill the frame.
-</div>
+          <div class="fitDesc">
+            Fills the opening aggressively while avoiding excessive cropping.
+          </div>
 
-<div class="fitGrid">
+        </div>
 
-<div class="fitOption active" data-fit="fill">
+      </div>
 
-<div class="fitName">
-1 — FILL OPENING
-</div>
+      <button class="button" id="applyFit">
+        APPLY AUTO FIT
+      </button>
 
-<div class="fitDescription">
-No empty space inside the frame. Enlarges image until the opening is completely covered.
-</div>
+      <div class="status">
+        <b>Recommended:</b> Start with Fill Opening. If you want the character even larger, use Maximum Zoom.
+      </div>
 
-</div>
+    </div>
 
-<div class="fitOption" data-fit="maximum">
+  </section>
 
-<div class="fitName">
-2 — MAXIMUM ZOOM
-</div>
 
-<div class="fitDescription">
-Extremely zoomed in. Great when you want the character filling almost everything.
-</div>
+  <!-- ==================================================
+       FRAMES
+  ================================================== -->
 
-</div>
+  <section id="frames" class="section">
 
-<div class="fitOption" data-fit="cover">
+    <div class="panel">
 
-<div class="fitName">
-3 — COVER
-</div>
+      <div class="title">Frame Library</div>
 
-<div class="fitDescription">
-Classic cover behavior. Entire frame opening is filled.
-</div>
+      <div class="desc">
+        Select a built-in frame. These are generated directly by IconForge and do not require a transparent upload.
+      </div>
 
-</div>
+      <div id="frameGrid" class="frameGrid"></div>
 
-<div class="fitOption" data-fit="contain">
+    </div>
 
-<div class="fitName">
-4 — CONTAIN
-</div>
+    <div class="panel">
 
-<div class="fitDescription">
-Shows the entire image without cropping.
-</div>
+      <div class="title">Frame Settings</div>
 
-</div>
+      <label>
+        Frame Thickness
+        <span class="value" id="frameWidthValue">14</span>
+      </label>
 
-<div class="fitOption" data-fit="smart">
+      <input
+        id="frameWidth"
+        type="range"
+        min="2"
+        max="45"
+        value="14"
+      >
 
-<div class="fitName">
-5 — SMART
-</div>
+      <label>
+        Frame Glow
+        <span class="value" id="frameGlowValue">10</span>
+      </label>
 
-<div class="fitDescription">
-Fills most of the opening while keeping more of the character visible.
-</div>
+      <input
+        id="frameGlow"
+        type="range"
+        min="0"
+        max="70"
+        value="10"
+      >
 
-</div>
+      <label>
+        Frame Opacity
+        <span class="value" id="frameOpacityValue">100%</span>
+      </label>
 
-</div>
+      <input
+        id="frameOpacity"
+        type="range"
+        min="10"
+        max="100"
+        value="100"
+      >
 
-<button class="button" id="applyFit">
-APPLY SELECTED AUTO FIT
-</button>
+    </div>
 
-<div class="status">
-<strong>Recommended:</strong> Start with <b>1 — FILL OPENING</b>, then use the zoom slider if you want the character even closer.
-</div>
+  </section>
 
-</div>
 
-</section>
+  <!-- ==================================================
+       BUILDER
+  ================================================== -->
 
+  <section id="builder" class="section">
 
-<!-- ================= FRAMES ================= -->
+    <div class="panel">
 
-<section class="section" id="frames">
+      <div class="title">Custom Frame Builder</div>
 
-<div class="panel">
+      <div class="desc">
+        Add shapes to build your own frame design. Shapes are drawn around the icon opening.
+      </div>
 
-<div class="title">
-Official Frame Library
-</div>
+      <div class="row">
 
-<div class="desc">
-These frames are built into IconForge. No uploaded border image is required.
-</div>
+        <div>
 
-<div id="frameGrid" class="frameGrid">
-</div>
+          <label>Shape Color</label>
 
-</div>
+          <input
+            id="shapeColor"
+            type="color"
+            value="#ffffff"
+          >
 
-<div class="panel">
+        </div>
 
-<div class="title">
-Frame Settings
-</div>
+        <div>
 
-<label>
-Thickness
-</label>
+          <label>Shape Size</label>
 
-<input
-id="frameWidth"
-type="range"
-min="2"
-max="45"
-value="12"
->
+          <input
+            id="shapeSize"
+            type="range"
+            min="10"
+            max="300"
+            value="100"
+          >
 
-<label>
-Glow
-</label>
+        </div>
 
-<input
-id="frameGlow"
-type="range"
-min="0"
-max="60"
-value="8"
->
+      </div>
 
-<label>
-Opacity
-</label>
+      <label>Shape Thickness</label>
 
-<input
-id="frameOpacity"
-type="range"
-min="10"
-max="100"
-value="100"
->
+      <input
+        id="shapeThickness"
+        type="range"
+        min="1"
+        max="30"
+        value="6"
+      >
 
-</div>
+      <label>Add Shape</label>
 
-</section>
+      <div class="shapeGrid">
 
+        <button class="shapeBtn" data-shape="square">
+          □ SQUARE
+        </button>
 
-<!-- ================= BUILDER ================= -->
+        <button class="shapeBtn" data-shape="circle">
+          ○ CIRCLE
+        </button>
 
-<section class="section" id="builder">
+        <button class="shapeBtn" data-shape="diamond">
+          ◇ DIAMOND
+        </button>
 
-<div class="panel">
+        <button class="shapeBtn" data-shape="triangle">
+          △ TRIANGLE
+        </button>
 
-<div class="title">
-Custom Frame Builder
-</div>
+        <button class="shapeBtn" data-shape="star">
+          ★ STAR
+        </button>
 
-<div class="desc">
-Build your own frame using shapes. These shapes become part of the final icon.
-</div>
+        <button class="shapeBtn" data-shape="hexagon">
+          ⬡ HEXAGON
+        </button>
 
-<label>
-Shape Color
-</label>
+        <button class="shapeBtn" data-shape="line">
+          ━ LINE
+        </button>
 
-<input
-id="shapeColor"
-type="color"
-value="#ffffff"
->
+        <button class="shapeBtn" data-shape="cross">
+          ✚ CROSS
+        </button>
 
-<label>
-Shape Size
-</label>
+      </div>
 
-<input
-id="shapeSize"
-type="range"
-min="10"
-max="300"
-value="100"
->
+      <div id="shapeList" class="shapeList"></div>
 
-<label>
-Shape Thickness
-</label>
+      <button class="button red" id="clearShapes">
+        CLEAR CUSTOM FRAME
+      </button>
 
-<input
-id="shapeThickness"
-type="range"
-min="1"
-max="30"
-value="5"
->
+    </div>
 
-<div class="shapeGrid">
+  </section>
 
-<button class="shapeButton" data-shape="square">
-□ SQUARE
-</button>
 
-<button class="shapeButton" data-shape="circle">
-○ CIRCLE
-</button>
+  <!-- ==================================================
+       TEXT
+  ================================================== -->
 
-<button class="shapeButton" data-shape="diamond">
-◇ DIAMOND
-</button>
+  <section id="text" class="section">
 
-<button class="shapeButton" data-shape="triangle">
-△ TRIANGLE
-</button>
+    <div class="panel">
 
-<button class="shapeButton" data-shape="star">
-★ STAR
-</button>
+      <div class="title">Text</div>
 
-<button class="shapeButton" data-shape="hexagon">
-⬡ HEXAGON
-</button>
+      <label>Character Name</label>
 
-<button class="shapeButton" data-shape="line">
-━ LINE
-</button>
+      <input
+        id="name"
+        type="text"
+        placeholder="Ryomen Sukuna"
+      >
 
-<button class="shapeButton" data-shape="cross">
-✚ CROSS
-</button>
+      <label>Version</label>
 
-</div>
+      <input
+        id="version"
+        type="text"
+        placeholder="Heian Era"
+      >
 
-<div class="status">
-Tap a shape to add it to your custom frame.
-</div>
+      <div class="row">
 
-<div id="shapeList" class="shapeList">
-</div>
+        <div>
 
-<button class="button danger" id="clearShapes">
-CLEAR CUSTOM FRAME
-</button>
+          <label>Name Font</label>
 
-</div>
+          <select id="nameFont">
 
-</section>
+            <option>Arial</option>
+            <option>Impact</option>
+            <option>Arial Black</option>
+            <option>Verdana</option>
+            <option>Georgia</option>
+            <option>Trebuchet MS</option>
+            <option>Courier New</option>
+            <option>Times New Roman</option>
+            <option>Garamond</option>
+            <option>Palatino Linotype</option>
 
+          </select>
 
-<!-- ================= TEXT ================= -->
+        </div>
 
-<section class="section" id="text">
+        <div>
 
-<div class="panel">
+          <label>Version Font</label>
 
-<div class="title">
-Text
-</div>
+          <select id="versionFont">
 
-<label>
-Character Name
-</label>
+            <option>Arial</option>
+            <option>Impact</option>
+            <option>Arial Black</option>
+            <option>Verdana</option>
+            <option>Georgia</option>
+            <option>Trebuchet MS</option>
+            <option>Courier New</option>
+            <option>Times New Roman</option>
+            <option>Garamond</option>
+            <option>Palatino Linotype</option>
 
-<input
-id="name"
-type="text"
-placeholder="Ryomen Sukuna"
->
+          </select>
 
-<label>
-Version
-</label>
+        </div>
 
-<input
-id="version"
-type="text"
-placeholder="Heian Era"
->
+      </div>
 
-<div class="row">
+      <label>Upload Your Own Font</label>
 
-<div>
+      <input
+        id="fontFile"
+        type="file"
+        accept=".ttf,.otf,.woff,.woff2"
+      >
 
-<label>
-Name Font
-</label>
+      <label>
+        Name Size
+        <span class="value" id="nameSizeValue">42</span>
+      </label>
 
-<select id="nameFont">
+      <input
+        id="nameSize"
+        type="range"
+        min="10"
+        max="90"
+        value="42"
+      >
 
-<option>Arial</option>
-<option>Impact</option>
-<option>Arial Black</option>
-<option>Georgia</option>
-<option>Verdana</option>
-<option>Trebuchet MS</option>
-<option>Courier New</option>
-<option>Times New Roman</option>
-<option>Garamond</option>
-<option>Palatino Linotype</option>
+      <label>
+        Version Size
+        <span class="value" id="versionSizeValue">24</span>
+      </label>
 
-</select>
+      <input
+        id="versionSize"
+        type="range"
+        min="8"
+        max="60"
+        value="24"
+      >
 
-</div>
+      <label>
+        Text Position
+        <span class="value" id="textYValue">510</span>
+      </label>
 
-<div>
+      <input
+        id="textY"
+        type="range"
+        min="350"
+        max="580"
+        value="510"
+      >
 
-<label>
-Version Font
-</label>
+      <div class="row">
 
-<select id="versionFont">
+        <div>
 
-<option>Arial</option>
-<option>Impact</option>
-<option>Arial Black</option>
-<option>Georgia</option>
-<option>Verdana</option>
-<option>Trebuchet MS</option>
-<option>Courier New</option>
-<option>Times New Roman</option>
-<option>Garamond</option>
-<option>Palatino Linotype</option>
+          <label>Text Color</label>
 
-</select>
+          <input
+            id="textColor"
+            type="color"
+            value="#ffffff"
+          >
 
-</div>
+        </div>
 
-</div>
+        <div>
 
-<label>
-Upload Custom Font
-</label>
+          <label>Outline Color</label>
 
-<input
-id="fontInput"
-type="file"
-accept=".ttf,.otf,.woff,.woff2"
->
+          <input
+            id="outlineColor"
+            type="color"
+            value="#000000"
+          >
 
-<div class="row">
+        </div>
 
-<div>
+      </div>
 
-<label>
-Name Size
-</label>
+      <label>
+        Outline Width
+        <span class="value" id="outlineValue">3</span>
+      </label>
 
-<input
-id="nameSize"
-type="range"
-min="10"
-max="90"
-value="42"
->
+      <input
+        id="outlineWidth"
+        type="range"
+        min="0"
+        max="15"
+        value="3"
+      >
 
-</div>
+    </div>
 
-<div>
+  </section>
 
-<label>
-Version Size
-</label>
 
-<input
-id="versionSize"
-type="range"
-min="8"
-max="60"
-value="24"
->
+  <!-- ==================================================
+       BACKGROUND
+  ================================================== -->
 
-</div>
+  <section id="background" class="section">
 
-</div>
+    <div class="panel">
 
-<label>
-Text Y Position
-</label>
+      <div class="title">Background</div>
 
-<input
-id="textY"
-type="range"
-min="350"
-max="590"
-value="510"
->
+      <label>Background Type</label>
 
-<div class="row">
+      <select id="bgType">
 
-<div>
+        <option value="solid">Solid</option>
+        <option value="gradient">Gradient</option>
+        <option value="image">Image</option>
 
-<label>
-Text Color
-</label>
+      </select>
 
-<input
-id="textColor"
-type="color"
-value="#ffffff"
->
+      <div class="row">
 
-</div>
+        <div>
 
-<div>
+          <label>Color 1</label>
 
-<label>
-Outline
-</label>
+          <input
+            id="bgColor"
+            type="color"
+            value="#111111"
+          >
 
-<input
-id="outlineColor"
-type="color"
-value="#000000"
->
+        </div>
 
-</div>
+        <div>
 
-</div>
+          <label>Color 2</label>
 
-<label>
-Outline Width
-</label>
+          <input
+            id="bgColor2"
+            type="color"
+            value="#34205e"
+          >
 
-<input
-id="outlineWidth"
-type="range"
-min="0"
-max="15"
-value="3"
->
+        </div>
 
-<label>
-Text Shadow
-</label>
+      </div>
 
-<input
-id="textShadow"
-type="range"
-min="0"
-max="30"
-value="0"
->
+      <label>Background Image</label>
 
-</div>
+      <input
+        id="bgFile"
+        type="file"
+        accept="image/*"
+      >
 
-</section>
+      <label>
+        Background Blur
+        <span class="value" id="bgBlurValue">0</span>
+      </label>
 
+      <input
+        id="bgBlur"
+        type="range"
+        min="0"
+        max="30"
+        value="0"
+      >
 
-<!-- ================= BACKGROUND ================= -->
+    </div>
 
-<section class="section" id="background">
+  </section>
 
-<div class="panel">
 
-<div class="title">
-Background
-</div>
+  <!-- ==================================================
+       EFFECTS
+  ================================================== -->
 
-<label>
-Background Type
-</label>
+  <section id="effects" class="section">
 
-<select id="bgType">
+    <div class="panel">
 
-<option value="solid">
-Solid
-</option>
+      <div class="title">Effects</div>
 
-<option value="gradient">
-Gradient
-</option>
+      <label>
+        Brightness
+        <span class="value" id="brightnessValue">100%</span>
+      </label>
 
-<option value="image">
-Image
-</option>
+      <input
+        id="brightness"
+        type="range"
+        min="0"
+        max="200"
+        value="100"
+      >
 
-</select>
+      <label>
+        Contrast
+        <span class="value" id="contrastValue">100%</span>
+      </label>
 
-<div class="row">
+      <input
+        id="contrast"
+        type="range"
+        min="0"
+        max="200"
+        value="100"
+      >
 
-<div>
+      <label>
+        Saturation
+        <span class="value" id="saturationValue">100%</span>
+      </label>
 
-<label>
-Color
-</label>
+      <input
+        id="saturation"
+        type="range"
+        min="0"
+        max="200"
+        value="100"
+      >
 
-<input
-id="bgColor"
-type="color"
-value="#111111"
->
+      <label>
+        Blur
+        <span class="value" id="blurValue">0</span>
+      </label>
 
-</div>
+      <input
+        id="blur"
+        type="range"
+        min="0"
+        max="10"
+        step=".1"
+        value="0"
+      >
 
-<div>
+      <label>
+        Vignette
+        <span class="value" id="vignetteValue">0%</span>
+      </label>
 
-<label>
-Second Color
-</label>
+      <input
+        id="vignette"
+        type="range"
+        min="0"
+        max="100"
+        value="0"
+      >
 
-<input
-id="bgColor2"
-type="color"
-value="#292952"
->
+      <label>
+        Edge Darkening
+        <span class="value" id="edgeValue">0%</span>
+      </label>
 
-</div>
+      <input
+        id="edgeDark"
+        type="range"
+        min="0"
+        max="100"
+        value="0"
+      >
 
-</div>
+    </div>
 
-<label>
-Upload Background
-</label>
-
-<input
-id="bgInput"
-type="file"
-accept="image/*"
->
-
-<label>
-Background Blur
-</label>
-
-<input
-id="bgBlur"
-type="range"
-min="0"
-max="30"
-value="0"
->
-
-</div>
-
-</section>
-
-
-<!-- ================= EFFECTS ================= -->
-
-<section class="section" id="effects">
-
-<div class="panel">
-
-<div class="title">
-Effects
-</div>
-
-<label>
-Brightness
-</label>
-
-<input
-id="brightness"
-type="range"
-min="0"
-max="200"
-value="100"
->
-
-<label>
-Contrast
-</label>
-
-<input
-id="contrast"
-type="range"
-min="0"
-max="200"
-value="100"
->
-
-<label>
-Saturation
-</label>
-
-<input
-id="saturation"
-type="range"
-min="0"
-max="200"
-value="100"
->
-
-<label>
-Blur
-</label>
-
-<input
-id="blur"
-type="range"
-min="0"
-max="10"
-step=".1"
-value="0"
->
-
-<label>
-Vignette
-</label>
-
-<input
-id="vignette"
-type="range"
-min="0"
-max="100"
-value="0"
->
-
-<label>
-Edge Darkening
-</label>
-
-<input
-id="edgeDark"
-type="range"
-min="0"
-max="100"
-value="0"
->
-
-</div>
-
-</section>
+  </section>
 
 </div>
 
 
 <script>
 
-/* =====================================================
-CORE
-===================================================== */
+/* =========================================================
+   ICONFORGE ENGINE
+========================================================= */
 
-const canvas=document.getElementById("canvas");
-const ctx=canvas.getContext("2d");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-let character=null;
-let background=null;
+let character = null;
+let backgroundImage = null;
 
-let flipHorizontal=false;
-let flipVertical=false;
+let selectedFrame = "obsidian";
+let selectedFit = "fill";
 
-let selectedFrame="classic";
+let flipH = false;
+let flipV = false;
 
-let selectedFit="fill";
+let customShapes = [];
 
-let customShapes=[];
+let dragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let startingX = 0;
+let startingY = 0;
 
 
-/* =====================================================
-FRAME DATA
-===================================================== */
+/* =========================================================
+   IMPORTANT GEOMETRY
 
-const frames=[
+   This is the actual frame opening.
 
-{
-id:"classic",
-name:"Classic",
-css:""
-},
+   Everything related to Auto Fit uses this.
+========================================================= */
 
-{
-id:"gold",
-name:"Gold Emperor",
-css:"gold"
-},
+const OPENING = {
+  x: 55,
+  y: 55,
+  width: 490,
+  height: 490
+};
 
-{
-id:"crimson",
-name:"Crimson",
-css:"crimson"
-},
 
-{
-id:"void",
-name:"Void",
-css:"void"
-},
+/* =========================================================
+   FRAME LIBRARY
 
-{
-id:"frost",
-name:"Frost",
-css:"frost"
-},
+   No uploaded frame system exists here.
+========================================================= */
 
-{
-id:"inferno",
-name:"Inferno",
-css:"inferno"
-},
+const FRAME_LIBRARY = [
 
-{
-id:"cosmic",
-name:"Cosmic",
-css:"cosmic"
-},
+  {
+    id:"obsidian",
+    name:"Obsidian",
+    color:"#252833",
+    style:"solid"
+  },
 
-{
-id:"shadow",
-name:"Shadow",
-css:"shadow"
-},
+  {
+    id:"gold",
+    name:"Emperor Gold",
+    color:"#e8bd4f",
+    style:"gold"
+  },
 
-{
-id:"neon",
-name:"Neon",
-css:"neon"
-},
+  {
+    id:"crimson",
+    name:"Crimson",
+    color:"#ef304b",
+    style:"solid"
+  },
 
-{
-id:"divine",
-name:"Divine",
-css:"divine"
-},
+  {
+    id:"void",
+    name:"Void",
+    color:"#a45cff",
+    style:"energy"
+  },
 
-{
-id:"blood",
-name:"Blood Moon",
-css:"blood"
-},
+  {
+    id:"frost",
+    name:"Frost",
+    color:"#72eaff",
+    style:"energy"
+  },
 
-{
-id:"diamond",
-name:"Diamond",
-css:"diamond"
-},
+  {
+    id:"inferno",
+    name:"Inferno",
+    color:"#ff552f",
+    style:"flame"
+  },
 
-{
-id:"royal",
-name:"Royal",
-css:"royal"
-}
+  {
+    id:"cosmic",
+    name:"Cosmic",
+    color:"#d06cff",
+    style:"cosmic"
+  },
+
+  {
+    id:"neon",
+    name:"Neon",
+    color:"#35ffd0",
+    style:"energy"
+  },
+
+  {
+    id:"divine",
+    name:"Divine",
+    color:"#ffe47a",
+    style:"double"
+  },
+
+  {
+    id:"blood",
+    name:"Blood Moon",
+    color:"#b90022",
+    style:"energy"
+  },
+
+  {
+    id:"diamond",
+    name:"Diamond",
+    color:"#9beaff",
+    style:"diamond"
+  },
+
+  {
+    id:"royal",
+    name:"Royal",
+    color:"#d9bd54",
+    style:"double"
+  }
 
 ];
 
 
-/* =====================================================
-FRAME UI
-===================================================== */
+/* =========================================================
+   FRAME THUMBNAILS
+========================================================= */
 
-const frameGrid=document.getElementById("frameGrid");
+const frameGrid =
+  document.getElementById("frameGrid");
 
-function renderFrames(){
+function renderFrameLibrary(){
 
-frameGrid.innerHTML="";
+  frameGrid.innerHTML = "";
 
-frames.forEach(frame=>{
+  FRAME_LIBRARY.forEach(frame => {
 
-const card=document.createElement("div");
+    const card =
+      document.createElement("div");
 
-card.className=
-"frameCard"+
-(frame.id===selectedFrame?" selected":"");
+    card.className =
+      "frameCard" +
+      (frame.id === selectedFrame ? " active" : "");
 
-card.innerHTML=`
+    const thumb =
+      document.createElement("canvas");
 
-<div class="framePreview ${frame.css}">
-</div>
+    thumb.width = 180;
+    thumb.height = 180;
 
-<div class="frameName">
-${frame.name}
-</div>
+    thumb.className = "frameThumb";
 
-`;
+    const tctx = thumb.getContext("2d");
 
-card.onclick=()=>{
+    drawFrameOnContext(
+      tctx,
+      180,
+      180,
+      frame,
+      10,
+      7,
+      1
+    );
 
-selectedFrame=frame.id;
+    card.appendChild(thumb);
 
-renderFrames();
+    const name =
+      document.createElement("div");
 
-draw();
+    name.className = "frameName";
+    name.textContent = frame.name;
 
-};
+    card.appendChild(name);
 
-frameGrid.appendChild(card);
+    card.onclick = () => {
 
-});
+      selectedFrame = frame.id;
 
-}
+      renderFrameLibrary();
 
-renderFrames();
+      draw();
 
+    };
 
-/* =====================================================
-TABS
-===================================================== */
+    frameGrid.appendChild(card);
 
-document
-.querySelectorAll(".nav button")
-.forEach(button=>{
-
-button.onclick=()=>{
-
-document
-.querySelectorAll(".nav button")
-.forEach(x=>x.classList.remove("active"));
-
-document
-.querySelectorAll(".section")
-.forEach(x=>x.classList.remove("active"));
-
-button.classList.add("active");
-
-document
-.getElementById(button.dataset.tab)
-.classList.add("active");
-
-};
-
-});
-
-
-/* =====================================================
-IMAGE LOADER
-===================================================== */
-
-function loadImage(file,callback){
-
-const reader=new FileReader();
-
-reader.onload=()=>{
-
-const img=new Image();
-
-img.onload=()=>callback(img);
-
-img.src=reader.result;
-
-};
-
-reader.readAsDataURL(file);
+  });
 
 }
 
-
-/* =====================================================
-CHARACTER
-===================================================== */
-
-document
-.getElementById("characterInput")
-.addEventListener("change",e=>{
-
-const file=e.target.files[0];
-
-if(!file)return;
-
-loadImage(file,img=>{
-
-character=img;
-
-applyFit();
-
-});
-
-});
+renderFrameLibrary();
 
 
-/* =====================================================
-AUTO FIT OPTIONS
-===================================================== */
+/* =========================================================
+   TAB SYSTEM
+========================================================= */
 
 document
-.querySelectorAll(".fitOption")
-.forEach(option=>{
+  .querySelectorAll(".nav button")
+  .forEach(button => {
 
-option.onclick=()=>{
+    button.addEventListener("click", () => {
 
-document
-.querySelectorAll(".fitOption")
-.forEach(x=>
-x.classList.remove("active")
-);
+      document
+        .querySelectorAll(".nav button")
+        .forEach(b => b.classList.remove("active"));
 
-option.classList.add("active");
+      document
+        .querySelectorAll(".section")
+        .forEach(s => s.classList.remove("active"));
 
-selectedFit=option.dataset.fit;
+      button.classList.add("active");
 
-};
+      document
+        .getElementById(button.dataset.section)
+        .classList.add("active");
 
-});
+    });
 
-
-/* =====================================================
-AUTO FIT ENGINE
-===================================================== */
-
-function applyFit(){
-
-if(!character)return;
+  });
 
 
-/*
-The actual opening of every official frame.
-*/
+/* =========================================================
+   IMAGE LOADING
+========================================================= */
 
-const openingW=490;
-const openingH=490;
+function loadImage(file){
 
+  return new Promise((resolve,reject)=>{
 
-/*
-Calculate the scale required
-to COVER the opening.
-*/
+    const reader =
+      new FileReader();
 
-const coverScale=Math.max(
+    reader.onload = () => {
 
-openingW/character.width,
+      const img =
+        new Image();
 
-openingH/character.height
+      img.onload = () => resolve(img);
 
-);
+      img.onerror = () =>
+        reject(new Error("Image failed to load."));
 
+      img.src = reader.result;
 
-let scale=coverScale;
+    };
 
+    reader.onerror = () =>
+      reject(new Error("File failed to read."));
 
-if(selectedFit==="fill"){
+    reader.readAsDataURL(file);
 
-/*
-NO EMPTY SPACE.
-*/
-
-scale=coverScale;
+  });
 
 }
 
 
-if(selectedFit==="cover"){
+document
+  .getElementById("characterFile")
+  .addEventListener("change", async e => {
 
-scale=coverScale;
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    try{
+
+      character =
+        await loadImage(file);
+
+      applyAutoFit();
+
+    }catch(error){
+
+      alert("Could not load that image.");
+
+    }
+
+  });
+
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+document
+  .getElementById("bgFile")
+  .addEventListener("change", async e => {
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    try{
+
+      backgroundImage =
+        await loadImage(file);
+
+      document
+        .getElementById("bgType")
+        .value = "image";
+
+      draw();
+
+    }catch(error){
+
+      alert("Could not load that background.");
+
+    }
+
+  });
+
+
+/* =========================================================
+   AUTO FIT SELECTION
+========================================================= */
+
+document
+  .querySelectorAll(".fitCard")
+  .forEach(card => {
+
+    card.addEventListener("click", () => {
+
+      document
+        .querySelectorAll(".fitCard")
+        .forEach(c =>
+          c.classList.remove("active")
+        );
+
+      card.classList.add("active");
+
+      selectedFit =
+        card.dataset.fit;
+
+    });
+
+  });
+
+
+/* =========================================================
+   AUTO FIT ENGINE
+
+   THIS is the important part.
+
+   It calculates the character against
+   the actual 490x490 opening.
+
+   It never requires transparency.
+========================================================= */
+
+function applyAutoFit(){
+
+  if(!character){
+
+    alert("Upload a character image first.");
+
+    return;
+
+  }
+
+
+  const openingW =
+    OPENING.width;
+
+  const openingH =
+    OPENING.height;
+
+
+  const imageW =
+    character.width;
+
+  const imageH =
+    character.height;
+
+
+  /*
+    SCALE REQUIRED TO COVER THE OPENING.
+  */
+
+  const coverScale =
+    Math.max(
+      openingW / imageW,
+      openingH / imageH
+    );
+
+
+  let scale = coverScale;
+
+
+  /*
+    MODE 1:
+    No empty space.
+  */
+
+  if(selectedFit === "fill"){
+
+    scale =
+      coverScale;
+
+  }
+
+
+  /*
+    MODE 2:
+    Aggressive zoom.
+  */
+
+  else if(selectedFit === "maximum"){
+
+    scale =
+      coverScale * 1.65;
+
+  }
+
+
+  /*
+    MODE 3:
+    Standard cover.
+  */
+
+  else if(selectedFit === "cover"){
+
+    scale =
+      coverScale;
+
+  }
+
+
+  /*
+    MODE 4:
+    Entire image visible.
+  */
+
+  else if(selectedFit === "contain"){
+
+    scale =
+      Math.min(
+        openingW / imageW,
+        openingH / imageH
+      );
+
+  }
+
+
+  /*
+    MODE 5:
+    Slightly more aggressive than cover.
+  */
+
+  else if(selectedFit === "smart"){
+
+    scale =
+      coverScale * 1.15;
+
+  }
+
+
+  /*
+    Clamp so the slider remains valid.
+  */
+
+  scale =
+    Math.max(
+      0.05,
+      Math.min(8,scale)
+    );
+
+
+  document
+    .getElementById("zoom")
+    .value = scale;
+
+
+  /*
+    CENTER IT.
+  */
+
+  document
+    .getElementById("posX")
+    .value = 0;
+
+  document
+    .getElementById("posY")
+    .value = 0;
+
+  document
+    .getElementById("rotation")
+    .value = 0;
+
+
+  updateValues();
+
+  draw();
 
 }
 
 
-if(selectedFit==="contain"){
-
-/*
-Entire image visible.
-*/
-
-scale=Math.min(
-
-openingW/character.width,
-
-openingH/character.height
-
-);
-
-}
-
-
-if(selectedFit==="smart"){
-
-/*
-Slightly more aggressive
-than normal cover.
-*/
-
-scale=coverScale*1.15;
-
-}
-
-
-if(selectedFit==="maximum"){
-
-/*
-Aggressive zoom.
-
-The important part:
-we don't shrink the image.
-
-We multiply the cover scale.
-*/
-
-scale=coverScale*1.65;
-
-}
-
-
-/*
-Set zoom slider.
-
-Our slider starts at .05,
-so scale directly represents
-actual image scale.
-*/
+/* =========================================================
+   CENTER
+========================================================= */
 
 document
-.getElementById("zoom")
-.value=Math.min(10,Math.max(.05,scale));
+  .getElementById("center")
+  .addEventListener("click", () => {
+
+    document
+      .getElementById("posX")
+      .value = 0;
+
+    document
+      .getElementById("posY")
+      .value = 0;
+
+    draw();
+
+  });
 
 
-/*
-Reset positioning.
-*/
-
-document
-.getElementById("posX")
-.value=0;
-
-document
-.getElementById("posY")
-.value=0;
-
-document
-.getElementById("rotation")
-.value=0;
-
-draw();
-
-updateUI();
-
-}
-
-
-/* =====================================================
-CENTER
-===================================================== */
+/* =========================================================
+   APPLY FIT BUTTON
+========================================================= */
 
 document
-.getElementById("centerButton")
-.onclick=()=>{
+  .getElementById("applyFit")
+  .addEventListener(
+    "click",
+    applyAutoFit
+  );
+
+
+/* =========================================================
+   RESET IMAGE
+========================================================= */
 
 document
-.getElementById("posX")
-.value=0;
+  .getElementById("resetImage")
+  .addEventListener("click", () => {
+
+    document
+      .getElementById("zoom")
+      .value = 1;
+
+    document
+      .getElementById("posX")
+      .value = 0;
+
+    document
+      .getElementById("posY")
+      .value = 0;
+
+    document
+      .getElementById("rotation")
+      .value = 0;
+
+    flipH = false;
+    flipV = false;
+
+    draw();
+    updateValues();
+
+  });
+
+
+/* =========================================================
+   FLIPS
+========================================================= */
 
 document
-.getElementById("posY")
-.value=0;
+  .getElementById("flipH")
+  .addEventListener("click", () => {
 
-draw();
+    flipH = !flipH;
 
-};
+    draw();
 
-
-/* =====================================================
-APPLY FIT
-===================================================== */
-
-document
-.getElementById("applyFit")
-.onclick=applyFit;
-
-
-/* =====================================================
-IMAGE RESET
-===================================================== */
-
-document
-.getElementById("resetImage")
-.onclick=()=>{
-
-document
-.getElementById("zoom")
-.value=1;
-
-document
-.getElementById("posX")
-.value=0;
-
-document
-.getElementById("posY")
-.value=0;
-
-document
-.getElementById("rotation")
-.value=0;
-
-flipHorizontal=false;
-flipVertical=false;
-
-draw();
-
-updateUI();
-
-};
-
-
-/* =====================================================
-FLIP
-===================================================== */
-
-document
-.getElementById("flipH")
-.onclick=()=>{
-
-flipHorizontal=!flipHorizontal;
-
-draw();
-
-};
+  });
 
 
 document
-.getElementById("flipV")
-.onclick=()=>{
+  .getElementById("flipV")
+  .addEventListener("click", () => {
 
-flipVertical=!flipVertical;
+    flipV = !flipV;
 
-draw();
+    draw();
 
-};
+  });
 
 
-/* =====================================================
-BACKGROUND
-===================================================== */
-
-document
-.getElementById("bgInput")
-.addEventListener("change",e=>{
-
-const file=e.target.files[0];
-
-if(!file)return;
-
-loadImage(file,img=>{
-
-background=img;
-
-document
-.getElementById("bgType")
-.value="image";
-
-draw();
-
-});
-
-});
-
+/* =========================================================
+   BACKGROUND DRAWING
+========================================================= */
 
 function drawBackground(){
 
-const type=
-document.getElementById("bgType").value;
+  const type =
+    document.getElementById("bgType").value;
 
 
-if(type==="image" && background){
+  if(type === "image" && backgroundImage){
 
-ctx.save();
+    ctx.save();
 
-ctx.filter=
-`blur(${document.getElementById("bgBlur").value}px)`;
+    const blur =
+      Number(
+        document.getElementById("bgBlur").value
+      );
 
-drawCover(
-background,
-0,
-0,
-600,
-600
-);
+    ctx.filter =
+      `blur(${blur}px)`;
 
-ctx.restore();
+    drawCoverImage(
+      ctx,
+      backgroundImage,
+      0,
+      0,
+      600,
+      600
+    );
 
-return;
+    ctx.restore();
 
-}
+    return;
 
-
-if(type==="gradient"){
-
-const gradient=
-ctx.createLinearGradient(
-0,
-0,
-600,
-600
-);
-
-gradient.addColorStop(
-0,
-document.getElementById("bgColor").value
-);
-
-gradient.addColorStop(
-1,
-document.getElementById("bgColor2").value
-);
-
-ctx.fillStyle=gradient;
-
-ctx.fillRect(
-0,
-0,
-600,
-600
-);
-
-return;
-
-}
+  }
 
 
-ctx.fillStyle=
-document.getElementById("bgColor").value;
+  if(type === "gradient"){
 
-ctx.fillRect(
-0,
-0,
-600,
-600
-);
+    const gradient =
+      ctx.createLinearGradient(
+        0,
+        0,
+        600,
+        600
+      );
 
-}
+    gradient.addColorStop(
+      0,
+      document.getElementById("bgColor").value
+    );
+
+    gradient.addColorStop(
+      1,
+      document.getElementById("bgColor2").value
+    );
+
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(
+      0,
+      0,
+      600,
+      600
+    );
+
+    return;
+
+  }
 
 
-function drawCover(img,x,y,w,h){
+  ctx.fillStyle =
+    document.getElementById("bgColor").value;
 
-const ratio=
-img.width/img.height;
-
-const target=
-w/h;
-
-let dw;
-let dh;
-
-if(ratio>target){
-
-dh=h;
-dw=dh*ratio;
-
-}else{
-
-dw=w;
-dh=dw/ratio;
-
-}
-
-ctx.drawImage(
-img,
-x+(w-dw)/2,
-y+(h-dh)/2,
-dw,
-dh
-);
+  ctx.fillRect(
+    0,
+    0,
+    600,
+    600
+  );
 
 }
 
 
-/* =====================================================
-DRAW CHARACTER
-===================================================== */
+function drawCoverImage(
+  context,
+  image,
+  x,
+  y,
+  width,
+  height
+){
+
+  const imageRatio =
+    image.width / image.height;
+
+  const boxRatio =
+    width / height;
+
+  let drawWidth;
+  let drawHeight;
+
+  if(imageRatio > boxRatio){
+
+    drawHeight = height;
+    drawWidth =
+      height * imageRatio;
+
+  }else{
+
+    drawWidth = width;
+    drawHeight =
+      width / imageRatio;
+
+  }
+
+  context.drawImage(
+    image,
+    x + (width-drawWidth)/2,
+    y + (height-drawHeight)/2,
+    drawWidth,
+    drawHeight
+  );
+
+}
+
+
+/* =========================================================
+   CHARACTER DRAWING
+
+   The image is clipped to the actual opening.
+
+   This is what makes a normal JPG work.
+========================================================= */
 
 function drawCharacter(){
 
-if(!character)return;
-
-const zoom=
-Number(
-document.getElementById("zoom").value
-);
-
-const x=
-Number(
-document.getElementById("posX").value
-);
-
-const y=
-Number(
-document.getElementById("posY").value
-);
-
-const rotation=
-Number(
-document.getElementById("rotation").value
-)
-*Math.PI/180;
+  if(!character) return;
 
 
-const dw=
-character.width*zoom;
+  const zoom =
+    Number(
+      document.getElementById("zoom").value
+    );
 
-const dh=
-character.height*zoom;
+  const x =
+    Number(
+      document.getElementById("posX").value
+    );
 
+  const y =
+    Number(
+      document.getElementById("posY").value
+    );
 
-ctx.save();
-
-
-/*
-This clipping rectangle is the
-actual frame opening.
-
-The character gets clipped here.
-*/
-
-ctx.beginPath();
-
-ctx.rect(
-55,
-55,
-490,
-490
-);
-
-ctx.clip();
+  const rotation =
+    Number(
+      document.getElementById("rotation").value
+    ) * Math.PI / 180;
 
 
-ctx.translate(
-300+x,
-300+y
-);
+  const width =
+    character.width * zoom;
 
-ctx.rotate(rotation);
-
-ctx.scale(
-flipHorizontal?-1:1,
-flipVertical?-1:1
-);
+  const height =
+    character.height * zoom;
 
 
-ctx.filter=
-`
-brightness(${document.getElementById("brightness").value}%)
-contrast(${document.getElementById("contrast").value}%)
-saturate(${document.getElementById("saturation").value}%)
-blur(${document.getElementById("blur").value}px)
-`;
+  ctx.save();
 
 
-ctx.drawImage(
-character,
--dw/2,
--dh/2,
-dw,
-dh
-);
+  /*
+    CLIP TO OPENING.
+  */
 
-ctx.restore();
+  ctx.beginPath();
+
+  ctx.rect(
+    OPENING.x,
+    OPENING.y,
+    OPENING.width,
+    OPENING.height
+  );
+
+  ctx.clip();
+
+
+  /*
+    Move to opening center.
+  */
+
+  ctx.translate(
+    OPENING.x +
+    OPENING.width/2 +
+    x,
+
+    OPENING.y +
+    OPENING.height/2 +
+    y
+  );
+
+
+  ctx.rotate(rotation);
+
+
+  ctx.scale(
+    flipH ? -1 : 1,
+    flipV ? -1 : 1
+  );
+
+
+  const brightness =
+    document.getElementById("brightness").value;
+
+  const contrast =
+    document.getElementById("contrast").value;
+
+  const saturation =
+    document.getElementById("saturation").value;
+
+  const blur =
+    document.getElementById("blur").value;
+
+
+  ctx.filter =
+    `
+    brightness(${brightness}%)
+    contrast(${contrast}%)
+    saturate(${saturation}%)
+    blur(${blur}px)
+    `;
+
+
+  ctx.drawImage(
+    character,
+    -width/2,
+    -height/2,
+    width,
+    height
+  );
+
+
+  ctx.restore();
 
 }
 
 
-/* =====================================================
-FRAME
-===================================================== */
+/* =========================================================
+   FRAME DRAWING
+========================================================= */
 
 function drawFrame(){
 
-const frame=
-frames.find(x=>x.id===selectedFrame);
+  const frame =
+    FRAME_LIBRARY.find(
+      f => f.id === selectedFrame
+    );
 
-if(!frame)return;
-
-
-const width=
-Number(
-document.getElementById("frameWidth").value
-);
-
-const glow=
-Number(
-document.getElementById("frameGlow").value
-);
-
-const opacity=
-Number(
-document.getElementById("frameOpacity").value
-)/100;
+  if(!frame) return;
 
 
-const colors={
+  const thickness =
+    Number(
+      document.getElementById("frameWidth").value
+    );
 
-classic:"#ffffff",
+  const glow =
+    Number(
+      document.getElementById("frameGlow").value
+    );
 
-gold:"#e5bd48",
-
-crimson:"#e52f46",
-
-void:"#9c5cff",
-
-frost:"#73eaff",
-
-inferno:"#ff542d",
-
-cosmic:"#cf74ff",
-
-shadow:"#25252b",
-
-neon:"#39ffd1",
-
-divine:"#ffe67a",
-
-blood:"#a80019",
-
-diamond:"#9beaff",
-
-royal:"#e7c95d"
-
-};
+  const opacity =
+    Number(
+      document.getElementById("frameOpacity").value
+    ) / 100;
 
 
-const color=
-colors[frame.id] ||
-"#ffffff";
+  drawFrameOnContext(
+    ctx,
+    600,
+    600,
+    frame,
+    thickness,
+    glow,
+    opacity
+  );
+
+}
 
 
-ctx.save();
+/* =========================================================
+   GENERIC FRAME RENDERER
 
-ctx.globalAlpha=opacity;
+   Used BOTH for the real canvas and thumbnails.
+========================================================= */
 
-ctx.strokeStyle=color;
-
-ctx.lineWidth=width;
-
-ctx.shadowColor=color;
-
-ctx.shadowBlur=glow;
-
-
-if(
-frame.id==="divine" ||
-frame.id==="royal" ||
-frame.id==="diamond"
+function drawFrameOnContext(
+  context,
+  size,
+  unused,
+  frame,
+  thickness,
+  glow,
+  opacity
 ){
 
-ctx.lineWidth=
-Math.max(2,width/3);
+  const scale =
+    size / 600;
 
-ctx.strokeRect(
-width,
-width,
-600-width*2,
-600-width*2
-);
+  context.save();
 
-ctx.strokeRect(
-width*2,
-width*2,
-600-width*4,
-600-width*4
-);
+  context.globalAlpha = opacity;
 
-}else{
+  context.strokeStyle =
+    frame.color;
 
-ctx.strokeRect(
-width/2,
-width/2,
-600-width,
-600-width
-);
+  context.fillStyle =
+    frame.color;
+
+  context.lineWidth =
+    thickness * scale;
+
+  context.shadowColor =
+    frame.color;
+
+  context.shadowBlur =
+    glow * scale;
+
+
+  const inset =
+    28 * scale;
+
+
+  const outer =
+    300 * scale;
+
+  const box =
+    272 * scale;
+
+
+  /*
+    MAIN FRAME.
+  */
+
+  context.strokeRect(
+    inset,
+    inset,
+    size - inset*2,
+    size - inset*2
+  );
+
+
+  /*
+    SECONDARY FRAME.
+  */
+
+  if(
+    frame.style === "double" ||
+    frame.style === "gold" ||
+    frame.style === "diamond"
+  ){
+
+    context.lineWidth =
+      Math.max(
+        2*scale,
+        thickness * .35 * scale
+      );
+
+    context.strokeRect(
+      inset + 13*scale,
+      inset + 13*scale,
+      size - (inset+13*scale)*2,
+      size - (inset+13*scale)*2
+    );
+
+  }
+
+
+  /*
+    DIAMOND CORNERS.
+  */
+
+  if(frame.style === "diamond"){
+
+    drawCornerDiamonds(
+      context,
+      size,
+      frame.color,
+      scale
+    );
+
+  }
+
+
+  /*
+    ENERGY CORNERS.
+  */
+
+  if(
+    frame.style === "energy" ||
+    frame.style === "cosmic"
+  ){
+
+    drawEnergyCorners(
+      context,
+      size,
+      frame.color,
+      scale
+    );
+
+  }
+
+
+  /*
+    FLAME STYLE.
+  */
+
+  if(frame.style === "flame"){
+
+    drawFlames(
+      context,
+      size,
+      frame.color,
+      scale
+    );
+
+  }
+
+
+  /*
+    COSMIC DOTS.
+  */
+
+  if(frame.style === "cosmic"){
+
+    for(let i=0;i<20;i++){
+
+      const angle =
+        i * Math.PI * 2 / 20;
+
+      const radius =
+        274 * scale;
+
+      const x =
+        outer +
+        Math.cos(angle)*radius;
+
+      const y =
+        outer +
+        Math.sin(angle)*radius;
+
+      context.beginPath();
+
+      context.arc(
+        x,
+        y,
+        (i%3+2)*scale,
+        0,
+        Math.PI*2
+      );
+
+      context.fill();
+
+    }
+
+  }
+
+
+  /*
+    CORNER ORNAMENTS FOR GOLD.
+  */
+
+  if(frame.style === "gold"){
+
+    drawGoldCorners(
+      context,
+      size,
+      frame.color,
+      scale
+    );
+
+  }
+
+
+  context.restore();
 
 }
 
 
-/*
-Additional frame decoration.
-*/
+/* =========================================================
+   FRAME DECORATIONS
+========================================================= */
 
-if(frame.id==="inferno" ||
-frame.id==="blood"){
+function drawCornerDiamonds(
+  context,
+  size,
+  color,
+  scale
+){
 
-ctx.beginPath();
+  const positions = [
+    [55,55],
+    [545,55],
+    [55,545],
+    [545,545]
+  ];
 
-ctx.arc(
-300,
-300,
-270,
-0,
-Math.PI*2
-);
+  context.save();
 
-ctx.lineWidth=3;
+  context.fillStyle = color;
 
-ctx.stroke();
+  positions.forEach(([x,y]) => {
 
-}
+    x *= scale;
+    y *= scale;
 
+    context.beginPath();
 
-if(frame.id==="cosmic" ||
-frame.id==="void"){
+    context.moveTo(
+      x,
+      y-18*scale
+    );
 
-for(let i=0;i<8;i++){
+    context.lineTo(
+      x+18*scale,
+      y
+    );
 
-const angle=
-(i/8)*Math.PI*2;
+    context.lineTo(
+      x,
+      y+18*scale
+    );
 
-const x=
-300+Math.cos(angle)*275;
+    context.lineTo(
+      x-18*scale,
+      y
+    );
 
-const y=
-300+Math.sin(angle)*275;
+    context.closePath();
 
-ctx.beginPath();
+    context.fill();
 
-ctx.arc(
-x,
-y,
-5,
-0,
-Math.PI*2
-);
+  });
 
-ctx.fillStyle=color;
-
-ctx.fill();
-
-}
-
-}
-
-
-ctx.restore();
+  context.restore();
 
 }
 
 
-/* =====================================================
-CUSTOM SHAPES
-===================================================== */
+function drawEnergyCorners(
+  context,
+  size,
+  color,
+  scale
+){
+
+  const corners = [
+    [50,50,1,1],
+    [550,50,-1,1],
+    [50,550,1,-1],
+    [550,550,-1,-1]
+  ];
+
+  context.save();
+
+  context.strokeStyle = color;
+
+  context.lineWidth =
+    5*scale;
+
+  corners.forEach(
+    ([x,y,dx,dy]) => {
+
+      x *= scale;
+      y *= scale;
+
+      context.beginPath();
+
+      context.moveTo(
+        x,
+        y
+      );
+
+      context.lineTo(
+        x+dx*40*scale,
+        y
+      );
+
+      context.lineTo(
+        x+dx*20*scale,
+        y+dy*32*scale
+      );
+
+      context.lineTo(
+        x+dx*50*scale,
+        y+dy*18*scale
+      );
+
+      context.stroke();
+
+    }
+  );
+
+  context.restore();
+
+}
+
+
+function drawFlames(
+  context,
+  size,
+  color,
+  scale
+){
+
+  context.save();
+
+  context.strokeStyle = color;
+
+  context.lineWidth =
+    4*scale;
+
+  for(
+    let x=70;
+    x<=530;
+    x+=55
+  ){
+
+    context.beginPath();
+
+    context.moveTo(
+      x*scale,
+      38*scale
+    );
+
+    context.lineTo(
+      (x-10)*scale,
+      18*scale
+    );
+
+    context.lineTo(
+      (x+5)*scale,
+      31*scale
+    );
+
+    context.lineTo(
+      (x+18)*scale,
+      10*scale
+    );
+
+    context.lineTo(
+      (x+15)*scale,
+      38*scale
+    );
+
+    context.stroke();
+
+    context.beginPath();
+
+    context.moveTo(
+      x*scale,
+      562*scale
+    );
+
+    context.lineTo(
+      (x-10)*scale,
+      582*scale
+    );
+
+    context.lineTo(
+      (x+5)*scale,
+      569*scale
+    );
+
+    context.lineTo(
+      (x+18)*scale,
+      590*scale
+    );
+
+    context.lineTo(
+      (x+15)*scale,
+      562*scale
+    );
+
+    context.stroke();
+
+  }
+
+  context.restore();
+
+}
+
+
+function drawGoldCorners(
+  context,
+  size,
+  color,
+  scale
+){
+
+  context.save();
+
+  context.fillStyle = color;
+
+  const points = [
+    [55,55],
+    [545,55],
+    [55,545],
+    [545,545]
+  ];
+
+  points.forEach(([x,y])=>{
+
+    x*=scale;
+    y*=scale;
+
+    context.beginPath();
+
+    context.arc(
+      x,
+      y,
+      15*scale,
+      0,
+      Math.PI*2
+    );
+
+    context.fill();
+
+  });
+
+  context.restore();
+
+}
+
+
+/* =========================================================
+   CUSTOM SHAPES
+========================================================= */
 
 document
-.querySelectorAll(".shapeButton")
-.forEach(button=>{
+  .querySelectorAll(".shapeBtn")
+  .forEach(button => {
 
-button.onclick=()=>{
+    button.addEventListener("click", () => {
 
-customShapes.push({
+      customShapes.push({
 
-type:button.dataset.shape,
+        type:button.dataset.shape,
 
-color:
-document.getElementById("shapeColor").value,
+        color:
+          document.getElementById("shapeColor").value,
 
-size:
-Number(
-document.getElementById("shapeSize").value
-),
+        size:
+          Number(
+            document.getElementById("shapeSize").value
+          ),
 
-thickness:
-Number(
-document.getElementById("shapeThickness").value
-),
+        thickness:
+          Number(
+            document.getElementById("shapeThickness").value
+          ),
 
-x:300,
+        x:300,
 
-y:300
+        y:300
 
-});
+      });
 
-renderShapeList();
+      renderShapeList();
 
-draw();
+      draw();
 
-};
+    });
 
-});
+  });
 
 
 function renderShapeList(){
 
-const list=
-document.getElementById("shapeList");
+  const list =
+    document.getElementById("shapeList");
 
-list.innerHTML="";
+  list.innerHTML = "";
 
-customShapes.forEach((shape,index)=>{
 
-const item=
-document.createElement("div");
+  customShapes.forEach(
+    (shape,index) => {
 
-item.className="shapeItem";
+      const item =
+        document.createElement("div");
 
-item.innerHTML=`
+      item.className =
+        "shapeItem";
 
-<span>
-${shape.type.toUpperCase()}
-</span>
+      item.innerHTML = `
+        <span>
+          ${shape.type.toUpperCase()}
+        </span>
 
-<button
-class="shapeDelete"
-data-index="${index}"
->
-DELETE
-</button>
+        <button
+          class="deleteShape"
+          data-index="${index}"
+        >
+          DELETE
+        </button>
+      `;
 
-`;
+      list.appendChild(item);
 
-list.appendChild(item);
+    }
+  );
 
-});
 
-document
-.querySelectorAll(".shapeDelete")
-.forEach(button=>{
+  document
+    .querySelectorAll(".deleteShape")
+    .forEach(button => {
 
-button.onclick=()=>{
+      button.addEventListener(
+        "click",
+        () => {
 
-customShapes.splice(
-Number(button.dataset.index),
-1
-);
+          customShapes.splice(
+            Number(button.dataset.index),
+            1
+          );
 
-renderShapeList();
+          renderShapeList();
 
-draw();
+          draw();
 
-};
+        }
+      );
 
-});
+    });
 
 }
 
-
-/* =====================================================
-DRAW CUSTOM SHAPES
-===================================================== */
 
 function drawCustomShapes(){
 
-customShapes.forEach(shape=>{
+  customShapes.forEach(shape => {
 
-ctx.save();
+    ctx.save();
 
-ctx.strokeStyle=shape.color;
+    ctx.strokeStyle =
+      shape.color;
 
-ctx.fillStyle=shape.color;
+    ctx.fillStyle =
+      shape.color;
 
-ctx.lineWidth=shape.thickness;
+    ctx.lineWidth =
+      shape.thickness;
 
-const s=shape.size;
-
-const x=shape.x;
-const y=shape.y;
-
-
-if(shape.type==="square"){
-
-ctx.strokeRect(
-x-s/2,
-y-s/2,
-s,
-s
-);
-
-}
+    const x = shape.x;
+    const y = shape.y;
+    const s = shape.size;
 
 
-if(shape.type==="circle"){
+    if(shape.type === "square"){
 
-ctx.beginPath();
+      ctx.strokeRect(
+        x-s/2,
+        y-s/2,
+        s,
+        s
+      );
 
-ctx.arc(
-x,
-y,
-s/2,
-0,
-Math.PI*2
-);
-
-ctx.stroke();
-
-}
+    }
 
 
-if(shape.type==="diamond"){
+    if(shape.type === "circle"){
 
-ctx.beginPath();
+      ctx.beginPath();
 
-ctx.moveTo(x,y-s/2);
-ctx.lineTo(x+s/2,y);
-ctx.lineTo(x,y+s/2);
-ctx.lineTo(x-s/2,y);
-ctx.closePath();
+      ctx.arc(
+        x,
+        y,
+        s/2,
+        0,
+        Math.PI*2
+      );
 
-ctx.stroke();
+      ctx.stroke();
 
-}
-
-
-if(shape.type==="triangle"){
-
-ctx.beginPath();
-
-ctx.moveTo(
-x,
-y-s/2
-);
-
-ctx.lineTo(
-x+s/2,
-y+s/2
-);
-
-ctx.lineTo(
-x-s/2,
-y+s/2
-);
-
-ctx.closePath();
-
-ctx.stroke();
-
-}
+    }
 
 
-if(shape.type==="star"){
+    if(shape.type === "diamond"){
 
-drawStar(
-x,
-y,
-s/2,
-s/4,
-5
-);
+      ctx.beginPath();
 
-}
+      ctx.moveTo(
+        x,
+        y-s/2
+      );
 
+      ctx.lineTo(
+        x+s/2,
+        y
+      );
 
-if(shape.type==="hexagon"){
+      ctx.lineTo(
+        x,
+        y+s/2
+      );
 
-drawPolygon(
-x,
-y,
-s/2,
-6
-);
+      ctx.lineTo(
+        x-s/2,
+        y
+      );
 
-}
+      ctx.closePath();
 
+      ctx.stroke();
 
-if(shape.type==="line"){
-
-ctx.beginPath();
-
-ctx.moveTo(
-x-s/2,
-y
-);
-
-ctx.lineTo(
-x+s/2,
-y
-);
-
-ctx.stroke();
-
-}
+    }
 
 
-if(shape.type==="cross"){
+    if(shape.type === "triangle"){
 
-ctx.beginPath();
+      ctx.beginPath();
 
-ctx.moveTo(
-x-s/2,
-y
-);
+      ctx.moveTo(
+        x,
+        y-s/2
+      );
 
-ctx.lineTo(
-x+s/2,
-y
-);
+      ctx.lineTo(
+        x+s/2,
+        y+s/2
+      );
 
-ctx.moveTo(
-x,
-y-s/2
-);
+      ctx.lineTo(
+        x-s/2,
+        y+s/2
+      );
 
-ctx.lineTo(
-x,
-y+s/2
-);
+      ctx.closePath();
 
-ctx.stroke();
+      ctx.stroke();
 
-}
+    }
 
 
-ctx.restore();
+    if(shape.type === "star"){
 
-});
+      drawStar(
+        ctx,
+        x,
+        y,
+        s/2,
+        s/4,
+        5
+      );
+
+    }
+
+
+    if(shape.type === "hexagon"){
+
+      drawPolygon(
+        ctx,
+        x,
+        y,
+        s/2,
+        6
+      );
+
+    }
+
+
+    if(shape.type === "line"){
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        x-s/2,
+        y
+      );
+
+      ctx.lineTo(
+        x+s/2,
+        y
+      );
+
+      ctx.stroke();
+
+    }
+
+
+    if(shape.type === "cross"){
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        x-s/2,
+        y
+      );
+
+      ctx.lineTo(
+        x+s/2,
+        y
+      );
+
+      ctx.moveTo(
+        x,
+        y-s/2
+      );
+
+      ctx.lineTo(
+        x,
+        y+s/2
+      );
+
+      ctx.stroke();
+
+    }
+
+
+    ctx.restore();
+
+  });
 
 }
 
 
 function drawStar(
-cx,
-cy,
-outer,
-inner,
-points
+  context,
+  cx,
+  cy,
+  outer,
+  inner,
+  points
 ){
 
-ctx.beginPath();
+  context.beginPath();
 
-for(
-let i=0;
-i<points*2;
-i++
-){
+  for(
+    let i=0;
+    i<points*2;
+    i++
+  ){
 
-const angle=
--i*Math.PI/points-
-Math.PI/2;
+    const angle =
+      -Math.PI/2 +
+      i*Math.PI/points;
 
-const radius=
-i%2===0?outer:inner;
+    const radius =
+      i%2===0
+      ? outer
+      : inner;
 
-const x=
-cx+
-Math.cos(angle)*radius;
+    const x =
+      cx +
+      Math.cos(angle)*radius;
 
-const y=
-cy+
-Math.sin(angle)*radius;
+    const y =
+      cy +
+      Math.sin(angle)*radius;
 
-if(i===0)
-ctx.moveTo(x,y);
-else
-ctx.lineTo(x,y);
+    if(i===0)
+      context.moveTo(x,y);
+    else
+      context.lineTo(x,y);
 
-}
+  }
 
-ctx.closePath();
+  context.closePath();
 
-ctx.stroke();
+  context.stroke();
 
 }
 
 
 function drawPolygon(
-cx,
-cy,
-radius,
-sides
+  context,
+  cx,
+  cy,
+  radius,
+  sides
 ){
 
-ctx.beginPath();
+  context.beginPath();
 
-for(
-let i=0;
-i<sides;
-i++
-){
+  for(
+    let i=0;
+    i<sides;
+    i++
+  ){
 
-const angle=
-i*Math.PI*2/sides-
-Math.PI/2;
+    const angle =
+      -Math.PI/2 +
+      i*Math.PI*2/sides;
 
-const x=
-cx+
-Math.cos(angle)*radius;
+    const x =
+      cx +
+      Math.cos(angle)*radius;
 
-const y=
-cy+
-Math.sin(angle)*radius;
+    const y =
+      cy +
+      Math.sin(angle)*radius;
 
-if(i===0)
-ctx.moveTo(x,y);
-else
-ctx.lineTo(x,y);
+    if(i===0)
+      context.moveTo(x,y);
+    else
+      context.lineTo(x,y);
+
+  }
+
+  context.closePath();
+
+  context.stroke();
 
 }
 
-ctx.closePath();
 
-ctx.stroke();
-
-}
-
-
-/* =====================================================
-TEXT
-===================================================== */
+/* =========================================================
+   TEXT
+========================================================= */
 
 function drawText(){
 
-const name=
-document.getElementById("name").value;
+  const name =
+    document.getElementById("name").value;
 
-const version=
-document.getElementById("version").value;
+  const version =
+    document.getElementById("version").value;
 
-if(!name && !version)return;
-
-
-const y=
-Number(
-document.getElementById("textY").value
-);
-
-const outline=
-Number(
-document.getElementById("outlineWidth").value
-);
-
-const shadow=
-Number(
-document.getElementById("textShadow").value
-);
+  if(!name && !version) return;
 
 
-ctx.save();
+  const y =
+    Number(
+      document.getElementById("textY").value
+    );
 
-ctx.textAlign="center";
+  const nameSize =
+    Number(
+      document.getElementById("nameSize").value
+    );
 
-ctx.textBaseline="middle";
+  const versionSize =
+    Number(
+      document.getElementById("versionSize").value
+    );
 
-ctx.fillStyle=
-document.getElementById("textColor").value;
-
-ctx.strokeStyle=
-document.getElementById("outlineColor").value;
-
-ctx.shadowColor="#000";
-
-ctx.shadowBlur=shadow;
+  const outline =
+    Number(
+      document.getElementById("outlineWidth").value
+    );
 
 
-if(name){
+  ctx.save();
 
-ctx.font=
-`bold ${document.getElementById("nameSize").value}px ${document.getElementById("nameFont").value}`;
+  ctx.textAlign = "center";
 
-ctx.lineWidth=
-outline*2;
+  ctx.textBaseline = "middle";
 
-if(outline)
-ctx.strokeText(
-name,
-300,
-y
-);
+  ctx.fillStyle =
+    document.getElementById("textColor").value;
 
-ctx.fillText(
-name,
-300,
-y
-);
+  ctx.strokeStyle =
+    document.getElementById("outlineColor").value;
+
+
+  if(name){
+
+    ctx.font =
+      `900 ${nameSize}px ${
+        document.getElementById("nameFont").value
+      }`;
+
+    ctx.lineWidth =
+      outline*2;
+
+    if(outline > 0){
+
+      ctx.strokeText(
+        name,
+        300,
+        y
+      );
+
+    }
+
+    ctx.fillText(
+      name,
+      300,
+      y
+    );
+
+  }
+
+
+  if(version){
+
+    ctx.font =
+      `900 ${versionSize}px ${
+        document.getElementById("versionFont").value
+      }`;
+
+    ctx.lineWidth =
+      outline*2;
+
+    if(outline > 0){
+
+      ctx.strokeText(
+        version,
+        300,
+        y+40
+      );
+
+    }
+
+    ctx.fillText(
+      version,
+      300,
+      y+40
+    );
+
+  }
+
+
+  ctx.restore();
 
 }
 
 
-if(version){
+/* =========================================================
+   VIGNETTE + EDGE DARKENING
 
-ctx.font=
-`bold ${document.getElementById("versionSize").value}px ${document.getElementById("versionFont").value}`;
-
-ctx.lineWidth=
-outline*2;
-
-if(outline)
-ctx.strokeText(
-version,
-300,
-y+40
-);
-
-ctx.fillText(
-version,
-300,
-y+40
-);
-
-}
-
-ctx.restore();
-
-}
-
-
-/* =====================================================
-VIGNETTE
-===================================================== */
+   Actual radial gradient.
+========================================================= */
 
 function drawVignette(){
 
-const amount=
-Number(
-document.getElementById("vignette").value
-);
+  const vignette =
+    Number(
+      document.getElementById("vignette").value
+    );
 
-const edge=
-Number(
-document.getElementById("edgeDark").value
-);
-
-const strength=
-Math.max(
-amount,
-edge
-)/100;
-
-if(strength<=0)return;
+  const edge =
+    Number(
+      document.getElementById("edgeDark").value
+    );
 
 
-const gradient=
-ctx.createRadialGradient(
-300,
-300,
-110,
-300,
-300,
-430
-);
+  const amount =
+    Math.max(
+      vignette,
+      edge
+    );
 
-gradient.addColorStop(
-0,
-"rgba(0,0,0,0)"
-);
 
-gradient.addColorStop(
-.55,
-"rgba(0,0,0,0)"
-);
+  if(amount <= 0) return;
 
-gradient.addColorStop(
-1,
-`rgba(0,0,0,${strength})`
-);
 
-ctx.fillStyle=gradient;
+  const alpha =
+    amount / 100;
 
-ctx.fillRect(
-0,
-0,
-600,
-600
-);
+
+  const gradient =
+    ctx.createRadialGradient(
+      300,
+      300,
+      100,
+      300,
+      300,
+      430
+    );
+
+
+  gradient.addColorStop(
+    0,
+    "rgba(0,0,0,0)"
+  );
+
+  gradient.addColorStop(
+    .45,
+    "rgba(0,0,0,0)"
+  );
+
+  gradient.addColorStop(
+    .75,
+    `rgba(0,0,0,${alpha*.25})`
+  );
+
+  gradient.addColorStop(
+    1,
+    `rgba(0,0,0,${alpha})`
+  );
+
+
+  ctx.fillStyle =
+    gradient;
+
+  ctx.fillRect(
+    0,
+    0,
+    600,
+    600
+  );
 
 }
 
 
-/* =====================================================
-MASTER DRAW
-===================================================== */
+/* =========================================================
+   MASTER DRAW
+========================================================= */
 
 function draw(){
 
-ctx.clearRect(
-0,
-0,
-600,
-600
-);
+  ctx.clearRect(
+    0,
+    0,
+    600,
+    600
+  );
 
-drawBackground();
 
-drawCharacter();
+  drawBackground();
 
-drawCustomShapes();
+  drawCharacter();
 
-drawFrame();
+  drawCustomShapes();
 
-drawText();
+  drawFrame();
 
-drawVignette();
+  drawText();
+
+  drawVignette();
 
 }
 
 
-/* =====================================================
-CONTROL LIST
-===================================================== */
+/* =========================================================
+   CONTROL UPDATES
+========================================================= */
 
-const controls=[
+const controlIds = [
 
-"zoom",
-"posX",
-"posY",
-"rotation",
+  "zoom",
+  "posX",
+  "posY",
+  "rotation",
 
-"name",
-"version",
-"nameFont",
-"versionFont",
-"nameSize",
-"versionSize",
-"textY",
-"textColor",
-"outlineColor",
-"outlineWidth",
-"textShadow",
+  "frameWidth",
+  "frameGlow",
+  "frameOpacity",
 
-"bgType",
-"bgColor",
-"bgColor2",
-"bgBlur",
+  "name",
+  "version",
+  "nameFont",
+  "versionFont",
+  "nameSize",
+  "versionSize",
+  "textY",
+  "textColor",
+  "outlineColor",
+  "outlineWidth",
 
-"frameWidth",
-"frameGlow",
-"frameOpacity",
+  "bgType",
+  "bgColor",
+  "bgColor2",
+  "bgBlur",
 
-"brightness",
-"contrast",
-"saturation",
-"blur",
-"vignette",
-"edgeDark",
+  "brightness",
+  "contrast",
+  "saturation",
+  "blur",
+  "vignette",
+  "edgeDark",
 
-"shapeColor",
-"shapeSize",
-"shapeThickness"
+  "shapeColor",
+  "shapeSize",
+  "shapeThickness"
 
 ];
 
 
-controls.forEach(id=>{
+controlIds.forEach(id => {
 
-const el=
-document.getElementById(id);
+  const element =
+    document.getElementById(id);
 
-if(!el)return;
+  if(!element) return;
 
-el.addEventListener(
-"input",
-()=>{
+  element.addEventListener(
+    "input",
+    () => {
 
-draw();
+      updateValues();
 
-updateUI();
+      draw();
+
+    }
+  );
+
+  element.addEventListener(
+    "change",
+    () => {
+
+      updateValues();
+
+      draw();
+
+    }
+  );
 
 });
 
-el.addEventListener(
-"change",
-()=>{
 
-draw();
-
-updateUI();
-
-});
-
-});
-
-
-/* =====================================================
-CUSTOM FONT
-===================================================== */
+/* =========================================================
+   CUSTOM FONTS
+========================================================= */
 
 document
-.getElementById("fontInput")
-.addEventListener(
-"change",
-async e=>{
+  .getElementById("fontFile")
+  .addEventListener(
+    "change",
+    async e => {
 
-const file=e.target.files[0];
+      const file =
+        e.target.files[0];
 
-if(!file)return;
+      if(!file) return;
 
-try{
+      try{
 
-const buffer=
-await file.arrayBuffer();
+        const buffer =
+          await file.arrayBuffer();
 
-const fontName=
-"CustomIconFont"+
-Date.now();
+        const fontName =
+          "IconForgeCustom" +
+          Date.now();
 
-const font=
-new FontFace(
-fontName,
-buffer
+        const font =
+          new FontFace(
+            fontName,
+            buffer
+          );
+
+        await font.load();
+
+        document.fonts.add(font);
+
+
+        const nameOption =
+          document.createElement("option");
+
+        nameOption.value =
+          fontName;
+
+        nameOption.textContent =
+          "★ " + file.name;
+
+        document
+          .getElementById("nameFont")
+          .appendChild(nameOption);
+
+
+        const versionOption =
+          document.createElement("option");
+
+        versionOption.value =
+          fontName;
+
+        versionOption.textContent =
+          "★ " + file.name;
+
+        document
+          .getElementById("versionFont")
+          .appendChild(versionOption);
+
+
+        document
+          .getElementById("nameFont")
+          .value =
+          fontName;
+
+        document
+          .getElementById("versionFont")
+          .value =
+          fontName;
+
+
+        draw();
+
+      }catch(error){
+
+        alert(
+          "That font could not be loaded."
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   DRAG IMAGE
+
+   Dragging directly on the live preview.
+========================================================= */
+
+canvas.addEventListener(
+  "pointerdown",
+  event => {
+
+    if(!character) return;
+
+    dragging = true;
+
+    dragStartX =
+      event.clientX;
+
+    dragStartY =
+      event.clientY;
+
+    startingX =
+      Number(
+        document
+          .getElementById("posX")
+          .value
+      );
+
+    startingY =
+      Number(
+        document
+          .getElementById("posY")
+          .value
+      );
+
+    canvas.setPointerCapture(
+      event.pointerId
+    );
+
+  }
 );
-
-await font.load();
-
-document.fonts.add(font);
-
-
-const option1=
-document.createElement("option");
-
-option1.value=fontName;
-
-option1.textContent=
-"★ "+file.name;
-
-document
-.getElementById("nameFont")
-.appendChild(option1);
-
-
-const option2=
-document.createElement("option");
-
-option2.value=fontName;
-
-option2.textContent=
-"★ "+file.name;
-
-document
-.getElementById("versionFont")
-.appendChild(option2);
-
-
-document
-.getElementById("nameFont")
-.value=fontName;
-
-document
-.getElementById("versionFont")
-.value=fontName;
-
-draw();
-
-}catch(error){
-
-alert(
-"That font could not be loaded."
-);
-
-}
-
-});
-
-
-/* =====================================================
-DRAG CHARACTER
-===================================================== */
-
-let dragging=false;
-
-let dragStartX=0;
-let dragStartY=0;
-
-let originalX=0;
-let originalY=0;
 
 
 canvas.addEventListener(
-"pointerdown",
-e=>{
+  "pointermove",
+  event => {
 
-if(!character)return;
+    if(!dragging) return;
 
-dragging=true;
 
-dragStartX=e.clientX;
+    const rect =
+      canvas.getBoundingClientRect();
 
-dragStartY=e.clientY;
 
-originalX=
-Number(
-document.getElementById("posX").value
+    const scaleX =
+      600 / rect.width;
+
+    const scaleY =
+      600 / rect.height;
+
+
+    document
+      .getElementById("posX")
+      .value =
+      startingX +
+      (event.clientX-dragStartX)
+      * scaleX;
+
+
+    document
+      .getElementById("posY")
+      .value =
+      startingY +
+      (event.clientY-dragStartY)
+      * scaleY;
+
+
+    draw();
+
+  }
 );
 
-originalY=
-Number(
-document.getElementById("posY").value
-);
 
-canvas.setPointerCapture(
-e.pointerId
-);
+function stopDragging(){
 
-});
+  dragging = false;
+
+}
 
 
 canvas.addEventListener(
-"pointermove",
-e=>{
-
-if(!dragging)return;
-
-const rect=
-canvas.getBoundingClientRect();
-
-const scaleX=
-600/rect.width;
-
-const scaleY=
-600/rect.height;
-
-
-document
-.getElementById("posX")
-.value=
-originalX+
-(e.clientX-dragStartX)*scaleX;
-
-
-document
-.getElementById("posY")
-.value=
-originalY+
-(e.clientY-dragStartY)*scaleY;
-
-draw();
-
-});
-
-
-canvas.addEventListener(
-"pointerup",
-()=>{
-dragging=false;
-});
-
-canvas.addEventListener(
-"pointercancel",
-()=>{
-dragging=false;
-});
-
-
-/* =====================================================
-KEYBOARD SHORTCUTS
-===================================================== */
-
-document.addEventListener(
-"keydown",
-e=>{
-
-if(e.key==="ArrowLeft"){
-
-document
-.getElementById("posX")
-.stepDown();
-
-draw();
-
-}
-
-if(e.key==="ArrowRight"){
-
-document
-.getElementById("posX")
-.stepUp();
-
-draw();
-
-}
-
-if(e.key==="ArrowUp"){
-
-document
-.getElementById("posY")
-.stepDown();
-
-draw();
-
-}
-
-if(e.key==="ArrowDown"){
-
-document
-.getElementById("posY")
-.stepUp();
-
-draw();
-
-}
-
-});
-
-
-/* =====================================================
-UI
-===================================================== */
-
-function updateUI(){
-
-const zoom=
-Number(
-document.getElementById("zoom").value
+  "pointerup",
+  stopDragging
 );
 
-document
-.getElementById("zoomValue")
-.textContent=
-Math.round(zoom*100)+"%";
+canvas.addEventListener(
+  "pointercancel",
+  stopDragging
+);
+
+
+/* =========================================================
+   VALUES
+========================================================= */
+
+function setText(id,text){
+
+  const el =
+    document.getElementById(id);
+
+  if(el)
+    el.textContent = text;
 
 }
 
 
-/* =====================================================
-START
-===================================================== */
+function updateValues(){
 
-updateUI();
+  const zoom =
+    Number(
+      document.getElementById("zoom").value
+    );
+
+  setText(
+    "zoomValue",
+    Math.round(zoom*100)+"%"
+  );
+
+
+  setText(
+    "frameWidthValue",
+    document.getElementById("frameWidth").value
+  );
+
+
+  setText(
+    "frameGlowValue",
+    document.getElementById("frameGlow").value
+  );
+
+
+  setText(
+    "frameOpacityValue",
+    document.getElementById("frameOpacity").value+"%"
+  );
+
+
+  setText(
+    "nameSizeValue",
+    document.getElementById("nameSize").value
+  );
+
+
+  setText(
+    "versionSizeValue",
+    document.getElementById("versionSize").value
+  );
+
+
+  setText(
+    "textYValue",
+    document.getElementById("textY").value
+  );
+
+
+  setText(
+    "outlineValue",
+    document.getElementById("outlineWidth").value
+  );
+
+
+  setText(
+    "bgBlurValue",
+    document.getElementById("bgBlur").value
+  );
+
+
+  setText(
+    "brightnessValue",
+    document.getElementById("brightness").value+"%"
+  );
+
+
+  setText(
+    "contrastValue",
+    document.getElementById("contrast").value+"%"
+  );
+
+
+  setText(
+    "saturationValue",
+    document.getElementById("saturation").value+"%"
+  );
+
+
+  setText(
+    "blurValue",
+    document.getElementById("blur").value
+  );
+
+
+  setText(
+    "vignetteValue",
+    document.getElementById("vignette").value+"%"
+  );
+
+
+  setText(
+    "edgeValue",
+    document.getElementById("edgeDark").value+"%"
+  );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+updateValues();
 
 draw();
 
